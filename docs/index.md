@@ -22,8 +22,9 @@ An app creates a subscription to the EHR's UserSession and is then notified when
 
 ### EHR launches SMART on FHIR App
 
-The EHR launches the app following the standard (SMART on FHIR EHR launch)[http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence]  flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, alongside the acess_token the EHR's authorization server identifies the current user's UserSession:
+The EHR launches the app following the standard (SMART on FHIR EHR launch)[http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence]  flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, alongside the acess_token the EHR's authorization server identifies the current user's [UserSession](usersession/):
 
+```
 {
   "access_token": "i8hweunweunweofiwweoijewiwe",
   "token_type": "bearer",
@@ -32,6 +33,7 @@ The EHR launches the app following the standard (SMART on FHIR EHR launch)[http:
   "encounter": "456",
   "usersession" : "789"
 }
+```
 
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, it can also be used with implementation-specific launch and authz protocols.
 
@@ -126,7 +128,7 @@ PUT <app notification endpoint>/on-patientchartopen/UserSession
 DELETE <fhir base url>/Subscription/sub00001
 ```
 
-## Common workflow EventDefinitions
+## Event Catalog
 
 1. open-patient-chart
 1. switch-patient-chart
@@ -140,6 +142,7 @@ DELETE <fhir base url>/Subscription/sub00001
 
 [TODO - define fhirpath / Event definitions with names for common workflow events]
 
-## Get involved!
+## Get involved
 
 https://chat.fhir.org/#narrow/stream/subscriptions
+https://github.com/fhircast
