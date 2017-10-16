@@ -4,12 +4,12 @@
 
 FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), she wants each of these three systems to display the same study or patient at the same time. 
 
-FHIRcast isn't limited to radiology use-cases. Using [FHIR Subscriptions](https://www.hl7.org/fhir/subscription.html), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications. FHIRcast builds on the [CCOW](https://en.wikipedia.org/wiki/CCOW) abstract model to specify an http-based, simple and decentralized context synchronization specification. For simplicity, the below describes an app synchronizing with an EHR, but any user-facing application can synchronize with FHIRcast. While less common,  bidirectional communication between multiple application is also possible.
+FHIRcast isn't limited to radiology use-cases. Using [FHIR Subscriptions](https://www.hl7.org/fhir/subscription.html), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications. FHIRcast builds on the [CCOW](https://en.wikipedia.org/wiki/CCOW) abstract model to specify an http-based, simple and decentralized context synchronization specification. For simplicity, the below describes an app synchronizing with an EHR, but any user-facing application can synchronize with FHIRcast. While less common,  bidirectional communication between multiple applications is also possible.
 
 
 ### Why?
 
-The large number of vendor-specific or proprietary context synchronization methods in production use limit the industry's ability to enhance the large number of integrations currently in production. In practice, these integrations are decentralized and simple. 
+The large number of vendor-specific or proprietary context synchronization methods in production use limit the industry's ability to enhance the very large number of integrations currently in production. In practice, these integrations are decentralized and simple. 
 
 
 ## Synchronize
@@ -22,8 +22,9 @@ An app creates a subscription to the EHR's UserSession and is then notified when
 
 ### EHR launches SMART on FHIR App
 
-The EHR launches the app following the standard (SMART on FHIR EHR launch)[http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence]  flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, alongside the acess_token the EHR's authorization server identifies the current user's [UserSession](usersession/):
+The EHR launches the app following the standard [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, alongside the acess_token the EHR's authorization server identifies the current user's [UserSession](usersession/):
 
+#### SMART launch parameters include usersession
 ```
 {
   "access_token": "i8hweunweunweofiwweoijewiwe",
@@ -144,5 +145,5 @@ DELETE <fhir base url>/Subscription/sub00001
 
 ## Get involved
 
-https://chat.fhir.org/#narrow/stream/subscriptions
-https://github.com/fhircast
+* [Log issues, contribute via github](https://github.com/fhircast)
+* [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/subscriptions)
