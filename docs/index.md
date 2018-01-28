@@ -108,15 +108,21 @@ PUT <app notification endpoint>/on-patientchartopen/UserSession
 {
   "resourceType": "UserSession",
   "id" : "xyz",
-  "user": "Practitioner/prov123",
+  "user": {
+    "reference": "Practitioner/prov123"
+  }
   "status" : {
     "value" : "activating",
     "source" : "user"
   }
   "workstation" : "Location/readingworkstation456",
   "focus" : [
-    "Patient/789",
-    "Encounter/100009181"
+    {
+      "reference": "Patient/789"
+    },
+    {
+      "reference": "Encounter/100009181"
+    }
   ],
   "created" : "2017-12-11T09:57:34.2112Z",
  }
