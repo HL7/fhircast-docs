@@ -24,7 +24,7 @@ The EHR launches the app following the standard [SMART on FHIR EHR launch](http:
   "encounter": "456",
   "imagingstudy": "789",
   "cast-hub" : "https://hub.example.com",
-  "cast-session": "7jaa86kgdudewiaq0wtu",
+  "cast-session": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
 }
 ```
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, it can also be used with implementation-specific launch and authz protocols. See [other launch scenarios]().
@@ -38,7 +38,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
+`hub.topic` | Required | *string* | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
 `hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that will be used to compute an HMAC digest delivered in each notification. This parameter MUST be less than 200 bytes in length.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. 
@@ -53,13 +53,13 @@ Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
 ```
 
 #### Hub responds with successful creation
 If the hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, it MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the hub. The hub SHOULD perform the verification of intent as soon as possible.
 
-If a hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, hubs SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URLs based on their own policies.
+If a hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, hubs SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
 
 ```
 HTTP/1.1 202 Accepted
@@ -72,12 +72,12 @@ If (and when) the subscription is denied, the hub MUST inform the subscriber by 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
-`hub.topic` | Required | *string* | The topic given in the corresponding subscription request.
+`hub.topic` | Required | *string* | The topic uri given in the corresponding subscription request.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.reason` | Optional | *string* | The hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=patient-open-chart,patient-close-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=patient-open-chart,patient-close-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
 
@@ -90,7 +90,7 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
-`hub.topic` | Required | *string* | The topic session id given in the corresponding subscription request.
+`hub.topic` | Required | *string* | The topic session uri given in the corresponding subscription request.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.challenge` | Required | *string* | A hub-generated, random string that MUST be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption. 
@@ -126,7 +126,7 @@ Field | Optionality | Type | Description
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-hub.topic | Required | string | The topic session id given in the subscription request. 
+hub.topic | Required | string | The topic session uri given in the subscription request. 
 hub.event| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 context | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The hub MUST only return FHIR resources that can be accessed with the existing OAuth2 access_token.
 
@@ -143,7 +143,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "7jaa86kgdudewiaq0wtu",
+    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
     "hub.event": "open-patient-chart",
     "context": [
       {
@@ -178,7 +178,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
 
 ```
 ## Event Catalog
