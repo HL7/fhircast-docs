@@ -1,4 +1,6 @@
+<img style="float: left;padding-right: 5px;" src="img/hl7logo.gif" width=40px" />
 # FHIRcast - _modern, simple application context synchronization_
+
 ## Overview
 FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), she wants each of these three systems to display the same study or patient at the same time. FHIRcast isn't limited to radiology use-cases. Modeled after the common webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications. FHIRcast builds on the [CCOW](https://en.wikipedia.org/wiki/CCOW) abstract model to specify an http-based and simple context synchronization specification that doesn't require a separate context manager. 
 

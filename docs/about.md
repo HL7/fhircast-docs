@@ -1,17 +1,13 @@
-# Welcome to MkDocs
+# About FHIRcast
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+FHIRcast is an HL7 specification designed to provide a lightweight, inexpensive and http-based application context synchronization standard.  
 
-## Commands
+## Get involved
+There are several ways in which you can get involved with the FHIRcast community.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+* [Log issues, contribute via github](https://github.com/fhircast)
+* [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/fhircast)
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Want to help build our test infrastructure?
+* [help-wanted issues](https://github.com/fhircast/docs/labels/help%20wanted)
+* [Milestones](https://github.com/fhircast/docs/milestone/1)

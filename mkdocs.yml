@@ -1,5 +1,5 @@
 site_name: FHIRcast
 pages:
     - Home: index.md
-    - UserSession: usersession.md
+    - About: about.md
 theme: readthedocs
