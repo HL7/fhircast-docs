@@ -20,4 +20,4 @@ env:
 
 notifications:
   webhooks:
-    #- https://chat.fhir.org/api/v1/external/travis?stream=fhircast-committers&topic=ci-notifications&api_key=
+    - https://chat.fhir.org/api/v1/external/travis?stream=fhircast-committers&topic=ci-notifications&api_key=abyE3VEEndMrLJEJCqwbgkQWQTJWq4AQ
