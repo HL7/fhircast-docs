@@ -170,6 +170,46 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
 }
 ```
 
+### App requests context change
+
+Similar to the Hub's notifications to the subscriber, the subscriber can request context changes by POSTing to the `hub.topic` url. The Hub accepts this context change by responding with any successful HTTP status and rejects it by responding with any 4xx or 5xx HTTP status. The subscriber MUST be capable of gracefully handling a rejected context request. 
+
+Once a requested context change is accepted, the Hub will broadcast the context notification to all subscribers, including the original requestor. 
+
+```
+POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  "timestamp": "2018-01-08T01:40:05.14",
+  "id": "wYXStHqxFQyHFELh",
+  "event": {
+    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.event": "close-patient-chart",
+    "context": [
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "798E4MyMcpCWHab9",
+          "identifier": [
+            {
+              "system": "urn:oid:1.2.840.114350",
+              "value": "1345687"
+            },
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
+              "value": "7539"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
 ### App unsubscribes from session
 
