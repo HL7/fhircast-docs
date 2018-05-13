@@ -14,7 +14,8 @@ An app subscribes to specific workflow events for a given user's session, the su
 [TODO: Simple, attractive image illustrating actors and key interactions]
 
 ### EHR launches SMART on FHIR App
-The EHR launches the app following the standard [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, alongside the acess_token the EHR's authorization server identifies the base url to the hub, a unique, opaque identifier to the current user's session, 
+The EHR launches the app following the standard [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow, including identifying the current EHR user using OpenID Connect. As part of the app launch, in response to a request for the `fhircast` OAuth2.0 scope , the EHR's authorization server identifies the base url to the hub, and a unique, opaque identifier to the current user's session. Other launch scenarios are also supported, see [Launch Scenarios](/launch-scenarios).
+ 
 
 #### SMART launch parameters include hub base url and session identifier
 ```
