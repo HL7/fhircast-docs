@@ -58,6 +58,8 @@ Content-Type: application/x-www-form-urlencoded
 hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
 ```
 
+Note: Within FHIRcast, the client that creates a subscription and the server that hosts the callback url are the same entity. If these roles are split, the Hub assumes that the same authorization and access rights apply to both systems. 
+
 #### Hub responds with successful creation
 If the hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, it MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the hub. The hub SHOULD perform the verification of intent as soon as possible.
 
