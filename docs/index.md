@@ -116,6 +116,44 @@ meu3we944ix80ox
 
 The hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the hub.challenge parameter, the hub MUST also consider verification to have failed.
 
+### App may request current context
+Following a launch, in addition to subscribing for future events, a client may request the current context of a given session. The client queries the Hub's topic url to check the current context for the session represented by the topic. Event-driven context notifications should take precedence. Note that no event is present in the response.
+
+```
+GET https://hub.example.com/7jaa86kgdudewiaq0wtu 
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+```
+
+```
+{
+  "timestamp": "2018-01-08T01:40:05.14",
+  "id": "wYXStHqxFQyHFELh",
+  "event": {
+    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "context": [
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "798E4MyMcpCWHab9",
+          "identifier": [
+            {
+              "system": "urn:oid:1.2.840.114350",
+              "value": "1345687"
+            },
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
+              "value": "7539"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
 ### Workflow event occurs and subscriber is notified
 
 In addition to a description of the subscribed event that just occurred, the notification to the subscriber also includes an ISO 8601 formatted timestamp in UTC and an event identifer that is universally unique for the hub. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions. 
