@@ -173,6 +173,12 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
 }
 ```
 
+The subscriber SHOULD respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber responds with an HTTP 200; otherwise, the subscriber SHOULD responD with an HTTP error status code. 
+
+```
+HTTP/1.1 200 Accepted
+```
+
 ### App requests context change
 
 Similar to the Hub's notifications to the subscriber, the subscriber can request context changes by POSTing to the `hub.topic` url. The Hub accepts this context change by responding with any successful HTTP status and rejects it by responding with any 4xx or 5xx HTTP status. The subscriber MUST be capable of gracefully handling a rejected context request. 
