@@ -173,7 +173,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
 }
 ```
 
-The subscriber SHOULD respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber responds with an HTTP 200; otherwise, the subscriber SHOULD responD with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHOULD respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber responds with an HTTP 200; otherwise, the subscriber SHOULD respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
 
 ```
 HTTP/1.1 200 Accepted
