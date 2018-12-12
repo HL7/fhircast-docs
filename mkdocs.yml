@@ -2,5 +2,6 @@ site_name: FHIRcast
 pages:
     - Home: index.md
     - Launch Scenarios: launch-scenarios.md
+    - Synchronization Considerations: syncconsiderations.md
     - About: about.md
 theme: readthedocs
