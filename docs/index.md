@@ -33,7 +33,7 @@ The EHR launches the app following the standard [SMART on FHIR EHR launch](http:
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, it can also be used with implementation-specific launch and authz protocols. See [other launch scenarios]().
 
 ### App subscribes to session
-In this example, the app asks to be notified of the patient-chart-open and patient-chart-close events.  Note that the bearer access_token used to authenticate to the Hub was initially granted during the SMART launch.
+In this example, the app asks to be notified of the open-patient-chart and close-patient-chart events.  Note that the bearer access_token used to authenticate to the Hub was initially granted during the SMART launch.
 
 Subscriber performs an HTTP POST to the hub base url with the following parameters.
 
@@ -82,7 +82,7 @@ Field | Optionality | Type | Description
 `hub.reason` | Optional | *string* | The hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=patient-open-chart,patient-close-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
 
@@ -101,7 +101,7 @@ Field | Optionality | Type | Description
 `hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption. 
 
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=patient-open-chart,patient-close-chart&hub.challenge=meu3we944ix80ox HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox HTTP 1.1
 Host: subscriber
 ```
 
@@ -223,7 +223,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=open-patient-chart,close-patient-chart
 
 ```
 ## Event Catalog
