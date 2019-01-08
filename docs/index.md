@@ -117,7 +117,7 @@ meu3we944ix80ox
 The hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the hub.challenge parameter, the hub MUST also consider verification to have failed.
 
 ### App may request current context
-Following a launch, in addition to subscribing for future events, a client may request the current context of a given session. The client queries the Hub's topic url to check the current context for the session represented by the topic. Event-driven context notifications should take precedence. Note that no `hub.event` is present in the response.
+Following a launch, in addition to subscribing for future events, a client may request the current context of a given session. The client queries the Hub's topic url to check the current context for the session represented by the topic. Event-driven context notifications should take precedence. Note that no `hub.eventName` is present in the response.
 
 ```
 GET https://hub.example.com/7jaa86kgdudewiaq0wtu 
@@ -209,11 +209,11 @@ Field | Optionality | Type | Description
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 hub.topic | Required | string | The topic session uri given in the subscription request. 
-hub.event| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
+hub.eventName| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 context | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The hub MUST only return FHIR resources that can be accessed with the existing OAuth2 access_token.
 
 #### What just happened in the user's session?
-The notification's hub.event and context fields inform the subscriber of the current state of the user's session. The hub.event is a user workflow event, from the Event Catalog. The context is an array of named FHIR objects (similar to [CDS Hooks's context](https://cds-hooks.org/specification/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. The context makes heavy use of the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. 
+The notification's `hub.eventName` and context fields inform the subscriber of the current state of the user's session. The `hub.eventName` is a user workflow event, from the Event Catalog. The context is an array of named FHIR objects (similar to [CDS Hooks's context](https://cds-hooks.org/specification/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. The context makes heavy use of the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. 
 
 
 ```
@@ -226,7 +226,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
-    "hub.event": "open-patient-chart",
+    "hub.eventName": "open-patient-chart",
     "context": [
       {
         "key": "patient",
@@ -267,7 +267,7 @@ Content-Type: application/json
   "id": "wYXStHqxFQyHFELh",
   "event": {
     "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
-    "hub.event": "close-patient-chart",
+    "hub.eventName": "close-patient-chart",
     "context": [
       {
         "key": "patient",
