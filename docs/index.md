@@ -32,6 +32,8 @@ The EHR launches the app following the standard [SMART on FHIR EHR launch](http:
 ```
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, it can also be used with implementation-specific launch and authz protocols. See [other launch scenarios]().
 
+The `cast-session` launch paramter SHALL contain an unpredictable value with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable).
+
 ## App subscribes to session
 
 In this example, the app asks to be notified of the open-patient-chart and close-patient-chart events. Note that the bearer access token used to authenticate to the Hub is initially granted during the SMART launch.
