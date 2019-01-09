@@ -32,22 +32,26 @@ The EHR launches the app following the standard [SMART on FHIR EHR launch](http:
 ```
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, it can also be used with implementation-specific launch and authz protocols. See [other launch scenarios]().
 
-### App subscribes to session
-In this example, the app asks to be notified of the open-patient-chart and close-patient-chart events.  Note that the bearer access_token used to authenticate to the Hub was initially granted during the SMART launch.
+## App subscribes to session
 
-Subscriber performs an HTTP POST to the hub base url with the following parameters.
+In this example, the app asks to be notified of the open-patient-chart and close-patient-chart events. Note that the bearer access token used to authenticate to the Hub is initially granted during the SMART launch.
+
+Subscriber performs an HTTP POST to the hub base url (`cast-hub` url) and provides the `cast-session` uri, both of which were received as SMART launch parameters. The `hub.callback` and `hub.secret` are mandatory for a `hub.channel.type` of _websub_.
+
 
 Field | Optionality | Type | Description
----------- | ----- | -------- | --------------
-`hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
-`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
-`hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that will be used to compute an HMAC digest delivered in each notification. This parameter MUST be less than 200 bytes in length.
-`hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
-`hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. 
+-- | -- | -- | --
+hub.callback | Required _for websub_ | string | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
+hub.secret | Required _for websub_| string | A subscriber-provided cryptographically random unique secret string that will be used to compute an HMAC digest delivered in each notification. This parameter MUST be less than 200 bytes in length.
+hub.mode | Required | string | The literal string "_subscribe_" or "_unsubscribe_", depending on the goal of the request.
+hub.topic | Required | string | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from.
+hub.events | Required | string | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
+hub.lease_seconds | Optional | number | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hu bs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter.
+hub.channel.type | Required | string | The literal string "_websub_" or "_websocket_", depending on the capabilities and intent of the subscriber.
 
-Hubs MUST allow subscribers to re-request subscriptions that are already activated. Each subsequent request to a hub to subscribe or unsubscribe MUST override the previous subscription state for a specific topic, and callback URL combination once the action is verified. 
+Hubs MUST allow subscribers to re-request subscriptions that are already activated. Each subsequent request to a hub to subscribe or unsubscribe MUST override the previous subscription state for a specific topic, and callback URL combination once the action is verified.
 
+### Websub callback urls
 The callback URL MAY contain arbitrary query string parameters (e.g., ?foo=bar&red=fish). Hubs MUST preserve the query string during subscription verification by appending new parameters to the end of the list using the & (ampersand) character to join. When sending the content distribution request, the hub will make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
 ```
@@ -59,64 +63,58 @@ Content-Type: application/x-www-form-urlencoded
 hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
 ```
 
-Note: Within FHIRcast, the client that creates a subscription and the server that hosts the callback url are the same entity. If these roles are split, the Hub assumes that the same authorization and access rights apply to both systems. 
+Note: Within FHIRcast, the client that creates a subscription and the server that hosts the callback url or connects over websockets are the same entity. If these roles are split, the Hub assumes that the same authorization and access rights apply to both systems.
 
-#### Hub responds with successful creation
-If the hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, it MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the hub. The hub SHOULD perform the verification of intent as soon as possible.
+## Hub responds with successful creation
+If the hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, it MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the hub. If using a callback url, the hub SHOULD perform the verification of intent as soon as possible.
 
-If a hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, hubs SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
+If a hub finds any errors in the subscription request (for example a channel type of websub with a missing callback url), an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, hubs SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
 
 ```
 HTTP/1.1 202 Accepted
 ```
 
-### Hub may cancel subscription
-
-If (and when) the subscription is denied, the hub MUST inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended.
+## Hub may cancel subscription
+If (and when) the subscription is denied, the hub MUST inform the subscriber by providing the following information.
 
 Field | Optionality | Type | Description
---- | --- | --- | ---
-`hub.mode` | Required | *string* | The literal string "denied".
-`hub.topic` | Required | *string* | The topic uri given in the corresponding subscription request.
-`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.reason` | Optional | *string* | The hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
+-- | -- | -- | --
+hub.mode | Required | string | The literal string "denied".
+hub.topic | Required | string | The topic uri given in the corresponding subscription request.
+hub.events | Required | string | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.
+hub.reason | Optional | string | The hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
+
+### `hub.channel.type` of _websub_ 
+For `hub.channel.type` connections of `websub` the hub may cancel a subscription by sending an HTTP GET request to the subscriber's callback URL.  This request has the following query string arguments appended to the subscriber's `hub.callback` url as given in the subscription request.
 
 ```
 GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
-
-
 #### Hub verifies callback url
 If (and when) the subscription is accepted, the hub MUST perform the verification of intent of the subscriber. The hub.callback url verification process ensures that the subscriber actually controls the callback url.
 
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a hub must ensure that the subscriber did indeed send the subscription request. The hub verifies a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended:
 
+
 Field | Optionality | Type | Description
----  | --- | --- | --- 
-`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
-`hub.topic` | Required | *string* | The topic session uri given in the corresponding subscription request.
-`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.challenge` | Required | *string* | A hub-generated, random string that MUST be echoed by the subscriber to verify the subscription.
-`hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption. 
+-- | -- | -- | --
+hub.mode | Required | string | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
+hub.topic | Required | string | The topic session uri given in the corresponding subscription request.
+hub.events | Required | string | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.
+hub.challenge | Required | string | A hub-generated, random string that MUST be echoed by the subscriber to verify the subscription.
+hub.lease_seconds | Required | number | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption.
+
+### `hub.channel.type` of _websocket_
+For `hub.channel.type` connections of `websocket` the hub may cancel a subscription by sending the following json object over the established websocket connection.
 
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox HTTP 1.1
-Host: subscriber
-```
+{
+  //TODO
+}
+```  
 
-The subscriber MUST confirm that the hub.topic corresponds to a pending subscription or unsubscription that it wishes to carry out. If so, the subscriber MUST respond with an HTTP success (2xx) code with a response body equal to the hub.challenge parameter. If the subscriber does not agree with the action, the subscriber MUST respond with a 404 "Not Found" response.
-
-```
-HTTP/1.1 200 Success
-Content-Type: text/html
-
-meu3we944ix80ox
-```
-
-The hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the hub.challenge parameter, the hub MUST also consider verification to have failed.
-
-### App may request current context
+## App may request current context
 Following a launch, in addition to subscribing for future events, a client may request the current context of a given session. The client queries the Hub's topic url to check the current context for the session represented by the topic. Event-driven context notifications should take precedence. Note that no `hub.event` is present in the response.
 
 ```
@@ -193,34 +191,61 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 }
 ```
 
-### Workflow event occurs and subscriber is notified
+## Workflow event occurs and subscriber is notified
 
-In addition to a description of the subscribed event that just occurred, the notification to the subscriber also includes an ISO 8601 formatted timestamp in UTC and an event identifer that is universally unique for the hub. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions. 
+In addition to a description of the subscribed event that just occurred, the notification to the subscriber also includes an ISO 8601 formatted timestamp in UTC and an event identifer that is universally unique for the hub. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions.
 
-Using the hub.secret from the subscription request, the hub MUST generate an HMAC signature of the payload and include that signature in the request headers of the notification. The X-Hub-Signature header's value MUST be in the form method=signature where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature MUST be computed using the HMAC algorithm [RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)  with the request body as the data and the hub.secret as the key.
+### `hub.channel.type` of _websub_ 
 
-Field | Optionality | Type | Description
---- | --- | --- | ---
-`timestamp` | Required | *string* | ISO 8601 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier used to recognize retried notifications. This id MUST be globally unique for the hub, SHOULD be opaque to the subscriber and MAY be a GUID.
-`event` | Required | *object* | A json object describing the event. See below.
+Using the `hub.secret` from the subscription request, the hub MUST generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value MUST be in the form method=signature where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature MUST be computed using the HMAC algorithm RFC6151 with the request body as the data and the hub.secret as the key.
 
 
 Field | Optionality | Type | Description
---- | --- | --- | ---
-hub.topic | Required | string | The topic session uri given in the subscription request. 
-hub.event| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
+-- | -- | -- | --
+timestamp | Required | string | ISO 8601 timestamp in UTC describing the time at which the event occurred with subsecond accuracy.
+id | Required | string | Event identifier used to recognize retried notifications. This id MUST be globally unique for the hub, SHOULD be opaque to the subscriber and MAY be a GUID.
+event | Required | object | A json object describing the event. See below.
+
+
+Field | Optionality | Type | Description
+-- | -- | -- | --
+hub.topic | Required | string | The topic session uri given in the subscription request.
+hub.event | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 context | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The hub MUST only return FHIR resources that can be accessed with the existing OAuth2 access_token.
 
-#### What just happened in the user's session?
-The notification's hub.event and context fields inform the subscriber of the current state of the user's session. The hub.event is a user workflow event, from the Event Catalog. The context is an array of named FHIR objects (similar to [CDS Hooks's context](https://cds-hooks.org/specification/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. The context makes heavy use of the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. 
+## What just happened in the user's session?
 
+The notification's hub.event and context fields inform the subscriber of the current state of the user's session. The hub.event is a user workflow event, from the Event Catalog. The context is an array of named FHIR objects (similar to [CDS Hooks's context](https://cds-hooks.org/specification/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. The context makes heavy use of the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations.
+
+### `hub.channel.type` of _websub_ 
 
 ```
 POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
 Host: subscriber
 X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693be6ff3ae
+```
 
+### `hub.channel.type` of _websocket_
+
+Using websockets, subscriber creates a persistent connection to the hub's session uri over wss.
+```
+var exampleSocket = new WebSocket("https://hub.example.com/7jaa86kgdudewiaq0wtu");
+```
+Subscriber listens to websocket connection, and receives incoming events as json.
+
+```
+exampleSocket.onmessage = function(event) {
+  var msg = JSON.parse(event.data);
+    
+  // Examine msg.event['hub.event'] define the workflow that just occurred
+  //msg.event.context contains FHIR resources with more contextual information
+
+};
+```
+
+Regardless of the channel type, the payload is the same:
+
+```
 {
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
@@ -249,6 +274,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
   }
 }
 ```
+
 
 ### App requests context change
 
