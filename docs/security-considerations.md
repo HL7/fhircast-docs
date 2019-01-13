@@ -81,7 +81,7 @@ The WebSub RFC defines [specific security considerations](https://www.w3.org/TR/
 
 * [W3C WebSub RFC](https://www.w3.org/TR/websub/)
 * [W3C WebSub RFC's Security Considerations](https://www.w3.org/TR/websub/#security-considerations)
-* [HMAC RFC 6151[(https://www.w3.org/TR/websub/#bib-RFC6151)
+* [HMAC RFC 6151](https://www.w3.org/TR/websub/#bib-RFC6151)
 
 
 ## Experimental Websockets support
