@@ -78,6 +78,8 @@ The WebSub RFC defines [specific security considerations](https://www.w3.org/TR/
 * The subscribing app's `hub.callback` url should be unique and unguessable. 
 * Subscribing apps must provide a hub.secret and validate the `X-Hub-Signature` in the notification message.
 * Hubs must reject subscriptions if the callback url does not echo the `hub.challenge` as part of the intent verification GET.
+* When computing the HMAC digest with the `hub.secret` for the `X-Hub-Signature` HTTP header, Hubs must use SHA-256 or greater and must not use SHA-1.
+
 
 * [W3C WebSub RFC](https://www.w3.org/TR/websub/)
 * [W3C WebSub RFC's Security Considerations](https://www.w3.org/TR/websub/#security-considerations)
