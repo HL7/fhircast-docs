@@ -1,6 +1,8 @@
 site_name: FHIRcast
-pages:
+nav:
     - Home: index.md
+    - Specification: 
+        - '1.0': 'specification/1.0.md'
     - Launch Scenarios: launch-scenarios.md
     - Security Considerations: security-considerations.md
     - About: about.md
