@@ -75,7 +75,7 @@ Implementers are those who have implemented the FHIRcast specification. Such imp
 
 ### The Community
 
-The community refers to the collective set of individuals and parties contributing to, implementing, or following the CDS Hooks project.
+The community refers to the collective set of individuals and parties contributing to, implementing, or following the FHIRcast project.
 
 ## Accepting New Committers and PMC Members
 
