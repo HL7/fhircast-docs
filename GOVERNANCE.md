@@ -63,7 +63,7 @@ The current PMC members are:
 
 The PMC Chair is a PMC member and committer who takes on the primary responsibility of ensuring the health of the project and community. Additionally, the PMC Chair maintains logistical resources such as the domain name, hosting resources, and mailing list.
 
-The current PMC Chair is [Isaac Vetter](https://github.com/isaacvetter)
+The current PMC Chair is [Isaac Vetter](https://github.com/isaacvetter).
 
 ### Contributors
 
