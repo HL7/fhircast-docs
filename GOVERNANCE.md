@@ -48,7 +48,7 @@ The current committers on the project are:
 
 ### Project Management Committee
 
-Members of the PMC are committers who are also responsible for governing the CDS Hooks project. The PMC has primary responsibility for development of the CDS Hooks community. This includes evangelism, organizing Connectathons, and other forms of community building. The PMC also reports progress to the community and defines target feature sets for releases.
+Members of the PMC are committers who are also responsible for governing the FHIRcast project. The PMC has primary responsibility for development of the FHIRcast community. This includes evangelism, organizing Connectathons, and other forms of community building. The PMC also reports progress to the community and defines target feature sets for releases.
 
 The PMC also is responsible for the project governance and process (including this policy).
 
