@@ -29,7 +29,7 @@
 
 FHIRcast is a standard for vendor agnostic, healthcare application context synchronization.
 
-The FHIRcast organization produces an API and related projects that are driven by a community of individuals with varying backgrounds. This document outlines the governance model and consensus driven process by which this community works to ensure we all are operating with the same understanding and expectations. This helps keep our community healthy and happy.
+The FHIRcast organization produces an API specification and related projects that are driven by a community of individuals with varying backgrounds. This document outlines the governance model and consensus driven process by which this community works to ensure we all are operating with the same understanding and expectations. This helps keep our community healthy and happy.
 
 Care has been taken to separate the development process we follow from the tools. With that being said, our use of Github certainly has a great influence in how we've defined this process.
 
@@ -95,9 +95,9 @@ Trivial changes may be committed directly to a repository. Changes deemed trivia
 
 All other changes must be reviewed by the committers. This includes contributions from the community (contributors) as well as the current committers. We use [Github pull requests](https://help.github.com/articles/about-pull-requests/) and [Github pull request reviews](https://help.github.com/articles/about-pull-request-reviews/) to manage reviewing and merging the proposed changes.
 
-For small changes, at least one committer must approve the change. If a committer was the author of the change being reviewed, the approval must come from a different committer. For large, significant, or breaking changes, the committers must reach consensus on the change. Like *trivial*, the notion of *small* and *large* are subjective terms. However, a breaking change should be clear and unambiguous. Note that the size of the contribution does not determine whether the change requires just one approval or consensus. Rather, the impact of the change reflects the type of review required. For instance, the addition of a single optional field to the API would be considered a significant change and would warrant consensus amongst the committers.
+For small changes, at least one committer must approve the change. If a committer was the author of the change being reviewed, the approval must come from a different committer. For large, significant, or breaking changes, the committers must reach consensus on the change. Like *trivial*, the notion of *small* and *large* are subjective terms. However, a breaking change should be clear and unambiguous. Note that the size of the contribution does not determine whether the change requires just one approval or consensus. Rather, the impact of the change reflects the type of review required. For instance, the addition of a single optional field to the API described in the specification would be considered a significant change and would warrant consensus amongst the committers.
 
-API changes are scrutinized far more closely than that of documentation or related code projects (like sample projects, test harnesses, etc). As such, API changes are always considered significant and require consensus from the committers.
+Changes to the specification are scrutinized far more closely than that of documentation or related code projects (like sample projects, test harnesses, etc). As such, specification changes are always considered significant and require consensus from the committers.
 
 ### Feature branches
 
@@ -147,9 +147,9 @@ All projects shall use [semantic versioning](http://semver.org/). Any committer 
 
 ### Scope & Feedback
 
-For the API and specification, major and minor releases should be managed with a previously communicated intended scope. This helps frame upcoming releases to all stakeholders and set expectations. When the scope of a such releases are determined and a release timeframe is known, the PMC Chair is responsible for announcing plans for upcoming releases to solicit feedback from the community. These release feedback periods will vary depending on the scope of the release and should be of a sufficient length to allow the community to participate.
+For the specification, major and minor releases should be managed with a previously communicated intended scope. This helps frame upcoming releases to all stakeholders and set expectations. When the scope of a such releases are determined and a release timeframe is known, the PMC Chair is responsible for announcing plans for upcoming releases to solicit feedback from the community. These release feedback periods will vary depending on the scope of the release and should be of a sufficient length to allow the community to participate.
 
-Fix releases of the API and specification contain bug fixes which do not warrant delay until a minor release. As such, fix releases often are not planned or have little prior planning and may not allow for similar release feedback periods.
+Fix releases of the specification contain bug fixes which do not warrant delay until a minor release. As such, fix releases often are not planned or have little prior planning and may not allow for similar release feedback periods.
 
 The PMC Chair is responsible for announcing releases to the community via the mailing list.
 
