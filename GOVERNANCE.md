@@ -79,7 +79,7 @@ The community refers to the collective set of individuals and parties contributi
 
 ## Accepting New Committers and PMC Members
 
-Any existing committer may nominate a contributor as a new committer on the project. The nominee should have a demonstrated history of contributions and commitment. Contributions can come in many forms such as code, issues, documentation, and community engagement. A nominee must receive a unanimous vote from the PMC. Upon being accepted, the PMC Chair will grant the nominee write access to the CDS Hooks repositories and announce the new committer to the mailing list.
+Any existing committer may nominate a contributor as a new committer on the project. The nominee should have a demonstrated history of contributions and commitment. Contributions can come in many forms such as code, issues, documentation, and community engagement. A nominee must receive a unanimous vote from the PMC. Upon being accepted, the PMC Chair will grant the nominee write access to the FHIRcast repositories and announce the new committer to the mailing list.
 
 Any PMC member may nominate a current committer to the join the PMC. The nominee should have a demonstrated history leadership in support of the community, and must receive a unanimous vote from the PMC.
 
