@@ -71,7 +71,7 @@ Anyone who has submitted a change to any code or documentation that was successf
 
 ### Implementers
 
-Implementers are those who have implemented the CDS Hooks API. Such implementations can be done locally, in a test environment, or in a production system.
+Implementers are those who have implemented the FHIRcast specification. Such implementations can be done locally, in a test environment, or in a production system.
 
 ### The Community
 
