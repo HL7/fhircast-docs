@@ -69,10 +69,26 @@ The subscription model also implies that it is the subscribing clients responsib
 However, as noted in above scenarios, there may be risk associated with the end user expectation of have two tightly synchronized applications if they fall out of sync. 
 There are in some cases good reasons for a client not to follow the subscribed context and this section will outline some of the recommended approaches
 
-### Blocking client action preventing context synchronization
+### Blocking action on subscribing client preventing context synchronization
+Many systems in some cases go into edit mode or start a modal dialog that locks the system from changing context without user intervention. Examples can be when modifying texts, reports, annotating images or performing administrative tasks. The clients may by design then decline to follow the subscribed context to prevent loss of end user data.
 
 |System|Failure mode|Possible actions|
 |--|--|--|
 |Subscribing Client|Modal dialog open in UI, unable to change case without losing end user data|Present end user with clear indication that contextual synchronization is lost|
 |Subscribing Client|Unable to change context|Respond with a http status code of 409 conflict|
-|Hub|One of the subscribing clients cannot follow context| No action/update all subscribing clients with event sync-error |
+|Hub|One of the subscribing clients cannot follow context| No action/Update all subscribing clients with event sync-error|
+ 
+### Unresponsive callback url of subscribing client 
+This error scenario is all about the hub losing contact with its subscribing clients. This may be due to a client crash, mis-configured callback url or simply an underlying network failure. In these cases the clients are usually not aware of the fact that the context has changed or that the subscription messages are not received.
+
+|System|Failure mode|Possible actions|
+|--|--|--|
+|Subscribing Client|No event received from hub|No action possible|
+|Hub|Timeout or error from client callback url|No action/Retry/Update all subscribing clients with event sync-error |
+
+### Sync-error event received from hub 
+In the scenarios where the hub is aware of a synchronization error, it is advisable for the hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.
+
+|System|Failure mode|Possible actions|
+|--|--|--|
+|Subscribing Client|Sync-error event received from hub|Present end user with clear indication that contextual synchronization is lost|
