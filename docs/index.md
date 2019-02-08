@@ -440,6 +440,32 @@ No Context
 
 No Context 
 
+### sync-error
+#### Description: A syncronization error has been detected. Inform subscribed clients.
+#### Example: 
+```
+{
+  "context": [
+    {
+      "key": "operationoutcome",
+      "resource": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+          {
+            "severity": "warning",
+            "code": "AppId3456 failed to follow context"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+Context | Optionality | FHIR operation to generate context|  Description
+--- | --- | --- | ---
+`operationoutcome` | Optional |  `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action..
+
 
 ## Get involved
 * [Log issues, contribute via github](https://github.com/fhircast)
