@@ -14,7 +14,10 @@ Appropriate error handling is specific to the synchronization scenario, user exp
 
 Also note that synchronization failure is a worst-case scenario and should rarely occur in production.
 
-## Machine-to-machine-to-machine: Different machines, different times
+## Scenarios
+Below a couple of usage scenarios are listed where the risk of becoming out of sync are exemplified
+
+### Machine-to-machine-to-machine: Different machines, different times
 **Scenario**: Clinician walks away from her desktop EHR and accesses an app on her mobile device which synchronizes to the EHR's hibernated session. 
 
 | Consideration | Risk |
@@ -25,7 +28,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Summary**: This serial or sequential use-case is a convenience synchronization and the clinical risk for synchronization failure is low. 
 
-## Cross device: Different machines, same time
+### Cross device: Different machines, same time
 **Scenario**: Clinician accesses her desktop EHR as well an app on her mobile device at the same time. Mobile device synchronizes with the EHR desktop session. 
 
 |Consideration|Risk|
@@ -37,7 +40,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 **Summary**: The user clearly distinguishes between the applications synchronized on multiple devices and therefore clinical risk for a synchronization failure depends upon the workflow and implementer's goals. User manual action may be appropriate when synchronization fails.
 
 
-## Same machine, same time
+### Same machine, same time
 **Scenario**: Clinician is accessing two or more applications on the same machine in a single workflow.  
 
 |Consideration|Risk|
@@ -46,10 +49,10 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 |Performance expectations|high|
 |User inability to distinguish between synchronized applications| medium|
 
-**Summary**: Although, disparate applications are distinguishable from one another, the workflow requires rapidly accessing one then another application. Application responsivity to synchronization is particularly important. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure may be appropriate.
+**Summary**: Although, disparate applications are distinguishable from one another, the workflow requires rapidly accessing one then another application. Application responsivity to synchronization is particularly important. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
 
 
-## Embedded apps: Same machine, same time, same UI
+### Embedded apps: Same machine, same time, same UI
 **Scenario**: Clinician accesses multiple applications within a single user interface. 
 
 |Consideration|Risk|
@@ -58,4 +61,18 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 |Performance expectations|high|
 |User inability to distinguish between synchronized applications|very high|
 
-**Summary**: Disparate applications indistinguishable from one another require the greatest amount of context synchronization. Clinical risk of synchronization failure is critical. Application responsivity to synchronization should be high. 
+**Summary**: Disparate applications indistinguishable from one another require the greatest amount of context synchronization. Clinical risk of synchronization failure is critical. Application responsivity to synchronization should be high. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
+
+## Synchronization recommendations
+FHIRcast is based on a subscription model where each subscribing client receives notifications of the updated state of the topic being subscribed to. There is no explicit requirement for a subscribing client to follow the context of another client. 
+The subscription model also implies that it is the subscribing clients responsibility to maintain a contextual synchronization or to notify end users whenever the contextual synchronization is lost.
+However, as noted in above scenarios, there may be risk associated with the end user expectation of have two tightly synchronized applications if they fall out of sync. 
+There are in some cases good reasons for a client not to follow the subscribed context and this section will outline some of the recommended approaches
+
+### Blocking client action preventing context synchronization
+
+|System|Failure mode|Possible actions|
+|--|--|--|
+|Subscribing Client|Modal dialog open in UI, unable to change case without losing end user data|Present end user with clear indication that contextual synchronization is lost|
+|Subscribing Client|Unable to change context|Respond with a http status code of 409 conflict|
+|Hub|One of the subscribing clients cannot follow context| No action/update all subscribing clients with event sync-error |
