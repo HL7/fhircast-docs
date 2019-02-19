@@ -453,7 +453,8 @@ No Context
         "issue": [
           {
             "severity": "warning",
-            "code": "AppId3456 failed to follow context"
+            "code": "processing",
+            "diagnostics": "AppId3456 failed to follow context"
           }
         ]
       }
