@@ -119,7 +119,7 @@ Committers should seek out the opinions and experiences from the broader communi
 
 Committers must express their votes as:
 
-### :+1: Approve
+### :+1 or Approve: Approve
 
 The change is approved as proposed.
 
@@ -129,7 +129,7 @@ Abstentions can be explicit or implicit. An explicit abstain vote is an indicati
 
 Committers are discouraged from explicit or implicit abstentions when possible.
 
-### :-1: Request changes
+### :-1 or Request Changes: Request changes 
 
 These votes ask the author to make alterations to their proposed change. This type of vote **must** clearly articulate the reasoning behind the vote and when possible, concrete details of the requested changes.
 
