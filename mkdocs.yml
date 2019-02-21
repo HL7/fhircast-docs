@@ -1,5 +1,5 @@
 site_name: FHIRcast
-nav:
+pages:
     - Home: index.md
     - Specification: 
         - 'May2019Ballot': 'specification/May2019Ballot.md'
