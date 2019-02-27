@@ -4,6 +4,7 @@ pages:
     - Specification: 
         - 'May2019Ballot': 'specification/May2019Ballot.md'
     - Launch Scenarios: launch-scenarios.md
+    - Synchronization Considerations: syncconsiderations.md
     - Security Considerations: security-considerations.md
     - About: about.md
 theme: readthedocs
