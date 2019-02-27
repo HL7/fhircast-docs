@@ -58,7 +58,7 @@ Two different launch scenarios are supported. For each launch scenario, the app 
 
 ### EHR Launch: User SSO's into app from EHR
 
-The simplest launch scenario is the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence), in which the subscribing app is launched from an EHR authenticated session. The app receives information about the user and session as part of the launch and subsequently subscribes to the launching user's session. 
+The simplest launch scenario is the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence), in which the subscribing app is launched from an EHR authenticated session. The app requests both the `launch` and `fhircast` scopes and  receives information about the user and session as part of the launch. The app subsequently subscribes to the launching user's session. 
 
 In this scenario, the EHR authorizes the app to synchronize. The EHR provides a session topic as a SMART launch parameter which belongs to the EHR's current user. 
 
@@ -66,7 +66,7 @@ In this scenario, the EHR authorizes the app to synchronize. The EHR provides a 
 
 If the app can't be launched from the EHR, for example, it's opening on a different machine, it can use the standard [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). 
 
-In this scenario, the user authorizes the app to synchronize to her session by authenticating to the EHR's authorization server. The EHR provides a session topic as a SMART launch parameter which belongs to the EHR's authorizing user. 
+In this scenario, the user authorizes the app to synchronize to her session by authenticating to the EHR's authorization server. The app requests the `fhircast` scope and the EHR provides a session topic as a SMART launch parameter which belongs to the EHR's authorizing user. 
 
 ## Alternate app launch
 
