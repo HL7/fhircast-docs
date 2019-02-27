@@ -19,6 +19,11 @@ The _driving application_ could be an EHR, a PACS, a worklist or any other clini
 The app subscribes to specific workflow events for the given user's session by contacting the Hub. The Hub verifies the subscription notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app deletes its subscription when it no longer wants to receive notifications.
 ![FHIRcast overview](img/colorful overview diagram.png)
 
+* Event notifications are thin json wrappers around FHIR resources.	
+* With the `hub.topic` the app can query the Hub for the current status of the session at any time. 	
+* The app can request context changes by sending an event notification to the Hub's `hub.topic` url. The HTTP response status indicates success or failure. 	
+* The [Event Catalog](/#event-catalog) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
+
 ## Get involved
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
 * [Log issues, submit a PR!](https://github.com/fhircast/docs)
