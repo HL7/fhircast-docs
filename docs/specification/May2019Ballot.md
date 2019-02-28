@@ -454,7 +454,7 @@ Context | Optionality | FHIR operation to generate context|  Description
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
 `patient` | Required |  `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
-`encounter` | Optional | `Encounter/{id}?\_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 ### open-imaging-study
 #### Description: User opened record of imaging study.
