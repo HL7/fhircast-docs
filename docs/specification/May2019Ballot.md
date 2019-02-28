@@ -349,9 +349,9 @@ Content-Type: application/json
 ## Event Catalog
 Each  event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.
 
-FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the _\_elements_ query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the _elements query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
-A FHIR server may not support the *\_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
+A FHIR server may not support the *_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
 
 ### open-patient-chart
 #### Description: 
@@ -383,8 +383,8 @@ User opened patient's medical record.
 
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
-`patient` | Required| `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`encounter` | Optional | `Encounter/{id}?\_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+`patient` | Required| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 
 ### switch-patient-chart
@@ -418,8 +418,8 @@ User changed from one open patient's medical record to another previously opened
 
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
-`patient` | Required |  `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
-`encounter` | Optional | `Encounter/{id}?\_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 
 ### close-patient-chart
@@ -453,7 +453,7 @@ Context | Optionality | FHIR operation to generate context|  Description
 
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
-`patient` | Required |  `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
+`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
 `encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 ### open-imaging-study
