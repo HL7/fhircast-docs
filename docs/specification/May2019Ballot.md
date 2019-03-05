@@ -11,10 +11,10 @@ An app subscribes to specific workflow events for a given session, the subscript
 ## Session Discovery
 Before establishing a subscription, an app must know the `hub.topic` which is an unique url identifying the session, and the `cast-hub` which is the base url of the Hub. The app discovers these two urls as part of a SMART on FHIR launch. 
 
-The app MUST either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app MUST request and be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server MUST supply the `cast-hub` and `cast-session` SMART launch parameters alongside the access token. These parameters identify the Hub's base url, and a unique, opaque identifier of the current user's session, respectivly. Per SMART, when scopes of `openid` and `fhirUser` are granted, the app will additionally receive the current user's identity in an `id_token`.
+The app MUST either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app MUST request and be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server MUST supply the `cast-hub` and `hub.topic` SMART launch parameters alongside the access token. These parameters identify the Hub's base url, and a unique, opaque identifier of the current user's session, respectivly. Per SMART, when scopes of `openid` and `fhirUser` are granted, the app will additionally receive the current user's identity in an `id_token`.
 
 ### SMART Launch Example
-Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `cast-hub` and `cast-session` fields.
+Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `cast-hub` and `hub.topic` fields.
 
 ```
 {
@@ -25,7 +25,7 @@ Note that the SMART launch parameters include the Hub's base url and and the ses
   "encounter": "456",
   "imagingstudy": "789",
   "cast-hub" : "https://hub.example.com",
-  "cast-session": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+  "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
 }
 ```
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization  protocols may be possible. See [other launch scenarios](/launch-scenarios) for guidance.
