@@ -353,6 +353,8 @@ FHIR is the interoperable data model used by FHIRcast. The fields within `contex
 
 A FHIR server may not support the *\_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
 
+The name of the event SHOULD succinctly and clearly describe the activity or event. Event names are unique so event creators SHOULD take care to ensure newly proposed events do not conflict with an existing event name. Event creators SHALL name their event with reverse domain notation (e.g. `org.example.patient-transmogrify`) if the event is specific to an organization. Reverse domain notation SHALL not be used by a standard event catalog.
+
 ### open-patient-chart
 #### Description: 
 User opened patient's medical record. 
