@@ -346,8 +346,45 @@ Content-Type: application/json
 }
 ```
 
+## Event Notification Errors
+
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber MAY respond with a 'sync-error' event. The Hub MAY use these events to track synchronization state and MAY also forward these events to other subscribers of the same topic.
+
+### Event Notification Error Example
+
+```
+POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  "timestamp": "2018-01-08T01:37:05.14",
+  "id": "q9v3jubddqt63n1",
+  "event": {
+    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.event": "sync-error",
+    "context": [
+      {
+        "key": "operationoutcome",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "processing",
+              "diagnostics": "AppId3456 failed to follow context"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
 ## Event Catalog
-Each  event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.
+Each event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.
 
 FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the _\_elements_ query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
