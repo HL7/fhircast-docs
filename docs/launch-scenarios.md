@@ -7,7 +7,7 @@ The [HL7 SMART on FHIR app launch specification](http://www.hl7.org/fhir/smart-a
 
 Once the `hub.topic` and url to the hub is known by the synchronizing app the subscription and workflow event notification process proceeds per the FHIRcast specification, regardless of the specific app launch used. 
 
-The use of the SMART on FHIR OAuth 2.0 profile simplifies, secures and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate app launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking and other security risks. Specifically, the `cast-session` url must be unique, unguessable, and specific to the session. 
+The use of the SMART on FHIR OAuth 2.0 profile simplifies, secures and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate app launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking and other security risks. Specifically, the `hub.topic` url must be unique, unguessable, and specific to the session. 
 
 
 ## SMART on FHIR
@@ -19,7 +19,7 @@ During the OAuth2.0 handshake, the app [requests and is granted](http://www.hl7.
 | SMART launch parameter | Optionality | Type | Description |
 | --- | --- | --- | --- |
 | `cast-hub` | Required | string | The base url of the EHR's hub. |
-| `cast-session` | Optional | string or array | Zero, one or more session topic urls. The cast-session url is a unique, opaque identifier to the a user's session. |
+| `hub.topic` | Optional | string or array | Zero, one or more session topic urls. The `hub.topic` url is a unique, opaque identifier to the a user's session. |
 
 The app requests the `fhircast` scope.
 
@@ -47,7 +47,7 @@ Following the OAuth2.0 handshake, the authorization server returns the FHIRcast 
   "patient":  "123",
   "encounter": "456",
   "cast-hub" : "https://hub.example.com",
-  "cast-session": "https://hub.example.com/7jaa86kgdudewiaq0wtu"
+  "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu"
 }
 ```
 
@@ -72,22 +72,22 @@ In this scenario, the user authorizes the app to synchronize to her session by a
 
 In practice, even enterprise apps are often launched from within a clinician's workflow through a variety of bespoke web and desktop technologies. For example, an EHR might launch a desktop app on the same machine by specifying the executable on the Windows shell and passing contextual information as command line switches to the executable. Similarly, bespoke Microsoft COM APIs, shared polling of designated filesystem directories or web service ticketing APIs are also commonly used in production environments.  The use of OAuth 2.0 strengthens and standardizes the security and interoperability of integrations. In the absence of OAuth 2.0 support, these alternate app launch mechanisms can also be used to share a session topic and therefore initiate a shared FHIRcast session. 
 
-A fictitious example Windows shell integration invokes a PACS system at system startup by passing some credentials, user identity and the FHIRcast session identifier (`cast-session`) and hub base url (`cast-hub`).
+A fictitious example Windows shell integration invokes a PACS system at system startup by passing some credentials, user identity and the FHIRcast session identifier (`hub.topic`) and hub base url (`cast-hub`).
 
 ```
-C:\Windows\System32\PACS.exe /credentials:<secured credentials> /user:jsmith /cast-hub:https://hub.example.com /cast-session:https://hub.example.com/7jaa86kgdudewiaq0wtu
+C:\Windows\System32\PACS.exe /credentials:<secured credentials> /user:jsmith /cast-hub:https://hub.example.com /hub.topic:https://hub.example.com/7jaa86kgdudewiaq0wtu
 ```
 
-An additional example is a simple (and relatively insecure) web application launch extended with the addition of `cast-hub` and `cast-session` query parameters.
+An additional example is a simple (and relatively insecure) web application launch extended with the addition of `cast-hub` and `hub.topic` query parameters.
 ```
 GET https://app.example.com/launch.html?user=jsmith&cast-hub=https%3A%2F%2Fhub.example.com&cast-topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu
 ```
 
-Similarly, any bespoke app launch mechanism can establish a FHIRcast session by adding the `cast-hub` and `cast-session` parameters into the existing contextual information shared during the launch.  Once launched, the app subscribes to the session and receives notifications following the standardized FHIRcast interactions. 
+Similarly, any bespoke app launch mechanism can establish a FHIRcast session by adding the `cast-hub` and `hub.topic` parameters into the existing contextual information shared during the launch.  Once launched, the app subscribes to the session and receives notifications following the standardized FHIRcast interactions. 
 
 ## No app launch
 
-In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "app launch", with its corresponding ability to exchange contextual information, the unique, unguessable, and session-specific `cast-session` must be calculated by both the driving application's hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `cast-session`. 
+In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "app launch", with its corresponding ability to exchange contextual information, the unique, unguessable, and session-specific `hub.topic` must be calculated by both the driving application's hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `hub.topic`. 
 
 A bespoke session topic generation algorithm could encrypt the current user's username and a nonce with a shared secret to a pre-configured base url. In this contrived example, a base url and secret are securely configured on the subscribing app. The subscribing app generates and appends a nonce to the current user's Active Directory username, encrypts that string with the shared secret according to an agreed upon encryption algorithm, and finally appends that encrypted string to the base url. The resulting url is unique to the current user and unguessable to a middle man due to the shared secret.
 
