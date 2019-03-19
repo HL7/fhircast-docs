@@ -196,14 +196,18 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
           "resourceType": "Patient",
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
           "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
-            }
+             {
+               "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "value": "MR",
+                            "display": "Medication Record Number"
+                         }
+                        "text": "MRN"
+                      ]
+                  }
+              }
           ]
         }
       }
@@ -246,16 +250,20 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
             "resource":{
                "resourceType":"Patient",
                "id":"798E4MyMcpCWHab9",
-               "identifier":[
-                  {
-                     "system":"urn:oid:1.2.840.114350",
-                     "value":"1345687"
-                  },
-                  {
-                     "system":"urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-                     "value":"7539"
+               "identifier": [
+                 {
+                   "type": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                "value": "MR",
+                                "display": "Medication Record Number"
+                             }
+                            "text": "MRN"
+                          ]
+                      }
                   }
-               ]
+              ]
             }
          },
          {
@@ -330,14 +338,18 @@ Content-Type: application/json
           "resourceType": "Patient",
           "id": "798E4MyMcpCWHab9",
           "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "1345687"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "7539"
-            }
+             {
+               "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "value": "MR",
+                            "display": "Medication Record Number"
+                         }
+                        "text": "MRN"
+                      ]
+                  }
+              }
           ]
         }
       }
@@ -386,9 +398,9 @@ Content-Type: application/json
 ## Event Catalog
 Each event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.
 
-FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the _\_elements_ query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
-A FHIR server may not support the *\_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
+A FHIR server may not support the *_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
 
 The name of the event SHOULD succinctly and clearly describe the activity or event. Event names are unique so event creators SHOULD take care to ensure newly proposed events do not conflict with an existing event name. Event creators SHALL name their event with reverse domain notation (e.g. `org.example.patient-transmogrify`) if the event is specific to an organization. Reverse domain notation SHALL not be used by a standard event catalog.
 
@@ -405,14 +417,18 @@ User opened patient's medical record.
         "resourceType": "Patient",
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
         ]
       }
     }
@@ -422,8 +438,8 @@ User opened patient's medical record.
 
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
-`patient` | Required| `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`encounter` | Optional | `Encounter/{id}?\_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+`patient` | Required| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 
 ### switch-patient-chart
@@ -440,14 +456,18 @@ User changed from one open patient's medical record to another previously opened
         "resourceType": "Patient",
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
         ]
       }
     }
@@ -457,8 +477,8 @@ User changed from one open patient's medical record to another previously opened
 
 Context | Optionality | FHIR operation to generate context|  Description
 --- | --- | --- | ---
-`patient` | Required |  `Patient/{id}?\_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
-`encounter` | Optional | `Encounter/{id}?\_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 
 ### close-patient-chart
@@ -467,10 +487,37 @@ Context | Optionality | FHIR operation to generate context|  Description
 
 #### Example: 
 ```
-{ }
+{
+  "context": [
+    {
+      "key": "patient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+        "identifier": [
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
+        ]
+      }
+    }
+  ]
+}
 ```
 
-No context.
+Context | Optionality | FHIR operation to generate context|  Description
+--- | --- | --- | ---
+`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
+`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 ### open-imaging-study
 #### Description: User opened record of imaging study.
@@ -577,10 +624,49 @@ Context | Optionality | FHIR operation to generate context|  Description
 #### Example: 
 ```
 {
- }
+  "context": [
+    {
+      "key": "patient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+        "identifier": [
+          {
+            "system": "urn:oid:1.2.840.114350",
+            "value": "185444"
+          },
+          {
+            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
+            "value": "2667"
+          }
+        ]
+      }
+    },
+    {
+      "key": "study",
+      "resource": {
+        "resourceType": "ImagingStudy",
+        "id": "8i7tbu6fby5ftfbku6fniuf",
+        "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
+        "identifier": [
+          {
+            "system": "7678",
+            "value": "185444"
+          }
+        ],
+        "patient": {
+          "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+        }
+      }
+    }
+  ]
+}
 ```
 
-No context.
+Context | Optionality | FHIR operation to generate context|  Description
+--- | --- | --- | ---
+`patient` | Optional| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
+`study` | Required | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. 
 
 ### user-logout
 #### Description: User gracefully exited the application.
