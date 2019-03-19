@@ -1,4 +1,4 @@
-<img style="float: left;padding-right: 5px;" src="/img/hl7logo.gif" width=40px" />
+<img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header.png" width=90px" />
 # FHIRcast
 
 > "1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
