@@ -196,14 +196,18 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
           "resourceType": "Patient",
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
           "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
-            }
+             {
+               "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "value": "MR",
+                            "display": "Medication Record Number"
+                         }
+                        "text": "MRN"
+                      ]
+                  }
+              }
           ]
         }
       }
@@ -246,16 +250,20 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
             "resource":{
                "resourceType":"Patient",
                "id":"798E4MyMcpCWHab9",
-               "identifier":[
-                  {
-                     "system":"urn:oid:1.2.840.114350",
-                     "value":"1345687"
-                  },
-                  {
-                     "system":"urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-                     "value":"7539"
+               "identifier": [
+                 {
+                   "type": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                "value": "MR",
+                                "display": "Medication Record Number"
+                             }
+                            "text": "MRN"
+                          ]
+                      }
                   }
-               ]
+              ]
             }
          },
          {
@@ -330,14 +338,18 @@ Content-Type: application/json
           "resourceType": "Patient",
           "id": "798E4MyMcpCWHab9",
           "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "1345687"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "7539"
-            }
+             {
+               "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "value": "MR",
+                            "display": "Medication Record Number"
+                         }
+                        "text": "MRN"
+                      ]
+                  }
+              }
           ]
         }
       }
@@ -366,14 +378,18 @@ User opened patient's medical record.
         "resourceType": "Patient",
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
         ]
       }
     }
@@ -401,14 +417,18 @@ User changed from one open patient's medical record to another previously opened
         "resourceType": "Patient",
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
         ]
       }
     }
@@ -436,14 +456,18 @@ Context | Optionality | FHIR operation to generate context|  Description
         "resourceType": "Patient",
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
+           {
+             "type": {
+                  "coding": [
+                      {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "value": "MR",
+                          "display": "Medication Record Number"
+                       }
+                      "text": "MRN"
+                    ]
+                }
+            }
         ]
       }
     }
