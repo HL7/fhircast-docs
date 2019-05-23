@@ -120,7 +120,7 @@ Host: subscriber
 #### Intent Verification Response
 The subscriber MUST confirm that the `hub.topic` corresponds to a pending subscription or unsubscription that it wishes to carry out. If so, the subscriber MUST respond with an HTTP success (2xx) code with a response body equal to the `hub.challenge` parameter. If the subscriber does not agree with the action, the subscriber MUST respond with a 404 "Not Found" response.
 
-The Hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub MUST also consider verification to have failed.
+The Hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. Although the subscriber is not allowed to return whichever of these codes, failuer modes outside the control of the subscriber can result in other types of HTTP codes being returned to the Hub (proxy servers, firewalls, complex network topology, etc). If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub MUST also consider verification to have failed.
 
 
 ##### Intent Verification Response Example
