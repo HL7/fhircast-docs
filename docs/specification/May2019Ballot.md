@@ -98,7 +98,7 @@ Host: subscriber
 ```
 
 ### Intent Verification
-If (and when) the subscription is accepted, the Hub MUST perform the verification of intent of the subscriber. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
+If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
 
 #### Intent Verification Request
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a hub must ensure that the subscriber did indeed send the subscription request. The hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
@@ -113,14 +113,14 @@ Field | Optionality | Type | Description
 
 ##### Intent Verification Request Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
 Host: subscriber
 ```
 
 #### Intent Verification Response
 The subscriber MUST confirm that the `hub.topic` corresponds to a pending subscription or unsubscription that it wishes to carry out. If so, the subscriber MUST respond with an HTTP success (2xx) code with a response body equal to the `hub.challenge` parameter. If the subscriber does not agree with the action, the subscriber MUST respond with a 404 "Not Found" response.
 
-The Hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub MUST also consider verification to have failed.
+The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub SHALL also consider verification to have failed.
 
 
 ##### Intent Verification Response Example
