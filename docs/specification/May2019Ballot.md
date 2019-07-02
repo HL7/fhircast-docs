@@ -44,6 +44,7 @@ To create a subscription, the subscribing app performs an HTTP POST ([RFC7231](h
 
 This request MUST have a Content-Type header of _application/x-www-form-urlencoded_  and MUST use the following parameters in its body, formatted accordingly:
 
+###### Subscription Request Parameters
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
@@ -84,6 +85,7 @@ HTTP/1.1 202 Accepted
 
 If (and when) the subscription is denied, the Hub MUST inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended.
 
+###### Subscription Denial Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
@@ -103,6 +105,7 @@ If (and when) the subscription is accepted, the Hub MUST perform the verificatio
 #### Intent Verification Request
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub verifies a subscription request by sending an HTTPS GET ([RFC2818](https://www.w3.org/TR/websub/#bib-RFC2818)) request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended:
 
+###### Verification Parameters
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
@@ -156,20 +159,21 @@ The Hub MUST notify subscribed apps of workflow events to which the app is subsc
 
 Using the hub.secret from the subscription request, the hub MUST generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value MUST be in the form _method=signature_ where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature MUST be computed using the HMAC algorithm ([RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)) with the request body as the data and the `hub.secret` as the key.
 
-In addition to a description of the subscribed event that just occurred, the notification to the subscriber MUST include an [ISO 8601-2](https://www.iso.org/iso-8601-date-and-time-format.html) formatted timestamp in UTC and an event identifer that is universally unique for the Hub. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions. 
+In addition to a description of the subscribed event that just occurred, the notification to the subscriber MUST include an [ISO 8601-2](https://www.iso.org/iso-8601-date-and-time-format.html) formatted timestamp in UTC and an event identifer that is universally unique for the Hub. See the [notification parameters table](#notification-parameters) for details. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions. 
 
 
 #### Event Notification Request Details
 
 The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog. The `context` is an array of named FHIR objects (similar to [CDS Hooks's context](https://cds-hooks.org/specification/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](#event-catalog) defines what context is expected in the notification. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers MUST accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
+###### Notification Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
 `id` | Required | *string* | Event identifier used to recognize retried notifications. This id MUST be globally unique for the Hub, SHOULD be opaque to the subscriber and MAY be a GUID.
-`event` | Required | *object* | A json object describing the event. See below.
+`event` | Required | *object* | A json object describing the event. See [below](#event-object-parameters).
 
-
+###### Event Object Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The topic session uri given in the subscription request. 
