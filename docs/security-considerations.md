@@ -12,7 +12,7 @@ FHIRcast enables the synchronization of healthcare applications user interfaces 
 FHIRcast ties SMART as the authnz layer together with WebSub for subscription and event notification.
 
 ## Sources of Risk
-1. The FHIRcast Hub pushes PII to a dynamic url specified by the authenticated app. 
+1. The FHIRcast Hub pushes PHI to a dynamic url specified by the authenticated app. 
 1. An app's credentials or a Hub's lack of authentication could be used by a malicious system to control the user's session.
 
 
