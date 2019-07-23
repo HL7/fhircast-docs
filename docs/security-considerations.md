@@ -1,6 +1,6 @@
 # Security Considerations
 
-FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain PHI. 
+FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain Protected Health Information (PHI). 
 
 ## Actors 
 
@@ -12,7 +12,7 @@ FHIRcast enables the synchronization of healthcare applications user interfaces 
 FHIRcast ties SMART as the authnz layer together with WebSub for subscription and event notification.
 
 ## Sources of Risk
-1. The FHIRcast Hub pushes PII to a dynamic url specified by the authenticated app. 
+1. The FHIRcast Hub pushes PHI to a dynamic url specified by the authenticated app. 
 1. An app's credentials or a Hub's lack of authentication could be used by a malicious system to control the user's session.
 
 
