@@ -55,7 +55,7 @@ Field | Optionality | Type | Description
 
 If OAuth2 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
-Hubs MUST allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
+Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
 
 The callback URL MAY contain arbitrary query string parameters (e.g., ?foo=bar&red=fish). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined parameters to the end of the list using the & (ampersand) character to join When sending the event notifications, the hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
