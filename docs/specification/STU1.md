@@ -98,34 +98,34 @@ Host: subscriber
 ```
 
 ### Intent Verification
-If (and when) the subscription is accepted, the Hub MUST perform the verification of intent of the subscriber. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
+If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
 
 #### Intent Verification Request
-In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub verifies a subscription request by sending an HTTPS GET ([RFC2818](https://www.w3.org/TR/websub/#bib-RFC2818)) request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended:
+In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a hub must ensure that the subscriber did indeed send the subscription request. The hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
 `hub.topic` | Required | *string* | The topic session uri given in the corresponding subscription request.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.challenge` | Required | *string* | A Hub-generated, random string that MUST be echoed by the subscriber to verify the subscription.
-`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption. 
+`hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
+`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once lease_seconds has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
 ##### Intent Verification Request Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
 Host: subscriber
 ```
 
 #### Intent Verification Response
-The subscriber MUST confirm that the `hub.topic` corresponds to a pending subscription or unsubscription that it wishes to carry out. If so, the subscriber MUST respond with an HTTP success (2xx) code with a response body equal to the `hub.challenge` parameter. If the subscriber does not agree with the action, the subscriber MUST respond with a 404 "Not Found" response.
+If the `hub.topic` of the Intent Verification Request corresponds to a pending subscription or unsubscription that the subscriber wishes to carry out it SHALL respond with an HTTP success (2xx) code, a header of `Content-Type: text/html`, and a response body equal to the `hub.challenge` parameter. If the subscriber does not agree with the action, the subscriber SHALL respond with a 404 "Not Found" response.
 
-The Hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub MUST also consider verification to have failed.
+The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub SHALL also consider verification to have failed.
 
 
 ##### Intent Verification Response Example
 ```
-HTTP/1.1 200 Success
+HTTP/1.1 200 OK
 Content-Type: text/html
 
 meu3we944ix80ox
