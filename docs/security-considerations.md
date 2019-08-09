@@ -71,7 +71,7 @@ Host: subscriber
 X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693be6ff3ae
 ```
 
-The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.
+The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.
 
 ### WebSub Security Considerations
 The WebSub RFC defines [specific security considerations](https://www.w3.org/TR/websub/#security-considerations), including the below, which are listed here for emphasis or elevation from optional to mandatory.
