@@ -57,7 +57,7 @@ If OAuth2 authentication is used, this POST request SHALL contain the Bearer acc
 
 Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
 
-The callback URL MAY contain arbitrary query string parameters (e.g., ?foo=bar&red=fish). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined parameters to the end of the list using the & (ampersand) character to join When sending the event notifications, the hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
+The callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
 The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems). However, in FHIRcast, the hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.
 
