@@ -42,7 +42,7 @@ Unsubscribing works in the same way, except with a single parameter changed to i
 ### Subscription Request
 To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `cast-hub`) with the parameters in the table below.
 
-This request SHALL have a Content-Type header of _application/x-www-form-urlencoded_  and SHALL use the following parameters in its body, formatted accordingly:
+This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
