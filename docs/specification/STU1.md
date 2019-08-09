@@ -49,7 +49,7 @@ Field | Optionality | Type | Description
 `hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
 `hub.topic` | Required | *string* | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
-`hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an HMAC digest delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. 
 
