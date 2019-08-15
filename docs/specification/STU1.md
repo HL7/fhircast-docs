@@ -124,7 +124,7 @@ The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that 
 
 The below [flow diagram](https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing) illustrates each of the interactions.
 
-![Successful subscription flow diagram](img/FHIRcast%20WebSub%20security%20sequence.png)
+![Successful subscription flow diagram](img/Successful%20Subscription%20Sequence.png)
 
 
 ##### Intent Verification Response Example
