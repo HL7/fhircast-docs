@@ -71,9 +71,9 @@ hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub
 ```
 
 ### Subscription Response
-If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. The Hub SHOULD perform the verification of intent as soon as possible.
+If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. The Hub SHOULD perform the verification of intent as soon as possible.
 
-If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
+If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
 
 #### Subscription Response Example
 ```
