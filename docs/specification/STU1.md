@@ -122,7 +122,7 @@ If the `hub.topic` of the Intent Verification Request corresponds to a pending s
 
 The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub SHALL also consider verification to have failed.
 
-The below [flow diagram](https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing) illustrates each of the interactions.
+The below [flow diagram](https://drive.google.com/file/d/1VcgI3dn6mAXPXkNaxRJzaBfl2HqQZUKW/view?usp=sharing) illustrates a successful subscription request.
 
 ![Successful subscription flow diagram](../img/Successful%20Subscription%20Sequence.png)
 
