@@ -20,7 +20,6 @@ The app subscribes to specific workflow events for the given user's session by c
 ![FHIRcast overview](img/colorful%20overview%20diagram.png)
 
 * Event notifications are thin json wrappers around FHIR resources.	
-* With the `hub.topic` the app can query the Hub for the current status of the session at any time. 	
 * The app can request context changes by sending an event notification to the Hub's `hub.topic` url. The HTTP response status indicates success or failure. 	
 * The [Event Catalog](/#event-catalog) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
