@@ -40,24 +40,26 @@ Subscribing consists of two exchanges:
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
 ### Subscription Request
-To create a subscription, the subscribing app performs an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `cast-hub`) with the following parameters, authenticating with the Bearer access token.
+To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `cast-hub`) with the parameters in the table below.
 
-This request MUST have a Content-Type header of _application/x-www-form-urlencoded_  and MUST use the following parameters in its body, formatted accordingly:
+This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
 `hub.topic` | Required | *string* | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
-`hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that will be used to compute an HMAC digest delivered in each notification. This parameter MUST be less than 200 bytes in length.
+`hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. 
 
-Hubs MUST allow subscribers to re-request subscriptions that are already activated. Each subsequent request to a hub to subscribe or unsubscribe MUST override the previous subscription state for a specific topic, and callback URL combination once the action is verified. 
+If OAuth2 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
-The callback URL MAY contain arbitrary query string parameters (e.g., ?foo=bar&red=fish). Hubs MUST preserve the query string during subscription verification by appending new parameters to the end of the list using the & (ampersand) character to join. When sending the content distribution request, the hub will make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
+Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
 
-Within FHIRcast, the client that creates a subscription and the server that hosts the callback url are the same entity. If these roles are split, the Hub assumes that the same authorization and access rights apply to both systems. 
+The callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
+
+The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.
 
 #### Subscription Request Example
 In this example, the app asks to be notified of the `open-patient-chart` and `close-patient-chart` events.
