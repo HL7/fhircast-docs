@@ -4,7 +4,7 @@
 > "1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
 
 ## Overview
-The FHIRcast specification describes the APIs and interactions to synchronize healthcare applications in real time to show the same clinical content to a user. All data exchanged through the HTTP APIs MUST be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and MUST be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/) and builds on the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch). 
+The FHIRcast specification describes the APIs and interactions to synchronize healthcare applications in real time to show the same clinical content to a user. All data exchanged through the HTTP APIs MUST be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and MUST be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its uses of GET vs POST interactions. FHIRcast also builds on the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch). 
 
 An app subscribes to specific workflow events for a given session, the subscription is verified and the app is notified when those workflow events occur; for example, by the clinician opening a patient's chart. The subscring app may query a session's current context and initiate context changes by accessing APIs exposed by the Hub. The app deletes its subscription when it no longer wants to receive notifications. In all cases the app authenticates to the Hub with an OAuth 2.0 bearer token. 
 
@@ -84,7 +84,7 @@ HTTP/1.1 202 Accepted
 
 ### Subscription Denial
 
-If (and when) the subscription is denied, the Hub MUST inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended.
+If (and when) the subscription is denied, the Hub SHALL inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended, to which the subscriber SHALL respond with an HTTP success (2xx) code.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -95,7 +95,7 @@ Field | Optionality | Type | Description
 
 #### Subscription Denial Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.reason=session+unexpectedly+stopped HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
 
