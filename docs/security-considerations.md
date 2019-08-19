@@ -37,11 +37,10 @@ The below [flow diagram](https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98
 
 
 ### How does the subscriber authenticate to the Hub?
-The subscribing app can make four distinct API calls to the Hub. For each of these calls, the subscribing app authenticates to the Hub with the Hub's authorization server issued SMART access_token. Per SMART on FHIR, this access_token is presented to the Hub in the HTTP Authorization header.
+The subscribing app can make three distinct API calls to the Hub. For each of these calls, the subscribing app authenticates to the Hub with the Hub's authorization server issued SMART `access_token`. Per SMART on FHIR, this `access_token` is presented to the Hub in the HTTP Authorization header.
 
 1. App subscribes to Hub
 1. App requests change to shared context
-1. App requests current context
 1. App unsubscribes from session
 
 ```
@@ -78,7 +77,7 @@ The WebSub RFC defines [specific security considerations](https://www.w3.org/TR/
 * Subscribers must communicate with a Hub over https.
 * Hub must reject unsecured http callback urls. 
 * The subscribing app's `hub.callback` url should be unique and unguessable. 
-* Subscribing apps must provide a hub.secret and validate the `X-Hub-Signature` in the notification message.
+* Subscribing apps must provide a `hub.secret` and validate the `X-Hub-Signature` in the notification message.
 * Hubs must reject subscriptions if the callback url does not echo the `hub.challenge` as part of the intent verification GET.
 * When computing the HMAC digest with the `hub.secret` for the `X-Hub-Signature` HTTP header, Hubs must use SHA-256 or greater and must not use SHA-1.
 * For each subscription, the `hub.secret` must be unique, unguessable and securely stored by both the Hub and the app. 
