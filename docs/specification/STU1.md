@@ -10,12 +10,14 @@ An app subscribes to specific workflow events for a given session, the subscript
 
 ## Session Discovery
 
-A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique url as an identifier. This url is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. If using SMART on FHIR, the app receives these urls as part of a SMART on FHIR launch context parameters. 
+A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique url as an identifier. This url is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. 
 
-The app MUST either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app MUST request and be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server MUST supply the `cast-hub` and `hub.topic` SMART launch parameters alongside the access token. These parameters identify the Hub's base url, and a unique, opaque identifier of the current user's session, respectively. Per SMART, when scopes of `openid` and `fhirUser` are granted, the app will additionally receive the current user's identity in an `id_token`.
+Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` urls as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
+
+If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast.
 
 ### SMART Launch Example
-Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `cast-hub` and `hub.topic` fields.
+Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `hub.url` and `hub.topic` fields.
 
 ```
 {
@@ -25,23 +27,23 @@ Note that the SMART launch parameters include the Hub's base url and and the ses
   "patient":  "123",
   "encounter": "456",
   "imagingstudy": "789",
-  "cast-hub" : "https://hub.example.com",
+  "hub.url" : "https://hub.example.com",
   "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
 }
 ```
-Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization  protocols may be possible. See [other launch scenarios](/launch-scenarios) for guidance.
+Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization protocols may be possible. See [other launch scenarios](/launch-scenarios) for guidance.
 
 ## Subscribing and Unsubscribing
 
 Subscribing consists of two exchanges:
 
-* Subscriber requests a subscription at the `cast-hub` url.
+* Subscriber requests a subscription at the `hub.url` url.
 * Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
 ### Subscription Request
-To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `cast-hub`) with the parameters in the table below.
+To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
 
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
