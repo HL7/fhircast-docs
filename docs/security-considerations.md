@@ -14,12 +14,13 @@ FHIRcast ties SMART as the authnz layer together with WebSub for subscription an
 ## Sources of Risk
 1. The FHIRcast Hub pushes PHI to a dynamic url specified by the authenticated app. 
 1. An app's credentials or a Hub's lack of authentication could be used by a malicious system to control the user's session.
+1. FHIRcast recommends the use of SMART on FHIR, but does not require it. Implementation-specific launch, authentication, and authorization protocols may be possible. These alternate protocols should be scrutinized by implementers for additional security risks.
 
 
 ## SMART on FHIR
 [SMART on FHIR](http://www.hl7.org/fhir/smart-app-launch/) profiles [OAuth 2.0's authorization code grant type](https://tools.ietf.org/html/rfc6749#section-1.3.1) and extends it by introducing an "[EHR Launch Sequence](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence)". The Argonaut Project performed a formal security review of SMART on FHIR, resulting in a [Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
 
-FHIRcast builds on SMART by introducing a new, standard OAuth 2.0 scope of `fhircast`, as well as two new SMART launch parameters of `cast-hub` and `hub.topic`. 
+FHIRcast builds on SMART by introducing a new, standard OAuth 2.0 scope of `fhircast`, as well as two new SMART launch parameters of `hub.url` and `hub.topic`. 
 
 * [HL7 SMART on FHIR specification](http://www.hl7.org/fhir/smart-app-launch/)
 * [Argonaut Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
