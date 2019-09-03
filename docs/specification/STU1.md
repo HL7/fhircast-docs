@@ -6,7 +6,7 @@
 ## Overview
 The FHIRcast specification describes the APIs and interactions to synchronize healthcare applications in real time to show the same clinical content to a user. All data exchanged through the HTTP APIs MUST be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and MUST be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its uses of GET vs POST interactions. FHIRcast also builds on the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch). 
 
-An app subscribes to specific workflow events for a given session, the subscription is verified and the app is notified when those workflow events occur; for example, by the clinician opening a patient's chart. The subscring app may query a session's current context and initiate context changes by accessing APIs exposed by the Hub. The app deletes its subscription when it no longer wants to receive notifications. In all cases the app authenticates to the Hub with an OAuth 2.0 bearer token. 
+An app subscribes to specific workflow events for a given session, the subscription is verified and the app is notified when those workflow events occur; for example, by the clinician opening a patient's chart. The subscring app may initiate context changes by accessing APIs exposed by the Hub. The app deletes its subscription when it no longer wants to receive notifications. In all cases the app authenticates to the Hub with an OAuth 2.0 bearer token. 
 
 ## Session Discovery
 Before establishing a subscription, an app must know the `hub.topic` which is an unique url identifying the session, and the `cast-hub` which is the base url of the Hub. The app discovers these two urls as part of a SMART on FHIR launch. 
@@ -226,91 +226,6 @@ The subscriber MUST respond to the notification with an appropriate HTTP status 
 ```
 HTTP/1.1 200 OK
 ```
-
-## Query for Current Context
-
-In addition to receiving notification of events as they occur, a subscribing app may request the current context of a given session. The client queries the Hub's `hub.topic` url to receive the current context for the session. Event-driven context notifications should take precedence. Note that no `hub.event` is present in the response.
-
-### Query for Current Context Example
-
-```
-GET https://hub.example.com/7jaa86kgdudewiaq0wtu 
-Host: hub
-Authorization: Bearer i8hweunweunweofiwweoijewiwe
-```
-
-```
-{
-   "timestamp":"2018-01-08T01:40:05.14",
-   "id":"wYXStHqxFQyHFELh",
-   "event":{
-      "hub.topic":"https://hub.example.com/7jaa86kgdudewiaq0wtu",
-      "context":[
-         {
-            "key":"patient",
-            "resource":{
-               "resourceType":"Patient",
-               "id":"798E4MyMcpCWHab9",
-               "identifier": [
-                 {
-                   "type": {
-                        "coding": [
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                                "value": "MR",
-                                "display": "Medication Record Number"
-                             }
-                            "text": "MRN"
-                          ]
-                      }
-                  }
-              ]
-            }
-         },
-         {
-            "key":"encounter",
-            "resource":{
-               "resourceType":"Encounter",
-               "id":"ecgXt3jVqNNpsXnNXZ3KljA3",
-               "identifier":[
-                  {
-                     "use":"usual",
-                     "system":"http://healthcare.example.org/identifiers/encounter",
-                     "value":"1853"
-                  }
-               ]
-            }
-         },
-         {
-            "key":"study",
-            "resource":{
-               "resourceType":"ImagingStudy",
-               "id":"8i7tbu6fby5ftfbku6fniuf",
-               "uid":"urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
-               "accession":{
-                  "use":"usual",
-                  "type":{
-                     "coding":[
-                        {
-                           "system":"http://hl7.org/fhir/v2/0203",
-                           "code":"ACSN"
-                        }
-                     ]
-                  }
-               },
-               "identifier":[
-                  {
-                     "system":"7678",
-                     "value":"185444"
-                  }
-               ]
-            }
-         }
-      ]
-   }
-}
-```
-
 
 ## Request Context Change
 
