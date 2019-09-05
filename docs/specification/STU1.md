@@ -3,10 +3,20 @@
 
 > "1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
 
-## Overview
-The FHIRcast specification describes the APIs and interactions to synchronize healthcare applications in real time allowing them to show the same clinical content to a user or a group of users sharing the same topic. All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its uses of GET vs POST interactions. FHIRcast also builds on the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch). 
+## Abstract
+FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-An app subscribes to specific workflow events for a given session, the subscription is verified and the app is notified when those workflow events occur; for example, by the clinician opening a patient's chart. The subscribing app MAY initiate context changes by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app SHALL delete its subscription to no longer receive notifications. 
+## Overview
+The FHIRcast specification describes the APIs and interactions to synchronize disparate healthcare applications user interfaces in real time allowing them to show the same clinical content to a user or a group of users sharing the same topic. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. 
+
+FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its uses of GET vs POST interactions. FHIRcast also builds on the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch). 
+
+
+Once the subscribing app [knows about the session](#session-discovery) (FHIRcast recommends the user of SMART on FHIR), the app may  [subscribe](#subscribing-and-unsubscribing) to specific workflow events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](event-notification) when those workflow events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications.  The below [flow diagram](https://drive.google.com/file/d/1wyOXdp0U6tyYc5zx0SrVNfnNlMvt3KjX/view?usp=sharing) illustrates this series of interactions. 
+
+![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
+
+All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). 
 
 ## Session Discovery
 
