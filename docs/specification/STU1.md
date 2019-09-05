@@ -3,9 +3,6 @@
 
 > "1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
 
-## Abstract
-FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. 
-
 ## Overview
 The FHIRcast specification describes the APIs and interactions to synchronize disparate healthcare applications user interfaces in real time allowing them to show the same clinical content to a user or a group of users sharing the same topic. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. 
 
