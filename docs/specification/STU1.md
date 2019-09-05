@@ -6,7 +6,7 @@
 ## Overview
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
 
-Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](event-notification) when those workflow events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
+Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
 FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions. FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. The below [flow diagram](https://drive.google.com/file/d/1wyOXdp0U6tyYc5zx0SrVNfnNlMvt3KjX/view?usp=sharing) illustrates the series of interactions. 
 
@@ -161,7 +161,7 @@ hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub
 
 ## Event Notification
 
-The Hub SHALL notify subscribed apps of workflow events to which the app is subscribed, as the event occurs. The notification is an HTTPS POST containing a JSON object in the request body.
+The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed, as the event occurs. The notification is an HTTPS POST containing a JSON object in the request body.
 
 ### Event Notification Request
 
