@@ -11,7 +11,7 @@ User opened patient's medical record. Only a single patient is currently in cont
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`encounter` | OPTIONAL | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context in the newly opened patient's chart.
+`encounter` | REQUIRED, if exists | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context in the newly opened patient's chart.
 
 
 ### Examples
