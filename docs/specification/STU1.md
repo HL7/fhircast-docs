@@ -294,7 +294,7 @@ Content-Type: application/json
 
 All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber MAY respond with a 'syncerror' event. The Hub MAY use these events to track synchronization state and MAY also forward these events to other subscribers of the same topic.
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic.
 
 ### Event Notification Error Example
 
