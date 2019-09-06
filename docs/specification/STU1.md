@@ -292,7 +292,9 @@ Content-Type: application/json
 
 ## Event Notification Errors
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber MAY respond with a 'sync-error' event. The Hub MAY use these events to track synchronization state and MAY also forward these events to other subscribers of the same topic.
+All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
+
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber MAY respond with a 'syncerror' event. The Hub MAY use these events to track synchronization state and MAY also forward these events to other subscribers of the same topic.
 
 ### Event Notification Error Example
 
@@ -307,7 +309,7 @@ Content-Type: application/json
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
-    "hub.event": "sync-error",
+    "hub.event": "syncerror",
     "context": [
       {
         "key": "operationoutcome",
@@ -327,319 +329,83 @@ Content-Type: application/json
 }
 ```
 
-## Event Catalog
-Each event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.
 
-FHIR is the interoperable data model used by FHIRcast. The fields within `context` are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the `open-image-study` event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+## Events
 
-A FHIR server may not support the *_elements* query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.
+FHIRcast describes an workflow event subscription and notification scheme towards the goal of improving a clinician's workflow across multiple disparate applications. The set of events defined here are not a closed set; anyone is able to define new events to fit their use cases and propose those events to the community. 
 
-The name of the event SHOULD succinctly and clearly describe the activity or event. Event names are unique so event creators SHOULD take care to ensure newly proposed events do not conflict with an existing event name. Event creators SHALL name their event with reverse domain notation (e.g. `org.example.patient-transmogrify`) if the event is specific to an organization. Reverse domain notation SHALL not be used by a standard event catalog.
+New events are proposed in a prescribed format using the [documentation template](../events/template) by submitting a [pull request](https://github.com/fhircast/docs/tree/master/docs/events). FHIRcast events are versioned, and mature according to the [Event Maturity Model](#event-maturity-model).
 
-### open-patient-chart
-#### Description: 
-User opened patient's medical record. 
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-           {
-             "type": {
-                  "coding": [
-                      {
-                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                          "value": "MR",
-                          "display": "Medication Record Number"
-                       }
-                      "text": "MRN"
-                    ]
-                }
-            }
-        ]
-      }
-    }
-  ]
-}
-```
+### Event Definition Format
 
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Required| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
 
+For example, when the [`ImagingStudy-open`](../../events/imagingstudy.open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
-### switch-patient-chart
+A FHIR server may not support the *_elements* query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.
 
-#### Description: 
-User changed from one open patient's medical record to another previously opened patient's medical record. The context documents the patient whose record is currently open.
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-           {
-             "type": {
-                  "coding": [
-                      {
-                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                          "value": "MR",
-                          "display": "Medication Record Number"
-                       }
-                      "text": "MRN"
-                    ]
-                }
-            }
-        ]
-      }
-    }
-  ]
-}
-```
+Each defined event in the standard event catalog SHALL be defined in the following format.
 
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
-`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+#### Event Definition Format: hook-name
+
+Most FHIRcast events conform to an extensible syntax based upon FHIR resources. In the rare case where the FHIR data model doesn't describe content in the session, FHIRcast events MAY be statically named. For example, FHIR doesn't cleanly contain the concept of a user or user's session.  
+
+FHIRcast events SHOULD conform to this extensible syntax, patterned after the SMART on FHIR scope syntax. Expressed in EBNF notation, the FHIRcast syntax for workflow related events is:
+
+`hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' )`
+
+![syntax for new events](../img/events-railroad.png)
+
+Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
+
+#### Event Definition Format: Workflow
+
+Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.
+
+#### Event Definition Format: Context
+
+Describe the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context.
+
+All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
+
+- **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field.
+- **Optionality**: A string value of either `REQUIRED` or `OPTIONAL`
+- **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event. 
+- **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
+
+#### Event Maturity Model
+
+The intent of the FHIRcast Event Maturity Model is to attain broad community engagement and consensus, before an event is labeled as mature, and to ensure that the event is necessary, implementable, and worthwhile to the systems that would reasonably be expected to use it. Implementer feedback should drive the maturity of new events. Diverse participation in open developer forums and events, such as HL7 FHIR Connectathons, is necessary to achieve significant implementer feedback. The below criteria will be evaluated with these goals in mind. 
+
+Maturity Level | Maturity title | Requirements
+--- | --- | ---
+0 | Draft | Event is correctly [named](#event-naming) and [defined](#event-proposal-and-maturity). 
+1 | Submitted  | _The above, and …_ Event definition is written up as a [github pull request](https://github.com/fhircast/docs/tree/master/docs/events) using the [Event template](../../events/template/) and community feedback is solicited on the [zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast).
+2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
+3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two hubs and three subscribing apps. The event has been tested at two connectathons.
+4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
+5 | Mature | _The above, and ..._ The event has been implemented in production in at least two hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
+6 | Normative | _The above, and ..._ the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot
 
 
-### close-patient-chart
 
-#### Description: User closed patient's medical record. 
+#### Event Maturity
+As each event progresses through a process of being defined, tested, implemented, used in production environments, and balloted, the event's formal maturity level increases. Each event has its own maturity level, which SHALL be defined in the event's definition and correspond to the [Event Maturity Model](#event-maturity-model). 
 
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-           {
-             "type": {
-                  "coding": [
-                      {
-                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                          "value": "MR",
-                          "display": "Medication Record Number"
-                       }
-                      "text": "MRN"
-                    ]
-                }
-            }
-        ]
-      }
-    }
-  ]
-}
-```
+#### Change Log
 
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Required |  `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context..
-`encounter` | Optional | `Encounter/{id}?_elements=identifier` | FHIR Encounter resource in context in the newly opened patient's chart.
+Changes made to an event's definition SHALL be documented in a change log to ensure event consumers can track what has been changed over the life of an event. The change log SHALL contain the following elements:
 
-### open-imaging-study
-#### Description: User opened record of imaging study.
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
-        ]
-      }
-    },
-    {
-      "key": "study",
-      "resource": {
-        "resourceType": "ImagingStudy",
-        "id": "8i7tbu6fby5ftfbku6fniuf",
-        "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
-        "identifier": [
-          {
-            "system": "7678",
-            "value": "185444"
-          }
-        ],
-        "patient": {
-          "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-        }
-      }
-    }
-  ]
-}
-```
+- Version: The version of the change
+- Description: A description of the change and its impact
 
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Optional| `Patient/{id}?_elements=identifier`| FHIR Patient resource describing the patient whose chart is currently in context.
-`study` | Required | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. 
+For example:
 
-### switch-imaging-study
-#### Description: User changed from one open imaging study to another previously opened imaging study. The context documents the study, and optionally patient, for the currently open record.
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
-        ]
-      }
-    },
-    {
-      "key": "study",
-      "resource": {
-        "resourceType": "ImagingStudy",
-        "id": "8i7tbu6fby5ftfbku6fniuf",
-        "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
-        "identifier": [
-          {
-            "system": "7678",
-            "value": "185444"
-          }
-        ],
-        "patient": {
-          "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-        }
-      }
-    }
-  ]
-}
-```
-
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Optional| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`study` | Required | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. 
-
-### close-imaging-study
-
-#### Description: User closed imaging study.
-
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "patient",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-        "identifier": [
-          {
-            "system": "urn:oid:1.2.840.114350",
-            "value": "185444"
-          },
-          {
-            "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-            "value": "2667"
-          }
-        ]
-      }
-    },
-    {
-      "key": "study",
-      "resource": {
-        "resourceType": "ImagingStudy",
-        "id": "8i7tbu6fby5ftfbku6fniuf",
-        "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
-        "identifier": [
-          {
-            "system": "7678",
-            "value": "185444"
-          }
-        ],
-        "patient": {
-          "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-        }
-      }
-    }
-  ]
-}
-```
-
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`patient` | Optional| `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`study` | Required | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. 
-
-### user-logout
-#### Description: User gracefully exited the application.
-#### Example: 
-{
-}
+Version | Description
+---- | ----
+1.1 | Added new context FHIR object
+1.0.1 | Clarified workflow description
+1.0 | Initial Release
+---
 
 
-No Context 
-
-### user-hibernate
-#### Description: User temporarily suspended her session. The user's session will eventually resume.
-#### Example: 
-{
-}
-
-No Context
-
-### sync-error
-#### Description: A syncronization error has been detected. Inform subscribed clients.
-#### Example: 
-```
-{
-  "context": [
-    {
-      "key": "operationoutcome",
-      "resource": {
-        "resourceType": "OperationOutcome",
-        "issue": [
-          {
-            "severity": "warning",
-            "code": "processing",
-            "diagnostics": "AppId3456 failed to follow context"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-Context | Optionality | FHIR operation to generate context|  Description
---- | --- | --- | ---
-`operationoutcome` | Optional |  `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action..
