@@ -230,6 +230,47 @@ The subscriber MUST respond to the notification with an appropriate HTTP status 
 HTTP/1.1 200 OK
 ```
 
+## Event Notification Errors
+
+All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
+
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic.
+
+### Event Notification Error Example
+
+```
+POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  "timestamp": "2018-01-08T01:37:05.14",
+  "id": "q9v3jubddqt63n1",
+  "event": {
+    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.event": "syncerror",
+    "context": [
+      {
+        "key": "operationoutcome",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "processing",
+              "diagnostics": "AppId3456 failed to follow context"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+
+
 ## Request Context Change
 
 Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the `hub.topic` url. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber SHALL be capable of gracefully handling a rejected context request. 
@@ -289,46 +330,6 @@ Content-Type: application/json
   }
 }
 ```
-
-## Event Notification Errors
-
-All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
-
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic.
-
-### Event Notification Error Example
-
-```
-POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
-Host: hub
-Authorization: Bearer i8hweunweunweofiwweoijewiwe
-Content-Type: application/json
-
-{
-  "timestamp": "2018-01-08T01:37:05.14",
-  "id": "q9v3jubddqt63n1",
-  "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
-    "hub.event": "syncerror",
-    "context": [
-      {
-        "key": "operationoutcome",
-        "resource": {
-          "resourceType": "OperationOutcome",
-          "issue": [
-            {
-              "severity": "warning",
-              "code": "processing",
-              "diagnostics": "AppId3456 failed to follow context"
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
-
 
 ## Events
 
