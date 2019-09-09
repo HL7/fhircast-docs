@@ -1,10 +1,6 @@
 # userhibernate
 
-| Metadata | Value
-| ---- | ----
-| specificationVersion | 1.0
-| eventVersion | 1.0
-| eventMaturity | [1 - Submitted](../../specification/1.0/#event-maturity-model)
+eventMaturity | [1 - Submitted](../../specification/1.0/#event-maturity-model)
 
 ## Workflow
 

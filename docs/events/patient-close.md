@@ -1,6 +1,6 @@
 # Patient-close
 
-eventMaturity | [2 - Considered](../../specification/1.0/#event-maturity-model)
+eventMaturity | [2 - Tested](../../specification/1.0/#event-maturity-model)
 
 ## Workflow
 
