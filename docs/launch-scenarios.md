@@ -19,7 +19,7 @@ During the OAuth2.0 handshake, the app [requests and is granted](http://www.hl7.
 | SMART launch parameter | Optionality | Type | Description |
 | --- | --- | --- | --- |
 | `hub.url` | Required | string | The base url of the EHR's hub. |
-| `hub.topic` | Optional | string or array | The `hub.topic` session id is a unique, opaque identifier to the a user's session.  |
+| `hub.topic` | Optional | string or array | The `hub.topic` session id is a unique, opaque identifier to a user's session.  |
 
 The app requests the `fhircast` scope.
 
