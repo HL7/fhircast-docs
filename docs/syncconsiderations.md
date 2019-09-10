@@ -79,16 +79,16 @@ Many systems in some cases go into edit mode or start a modal dialog that locks 
 |Hub|One of the subscribing clients cannot follow context| No action/Update all subscribing clients with event sync-error|
  
 ### Unresponsive callback url of subscribing client 
-This error scenario is all about the hub losing contact with its subscribing clients. This may be due to a client crash, mis-configured callback url or simply an underlying network failure. In these cases the clients are usually not aware of the fact that the context has changed or that the subscription messages are not received.
+This error scenario is all about the Hub losing contact with its subscribing clients. This may be due to a client crash, mis-configured callback url or simply an underlying network failure. In these cases the clients are usually not aware of the fact that the context has changed or that the subscription messages are not received.
 
 |System|Failure mode|Possible actions|
 |--|--|--|
-|Subscribing Client|No event received from hub|No action possible|
+|Subscribing Client|No event received from Hub|No action possible|
 |Hub|Timeout or error from client callback url|No action/Retry/Update all subscribing clients with event sync-error |
 
-### Sync-error event received from hub 
-In the scenarios where the hub is aware of a synchronization error, it is advisable for the hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.
+### Sync-error event received from Hub 
+In the scenarios where the Hub is aware of a synchronization error, it is advisable for the Hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.
 
 |System|Failure mode|Possible actions|
 |--|--|--|
-|Subscribing Client|Sync-error event received from hub|Present end user with clear indication that contextual synchronization is lost|
+|Subscribing Client|Sync-error event received from Hub|Present end user with clear indication that contextual synchronization is lost|
