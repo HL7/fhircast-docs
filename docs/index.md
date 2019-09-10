@@ -1,4 +1,4 @@
-<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header.png" width=90px" />
+<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header-good-resolution.png" width=20%" />
 # FHIRcast <span style="font-size: medium;">- _modern, simple application context synchronization_</span>
 
 ## Overview
