@@ -16,13 +16,13 @@ Adopting the WebSub terminology, FHIRcast describes an app as a subscriber synch
 The large number of vendor-specific or proprietary context synchronization methods in production limit the industry's ability to enhance the very large number of integrations currently in production. In practice, these integrations are decentralized and simple. 
 
 ## How it works
-The _driving application_ could be an EHR, a PACS, a worklist or any other clinical workflow system (we use the term EHR as shorthand). The driving application integrates the Hub, the SMART authorization server and a FHIR server. As part of a SMART launch, the app requests the `fhircast` OAuth 2.0 scope and receives the location of the Hub and a unique `hub.topic` url, which serves as the identifier of the user's session.
+The _driving application_ could be an EHR, a PACS, a worklist or any other clinical workflow system (we use the term EHR as shorthand). The driving application integrates the Hub, the SMART authorization server and a FHIR server. As part of a SMART launch, the app requests appropriate [fhircast OAuth 2.0 scopes](specification/STU1/#fhircast-authorization-smart-scopes) and receives the initial shared context as well as the location of the Hub and a unique `hub.topic` session identifier.
 
-The app subscribes to specific workflow events for the given user's session by contacting the Hub. The Hub verifies the subscription notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app deletes its subscription when it no longer wants to receive notifications.
+The app subscribes to specific workflow events for the given user's session by contacting the hub. The hub verifies the subscription notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app deletes its subscription when it no longer wants to receive notifications.
 ![FHIRcast overview](img/colorful%20overview%20diagram.png)
 
 * Event notifications are thin json wrappers around FHIR resources.	
-* The app can request context changes by sending an event notification to the Hub's `hub.topic` url. The HTTP response status indicates success or failure. 	
+* The app can request context changes by sending an event notification to the hub's `hub.topic` session identifier. The HTTP response status indicates success or failure. 	
 * The Event Catalog documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
 ## Get involved

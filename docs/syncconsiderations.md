@@ -8,7 +8,7 @@ Depending upon the expectations of the user and the error handling of the applic
 this scenario is potentially risky. 
 Identified below are four distinct synchronization scenarios, ranging from lowest level of expected synchronization to highest. 
 
-Overall, FHIRcast does not dictate how applications should react to synrhonization failure. 
+Overall, FHIRcast does not dictate how applications should react to synchronization failure. 
 You should design your product to meet your customer's expectations and needs.
 Appropriate error handling is specific to the synchronization scenario, user expectations and implemeter.
 
