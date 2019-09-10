@@ -16,9 +16,9 @@ All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](ht
 
 ## Session Discovery
 
-A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique url as an identifier. This url is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. 
+A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. 
 
-Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` urls as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
+Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
 
 If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast.
 
@@ -34,7 +34,7 @@ Note that the SMART launch parameters include the Hub's base url and and the ses
   "encounter": "456",
   "imagingstudy": "789",
   "hub.url" : "https://hub.example.com",
-  "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+  "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
 }
 ```
 Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization protocols may be possible. See [other launch scenarios](/launch-scenarios) for guidance.
@@ -57,7 +57,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.callback` | Required | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from. 
+`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
 `hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth, the hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
@@ -78,13 +78,13 @@ Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
 ```
 
 ### Subscription Response
 If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. The Hub SHOULD perform the verification of intent as soon as possible.
 
-If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.
+If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic based on their own policies.
 
 #### Subscription Response Example
 ```
@@ -98,7 +98,7 @@ If (and when) the subscription is denied, the Hub SHALL inform the subscriber by
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
-`hub.topic` | Required | *string* | The topic uri given in the corresponding subscription request.
+`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a guid.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.reason` | Optional | *string* | The Hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
@@ -109,7 +109,7 @@ The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV
 
 ###### Subscription Denial Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.reason=session+unexpectedly+stopped HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065hub.events=open-patient-chart,close-patient-chart&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
 
@@ -121,15 +121,15 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
-`hub.mode` | Required | *string* | The literal, lowercase string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
-`hub.topic` | Required | *string* | The topic session uri given in the corresponding subscription request.
+`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
+`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a guid.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.challenge` | Required | *string* | A hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. If provided to the client, the hub SHALL unsubscribe the client once `lease_seconds` has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
 ##### Intent Verification Request Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=7jaa86kgdudewiaq0wtu&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
 Host: subscriber
 ```
 
@@ -166,7 +166,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&hub.secret=shhh-this-is-a-secret&hub.events=open-patient-chart,close-patient-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=open-patient-chart,close-patient-chart
 
 ```
 
@@ -194,7 +194,7 @@ Field | Optionality | Type | Description
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The topic session uri given in the subscription request. 
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth2 access_token.
 
@@ -209,7 +209,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "open-patient-chart",
     "context": [
       {
@@ -250,7 +250,7 @@ HTTP/1.1 200 OK
 
 ## Request Context Change
 
-Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the `hub.topic` url. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber SHALL be capable of gracefully handling a rejected context request. 
+Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the `hub.url`. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber SHALL be capable of gracefully handling a rejected context request. 
 
 Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. 
 
@@ -265,7 +265,7 @@ Field | Optionality | Type | Description
 ###### Request Context Change Event Object Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The topic session URI given in the subscription request. 
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
 `hub.event`| Required | string | The event that triggered this request for the subscriber, taken from the list of events from the subscription request.
 `context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The subscriber SHALL only include FHIR resources that are authorized to be accessed with the existing OAuth2 `access_token`.
 
@@ -279,7 +279,7 @@ Content-Type: application/json
   "timestamp": "2018-01-08T01:40:05.14",
   "id": "wYXStHqxFQyHFELh",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "close-patient-chart",
     "context": [
       {
@@ -324,7 +324,7 @@ Content-Type: application/json
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "sync-error",
     "context": [
       {
