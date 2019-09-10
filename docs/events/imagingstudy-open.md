@@ -22,7 +22,7 @@ Key | Optionality | Fhir operation to generate context | Description
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "imagingstudy-open",
     "context": [
       {
