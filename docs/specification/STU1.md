@@ -93,7 +93,7 @@ HTTP/1.1 202 Accepted
 
 ### Subscription Denial
 
-If (and when) the subscription is denied, the Hub SHALL inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended, to which the subscriber SHALL respond with an HTTP success (2xx) code.
+If (and when) the subscription is denied, the Hub SHALL inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This can occur when the subscription is requested for a variety of reasons, or it can occur after the subscription had already been accepted because the Hub no longer supports that subscription (e.g. it has expired). This request has the following query string arguments appended, to which the subscriber SHALL respond with an HTTP success (2xx) code.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -114,7 +114,7 @@ Host: subscriber
 ```
 
 ### Intent Verification
-If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
+If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber, this applies to apps unsubscribing as well. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
 
 #### Intent Verification Request
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a hub must ensure that the subscriber did indeed send the subscription request. The hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
