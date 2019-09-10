@@ -18,9 +18,25 @@ All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](ht
 
 A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. 
 
-Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted the `fhircast` OAuth2.0 scope. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
+Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` urls as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
 
 If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast.
+
+### FHIRcast Authorization & SMART scopes
+
+FHIRcast defines OAuth2 access scopes that correspond directly to [FHIRcast events](#events). Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events should ask for read scopes. Apps that request context changes should ask for write scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.
+
+Expressed in EBNF notation, FHIRcast's scope syntax is:
+
+`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event ) '.' ( 'read' | 'write' | '*' )`
+
+![FHIRcast SMART scopes](../img/fhircast-smart-scopes.png)
+
+The FHIRcast event name is also a [computable syntax](#event-definition-format-hook-name), the complete syntax for FHIRcast scopes is:
+
+` scope    ::= 'fhircast' '/' fhir-resource '-' ( 'open' | 'close' ) '.' ( 'read' | 'write' | '*' )`
+
+![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
 ### SMART Launch Example
 Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `hub.url` and `hub.topic` fields.
@@ -29,8 +45,8 @@ Note that the SMART launch parameters include the Hub's base url and and the ses
 {
   "access_token": "i8hweunweunweofiwweoijewiwe",
   "token_type": "bearer",
-  "expires_in": 3600,
   "patient":  "123",
+  "expires_in": 3600,
   "encounter": "456",
   "imagingstudy": "789",
   "hub.url" : "https://hub.example.com",
