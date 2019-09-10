@@ -82,6 +82,7 @@ The WebSub RFC defines [specific security considerations](https://www.w3.org/TR/
 * Hubs must reject subscriptions if the callback url does not echo the `hub.challenge` as part of the intent verification GET.
 * When computing the HMAC digest with the `hub.secret` for the `X-Hub-Signature` HTTP header, Hubs must use SHA-256 or greater and must not use SHA-1.
 * For each subscription, the `hub.secret` must be unique, unguessable and securely stored by both the Hub and the app. 
+* To prevent a subscriber from continuing to receive information after its authorization has ended, if using OAuth, the hub must limit the subscription's `lease_seconds` to be less than or equal to the access token's expiration timestamp.
 
 
 * [W3C WebSub RFC](https://www.w3.org/TR/websub/)
