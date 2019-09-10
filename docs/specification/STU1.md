@@ -121,11 +121,11 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
-`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
+`hub.mode` | Required | *string* | The literal, lowercase string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
 `hub.topic` | Required | *string* | The topic session uri given in the corresponding subscription request.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
-`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once lease_seconds has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
+`hub.challenge` | Required | *string* | A hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
+`hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. If provided to the client, the hub SHALL unsubscribe the client once `lease_seconds` has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
 ##### Intent Verification Request Example
 ```
@@ -151,9 +151,12 @@ Content-Type: text/html
 meu3we944ix80ox
 ```
 
+> NOTE
+> The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.
+
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it MUST unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message with only a single difference: the `hub.mode` MUST be equal to the string _unsubscribe_.
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message with only a single difference: the `hub.mode` MUST be equal to the lowercase string _unsubscribe_.
 
 #### Unsubscribe Request Example
 
