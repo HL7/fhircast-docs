@@ -1,7 +1,7 @@
 <img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header.png" width=90px" />
 # FHIRcast
 
-> "1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
+> "Standard for Trial Use" (STU1) This is the 1.0 release of the FHIRcast specification. We are currently working towards a 1.1 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
 
 ## Overview
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
