@@ -1,4 +1,4 @@
-<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header-good-resolution.png" width=20%" />
+<img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header-good-resolution.png" width=20%" />
 # FHIRcast
 
 > "Standard for Trial Use" (STU1) This is the 1.0 release of the FHIRcast specification. We are currently working towards a 1.1 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
