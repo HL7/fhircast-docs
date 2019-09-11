@@ -268,7 +268,22 @@ HTTP/1.1 200 OK
 
 All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic.
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic. A `syncerror` notification has the same structure as an other event notification with a single FHIR `OperationOutcome` as the event's context.
+
+### Event Notification Error Request
+###### Request Context Change Parameters
+Field | Optionality | Type | Description
+--- | --- | --- | ---
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. 
+`event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
+
+###### Event Notification Error Event Object Parameters
+Field | Optionality | Type | Description
+--- | --- | --- | ---
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.event`| Required | string | Shall be the string `syncerror`.
+`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. 
 
 ### Event Notification Error Example
 
@@ -282,7 +297,7 @@ Content-Type: application/json
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "syncerror",
     "context": [
       {
