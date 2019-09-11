@@ -1,4 +1,4 @@
-<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header.png" width=90px" />
+<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header-good-resolution.png" width=20%" />
 # FHIRcast <span style="font-size: medium;">- _modern, simple application context synchronization_</span>
 
 ## Overview
@@ -19,7 +19,7 @@ The large number of vendor-specific or proprietary context synchronization metho
 The _driving application_ could be an EHR, a PACS, a worklist or any other clinical workflow system (we use the term EHR as shorthand). The driving application integrates the Hub, the SMART authorization server and a FHIR server. As part of a SMART launch, the app requests the `fhircast` OAuth 2.0 scope and receives the location of the Hub and a unique `hub.topic` url, which serves as the identifier of the user's session.
 
 The app subscribes to specific workflow events for the given user's session by contacting the Hub. The Hub verifies the subscription notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app deletes its subscription when it no longer wants to receive notifications.
-![FHIRcast overview](img/colorful%20overview%20diagram.png)
+![FHIRcast overview](/img/colorful%20overview%20diagram.png)
 
 * Event notifications are thin json wrappers around FHIR resources.	
 * The app can request context changes by sending an event notification to the Hub's `hub.topic` url. The HTTP response status indicates success or failure. 	
