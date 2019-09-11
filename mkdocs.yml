@@ -1,5 +1,5 @@
 site_name: FHIRcast
-pages:
+nav:
     - Home: index.md
     - Specification: 
         - 'Current - STU1': 'specification/STU1.md'
