@@ -121,7 +121,7 @@ Field | Optionality | Type | Description
 The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV8MD9PnVhQs/view?usp=sharing) and example illustrate the subscription denial sequence and message details.
 
 ###### Subscription Denial Sequence
-![Subscription denial flow diagram](../img/Denied%20Subscription%20Sequence.png)
+![Subscription denial flow diagram](/img/Denied%20Subscription%20Sequence.png)
 
 ###### Subscription Denial Example
 ```
@@ -157,7 +157,7 @@ The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that 
 The below [flow diagram](https://drive.google.com/file/d/1VcgI3dn6mAXPXkNaxRJzaBfl2HqQZUKW/view?usp=sharing) and example illustrate the successful subscription sequence and message details.
 
 ###### Successful Subscription Sequence
-![Successful subscription flow diagram](../img/Successful%20Subscription%20Sequence.png)
+![Successful subscription flow diagram](/img/Successful%20Subscription%20Sequence.png)
 
 ###### Intent Verification Response Example
 ```
@@ -375,7 +375,7 @@ FHIRcast events are stateless. Context changes are a complete replacement of any
 
 Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
 
-For example, when the [`ImagingStudy-open`](../../events/imagingstudy.open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+For example, when the [`ImagingStudy-open`](../../events/imagingstudy-open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
 A FHIR server may not support the *_elements* query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.
 
@@ -389,7 +389,7 @@ FHIRcast events SHOULD conform to this extensible syntax, patterned after the SM
 
 `hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' )`
 
-![syntax for new events](../img/events-railroad.png)
+![syntax for new events](/img/events-railroad.png)
 
 Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
 
