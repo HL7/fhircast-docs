@@ -121,7 +121,7 @@ Field | Optionality | Type | Description
 The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV8MD9PnVhQs/view?usp=sharing) and example illustrate the subscription denial sequence and message details.
 
 ###### Subscription Denial Sequence
-![Subscription denial flow diagram](/img/Denied%20Subscription%20Sequence.png)
+![Subscription denial flow diagram](../img/Denied%20Subscription%20Sequence.png)
 
 ###### Subscription Denial Example
 ```
@@ -157,7 +157,7 @@ The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that 
 The below [flow diagram](https://drive.google.com/file/d/1VcgI3dn6mAXPXkNaxRJzaBfl2HqQZUKW/view?usp=sharing) and example illustrate the successful subscription sequence and message details.
 
 ###### Successful Subscription Sequence
-![Successful subscription flow diagram](/img/Successful%20Subscription%20Sequence.png)
+![Successful subscription flow diagram](../img/Successful%20Subscription%20Sequence.png)
 
 ###### Intent Verification Response Example
 ```
@@ -268,7 +268,22 @@ HTTP/1.1 200 OK
 
 All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic.
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic. A `syncerror` notification has the same structure as an other event notification with a single FHIR `OperationOutcome` as the event's context.
+
+### Event Notification Error Request
+###### Request Context Change Parameters
+Field | Optionality | Type | Description
+--- | --- | --- | ---
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. 
+`event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
+
+###### Event Notification Error Event Object Parameters
+Field | Optionality | Type | Description
+--- | --- | --- | ---
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.event`| Required | string | Shall be the string `syncerror`.
+`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. 
 
 ### Event Notification Error Example
 
@@ -375,7 +390,7 @@ FHIRcast events are stateless. Context changes are a complete replacement of any
 
 Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The Hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
 
-For example, when the [`ImagingStudy-open`](../../events/imagingstudy-open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+For example, when the [`ImagingStudy-open`](../../events/imagingstudy.open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
 A FHIR server may not support the *_elements* query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.
 
@@ -389,7 +404,7 @@ FHIRcast events SHOULD conform to this extensible syntax, patterned after the SM
 
 `hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' )`
 
-![syntax for new events](/img/events-railroad.png)
+![syntax for new events](../img/events-railroad.png)
 
 Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
 
