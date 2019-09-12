@@ -22,7 +22,7 @@ The app subscribes to specific workflow events for the given user's session by c
 
 ### Example scenario
 
-A radiologist working their reporting system clicks a button to open their dictation system. The SMART dictation app is authorized and subscribes to the radiologist session. Each time the physician opens a patient's chart in the reporting system, the dictation app will be notified of the current patient and therefore presents the corresponding patient information on its own UI. The reporting system and dictation app share the same session's context.
+A radiologist working in their reporting system clicks a button to open their dictation system. The dictation app is authorized and subscribes to the radiologist's session. Each time the radiologist opens a patient's chart in the reporting system, the dictation app will be notified of the current patient and therefore presents the corresponding patient information on its own UI. The reporting system and dictation app share the same session's context.
 
 ![FHIRcast overview](/img/colorful%20overview%20diagram.png)
 
