@@ -1,6 +1,5 @@
-site_name: FHIRcast
-pages:
-    - Overview: index.md
+nav:
+    - Home: index.md
     - Specification: 
         - 'Current - STU1': 'specification/STU1.md'
         - 'archived (May2019Ballot)': 'specification/May2019Ballot.md'
