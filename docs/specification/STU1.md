@@ -8,7 +8,7 @@ The FHIRcast specification describes the APIs used to synchronize disparate heal
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions. FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. The below [flow diagram](https://drive.google.com/file/d/1wyOXdp0U6tyYc5zx0SrVNfnNlMvt3KjX/view?usp=sharing) illustrates the series of interactions. 
+FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. The below [flow diagram](https://drive.google.com/file/d/1wyOXdp0U6tyYc5zx0SrVNfnNlMvt3KjX/view?usp=sharing) illustrates the series of interactions. 
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -16,15 +16,15 @@ All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](ht
 
 ## Session Discovery
 
-A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the hub. 
+A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the Hub. 
 
-Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange the `hub.url` and `hub.topic` urls as SMART on FHIR launch context parameters. If using SMART, the app SHALL either be launched from the driving application following the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) flow or the app may initiate the launch following the [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence). In either case, the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
+Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange initial shared context. If using SMART, following a [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) or [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence), the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth 2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token and other parameters appropriate to establish initial shared context. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
 
 If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast.
 
 ### FHIRcast Authorization & SMART scopes
 
-FHIRcast defines OAuth2 access scopes that correspond directly to [FHIRcast events](#events). Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events should ask for read scopes. Apps that request context changes should ask for write scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.
+FHIRcast defines OAuth 2.0 access scopes that correspond directly to [FHIRcast events](#events). Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events should ask for read scopes. Apps that request context changes should ask for write scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.
 
 Expressed in EBNF notation, FHIRcast's scope syntax is:
 
@@ -39,7 +39,7 @@ The FHIRcast event name is also a [computable syntax](#event-definition-format-h
 ![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
 ### SMART Launch Example
-Note that the SMART launch parameters include the Hub's base url and and the session identifier in the `hub.url` and `hub.topic` fields.
+Note that the SMART launch parameters include the Hub's base url and the session identifier in the `hub.url` and `hub.topic` fields.
 
 ```
 {
@@ -76,9 +76,9 @@ Field | Optionality | Type | Description
 `hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
 `hub.secret` | Required | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
-`hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth, the hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
+`hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 
-If OAuth2 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
+If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
 Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
 
@@ -133,15 +133,15 @@ Host: subscriber
 If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber, this applies to apps unsubscribing as well. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url.
 
 #### Intent Verification Request
-In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a hub must ensure that the subscriber did indeed send the subscription request. The hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
+In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
-`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.
+`hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the Hub from the subscriber.
 `hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a guid.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.challenge` | Required | *string* | A hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
-`hub.lease_seconds` | Required | *number* | The hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the hub to the subscriber. If provided to the client, the hub SHALL unsubscribe the client once `lease_seconds` has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
+`hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
+`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
 ##### Intent Verification Request Example
 ```
@@ -193,7 +193,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### Event Notification Request
 
-Using the `hub.secret` from the subscription request, the hub SHALL generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value SHALL be in the form _method=signature_ where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature SHALL be computed using the HMAC algorithm ([RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)) with the request body as the data and the `hub.secret` as the key.
+Using the `hub.secret` from the subscription request, the Hub SHALL generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value SHALL be in the form _method=signature_ where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature SHALL be computed using the HMAC algorithm ([RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)) with the request body as the data and the `hub.secret` as the key.
 
 The notification to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp MAY be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
 
@@ -212,7 +212,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth2 access_token.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth 2.0 access_token.
 
 #### Event Notification Request Example
 
@@ -282,7 +282,7 @@ Content-Type: application/json
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "https://hub.example.com/7jaa86kgdudewiaq0wtu",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "syncerror",
     "context": [
       {
@@ -314,7 +314,7 @@ Once a requested context change is accepted, the Hub SHALL broadcast the context
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a GUID. Following an accepted context change request, the hub MAY re-use this value in the broadcasted event notifications.
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a GUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
 `event` | Required | *object* | A json object describing the event. See [below](#request-context-change-event-object-parameters).
 
 ###### Request Context Change Event Object Parameters
@@ -322,7 +322,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
 `hub.event`| Required | string | The event that triggered this request for the subscriber, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The subscriber SHALL only include FHIR resources that are authorized to be accessed with the existing OAuth2 `access_token`.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The subscriber SHALL only include FHIR resources that are authorized to be accessed with the existing OAuth 2.0 `access_token`.
 
 ```
 POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
@@ -373,7 +373,7 @@ FHIRcast events are stateless. Context changes are a complete replacement of any
 
 ### Event Definition Format
 
-Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
+Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The Hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
 
 For example, when the [`ImagingStudy-open`](../../events/imagingstudy-open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
@@ -416,10 +416,10 @@ Maturity Level | Maturity title | Requirements
 --- | --- | ---
 0 | Draft | Event is correctly [named](#event-naming) and [defined](#event-proposal-and-maturity). 
 1 | Submitted  | _The above, and …_ Event definition is written up as a [github pull request](https://github.com/fhircast/docs/tree/master/docs/events) using the [Event template](../../events/template/) and community feedback is solicited on the [zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast).
-2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
-3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two hubs and three subscribing apps. The event has been tested at two connectathons.
+2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
+3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
 4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
-5 | Mature | _The above, and ..._ The event has been implemented in production in at least two hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
+5 | Mature | _The above, and ..._ The event has been implemented in production in at least two Hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
 6 | Normative | _The above, and ..._ the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot
 
 
