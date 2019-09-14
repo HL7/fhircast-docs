@@ -87,14 +87,14 @@ The callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&
 The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.
 
 #### Subscription Request Example
-In this example, the app asks to be notified of the `open-patient-chart` and `close-patient-chart` events.
+In this example, the app asks to be notified of the `patient-open` and `patient-close` events.
 ```
 POST https://hub.example.com
 Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open-chart,patient-close-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open,patient-close
 ```
 
 ### Subscription Response
@@ -125,7 +125,7 @@ The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV
 
 ###### Subscription Denial Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065hub.events=open-patient-chart,close-patient-chart&hub.reason=session+unexpectedly+stopped HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065hub.events=patient-open,patient-close&hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
 ```
 
@@ -145,7 +145,7 @@ Field | Optionality | Type | Description
 
 ##### Intent Verification Request Example
 ```
-GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=open-patient-chart,close-patient-chart&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
+GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=patient-open,patient-close&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
 Host: subscriber
 ```
 
@@ -182,7 +182,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=open-patient-chart,close-patient-chart
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open,patient-close
 
 ```
 
@@ -226,7 +226,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "open-patient-chart",
+    "hub.event": "patient-open",
     "context": [
       {
         "key": "patient",
