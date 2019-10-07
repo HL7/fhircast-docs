@@ -18,9 +18,9 @@ All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](ht
 
 A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the `hub.topic` parameter. Before establishing a subscription, an app must not only know the `hub.topic`, but also the the `hub.url` which contains the base url of the Hub. 
 
-Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange initial shared context. If using SMART, following a [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) or [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence), the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth 2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token and other parameters appropriate to establish initial shared context. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server SHALL additionally send the current user's identity in an `id_token`.
+Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange initial shared context. If using SMART, following a [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence) or [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence), the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth 2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the `hub.url` and `hub.topic` SMART launch parameters alongside the access token and other parameters appropriate to establish initial shared context. Per SMART, when scopes of `openid` and `fhirUser` are granted, the authorization server additionally sends the current user's identity in an `id_token`.
 
-If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast.
+Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization protocols may be possible. If not using SMART on FHIR, the mechanism enabling the app to discover the `hub.url` and `hub.topic` is not defined in FHIRcast. See [other launch scenarios](/launch-scenarios) for guidance.
 
 ### FHIRcast Authorization & SMART scopes
 
@@ -34,7 +34,7 @@ Expressed in EBNF notation, FHIRcast's scope syntax is:
 
 The FHIRcast event name is also a [computable syntax](#event-definition-format-hook-name), the complete syntax for FHIRcast scopes is:
 
-` scope    ::= 'fhircast' '/' fhir-resource '-' ( 'open' | 'close' ) '.' ( 'read' | 'write' | '*' )`
+` scope    ::= 'fhircast' '/' fhir-resource '-' ( 'open' | 'close' | '*' ) '.' ( 'read' | 'write' | '*' )`
 
 ![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
@@ -53,7 +53,7 @@ Note that the SMART launch parameters include the Hub's base url and the session
   "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
 }
 ```
-Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization protocols may be possible. See [other launch scenarios](/launch-scenarios) for guidance.
+
 
 ## Subscribing and Unsubscribing
 
@@ -115,8 +115,8 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
 `hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a guid.
-`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
-`hub.reason` | Optional | *string* | The Hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
+`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied. 
+`hub.reason` | Optional | *string* | The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
 The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV8MD9PnVhQs/view?usp=sharing) and example illustrate the subscription denial sequence and message details.
 
@@ -141,7 +141,7 @@ Field | Optionality | Type | Description
 `hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a guid.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
-`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired. If the subscriber wishes to continue the subscription it MAY resubscribe.
+`hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
 ##### Intent Verification Request Example
 ```
@@ -189,7 +189,7 @@ hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub
 
 ## Event Notification
 
-The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed, as the event occurs. The notification is an HTTPS POST containing a JSON object in the request body.
+The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is an HTTPS POST containing a JSON object in the request body.
 
 ### Event Notification Request
 
@@ -268,20 +268,20 @@ HTTP/1.1 200 OK
 
 All standard events are defined outside of the base FHIRcast specification in the [Event Catalog](../../events) with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic. A `syncerror` notification has the same structure as an other event notification with a single FHIR `OperationOutcome` as the event's context.
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in [Event Notification Response](#event-notification-response). If the Hub does not receive a successful HTTP status from a event notification, it SHOULD generate a `syncerror` event to the other subscribers of that topic. A `syncerror` notification has the same structure as the other event notification with a single FHIR `OperationOutcome` as the event's context.
 
 ### Event Notification Error Request
 ###### Request Context Change Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
 `event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
 
 ###### Event Notification Error Event Object Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.topic` | Required | string | The session topic given in the subscription request. 
 `hub.event`| Required | string | Shall be the string `syncerror`.
 `context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. 
 
@@ -335,9 +335,9 @@ Field | Optionality | Type | Description
 ###### Request Context Change Event Object Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.topic` | Required | string | The session topic given in the subscription request. 
 `hub.event`| Required | string | The event that triggered this request for the subscriber, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The subscriber SHALL only include FHIR resources that are authorized to be accessed with the existing OAuth 2.0 `access_token`.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. 
 
 ```
 POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
@@ -390,9 +390,9 @@ FHIRcast events are stateless. Context changes are a complete replacement of any
 
 Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The Hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
 
-For example, when the [`ImagingStudy-open`](../../events/imagingstudy-open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
+For example, when the [`ImagingStudy-open`](../../events/imagingstudy-open) event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs should send the results of an ImagingStudy FHIR read using the *_elements* query parameter, like so:  `ImagingStudy/{id}?_elements=identifier,accession` and in accordance with the [FHIR specification](https://www.hl7.org/fhir/search.html#elements). 
 
-A FHIR server may not support the *_elements* query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.
+A Hub may not support the *_elements* query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.
 
 Each defined event in the standard event catalog SHALL be defined in the following format.
 
@@ -402,7 +402,7 @@ Most FHIRcast events conform to an extensible syntax based upon FHIR resources. 
 
 FHIRcast events SHOULD conform to this extensible syntax, patterned after the SMART on FHIR scope syntax. Expressed in EBNF notation, the FHIRcast syntax for workflow related events is:
 
-`hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' )`
+`hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' | '*' )`
 
 ![syntax for new events](/img/events-railroad.png)
 
@@ -430,7 +430,7 @@ The intent of the FHIRcast Event Maturity Model is to attain broad community eng
 Maturity Level | Maturity title | Requirements
 --- | --- | ---
 0 | Draft | Event is correctly [named](#event-naming) and [defined](#event-proposal-and-maturity). 
-1 | Submitted  | _The above, and …_ Event definition is written up as a [github pull request](https://github.com/fhircast/docs/tree/master/docs/events) using the [Event template](../../events/template/) and community feedback is solicited on the [zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast).
+1 | Submitted  | _The above, and …_ Event definition is written up as a pull request using the [Event template](../../events/template/) and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).
 2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
 3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
 4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
