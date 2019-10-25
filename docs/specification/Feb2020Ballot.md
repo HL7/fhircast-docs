@@ -175,7 +175,7 @@ To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json
 ### `webhook` Intent Verification
 If a subscription with `hub.channel.type`=`webhook` is not denied, the Hub SHALL perform the verification of intent of the subscriber, this applies to apps unsubscribing as well. The `hub.callback` url verification process ensures that the subscriber actually controls the callback url. Note the verification of intent and the `hub.callback` url SHALL only be used for subscriptions over webhooks.
 
-#### Intent Verification Request
+#### `webhook` Intent Verification Request
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
 
 Field | Optionality | Type | Description
@@ -186,23 +186,23 @@ Field | Optionality | Type | Description
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
-##### Intent Verification Request Example
+##### `webhook` Intent Verification Request Example
 ```
 GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=patient-open,patient-close&hub.challenge=meu3we944ix80ox&hub.lease_seconds=7200 HTTP 1.1
 Host: subscriber
 ```
 
-#### Intent Verification Response
+#### `webhook` Intent Verification Response
 If the `hub.topic` of the Intent Verification Request corresponds to a pending subscription or unsubscription that the subscriber wishes to carry out it SHALL respond with an HTTP success (2xx) code, a header of `Content-Type: text/html`, and a response body equal to the `hub.challenge` parameter. If the subscriber does not agree with the action, the subscriber SHALL respond with a 404 "Not Found" response.
 
 The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub SHALL also consider verification to have failed.
 
 The below [flow diagram](https://drive.google.com/file/d/1VcgI3dn6mAXPXkNaxRJzaBfl2HqQZUKW/view?usp=sharing) and example illustrate the successful subscription sequence and message details.
 
-###### Successful Subscription Sequence
+###### `webhook` Successful Subscription Sequence
 ![Successful subscription flow diagram](/img/Successful%20Subscription%20Sequence.png)
 
-###### Intent Verification Response Example
+###### `webhook` Intent Verification Response Example
 ```
 HTTP/1.1 200 OK
 Content-Type: text/html
@@ -232,6 +232,12 @@ hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub
 ## Event Notification
 
 The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the a `webhook` or `websocket` channel.
+
+### `webhook` vs `websocket`
+
+A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use websockets when they are unable to host an accessible callback url.
+
+> Implementer feedback is solicited around the preference and desired optionality of webhooks and websockets. 
 
 ### Event Notification Request
 
