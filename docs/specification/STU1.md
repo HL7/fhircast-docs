@@ -429,7 +429,7 @@ The intent of the FHIRcast Event Maturity Model is to attain broad community eng
 
 Maturity Level | Maturity title | Requirements
 --- | --- | ---
-0 | Draft | Event is correctly [named](#event-naming) and [defined](#event-proposal-and-maturity). 
+0 | Draft | Event is correctly named and defined per the [FHIRcast event template](../../events/template). 
 1 | Submitted  | _The above, and …_ Event definition is written up as a pull request using the [Event template](../../events/template/) and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).
 2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
 3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
