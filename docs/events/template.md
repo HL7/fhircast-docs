@@ -1,6 +1,6 @@
 # <mark>[FHIR resource]-[open|close]</mark>
 
-eventMaturity | [0 - Draft](../../specification/1.0/#event-maturity-model)
+eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
 
 ## Workflow
 
