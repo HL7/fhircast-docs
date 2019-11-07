@@ -1,6 +1,6 @@
 # Patient-open
 
-eventMaturity | [2 - Tested](../../specification/1.0/#event-maturity-model)
+eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 
 ## Workflow
 
