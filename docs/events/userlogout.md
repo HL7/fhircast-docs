@@ -1,6 +1,6 @@
 # userlogout
 
-eventMaturity | [1 - Submitted](../../specification/1.0/#event-maturity-model)
+eventMaturity | [1 - Submitted](../../specification/STU1/#event-maturity-model)
 
 ## Workflow
 
