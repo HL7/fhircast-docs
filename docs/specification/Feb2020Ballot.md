@@ -60,7 +60,8 @@ Note that the SMART launch parameters include the Hub's base url and the session
 Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
-* Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+* For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes websocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
@@ -71,7 +72,7 @@ This request SHALL have a `Content-Type` header of `application/x-www-form-urlen
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
-`hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` | `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
+`hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
 `hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
