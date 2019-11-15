@@ -8,7 +8,7 @@ The FHIRcast specification describes the APIs used to synchronize disparate heal
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. The below [flow diagram](https://drive.google.com/file/d/1wyOXdp0U6tyYc5zx0SrVNfnNlMvt3KjX/view?usp=sharing) illustrates the series of interactions. 
+FHIRcast is modeled on the webhook design pattern and specifically the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. The below flow diagram illustrates the series of interactions. 
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -118,7 +118,7 @@ Field | Optionality | Type | Description
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied. 
 `hub.reason` | Optional | *string* | The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
-The below [flow diagram](https://drive.google.com/file/d/1Z7Z7mw0f_gm8lqdBJcwqQV8MD9PnVhQs/view?usp=sharing) and example illustrate the subscription denial sequence and message details.
+The below flow diagram and example illustrate the subscription denial sequence and message details.
 
 ###### Subscription Denial Sequence
 ![Subscription denial flow diagram](/img/Denied%20Subscription%20Sequence.png)
@@ -154,7 +154,7 @@ If the `hub.topic` of the Intent Verification Request corresponds to a pending s
 
 The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the `hub.challenge` parameter, the Hub SHALL also consider verification to have failed.
 
-The below [flow diagram](https://drive.google.com/file/d/1VcgI3dn6mAXPXkNaxRJzaBfl2HqQZUKW/view?usp=sharing) and example illustrate the successful subscription sequence and message details.
+The below flow diagram and example illustrate the successful subscription sequence and message details.
 
 ###### Successful Subscription Sequence
 ![Successful subscription flow diagram](/img/Successful%20Subscription%20Sequence.png)
