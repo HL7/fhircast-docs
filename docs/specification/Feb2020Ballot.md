@@ -79,10 +79,11 @@ Field | Optionality | Type | Description
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription. 
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
-Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.
+Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific `hub.topic`, `hub.callback` / `hub.channel.endpoint` url, and `hub.events` combination. For example, a subscriber MAY modify its subscription by subscribing to or unsubscribing from additional events by sending subscription requests for additional events with the same topic and callback/endpoint url.
 
 The webhook callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
@@ -109,8 +110,8 @@ hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2F
 HTTP/1.1 202 Accepted
 ```
 
-#### `websocket` Subscription Request Example
-In this example, the app asks to be notified of the `patient-open` and `patient-close` events.
+#### `websocket` Initial Subscription Request Example
+In this example, the app creates an initial subscription and asks to be notified of the `patient-open` and `patient-close` events.
 ```
 POST https://hub.example.com
 Host: hub.example.com
@@ -216,9 +217,21 @@ meu3we944ix80ox
 
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message with only a single difference: the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_. Note that the unsubscribe request is performed over HTTP, even for subscriptions using websockets. 
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss websocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using websockets.  
 
-#### Unsubscribe Request Example
+Field | Optionality | Type | Description
+---------- | ----- | -------- | --------------
+`hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
+`hub.mode` | Required | *string* | The literal string "unsubscribe".
+`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
+`hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber no longer wants notifications.
+`hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
+`hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
+`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription.
+
+
+#### `webhook` Unsubscribe Request Example
 
 ```
 POST https://hub.example.com
@@ -226,9 +239,22 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open,patient-close&hub.challenge=meu3we944ix80ox
+hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open,patient-close&hub.challenge=meu3we944ix80ox
 
 ```
+
+#### `websocket` Unsubscribe Request Example
+
+```
+POST https://hub.example.com
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/x-www-form-urlencoded
+
+hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=patient-open,patient-close
+
+```
+
 
 ## Event Notification
 
