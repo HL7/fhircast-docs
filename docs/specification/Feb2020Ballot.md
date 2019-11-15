@@ -326,17 +326,19 @@ HTTP/1.1 200 OK
 
 #### `websocket` Event Notification Response Example
 
-For `websocket` subscriptions, the HTTP status code is communicated from the client to Hub through the existing websocket channel, wrapped in a json object.
+For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing websocket channel, wrapped in a json object. Since the websocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
 > Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over websockets and the use of an HTTP status within a websocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
+`id` | Required | *string* | Event identifier from the event notification to which this response corresponds.
 `status` | Required | *numeric HTTP status code* | Numeric HTTP [RFC7231] response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
 
 ```
 {
-"status": "200"
+  "id": "q9v3jubddqt63n1",
+  "status": "200"
 }
 ```
 
