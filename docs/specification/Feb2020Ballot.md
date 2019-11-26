@@ -90,7 +90,7 @@ The webhook callback URL MAY contain arbitrary query string parameters (e.g., `?
 The client that creates the subscription may not be the same system as the server hosting the callback url or connecting to the wss url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the system receiving notifications.
 
 ### Subscription Response
-If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using websockets and supported by the Hub, the HTTP body of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible.
+If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using websockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible.
 
 If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
 
@@ -124,9 +124,7 @@ hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-
 #### `websocket` Subscription Response Example
 ```
 HTTP/1.1 202 Accepted
-{
-  "hub.channel.endpoint": "wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de"
-}
+Content-Location: wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de
 ```
 
 ### Subscription Denial
