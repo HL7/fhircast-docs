@@ -8,7 +8,7 @@ The FHIRcast specification describes the APIs used to synchronize disparate heal
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a websocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. Hubs SHOULD support websockets and MAY support webhooks. The below flow diagram illustrates the series of interactions for webhooks. 
+FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. Hubs SHOULD support WebSockets and MAY support webhooks. The below flow diagram illustrates the series of interactions for webhooks. 
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -61,7 +61,7 @@ Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
 * For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
-* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes websocket connection. 
+* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
@@ -79,7 +79,7 @@ Field | Optionality | Type | Description
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
-`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription. 
+`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription. 
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
@@ -90,7 +90,7 @@ The webhook callback URL MAY contain arbitrary query string parameters (e.g., `?
 The client that creates the subscription may not be the same system as the server hosting the callback url or connecting to the wss url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the system receiving notifications.
 
 ### Subscription Response
-If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using websockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible. The websocket wss url SHALL be cryptographically random, unique and unguessable.
+If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using WebSockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible. The WebSocket wss url SHALL be cryptographically random, unique and unguessable.
 
 If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
 
@@ -140,7 +140,7 @@ Field | Optionality | Type | Description
 `hub.reason` | Optional | *string* | The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
 
-The below webhook flow diagram and websocket flow diagram and examples illustrate the subscription denial sequence and message details.
+The below webhook flow diagram and WebSocket flow diagram and examples illustrate the subscription denial sequence and message details.
 
 #### `webhook` Subscription Denial
 
@@ -157,7 +157,7 @@ Host: subscriber
 ```
 
 #### `websocket` Subscription Denial
-To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json object to the subscriber through the established websocket connection. 
+To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json object to the subscriber through the established WebSocket connection. 
 
 ###### `websocket`Subscription Denial Sequence
 
@@ -215,7 +215,7 @@ meu3we944ix80ox
 > The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.
 
 #### `websocket` Subscription Confirmation 
-To confirm a subscription request, upon the subscriber establishing a websocket connection to the `hub.channel.endpoint` wss url, the Hub SHALL send a confirmation. This confirmation includes the following elements:
+To confirm a subscription request, upon the subscriber establishing a WebSocket connection to the `hub.channel.endpoint` wss url, the Hub SHALL send a confirmation. This confirmation includes the following elements:
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
@@ -238,7 +238,7 @@ Field | Optionality | Type | Description
 
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss websocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using websockets.  
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets.  
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
@@ -249,7 +249,7 @@ Field | Optionality | Type | Description
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
-`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription.
+`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription.
 
 
 #### `webhook` Unsubscribe Request Example
@@ -283,9 +283,9 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### `webhook` vs `websocket`
 
-A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use websockets when they are unable to host an accessible callback url.
+A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
 
-> Implementer feedback is solicited around the preference and desired optionality of webhooks and websockets. 
+> Implementer feedback is solicited around the preference and desired optionality of webhooks and WebSockets. 
 
 ### Event Notification Request
 
@@ -373,9 +373,9 @@ HTTP/1.1 200 OK
 
 #### `websocket` Event Notification Response Example
 
-For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing websocket channel, wrapped in a json object. Since the websocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
+For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a json object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
-> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over websockets and the use of an HTTP status within a websocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
+> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over WebSockets and the use of an HTTP status within a WebSocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
