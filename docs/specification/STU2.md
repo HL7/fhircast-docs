@@ -74,7 +74,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
+`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
@@ -135,7 +135,7 @@ If (and when) the subscription is denied, the Hub SHALL inform the subscriber. T
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
-`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a guid.
+`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a UUID.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied. 
 `hub.reason` | Optional | *string* | The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
@@ -182,7 +182,7 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the Hub from the subscriber.
-`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a guid.
+`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a UUID.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
@@ -244,7 +244,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "unsubscribe".
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
+`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber no longer wants notifications.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
@@ -298,13 +298,13 @@ The notification's `hub.event` and `context` fields inform the subscriber of the
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a GUID.
+`id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event` | Required | *object* | A json object describing the event. See below.
 
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth 2.0 access_token.
 
@@ -400,7 +400,7 @@ If the subscriber cannot follow the context of the event, for instance due to an
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a UUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
 `event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
 
 ###### Event Notification Error Event Object Parameters
@@ -454,7 +454,7 @@ Once a requested context change is accepted, the Hub SHALL broadcast the context
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a GUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a UUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
 `event` | Required | *object* | A json object describing the event. See [below](#request-context-change-event-object-parameters).
 
 ###### Request Context Change Event Object Parameters
