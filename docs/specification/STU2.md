@@ -94,6 +94,12 @@ If the Hub URL supports FHIRcast and is able to handle the subscription or unsub
 
 If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
 
+### `webhook` vs `websocket`
+
+A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use websockets when they are unable to host an accessible callback url.
+
+> Implementer feedback is solicited around the preference and desired optionality of webhooks and websockets.
+
 #### `webhook` Subscription Request Example
 In this example, the app asks to be notified of the `patient-open` and `patient-close` events.
 ```
@@ -279,21 +285,15 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
 
 ## Event Notification
 
-The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the a `webhook` or `websocket` channel.
-
-### `webhook` vs `websocket`
-
-A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use websockets when they are unable to host an accessible callback url.
-
-> Implementer feedback is solicited around the preference and desired optionality of webhooks and websockets. 
+The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the `webhook` or `websocket` channel. 
 
 ### Event Notification Request
 
-The notification to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp MAY be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
+The http request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### Event Notification Request Details
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
+The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is included in the notification. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -306,7 +306,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth 2.0 access_token.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted fhircast/ scopes
 
 
 #### `webhook` Event Notification Request Details
