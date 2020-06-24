@@ -74,7 +74,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
+`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe/unsubscribe.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
