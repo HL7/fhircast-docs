@@ -244,7 +244,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "unsubscribe".
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
+`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber no longer wants to subscribe/unsubscribe.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
@@ -293,7 +293,7 @@ The notification to the subscriber SHALL include a description of the subscribed
 
 #### Event Notification Request Details
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. The context contains zero, one, or more FHIR resources. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the resource data being passed by specifying the elements to be included in the message (e.g. the identifiers of a resource). When they do so they SHALL include all elements indicated in the event definition.
+The notification's `hub.event` and `context` fields inform the subscriber of the current state of the session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the session. Each event in the Event Catalog defines what context is expected in the notification. The context contains zero, one, or more FHIR resources. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the resource data being passed by specifying the elements to be included in the message (e.g. the identifiers of a resource). When they do so they SHALL include all elements indicated in the event definition.
 Subscribers SHALL accept a full FHIR resource or the _elements-limited resource as defined in the Event Catalog.
 
 Field | Optionality | Type | Description
