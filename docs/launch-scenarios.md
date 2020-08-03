@@ -1,4 +1,6 @@
 
+!!! info This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification).
+
 # App launch scenarios and session discovery
 
 A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, subscribing and driving applications which are engaged in the shared session. The `hub.topic` must be known by a system for it to participate in the session. Typically, the Hub defines the `hub.topic`.
