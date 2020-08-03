@@ -283,7 +283,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### `webhook` vs `websocket`
 
-A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
+A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
 
 > Implementer feedback is solicited around the preference and desired optionality of webhooks and WebSockets. 
 
