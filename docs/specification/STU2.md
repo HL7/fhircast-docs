@@ -28,7 +28,7 @@ FHIRcast defines OAuth 2.0 access scopes that correspond directly to [FHIRcast e
 
 Expressed in [Extended Backus-Naur Form](https://www.iso.org/obp/ui/#iso:std:iso-iec:14977:ed-1:v1:en) (EBNF) notation, the FHIRcast syntax for workflow related events is:
 
-`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event ) '.' ( 'read' | 'write' | '*' )`
+`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event | '*' ) '.' ( 'read' | 'write' | '*' )`
 
 ![FHIRcast SMART scopes](../img/fhircast-smart-scopes.png)
 
@@ -528,7 +528,7 @@ Most FHIRcast events conform to an extensible syntax based upon FHIR resources. 
 
 FHIRcast events SHOULD conform to this extensible syntax, patterned after the SMART on FHIR scope syntax. Expressed in EBNF notation, the FHIRcast syntax for workflow related events is:
 
-`hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' | '*' )`
+`hub.events ::= ( fhir-resource | '*' ) '-' ( 'open' | 'close' | '*' )`
 
 ![syntax for new events](/img/events-railroad.png)
 
