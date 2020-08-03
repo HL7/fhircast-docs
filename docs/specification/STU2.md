@@ -595,6 +595,15 @@ Version | Description
 1.0 | Initial Release
 ---
 
+## Glossary
+
+* A session results from a user logging into an application and can encompass one or more workflows. 
+* topic: an identifier of session
+* current context: data associated with a session at a given time and is communicated between clients that share a session.
+* client: subscribes to and sends/received session events
+* session events: contain a data of the current context
+
+
 ## Revision History
 All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
 
