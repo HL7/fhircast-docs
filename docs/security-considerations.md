@@ -1,3 +1,5 @@
+!!! info This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification).
+
 # Security Considerations
 
 FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain Protected Health Information (PHI). 
