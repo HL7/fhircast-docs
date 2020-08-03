@@ -26,7 +26,7 @@ Although FHIRcast works best with the SMART on FHIR launch and authorization pro
 
 FHIRcast defines OAuth 2.0 access scopes that correspond directly to [FHIRcast events](#events). Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events should ask for read scopes. Apps that request context changes should ask for write scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.
 
-Expressed in EBNF notation, FHIRcast's scope syntax is:
+Expressed in [Extended Backus-Naur Form](https://www.iso.org/obp/ui/#iso:std:iso-iec:14977:ed-1:v1:en) (EBNF) notation, the FHIRcast syntax for workflow related events is:
 
 `scope ::= ( 'fhircast' ) '/' ( FHIRcast-event ) '.' ( 'read' | 'write' | '*' )`
 
