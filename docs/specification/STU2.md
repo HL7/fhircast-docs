@@ -361,7 +361,9 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 2xx response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+
+In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). Following an HTTP 202 (Accepted), if the subscriber attempts and fails to follow the context described in the event notification, it SHOULD send a syncerror event to the hub documenting this failure in synchronization. 
 
 #### `webhook` Event Notification Response Example
 
