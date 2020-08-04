@@ -601,7 +601,7 @@ Version | Description
 * topic: an identifier of session
 * current context: data associated with a session at a given time and is communicated between clients that share a session.
 * client: subscribes to and requests or receives session events
-* session events: contain a data of the current context
+* session events: a user-initiated workflow event, communicated to clients, containing the current context
 
 
 ## Revision History
