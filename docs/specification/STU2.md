@@ -6,13 +6,13 @@
 ## Overview
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
 
-Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The subscription is [verified](#intent-verification-request) and the app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
+Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a websocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. The below flow diagram illustrates the series of interactions. 
+FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. Hubs SHOULD support WebSockets and MAY support webhooks. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
-All data exchanged through the HTTP APIs SHALL be sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). 
+All data exchanged through the HTTP APIs SHALL be formatted, sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). 
 
 ## Session Discovery
 
@@ -60,8 +60,9 @@ Note that the SMART launch parameters include the Hub's base url and the session
 Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
-* For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
-* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes websocket connection. 
+* The hub confirms the subscription was actually requested by the subscriber. This exchange can be implemented in two ways depending on the channel type.
+  * For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+  * For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
@@ -74,12 +75,12 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
-`hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe/unsubscribe.
+`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
+`hub.events` | Conditional | *string* | Required for subscription, SHALL not be present during unsubscriptions. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscriptions are not supported.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
-`hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
-`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription. 
+`hub.secret` | Conditional | *string* | Optional when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription. 
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
@@ -90,7 +91,7 @@ For subscriptions with `hub.channel.type`=`webhook`, the callback URL MAY contai
 The client that creates the subscription may not be the same system as the server hosting the callback url or connecting to the wss url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the system receiving notifications.
 
 ### Subscription Response
-If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using websockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible. The websocket wss url SHALL be cryptographically random, unique and unguessable.
+If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using WebSockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible. The WebSocket wss url SHALL be cryptographically random, unique and unguessable.
 
 If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
 
@@ -141,12 +142,12 @@ If (and when) the subscription is denied, the Hub SHALL inform the subscriber. T
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string "denied".
-`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a guid.
+`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a UUID.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied. 
 `hub.reason` | Optional | *string* | The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
 
-The below webhook flow diagram and websocket flow diagram and examples illustrate the subscription denial sequence and message details.
+The below webhook flow diagram and WebSocket flow diagram and examples illustrate the subscription denial sequence and message details.
 
 #### `webhook` Subscription Denial
 
@@ -163,7 +164,7 @@ Host: subscriber
 ```
 
 #### `websocket` Subscription Denial
-To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json object to the subscriber through the established websocket connection. 
+To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json object to the subscriber through the established WebSocket connection. 
 
 ###### `websocket`Subscription Denial Sequence
 
@@ -188,7 +189,7 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", which matches the original request to the Hub from the subscriber.
-`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a guid.
+`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a UUID.
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. 
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
@@ -221,7 +222,7 @@ meu3we944ix80ox
 > The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.
 
 #### `websocket` Subscription Confirmation 
-To confirm a subscription request, upon the subscriber establishing a websocket connection to the `hub.channel.endpoint` wss url, the Hub SHALL send a confirmation. This confirmation includes the following elements:
+To confirm a subscription request, upon the subscriber establishing a WebSocket connection to the `hub.channel.endpoint` wss url, the Hub SHALL send a confirmation. This confirmation includes the following elements:
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
@@ -244,18 +245,18 @@ Field | Optionality | Type | Description
 
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss websocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using websockets.  
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets.  
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "unsubscribe".
-`hub.topic` | Required | *string* | The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.
+`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
 `hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber no longer wants to subscribe/unsubscribe.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
-`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing websocket subscription.
+`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription.
 
 
 #### `webhook` Unsubscribe Request Example
@@ -285,7 +286,11 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
 
 ## Event Notification
 
-The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the `webhook` or `websocket` channel. 
+The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the `webhook` or `websocket` channel.
+
+### `webhook` vs `websocket`
+
+A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
 
 ### Event Notification Request
 
@@ -293,18 +298,18 @@ The HTTP request notification interaction to the subscriber SHALL include a desc
 
 #### Event Notification Request Details
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is included in the notification. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
+The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a GUID.
+`id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event` | Required | *object* | A json object describing the event. See below.
 
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a guid.
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
@@ -373,9 +378,9 @@ HTTP/1.1 200 OK
 
 #### `websocket` Event Notification Response Example
 
-For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing websocket channel, wrapped in a json object. Since the websocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
+For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a json object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
-> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over websockets and the use of an HTTP status within a websocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
+> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over WebSockets and the use of an HTTP status within a WebSocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -400,7 +405,7 @@ If the subscriber cannot follow the context of the event, for instance due to an
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a UUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
 `event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
 
 ###### Event Notification Error Event Object Parameters
@@ -454,7 +459,7 @@ Once a requested context change is accepted, the Hub SHALL broadcast the context
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a GUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a UUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
 `event` | Required | *object* | A json object describing the event. See [below](#request-context-change-event-object-parameters).
 
 ###### Request Context Change Event Object Parameters
@@ -509,7 +514,7 @@ FHIRcast describes an workflow event subscription and notification scheme toward
 
 New events are proposed in a prescribed format using the [documentation template](../../events/template) by submitting a [pull request](https://github.com/fhircast/docs/tree/master/docs/events). FHIRcast events are versioned, and mature according to the [Event Maturity Model](#event-maturity-model).
 
-FHIRcast events are stateless. Context changes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. 
+FHIRcast events are stateless. For a given event, opens and closes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. 
 
 ### Event Definition Format
 
@@ -531,7 +536,7 @@ FHIRcast events SHOULD conform to this extensible syntax, patterned after the SM
 
 ![syntax for new events](/img/events-railroad.png)
 
-Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
+Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
 
 #### Event Definition Format: Workflow
 
@@ -558,7 +563,7 @@ Maturity Level | Maturity title | Requirements
 1 | Submitted  | _The above, and …_ Event definition is written up as a pull request using the [Event template](../../events/template/) and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).
 2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
 3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
-4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
+4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
 5 | Mature | _The above, and ..._ The event has been implemented in production in at least two Hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
 6 | Normative | _The above, and ..._ the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot
 
@@ -582,3 +587,9 @@ Version | Description
 1.0.1 | Clarified workflow description
 1.0 | Initial Release
 ---
+
+## Revision History
+All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
+
+### 20200715 Significant changes as part of the STU2 publication included: 
+* Introduction of WebSockets as the preferred communication mechanism over webhooks.
