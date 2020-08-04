@@ -1,5 +1,7 @@
 
-!!! info This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification).
+!!! info "Implementator guidance" 
+    This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
+
 
 # App launch scenarios and session discovery
 
