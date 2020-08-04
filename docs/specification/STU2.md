@@ -60,9 +60,8 @@ Note that the SMART launch parameters include the Hub's base url and the session
 Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
-* The hub confirms the subscription was actually requested by the subscriber. This exchange can be implemented in two ways depending on the channel type.
-  * For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
-  * For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
+* For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
