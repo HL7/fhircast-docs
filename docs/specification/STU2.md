@@ -60,8 +60,9 @@ Note that the SMART launch parameters include the Hub's base url and the session
 Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
-* For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
-* For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
+* The hub confirms the subscription was actually requested by the subscriber. This exchange can be implemented in two ways depending on the channel type.
+  * For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+  * For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
@@ -93,6 +94,12 @@ The client that creates the subscription may not be the same system as the serve
 If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. If using WebSockets and supported by the Hub, the `Content-Location` HTTP header of the response SHALL contain a wss url. If webhooks, the Hub SHOULD perform the verification of intent as soon as possible. The WebSocket wss url SHALL be cryptographically random, unique and unguessable.
 
 If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
+
+### `webhook` vs `websocket`
+
+A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use websockets when they are unable to host an accessible callback url.
+
+> Implementer feedback is solicited around the preference and desired optionality of webhooks and websockets.
 
 #### `webhook` Subscription Request Example
 In this example, the app asks to be notified of the `patient-open` and `patient-close` events.
@@ -285,16 +292,13 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
 
-> Implementer feedback is solicited around the preference and desired optionality of webhooks and WebSockets. 
-
 ### Event Notification Request
 
-The http request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
+The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### Event Notification Request Details
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the session. Each event in the Event Catalog defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the resource data being passed by specifying the elements to be included in the message (e.g. the identifiers of a resource). When they do so they SHALL include all elements indicated in the event definition.
-Subscribers SHALL accept a full FHIR resource or the _elements-limited resource as defined in the Event Catalog.
+The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs MAY use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -307,7 +311,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth 2.0 access_token.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
 
 #### `webhook` Event Notification Request Details
@@ -513,7 +517,7 @@ FHIRcast describes an workflow event subscription and notification scheme toward
 
 New events are proposed in a prescribed format using the [documentation template](../../events/template) by submitting a [pull request](https://github.com/fhircast/docs/tree/master/docs/events). FHIRcast events are versioned, and mature according to the [Event Maturity Model](#event-maturity-model).
 
-FHIRcast events are stateless. Context changes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. 
+FHIRcast events are stateless. For a given event, opens and closes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. 
 
 ### Event Definition Format
 
@@ -535,7 +539,7 @@ FHIRcast events SHOULD conform to this extensible syntax, patterned after the SM
 
 ![syntax for new events](/img/events-railroad.png)
 
-Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
+Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
 
 #### Event Definition Format: Workflow
 
@@ -562,7 +566,7 @@ Maturity Level | Maturity title | Requirements
 1 | Submitted  | _The above, and …_ Event definition is written up as a pull request using the [Event template](../../events/template/) and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).
 2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
 3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
-4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
+4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
 5 | Mature | _The above, and ..._ The event has been implemented in production in at least two Hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
 6 | Normative | _The above, and ..._ the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot
 
