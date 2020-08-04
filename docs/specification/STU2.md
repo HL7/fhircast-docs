@@ -61,8 +61,8 @@ Subscribing consists of two exchanges:
 
 * Subscriber requests a subscription at the `hub.url` url.
 * The hub confirms the subscription was actually requested by the subscriber. This exchange can be implemented in two ways depending on the channel type.
-  * For `hub.channel.type` = `webhook`, Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
-  * For `hub.channel.type` = `websocket`, Hub returns a wss url and subscriber establishes WebSocket connection. 
+  * For `webhook` subscriptions, the Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
+  * For `websocket` subscriptions, the Hub returns a wss url and subscriber establishes WebSocket connection. 
 
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
 
@@ -86,7 +86,7 @@ If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer 
 
 Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific `hub.topic`, `hub.callback` / `hub.channel.endpoint` url, and `hub.events` combination. For example, a subscriber MAY modify its subscription by subscribing to or unsubscribing from additional events by sending subscription requests for additional events with the same topic and callback/endpoint url.
 
-For subscriptions with `hub.channel.type`=`webhook`, the callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
+For `webhook` subscriptions, the callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
 The client that creates the subscription may not be the same system as the server hosting the callback url or connecting to the wss url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the system receiving notifications.
 
@@ -151,7 +151,7 @@ The below webhook flow diagram and WebSocket flow diagram and examples illustrat
 
 #### `webhook` Subscription Denial
 
-To deny a subscription with `hub.channel.type`=`webhook`, the Hub sends an HTTP GET request to the subscriber's callback URL as given in the subscription request.  This request appends the fields as query string arguments. The subscriber SHALL respond with an HTTP success (2xx) code.
+To deny a `webhook` subscription, the Hub sends an HTTP GET request to the subscriber's callback URL as given in the subscription request.  This request appends the fields as query string arguments. The subscriber SHALL respond with an HTTP success (2xx) code.
 
 
 ###### `webhook` Subscription Denial Sequence
@@ -164,7 +164,7 @@ Host: subscriber
 ```
 
 #### `websocket` Subscription Denial
-To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json object to the subscriber through the established WebSocket connection. 
+To deny a `websocket` subscriptions, the Hub sends a json object to the subscriber through the established WebSocket connection. 
 
 ###### `websocket`Subscription Denial Sequence
 
@@ -181,7 +181,7 @@ To deny a subscription with `hub.channel.type`=`websocket`, the Hub sends a json
 ```
 
 ### Subscription Confirmation
-If a subscription or unsubscription is not denied, the Hub SHALL confirm the subscription. For `hub.channel.type`=`webhook`, the confirmation verifies the intent of the subscriber and ensures that the subscriber actually controls the callback url. For `hub.channel.type`s of both `webhook` and `websocket`, this subscription confirmation step informs the subscriber of the details of Hub's recently created subscription.
+If a subscription or unsubscription is not denied, the Hub SHALL confirm the subscription. The subscription confirmation step informs the subscriber of the details of Hub's recently created subscription. For `webhook` subscriptions, the confirmation also verifies the intent of the subscriber and ensures that the subscriber actually controls the callback url. 
 
 #### `webhook` Intent Verification Request
 In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that a `webhook` subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
@@ -245,7 +245,7 @@ Field | Optionality | Type | Description
 
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only unsubscribes for `hub.channel.type`=`webhook` SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only unsubscribes for `hub.channel.type`=`websocket` SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets.  
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only `webhook` unsubscribes SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only `websocket` unsubscribes SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets.  
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
@@ -256,7 +256,7 @@ Field | Optionality | Type | Description
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
-`hub.channel.endpoint` | Conditional | *string* |  Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription.
+`hub.channel.endpoint` | Conditional | *string* |  Required for `websocket` re-subscribes and unsubscribes. SHALL not be present for `webhook` subscriptions. The wss url identifying an existing WebSocket subscription.
 
 
 #### `webhook` Unsubscribe Request Example
@@ -313,7 +313,7 @@ Field | Optionality | Type | Description
 
 #### `webhook` Event Notification Request Details
 
-Only for subscriptions with `hub.channel.type`=`webhook`, using the `hub.secret` from the subscription request, the Hub SHALL generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value SHALL be in the form _method=signature_ where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature SHALL be computed using the HMAC algorithm ([RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)) with the request body as the data and the `hub.secret` as the key.
+For `webhook` subscriptions, using the `hub.secret` from the subscription request, the Hub SHALL generate an HMAC signature of the payload and include that signature in the request headers of the notification. The `X-Hub-Signature` header's value SHALL be in the form _method=signature_ where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature SHALL be computed using the HMAC algorithm ([RFC6151](https://www.w3.org/TR/websub/#bib-RFC6151)) with the request body as the data and the `hub.secret` as the key.
 
 ```
 POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
