@@ -586,7 +586,7 @@ Version | Description
 
 ## Glossary
 
-* A session results from a user logging into an application and can encompass one or more workflows. 
+* session: an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users.  A session results from a user logging into an application and can encompass one or more workflows.
 * topic: an identifier of session
 * current context: data associated with a session at a given time and is communicated between clients that share a session.
 * client: subscribes to and requests or receives session events
