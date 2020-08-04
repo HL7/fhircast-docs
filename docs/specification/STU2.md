@@ -600,7 +600,7 @@ Version | Description
 * A session results from a user logging into an application and can encompass one or more workflows. 
 * topic: an identifier of session
 * current context: data associated with a session at a given time and is communicated between clients that share a session.
-* client: subscribes to and sends/received session events
+* client: subscribes to and requests or receives session events
 * session events: contain a data of the current context
 
 
