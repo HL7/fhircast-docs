@@ -513,6 +513,7 @@ New events are proposed in a prescribed format using the [documentation template
 
 FHIRcast events are stateless. For a given event, opens and closes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. 
 
+
 ### Event Definition Format
 
 Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The Hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.
@@ -533,7 +534,7 @@ FHIRcast events SHOULD conform to this extensible syntax, patterned after the SM
 
 ![syntax for new events](/img/events-railroad.png)
 
-Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
+Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. `org.example.patient-transmogrify`). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").
 
 #### Event Definition Format: Workflow
 
@@ -560,7 +561,7 @@ Maturity Level | Maturity title | Requirements
 1 | Submitted  | _The above, and …_ Event definition is written up as a pull request using the [Event template](../../events/template/) and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).
 2 | Tested | _The above, and …_ The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.
 3 | Considered |  _The above, and …_ At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.
-4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
+4 | Documented | _The above, and …_ The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul>
 5 | Mature | _The above, and ..._ The event has been implemented in production in at least two Hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.
 6 | Normative | _The above, and ..._ the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot
 
