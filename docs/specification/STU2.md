@@ -508,6 +508,48 @@ Content-Type: application/json
 }
 ```
 
+## Capability Discovery
+
+A FHIRcast hub MAY advertise its capabilities through a FHIRcast-specific extension on the FHIR server's CapabilityStatement, standardly exposed at <fhir server base url>/metadata. Subscribing clients can determine the hub's capabilities, including additional information, such as support FHIR version.
+
+| Field | Optionality | Type | Description |
+| ----- | - | ---- | -------------------|
+| hub.events | Optional | string | Comma-separated list of event types from the Event Catalog that the hub supports. May also include custom events. |
+| supportsWebsocket | Optional | boolean | True if Hub supports `websocket` connections, otherwise, false. |
+| supportsRestHook | Optional | boolean | True if Hub supports `webhook` connections, otherwise, false. |
+| version | Required | string | Version of FHIRcase supported by hub. "1.0" for STU1, "1.1" for STU2. |
+
+
+
+```json
+extension": [
+          {
+            "url": "http://fhircast.hl7.org/StructureDefinition/capabilitydiscovery",
+            "extension": [
+              {
+                "url": "hub.events",
+                "valueString": "patient-open,patient-close,imagingstudy-open,imagingstudy-close,syncerror"
+              },
+              {
+                "url": "supportsWebsocket",
+                "valueBoolean": "true"
+              },
+              {
+                "url": "supportsWebHook",
+                "valueUri": "false"
+              },
+              {
+                "url": "version",
+                "valueString": "1.1"
+              },
+
+            ]
+          }
+        ]
+```
+
+
+
 ## Events
 
 FHIRcast describes an workflow event subscription and notification scheme towards the goal of improving a clinician's workflow across multiple disparate applications. The set of events defined here are not a closed set; anyone is able to define new events to fit their use cases and propose those events to the community. 
