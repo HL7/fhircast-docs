@@ -12,7 +12,7 @@ FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/f
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
-All data exchanged through the HTTP APIs SHALL be formatted, sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). For WebSockets, data SHALL be transmitted over Secure Web Sockets (WSS) as defined in [RFC6455] (https://tools.ietf.org/html/rfc6455).
+All data exchanged through the HTTP APIs SHALL be formatted, sent and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in [RFC2818](https://tools.ietf.org/html/rfc2818). For WebSockets, data SHALL be transmitted over Secure Web Sockets (WSS) as defined in [RFC6455](https://tools.ietf.org/html/rfc6455).
 
 ## Session Discovery
 
@@ -75,7 +75,7 @@ Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
-`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
+`hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.events` | Conditional | *string* | Required for subscription, SHALL not be present during unsubscriptions. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscriptions are not supported.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
