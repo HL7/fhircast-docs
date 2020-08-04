@@ -252,7 +252,6 @@ Field | Optionality | Type | Description
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "unsubscribe".
 `hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
-`hub.events` | Required | *string* | Comma-separated list of event types from the Event Catalog for which the Subscriber no longer wants to subscribe/unsubscribe.
 `hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
 `hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
@@ -267,7 +266,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.events=patient-open,patient-close&hub.challenge=meu3we944ix80ox
+hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.secret=shhh-this-is-a-secret&hub.challenge=meu3we944ix80ox
 
 ```
 
@@ -279,7 +278,7 @@ Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=patient-open,patient-close
+hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065
 
 ```
 
