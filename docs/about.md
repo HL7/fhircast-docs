@@ -1,4 +1,3 @@
-!!! info This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification).
 
 # About FHIRcast
 
