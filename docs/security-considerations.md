@@ -1,4 +1,4 @@
-!!! info "Implementator guidance" 
+!!! info "Implementer guidance" 
     This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
 
 # Security Considerations
