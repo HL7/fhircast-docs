@@ -1,4 +1,3 @@
-
 # About FHIRcast
 
 FHIRcast is an HL7 specification designed to provide a lightweight, inexpensive and http-based application context synchronization standard.  
