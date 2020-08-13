@@ -415,7 +415,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. 
 `hub.event`| Required | string | Shall be the string `syncerror`.
-`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL  contain the id of the event that this error is related to. 
+`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to. 
 
 ### Event Notification Error Example
 
