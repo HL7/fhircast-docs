@@ -164,7 +164,7 @@ Host: subscriber
 ```
 
 #### `websocket` Subscription Denial
-To deny a `websocket` subscriptions, the Hub sends a json object to the subscriber through the established WebSocket connection. 
+To deny a `websocket` subscription, the Hub sends a json object to the subscriber through the established WebSocket connection. 
 
 ###### `websocket`Subscription Denial Sequence
 
