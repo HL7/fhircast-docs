@@ -426,28 +426,34 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/json
 
 {
-	"timestamp": "2018-01-08T01:37:05.14",
-	"id": "q9v3jubddqt63n1",
-	"event": {
-		"hub.topic": "7544fe65-ea26-44b5-835d-14287e46390b",
-		"hub.event": "syncerror",
-		"context": [{
-			"key": "operationoutcome",
-			"resource": {
-				"resourceType": "OperationOutcome",
-				"issue": [{
-					"severity": "warning",
-					"code": "processing",
-					"diagnostics": "AppId3456 failed to follow context"
-				}],
-				"details": {
-					"coding": [{
-						"code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
-					}]
-				}
-			}
-		}]
-	}
+  "timestamp": "2018-01-08T01:37:05.14",
+  "id": "q9v3jubddqt63n1",
+  "event": {
+    "hub.topic": "7544fe65-ea26-44b5-835d-14287e46390b",
+    "hub.event": "syncerror",
+    "context": [
+      {
+        "key": "operationoutcome",
+        "resource": {
+          "resourceType": "OperationOutcome",
+          "issue": [
+            {
+              "severity": "warning",
+              "code": "processing",
+              "diagnostics": "AppId3456 failed to follow context",
+              "details": {
+                "coding": [
+                  {
+                    "code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
 }
 ```
 
