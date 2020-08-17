@@ -363,7 +363,7 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
 
-In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). Following an HTTP 202 (Accepted), if the subscriber attempts and fails to follow the context described in the event notification, it SHOULD send a syncerror event to the hub documenting this failure in synchronization. 
+In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). 
 
 #### `webhook` Event Notification Response Example
 
@@ -397,8 +397,8 @@ Field | Optionality | Type | Description
 All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural `syncerror` event. 
 
 If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, they SHOULD communicate the error to the Hub in one of two ways.  
-* They can respond to the event notification with an HTTP error statuc code as described in [Event Notification Response](#event-notification-response).
-* They can respond to the event notification with HTTP 202 (Accepted) as described above, then once experiencing the error, send a syncerror event to the Hub. 
+* They can respond to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
+* They can respond to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error, send a syncerror event to the Hub. 
 
 If the Hub receives an error notification from a subscriber, it SHOULD generate a `syncerror` event to the other subscribers of that topic. `syncerror` events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource. 
 
