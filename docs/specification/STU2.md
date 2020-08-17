@@ -289,7 +289,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### `webhook` vs `websocket`
 
-A subsciber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Only the event notification and subscription denied exchanges are affected by the channel type. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
+A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers SHOULD use WebSockets when they are unable to host an accessible callback url.
 
 ### Event Notification Request
 
@@ -364,7 +364,9 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 2xx response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+
+In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). Following an HTTP 202 (Accepted), if the subscriber attempts and fails to follow the context described in the event notification, it SHOULD send a syncerror event to the hub documenting this failure in synchronization. 
 
 #### `webhook` Event Notification Response Example
 
@@ -403,8 +405,8 @@ If the subscriber cannot follow the context of the event, for instance due to an
 ###### Request Context Change Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
-`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a UUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure. 
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the `syncerror` event occurred with subsecond accuracy. 
+`id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a UUID. 
 `event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
 
 ###### Event Notification Error Event Object Parameters
@@ -412,7 +414,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. 
 `hub.event`| Required | string | Shall be the string `syncerror`.
-`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. 
+`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to. 
 
 ### Event Notification Error Example
 
@@ -426,7 +428,7 @@ Content-Type: application/json
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
-    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
+    "hub.topic": "7544fe65-ea26-44b5-835d-14287e46390b",
     "hub.event": "syncerror",
     "context": [
       {
@@ -437,7 +439,14 @@ Content-Type: application/json
             {
               "severity": "warning",
               "code": "processing",
-              "diagnostics": "AppId3456 failed to follow context"
+              "diagnostics": "AppId3456 failed to follow context",
+              "details": {
+                "coding": [
+                  {
+                    "code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
+                  }
+                ]
+              }
             }
           ]
         }
