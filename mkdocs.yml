@@ -21,4 +21,7 @@ nav:
     - About: about.md
 theme: readthedocs
 
+markdown_extensions:
+  - admonition
+
 copyright: ®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a>

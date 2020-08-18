@@ -1,3 +1,7 @@
+!!! info "Implementer guidance" 
+    This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
+
+
 # Synchronization Considerations
 
 FHIRcast describes a mechanism for synchronizing distinct applications. 
