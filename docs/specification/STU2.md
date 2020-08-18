@@ -233,7 +233,7 @@ Field | Optionality | Type | Description
 
 
 
-##### `websocket` Intent Verification Request Example
+##### `websocket` Subscription Confirmation Example
 ```
 {
   "hub.mode": "subscribe",
@@ -243,9 +243,12 @@ Field | Optionality | Type | Description
 }
 ```
 
+###### `websocket` Successful Subscription Sequence
+![Successful web socket subscription flow diagram](/img/Successful%20WebSocket%20Subscription%20Sequence.png)
+
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message, except for the omission of `hub.events`. An unsubscribe cannot alter an existing subscription, only cancel it. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only `webhook` unsubscribes SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only `websocket` unsubscribes SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription will be done over a newly created and communicated WebSocket endpoint.
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message, except for the omission of `hub.events`. An unsubscribe cannot alter an existing subscription, only cancel it. To unsubscribe, the `hub.mode` SHALL be equal to the lowercase string _unsubscribe_.  Only `webhook` unsubscribes SHALL include the `hub.callback`, `hub.secret`, and `hub.challenge`. Only `websocket` unsubscribes SHALL include the wss WebSocket url in `hub.channel.endpoint`. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
 
 Field | Optionality | Type | Description
 ---------- | ----- | -------- | --------------
@@ -282,6 +285,8 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
 
 ```
 
+###### `webhook` and `websocket` Unsubscription Sequence
+![Unsubscription flow diagram](/img/UnsubscriptionSequence.png)
 
 ## Event Notification
 
@@ -395,6 +400,9 @@ Field | Optionality | Type | Description
 }
 ```
 
+###### `webhook` and `websocket` Event Notification Sequence
+![Event Notification flow diagram](/img/EventNotificationSequence.png)
+
 ## Event Notification Errors
 
 All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural `syncerror` event. 
@@ -455,6 +463,9 @@ Content-Type: application/json
   }
 }
 ```
+
+###### `webhook` and `websocket` Event Notification Error Sequence
+![Event Notification Error flow diagram](/img/ErrorSequence.png)
 
 ## Request Context Change
 
