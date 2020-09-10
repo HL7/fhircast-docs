@@ -45,6 +45,7 @@ Key | Optionality | Fhir operation to generate context | Description
                   {
                     "system": "https://customdomain.com/events/syncerror/description",
                     "code": "FHIRcast sync error"
+                  }
                 ]
               }
             }
