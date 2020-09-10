@@ -12,7 +12,7 @@ Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action. The OperationOutcome SHALL use a code of processing. The OperationOutcome's `details.coding.code` SHALL contain the id of the event that this error is related to.
+`operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action. The OperationOutcome SHALL use a code of processing. The OperationOutcome's `details.coding.code` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid". Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
 
 
 
@@ -39,8 +39,12 @@ Key | Optionality | Fhir operation to generate context | Description
               "details": {
                 "coding": [
                   {
+                    "system": "https://fhircast.hl7.org/events/syncerror/eventid",
                     "code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
-                  }
+                  },
+                  {
+                    "system": "https://customdomain.com/events/syncerror/description",
+                    "code": "FHIRcast sync error"
                 ]
               }
             }
