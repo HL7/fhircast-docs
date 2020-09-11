@@ -43,7 +43,7 @@ Key | Optionality | Fhir operation to generate context | Description
                     "code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
                   },
                   {
-                    "system": "https://customdomain.com/events/syncerror/description",
+                    "system": "http://example.com/events/syncerror/your-error-code-system",
                     "code": "FHIRcast sync error"
                   }
                 ]
