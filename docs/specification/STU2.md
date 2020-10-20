@@ -123,9 +123,9 @@ Field | Optionality | Type | Description
 `hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.events` | Conditional | *string* | Required for subscription, SHALL not be present during unsubscriptions. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscriptions are not supported.
 `hub.lease_seconds` | Optional | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
-`hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
-`hub.secret` | Conditional | *string* | Optional when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
-`hub.channel.endpoint` | Conditional | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. SHALL not be present when `hub.channel.type`=`webhook`. The wss url identifying an existing WebSocket subscription. 
+`hub.callback` | Required, `webhook` | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
+`hub.secret` | Optional, `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.channel.endpoint` | Conditional, `websocket` | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. The wss url identifying an existing WebSocket subscription. 
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
@@ -297,10 +297,10 @@ Field | Optionality | Type | Description
 `hub.channel.type` | Required | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | *string* | The literal string "unsubscribe".
 `hub.topic` | Required | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
-`hub.callback` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. 
-`hub.secret` | Conditional | *string* | Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
-`hub.challenge`|Conditional|*string*| Required when `hub.channel.type`=`webhook`. SHALL not be present when `hub.channel.type`=`websocket`. A Hub-generated, random string communicated during Intent Verification.
-`hub.channel.endpoint` | Conditional | *string* |  Required for `websocket` re-subscribes and unsubscribes. SHALL not be present for `webhook` subscriptions. The wss url identifying an existing WebSocket subscription.
+`hub.callback` | Required, `webhook` | *string* | The Subscriber's callback URL. 
+`hub.secret` | Optional, `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
+`hub.challenge`|Required, `webhook`|*string*| A Hub-generated, random string communicated during Intent Verification.
+`hub.channel.endpoint` | Conditional, `websocket` | *string* |  Required for `websocket` re-subscribes and unsubscribes. The wss url identifying an existing WebSocket subscription.
 
 
 #### `webhook` Unsubscribe Request Example
