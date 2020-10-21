@@ -109,7 +109,7 @@ Subscribing consists of two exchanges:
   * For `webhook` subscriptions, the Hub confirms the subscription was actually requested by the subscriber by contacting the `hub.callback` url. 
   * For `websocket` subscriptions, the Hub returns a wss url and subscriber establishes WebSocket connection. 
 
-Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.
+Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe. Also, the Hub will not validate unsubscription requests with the subscriber.
 
 ### Subscription Request
 To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
@@ -229,7 +229,7 @@ To deny a `websocket` subscription, the Hub sends a json object to the subscribe
 If a subscription or unsubscription is not denied, the Hub SHALL confirm the subscription. The subscription confirmation step informs the subscriber of the details of Hub's recently created subscription. For `webhook` subscriptions, the confirmation also verifies the intent of the subscriber and ensures that the subscriber actually controls the callback url. 
 
 #### `webhook` Intent Verification Request
-In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that a `webhook` subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
+In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber, a Hub must ensure that a `webhook` subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended
 
 Field | Optionality | Type | Description
 ---  | --- | --- | --- 
@@ -290,16 +290,16 @@ Field | Optionality | Type | Description
 
 ### Unsubscribe
 
-Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message, except for the omission of `hub.events`. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP, even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
+Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
 
 Field | Optionality | Channel | Type | Description
 ---------- | ----- | -------- | --------------
 `hub.channel.type` | Required | All | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | All | *string* | The literal string "unsubscribe".
 `hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
+`hub.lease_seconds` | Optional | All | *number* | This parameter MAY be present for unsubscription requests and MUST be ignored by the hub in that case.
 `hub.callback` | Required | `webhook` | *string* | The Subscriber's callback URL. 
 `hub.secret` | Optional | `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
-`hub.challenge`|Required | `webhook`|*string*| A Hub-generated, random string communicated during Intent Verification.
 `hub.channel.endpoint` | Conditional | `websocket` | *string* |  Required for `websocket` re-subscribes and unsubscribes. The wss url identifying an existing WebSocket subscription.
 
 
