@@ -18,6 +18,7 @@ nav:
     - Launch Scenarios: launch-scenarios.md
     - Synchronization Considerations: syncconsiderations.md
     - Security Considerations: security-considerations.md
+    - Implementation Guide: implementationguidelines.md
     - About: about.md
 theme: readthedocs
 
