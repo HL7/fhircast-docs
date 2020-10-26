@@ -83,6 +83,8 @@ The FHIRcast event name is also a [computable syntax](#event-definition-format-h
 
 ![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
+For example, a requested scope of `fhircast/patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/patient-open.write` authorizes the subscribed app to [request a context change](#request-context-change).
+
 ### SMART Launch Example
  Note that the SMART launch parameters include the Hub's base url and the session identifier in the `hub.url` and `hub.topic` fields.
 
