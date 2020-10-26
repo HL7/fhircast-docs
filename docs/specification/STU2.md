@@ -284,7 +284,7 @@ Field | Optionality | Type | Description
   "hub.mode": "subscribe",
   "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
   "hub.events": "patient-open,patient-close",
-  "hub.lease-seconds": 7200
+  "hub.lease_seconds": 7200
 }
 ```
 
