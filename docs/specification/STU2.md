@@ -359,7 +359,31 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, and ImagingStudy. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+
+##### Extensions
+
+The specification is not prescriptive about support for extensions. However, to support extensions, the specification reserves the name extension and will never define an element with that name, allowing implementations to use it to provide custom behavior and information. The value of an extension element MUST be a pre-coordinated JSON object. For example, an extension on a notification could look like this:
+
+
+```
+{
+	"context": [{
+			"key": "patient",
+			"resource": {
+				"resourceType": "Patient",
+				"id": "ewUbXT9RWEbSj5wPEdgRaBw3"
+			}
+		},
+		{
+			"key": "extension",
+			"data": {
+				"user-timezone": "+1:00"
+			}
+		}
+	]
+}
+```
 
 
 #### `webhook` Event Notification Request Details
