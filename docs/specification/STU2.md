@@ -8,7 +8,7 @@ The FHIRcast specification describes the APIs used to synchronize disparate heal
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. Hubs SHOULD support WebSockets and MAY support webhooks. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
+FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -84,7 +84,7 @@ The FHIRcast event name is also a [computable syntax](#event-definition-format-h
 ![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
 ### SMART Launch Example
-Note that the SMART launch parameters include the Hub's base url and the session identifier in the `hub.url` and `hub.topic` fields.
+ Note that the SMART launch parameters include the Hub's base url and the session identifier in the `hub.url` and `hub.topic` fields.
 
 ```
 {
@@ -101,6 +101,8 @@ Note that the SMART launch parameters include the Hub's base url and the session
 
 
 ## Subscribing and Unsubscribing
+ 
+Subscribing and unsubscribing is how applications establish their connection and determine to which events they will be notified. Hubs SHALL support WebSockets and MAY support webhooks. If the Hub does not support webhooks then they should deny any subscription requests with `webhook` as the channel type.
 
 Subscribing consists of two exchanges:
 
@@ -346,7 +348,7 @@ Subscribers SHALL accept a full FHIR resource or the _elements-limited resource 
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred. 
 `id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event` | Required | *object* | A json object describing the event. See below.
 
@@ -454,7 +456,7 @@ If the Hub receives an error notification from a subscriber, it SHOULD generate 
 ###### Request Context Change Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the `syncerror` event occurred with subsecond accuracy. 
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the `syncerror` event occurred. 
 `id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a UUID. 
 `event` | Required | *object* | A json object describing the event. See [below](#event-notification-error-event-object-parameters).
 
@@ -508,15 +510,17 @@ Content-Type: application/json
 
 ## Request Context Change
 
-Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the `hub.url`. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber SHALL be capable of gracefully handling a rejected context request. 
+Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the `hub.url`. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. Similarly to event notifications, described above, the Hub could also respond with a 202 (Accepted) status, process the request, then later respond with a syncerror event in order to reject the request. In this case the syncerror would only be sent to the requestor. The subscriber SHALL be capable of gracefully handling a rejected context request. 
 
-Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. 
+Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. The requestor can use the broadcasted notification as confirmation of their request. The Hub reusing the request's `id` is further confirmation that the event is a result of their request. 
+
+![Request context change flow diagram](/img/Request%20Context%20Change%20Flow.png)
 
 ### Request Context Change Request
 ###### Request Context Change Parameters
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy. 
+`timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred. 
 `id` | Required | *string* | Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a UUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.
 `event` | Required | *object* | A json object describing the event. See [below](#request-context-change-event-object-parameters).
 
