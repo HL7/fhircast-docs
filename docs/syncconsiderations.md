@@ -91,7 +91,7 @@ This error scenario is all about the Hub losing contact with its subscribing cli
 |Hub|Timeout or error from client callback url|No action/Retry/Update all subscribing clients with event sync-error |
 
 ### Race condition during launch
-Once an app is launched with initial context, for example, the currently in context patient, the app must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it's technically possible for context to change, such that the newly launched app joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. Apps should optimize the time required to launch and subscribe to reduce this liklihood.
+Once an app is launched with initial context, for example, the currently in context patient, the app must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it's technically possible for context to change, such that the newly launched app joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. Apps should optimize the time required to launch and subscribe to reduce this likelihood.
 
 
 ### Sync-error event received from Hub 
