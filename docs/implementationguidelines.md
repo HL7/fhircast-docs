@@ -20,7 +20,7 @@ As you can see in the diagrams below, we can still maintain context sync between
 ![Multiple patient open example](/img/MultiplePatientOpens.png)
 
 ## Launching A Context-Less Tab
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another app has switched to the no context tab. To avoid confusion with other events, a new event will be created to represent a user switching to this context-less tab. Keep in mind that this is different than closing events and how it works between single and multi-tab applications should be considered. For example, similar to multiple open events (as described above) this event could be received, opening or switching to the context-less tab, without closing the currently open context. 
+Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another app has switched to the no context tab. To avoid confusion with other events, a new event will be created to represent a user switching to this context-less tab. Keep in mind that this is different than closing events and how it works between single and multi-tab applications should be considered. For example, similar to multiple open events (as described above) this event could be received, opening or switching to the context-less tab, without closing the previously open context. 
 
 Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `userlogout`).
 
@@ -53,6 +53,5 @@ The context is empty.
 }
 ```
 </mark>
-
 
 
