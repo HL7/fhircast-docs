@@ -1,7 +1,7 @@
 !!! info "Implementer guidance" 
     This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
 
-#Implementation Guide
+#Dealing with Multi-Tab Applications
     
 ## Single and Multiple Tab Applications
 Applications can have different capabilities and layouts, but with FHIRcast they should still be able to stay in sync. A potential situation that could cause confusion is when a single and a multi-tab application work together. 
@@ -53,7 +53,6 @@ The context is empty.
 }
 ```
 </mark>
-
 
 
 
