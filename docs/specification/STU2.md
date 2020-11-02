@@ -121,7 +121,7 @@ To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC72
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 Field | Optionality | Channel | Type | Description
----------- | ----- | -------- | --------------
+---------- | ----- | -------- | -------------- | ----------
 `hub.channel.type` | Required | All | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | All | *string* | The literal string "subscribe" or "unsubscribe", depending on the goal of the request.
 `hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
@@ -300,7 +300,7 @@ Field | Optionality | Type | Description
 Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
 
 Field | Optionality | Channel | Type | Description
----------- | ----- | -------- | --------------
+----- | ----------- | ------- | ---- | -----------
 `hub.channel.type` | Required | All | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | All | *string* | The literal string "unsubscribe".
 `hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
