@@ -609,6 +609,47 @@ Content-Type: application/json
 }
 ```
 
+## Conformance
+The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by providing a Well-Known Uniform Resources identifiers (URIs) JSON file. 
+ ... or ... through an extension on its FHIR server's CapabilityStatement at as described below. 
+
+### Discovery using a Well-Known Uniform Resource identifiers (URIs)
+
+A Hub's supported events and endpoint can be exposed as a Well-Known Uniform Resource Identifiers (URIs) ([RFC5785](https://tools.ietf.org/html/rfc5785)) JSON document.
+
+Hubs SHOULD? serve a JSON document at the location formed by appending `/.well-known/fhircast-configuration` to their base URL of their FHIR server. Contrary to RFC5785 Appendix B.4, the .well-known path component may be appended even if the FHIR server endpoint already contains a path component.
+
+A simple JSON document is returned using the `application/json` mime type, with the following key/value pairs -- 
+
+Field | Optionality | Type | Description
+--- | --- | --- | ---
+`eventsSupported` | Required | array | Array of FHIRcast events supported by the Hub.
+`hub.url`| Optional | string | The url at which an app subscribes. May not be supported by client-side Hubs.
+`websocketSupport` | Required | boolean | The static value: `true`, indicating support for websockets.
+`webhookSupport` | Recommended | boolean | `true` or `false` indicating support for webhooks.
+`fhircastVersion` | Recommended | string | `STU1` or STU2` indicating support for a specific version of FHIRcast.
+
+#### Discovery Request Example
+##### Base URL "www.hub.example.com/api/FHIR"
+```
+GET /api/fhir/.well-known/fhircast-configuration HTTP/1.1
+Host: www.hub.example.com
+```
+
+#### Discovery Response Example  
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "eventsSupported": ["patient-open", "patient-close", "syncerror", "com.example.researchstudy-transmogrify"],
+  "hub.url": "https://hub.example.com/fhircast-hub/v2",
+  "websocketSupport": true,
+  "webhookSupport": false,
+  "fhircastVersion": "STU2"
+}
+```
+
 ## Change Management and Versioning
 
 #### Event Maturity Model
