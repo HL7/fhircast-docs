@@ -71,7 +71,7 @@ Below a couple of usage scenarios are listed where the risk of becoming out of s
 FHIRcast is based on a subscription model where each subscribing client receives notifications of the updated state of the topic being subscribed to. There is no explicit requirement for a subscribing client to follow the context of another client. 
 The subscription model also implies that it is the subscribing clients responsibility to maintain a contextual synchronization or to notify end users whenever the contextual synchronization is lost.
 However, as noted in above scenarios, there may be risk associated with the end user expectation of have two tightly synchronized applications if they fall out of sync. 
-There are in some cases good reasons for a client not to follow the subscribed context and this section will outline some of the recommended approaches
+There are in some cases good reasons for a client not to follow the subscribed context and this section will outline some of the recommended approaches.
 
 ### Blocking action on subscribing client preventing context synchronization
 Many systems in some cases go into edit mode or start a modal dialog that locks the system from changing context without user intervention. Examples can be when modifying texts, reports, annotating images or performing administrative tasks. The clients may by design then decline to follow the subscribed context to prevent loss of end user data.
@@ -89,6 +89,10 @@ This error scenario is all about the Hub losing contact with its subscribing cli
 |--|--|--|
 |Subscribing Client|No event received from Hub|No action possible|
 |Hub|Timeout or error from client callback url|No action/Retry/Update all subscribing clients with event sync-error |
+
+### Race condition during launch
+Once an app is launched with initial context, for example, the currently in context patient, the app must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it's technically possible for context to change, such that the newly launched app joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. Apps should optimize the time required to launch and subscribe to reduce this likelihood.
+
 
 ### Sync-error event received from Hub 
 In the scenarios where the Hub is aware of a synchronization error, it is advisable for the Hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.

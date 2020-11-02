@@ -83,6 +83,8 @@ The FHIRcast event name is also a [computable syntax](#event-definition-format-h
 
 ![FHIRcast SMART scopes and event syntax](../img/fhircast-event-and-smart-scope.png)
 
+For example, a requested scope of `fhircast/patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/patient-open.write` authorizes the subscribed app to [request a context change](#request-context-change).
+
 ### SMART Launch Example
  Note that the SMART launch parameters include the Hub's base url and the session identifier in the `hub.url` and `hub.topic` fields.
 
@@ -289,7 +291,7 @@ Field | Optionality | Type | Description
   "hub.mode": "subscribe",
   "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
   "hub.events": "patient-open,patient-close",
-  "hub.lease-seconds": 7200
+  "hub.lease_seconds": 7200
 }
 ```
 
@@ -359,7 +361,31 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
 `hub.event`| Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
-`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+`context` | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, and ImagingStudy. The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+
+##### Extensions
+
+The specification is not prescriptive about support for extensions. However, to support extensions, the specification reserves the name extension and will never define an element with that name, allowing implementations to use it to provide custom behavior and information. The value of an extension element MUST be a pre-coordinated JSON object. For example, an extension on a notification could look like this:
+
+
+```
+{
+	"context": [{
+			"key": "patient",
+			"resource": {
+				"resourceType": "Patient",
+				"id": "ewUbXT9RWEbSj5wPEdgRaBw3"
+			}
+		},
+		{
+			"key": "extension",
+			"data": {
+				"user-timezone": "+1:00"
+			}
+		}
+	]
+}
+```
 
 
 #### `webhook` Event Notification Request Details
