@@ -15,6 +15,7 @@ The context is empty.
 ### Examples
 
 <mark>
+
 ```json
 {
   "timestamp": "2019-11-25T13:16:00.00",
@@ -26,6 +27,7 @@ The context is empty.
   }
 }
 ```
+
 </mark>
 
 ## Change Log
