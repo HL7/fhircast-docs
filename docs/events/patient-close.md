@@ -17,6 +17,7 @@ Key | Optionality | Fhir operation to generate context | Description
 ### Examples
 
 <mark>
+
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
@@ -37,7 +38,7 @@ Key | Optionality | Fhir operation to generate context | Description
                   {
                     "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
                     "value": "MR",
-                    "display": "Medication Record Number"
+                    "display": "Medical Record Number"
                   }
                 ]
               }
@@ -49,6 +50,7 @@ Key | Optionality | Fhir operation to generate context | Description
   }
 }
 ```
+
 </mark>
 
 ## Change Log
