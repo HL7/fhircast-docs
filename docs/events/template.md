@@ -18,6 +18,7 @@ Key | Optionality | FHIR operation to generate context | Description
 ### Examples
 
 <mark>
+
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
@@ -41,6 +42,7 @@ Key | Optionality | FHIR operation to generate context | Description
   }
 }
 ```
+
 </mark>
 
 ## Change Log
