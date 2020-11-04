@@ -27,18 +27,19 @@ Key | Optionality | FHIR operation to generate context | Description
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "patient-open",
     "context": [
-    {
-      "key": "key-from-above",
-      "resource": {
-        "resourceType": "resource-type-from-above"
-    },
-    {
-      "key": "encounter",
-      "resource": {
-        "resourceType": "Encounter"
-      } 
-    }
-  }]
+      {
+        "key": "key-from-above",
+        "resource": {
+          "resourceType": "resource-type-from-above"
+        }
+      },
+      {
+        "key": "encounter",
+        "resource": {
+          "resourceType": "Encounter"
+        } 
+      }
+    ]
   }
 }
 ```
