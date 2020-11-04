@@ -38,7 +38,7 @@ Key | Optionality | Fhir operation to generate context | Description
                   {
                     "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
                     "value": "MR",
-                    "display": "Medication Record Number"
+                    "display": "Medical Record Number"
                   }
                 ]
               }
