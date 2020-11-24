@@ -6,7 +6,7 @@ The FHIRcast specification describes the APIs used to synchronize disparate heal
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
+FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subscribing and unsubscribing, requesting context changes and also distribute event notifications. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -44,7 +44,7 @@ Event names are unique and case-insensitive. Statically named events, specific t
 
 #### Event Definition Format: Workflow
 
-Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.
+Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementers.
 
 #### Event Definition Format: Context
 
