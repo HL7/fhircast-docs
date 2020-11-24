@@ -622,7 +622,7 @@ Component | Cardinality | Type | Description
 `hub.url`| 0..1 | url | The url at which an app subscribes. May not be supported by client-side Hubs.
 `websocketSupport` | 1..1 | boolean | The static value: `true`, indicating support for websockets.
 `webhookSupport` | 0..1 | boolean | `true` or `false` indicating support for webhooks.
-`fhircastVersion` | 0..1 | string | `STU1` or STU2` indicating support for a specific version of FHIRcast.
+`fhircastVersion` | 0..1 | string | `STU1` or `STU2` indicating support for a specific version of FHIRcast.
 
 ### CapabilityStatement Extension Example 
 
