@@ -15,17 +15,19 @@ The context is empty.
 ### Examples
 
 <mark>
+
 ```json
 {
   "timestamp": "2019-11-25T13:16:00.00",
   "id": "35d0b1d4-de45-4b5b-a0e9-9c51b21ee71a",
   "event": {
-	"hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065", 
-	"hub.event": "userLogout", 
-	"context": [] 
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065", 
+    "hub.event": "userLogout", 
+    "context": [] 
   }
 }
 ```
+
 </mark>
 
 ## Change Log
