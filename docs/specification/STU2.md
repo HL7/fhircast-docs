@@ -285,7 +285,7 @@ Field | Optionality | Type | Description
 
 
 
-##### `websocket` Intent Verification Request Example
+##### `websocket` Subscription Confirmation Example
 ```
 {
   "hub.mode": "subscribe",
@@ -294,6 +294,9 @@ Field | Optionality | Type | Description
   "hub.lease_seconds": 7200
 }
 ```
+
+###### `websocket` Successful Subscription Sequence
+![Successful web socket subscription flow diagram](/img/Successful%20WebSocket%20Subscription%20Sequence.png)
 
 ### Unsubscribe
 
@@ -333,6 +336,9 @@ Content-Type: application/x-www-form-urlencoded
 hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065
 
 ```
+
+###### `webhook` and `websocket` Unsubscription Sequence
+![Unsubscription flow diagram](/img/UnsubscriptionSequence.png)
 
 ## Event Notification
 
@@ -470,6 +476,9 @@ Field | Optionality | Type | Description
 }
 ```
 
+###### `webhook` and `websocket` Event Notification Sequence
+![Event Notification flow diagram](/img/EventNotificationSequence.png)
+
 ## Event Notification Errors
 
 All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural `syncerror` event. 
@@ -535,6 +544,9 @@ Content-Type: application/json
   }
 }
 ```
+
+###### `webhook` and `websocket` Event Notification Error Sequence
+![Event Notification Error flow diagram](/img/ErrorSequence.png)
 
 ## Request Context Change
 
