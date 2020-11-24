@@ -114,7 +114,7 @@ Subscribing consists of two exchanges:
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe. Also, the Hub will not validate unsubscription requests with the subscriber.
 
 ### Subscription Request
-To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
+To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
 
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
@@ -443,7 +443,7 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
 
 In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). 
 
@@ -460,12 +460,10 @@ HTTP/1.1 200 OK
 
 For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a json object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
-> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over WebSockets and the use of an HTTP status within a WebSocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
-
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `id` | Required | *string* | Event identifier from the event notification to which this response corresponds.
-`status` | Required | *numeric HTTP status code* | Numeric HTTP [RFC7231] response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
+`status` | Required | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
 
 ```
 {
