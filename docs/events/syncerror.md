@@ -12,7 +12,7 @@ Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action. The OperationOutcome SHALL use a code of processing. The OperationOutcome's `details.coding.code` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid". Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
+`operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action. The OperationOutcome SHALL use a code of processing. The OperationOutcome's `details.coding.code` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid" and the name of the error'd event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" . Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
 
 
 
@@ -42,6 +42,10 @@ Key | Optionality | Fhir operation to generate context | Description
                   {
                     "system": "https://fhircast.hl7.org/events/syncerror/eventid",
                     "code": "fdb2f928-5546-4f52-87a0-0648e9ded065"
+                  },
+                  {
+                    "system": "https://fhircast.hl7.org/events/syncerror/eventname",
+                    "code": "patient-open"
                   },
                   {
                     "system": "http://example.com/events/syncerror/your-error-code-system",
