@@ -611,6 +611,57 @@ Content-Type: application/json
 }
 ```
 
+## Conformance
+The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on its FHIR server's CapabilityStatement as described below. 
+
+### Declaring support for FHIRcast 
+A server declares support for FHIRcast using the FHIRcast extension on its FHIR CapabilityStatement's `rest` element. The FHIRcast extension has the following internal components:
+
+Component | Cardinality | Type | Description
+--- | --- | --- | ---
+`eventsSupported` | 1..* | string | Space-delimited list of FHIRcast events supported by the Hub.
+`hub.url`| 0..1 | url | The url at which an app subscribes. May not be supported by client-side Hubs.
+`websocketSupport` | 1..1 | boolean | The static value: `true`, indicating support for websockets.
+`webhookSupport` | 0..1 | boolean | `true` or `false` indicating support for webhooks.
+`fhircastVersion` | 0..1 | string | `STU1` or `STU2` indicating support for a specific version of FHIRcast.
+
+### CapabilityStatement Extension Example 
+
+```
+{
+  "resourceType": "CapabilityStatement",
+...
+  "rest": [{
+   ...
+        "extension": [
+          {
+            "url": "http://fhircast.hl7.org/StructureDefinition/fhircast-configuration",
+            "extension": [
+              {
+                "url": "eventsSupported",
+                "valueUri": "patient-open patient-close com.example.researchstudy-transmogrify"
+              },
+              {
+                "url": "hub.url",
+                "valueUri": "https://hub.example.com/fhircast/hub.v2"
+              },
+              {
+                "url": "websocketSupport",
+                "valueBoolean": true
+              },
+              {
+                "url": "webhookSupport",
+                "valueBoolean": false
+              },
+              {
+                "url": "fhircastVersion",
+                "valueString": "STU2"
+              }
+            ]
+        ]      ...
+```
+
+
 ## Change Management and Versioning
 #### Event Maturity Model
 
