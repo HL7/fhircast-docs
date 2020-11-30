@@ -610,15 +610,14 @@ Content-Type: application/json
 ```
 
 ## Conformance
-The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by providing a Well-Known Uniform Resources identifiers (URIs) JSON file. 
- ... or ... through an extension on its FHIR server's CapabilityStatement at as described below. 
+The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on its FHIR server's CapabilityStatement as described below. 
 
 ### Declaring support for FHIRcast 
-A server declares support for FHIRcast using FHIRcast extension on its FHIR CapabilityStatement's `rest` element. The FHIRcast extension has the following internal components:
+A server declares support for FHIRcast using the FHIRcast extension on its FHIR CapabilityStatement's `rest` element. The FHIRcast extension has the following internal components:
 
 Component | Cardinality | Type | Description
 --- | --- | --- | ---
-`eventsSupported` | 1..* | string | Array of FHIRcast events supported by the Hub.
+`eventsSupported` | 1..* | string | Space-delimited list of FHIRcast events supported by the Hub.
 `hub.url`| 0..1 | url | The url at which an app subscribes. May not be supported by client-side Hubs.
 `websocketSupport` | 1..1 | boolean | The static value: `true`, indicating support for websockets.
 `webhookSupport` | 0..1 | boolean | `true` or `false` indicating support for webhooks.
@@ -637,7 +636,7 @@ Component | Cardinality | Type | Description
             "url": "http://fhircast.hl7.org/StructureDefinition/fhircast-configuration",
             "extension": [
               {
-                "url": "supportedEvents",
+                "url": "eventsSupported",
                 "valueUri": "patient-open patient-close com.example.researchstudy-transmogrify"
               },
               {
