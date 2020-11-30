@@ -1,14 +1,12 @@
 <img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header-good-resolution.png" width=20%" />
 # FHIRcast
 
-> Draft "Standard for Trial Use" (STU2) This is the draft of the 1.1 release of the FHIRcast specification. We are currently working towards a 1.1 release and would love your feedback and proposed changes. Look at our [current issue list](https://github.com/fhircast/docs/issues) and get involved!
-
 ## Overview
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
 
 Once the subscribing app [knows about the session](#session-discovery), the app may [subscribe](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is [notified](#event-notification) when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may [initiate context changes](#request-context-change) by accessing APIs; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. 
 
-FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subsubscribing and unsubscribing, requesting context changes and also distribute event notifications. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
+FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection, and is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. A Hub exposes APIs for subscribing and unsubscribing, requesting context changes and also distribute event notifications. The below flow diagram illustrates the series of interactions specified by FHIRcast, their origination and their outcome.
 
 ![FHIRcast flow diagram overview](/img/FHIRcast%20overview%20for%20abstract.png)
 
@@ -46,7 +44,7 @@ Event names are unique and case-insensitive. Statically named events, specific t
 
 #### Event Definition Format: Workflow
 
-Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.
+Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementers.
 
 #### Event Definition Format: Context
 
@@ -116,7 +114,7 @@ Subscribing consists of two exchanges:
 Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe. Also, the Hub will not validate unsubscription requests with the subscriber.
 
 ### Subscription Request
-To create a subscription, the subscribing app SHALL perform an HTTP POST ([RFC7231](https://www.w3.org/TR/websub/#bib-RFC7231)) to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
+To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base url (as specified in `hub.url`) with the parameters in the table below.
 
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
@@ -445,7 +443,7 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
 
 In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). 
 
@@ -462,12 +460,10 @@ HTTP/1.1 200 OK
 
 For `websocket` subscriptions, the `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a json object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
-> Feedback from implementers is requested here. This is the only proposed communication from the subscriber to the Hub over WebSockets and the use of an HTTP status within a WebSocket connection, wrapped in json is weird. However, it seems important to enable the Hub to optionally track and/or broadcast synchronization state.
-
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `id` | Required | *string* | Event identifier from the event notification to which this response corresponds.
-`status` | Required | *numeric HTTP status code* | Numeric HTTP [RFC7231] response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
+`status` | Required | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
 
 ```
 {
@@ -483,9 +479,10 @@ Field | Optionality | Type | Description
 
 All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, they SHOULD communicate the error to the Hub in one of two ways.  
-* They can respond to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
-* They can respond to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error, send a syncerror event to the Hub. 
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHOULD communicate the error to the Hub in one of two ways.
+
+* Responding to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
+* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error, send a syncerror event to the Hub. 
 
 If the Hub receives an error notification from a subscriber, it SHOULD generate a `syncerror` event to the other subscribers of that topic. `syncerror` events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource. 
 
