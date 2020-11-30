@@ -502,7 +502,7 @@ Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.topic` | Required | string | The session topic given in the subscription request. 
 `hub.event`| Required | string | Shall be the string `syncerror`.
-`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid" and the name of the error'd event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname". Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
+`context` | Required | array | An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid" and the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname". Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
 
 ### Event Notification Error Example
 
