@@ -4,7 +4,6 @@ nav:
     - Home: index.md
     - Specification: 
         - 'Current - STU2': 'specification/STU2.md'
-        - 'Feb2020Ballot': 'specification/Feb2020Ballot.md'
         - 'STU1': 'specification/STU1.md'
     - Event Catalog: 
         - new-event-template: events/template.md
