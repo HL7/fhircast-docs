@@ -143,7 +143,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 
 ### `webhook` vs `websocket`
 
-A Hub SHALL support WebSockets and MAY support webhooks subscriptions. A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Subscribers should use websockets when they are unable to host an accessible callback URL.
+A Hub SHALL support WebSockets and MAY support webhooks subscriptions. A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Websockets are particularly useful if a subscriber is unable to host an accessible callback URL.
 
 > Implementer feedback is solicited around the optionality and possible deprecation of webhooks.
 
