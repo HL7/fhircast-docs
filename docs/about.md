@@ -5,7 +5,7 @@ FHIRcast is an HL7 specification designed to provide a lightweight, inexpensive 
 ## Get involved
 There are several ways in which you can get involved with the FHIRcast community.
 
-* [Log issues, contribute via github](https://github.com/fhircast)
+* [Log issues](https://jira.hl7.org/secure/CreateIssue!default.jspa), [contribute via github](https://github.com/fhircast)
 * [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/fhircast)
 * Attend an HL7 FHIR Connectathon
 

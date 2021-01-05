@@ -3,9 +3,8 @@ site_name: FHIRcast
 nav:
     - Home: index.md
     - Specification: 
-        - 'Draft - STU2': 'specification/STU2.md'
-        - 'Feb2020Ballot': 'specification/Feb2020Ballot.md'
-        - 'Current - STU1': 'specification/STU1.md'
+        - 'Current - STU2': 'specification/STU2.md'
+        - 'STU1': 'specification/STU1.md'
     - Event Catalog: 
         - new-event-template: events/template.md
         - syncerror: events/syncerror.md
