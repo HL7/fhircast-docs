@@ -4,14 +4,14 @@ eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 
 ## Workflow
 
-User opened patient's medical record. Only a single patient is currently in context. This event may be within the context of a specific encounter, or not. 
+User opened patient's medical record. Only a single patient is currently in context.  
 
 ## Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-`encounter` | REQUIRED, if exists | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context in the newly opened patient's chart.
+`encounter` | REQUIRED, if exists | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context in the newly opened patient's chart. DEPRECATED in favor of a dedicated `encounter-open` event. 
 
 
 ### Examples
@@ -58,3 +58,5 @@ Key | Optionality | Fhir operation to generate context | Description
 Version | Description
 ---- | ----
 1.0 | Initial Release
+1.1 | Deprecate encounter element in favor of dedicated `encounter-open` event.
+
