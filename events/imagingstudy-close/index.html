@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>ImagingStudy-close - FHIRcast</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ImagingStudy-close";
+    var mkdocs_page_input_path = "events/imagingstudy-close.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> FHIRcast</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specification</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../specification/STU2/">Current - STU2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../specification/STU1/">STU1</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Event Catalog</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../template/">new-event-template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../syncerror/">syncerror</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../userlogout/">userlogout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../userhibernate/">userhibernate</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patient-open/">Patient-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patient-close/">Patient-close</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../imagingstudy-open/">ImagingStudy-open</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">ImagingStudy-close</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#imagingstudy-close">ImagingStudy-close</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#workflow">Workflow</a></li>
+        
+            <li><a class="toctree-l4" href="#context">Context</a></li>
+        
+            <li><a class="toctree-l4" href="#change-log">Change Log</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../launch-scenarios/">Launch Scenarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../syncconsiderations/">Synchronization Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../security-considerations/">Security Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../multitab-considerations/">Multi-tab Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">FHIRcast</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Event Catalog &raquo;</li>
+        
+      
+    
+    <li>ImagingStudy-close</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="imagingstudy-close">ImagingStudy-close</h1>
+<p>eventMaturity | <a href="../../specification/STU1/#event-maturity-model">2 - Tested</a></p>
+<h2 id="workflow">Workflow</h2>
+<p>User opened record of imaging study. </p>
+<p>User closed patient's medical record. A previously open and in context study is no longer open nor in context. The previously open study may have been associated with a specific patient, or not. </p>
+<h2 id="context">Context</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Optionality</th>
+<th>Fhir operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>REQUIRED</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient associated with the study currently in context.</td>
+</tr>
+<tr>
+<td><code>study</code></td>
+<td>REQUIRED</td>
+<td><code>ImagingStudy/{id}?_elements=identifier,accession</code></td>
+<td>FHIR ImagingStudy resource previously in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<p><mark></p>
+<pre><code class="json">{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:37:05.14&quot;,
+  &quot;id&quot;: &quot;q9v3jubddqt63n1&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;,
+    &quot;hub.event&quot;: &quot;imagingstudy-close&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;patient&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;Patient&quot;,
+          &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+          &quot;identifier&quot;: [
+            {
+              &quot;system&quot;: &quot;urn:oid:1.2.840.114350&quot;,
+              &quot;value&quot;: &quot;185444&quot;
+            },
+            {
+              &quot;system&quot;: &quot;urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000&quot;,
+              &quot;value&quot;: &quot;2667&quot;
+            }
+          ]
+        }
+      },
+      {
+        &quot;key&quot;: &quot;study&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;ImagingStudy&quot;,
+          &quot;id&quot;: &quot;8i7tbu6fby5ftfbku6fniuf&quot;,
+          &quot;uid&quot;: &quot;urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045&quot;,
+          &quot;identifier&quot;: [
+            {
+              &quot;system&quot;: &quot;7678&quot;,
+              &quot;value&quot;: &quot;185444&quot;
+            }
+          ],
+          &quot;patient&quot;: {
+            &quot;reference&quot;: &quot;Patient/ewUbXT9RWEbSj5wPEdgRaBw3&quot;
+          }
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<p></mark></p>
+<h2 id="change-log">Change Log</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>Initial Release</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../launch-scenarios/" class="btn btn-neutral float-right" title="Launch Scenarios">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../imagingstudy-open/" class="btn btn-neutral" title="ImagingStudy-open"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../imagingstudy-open/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../launch-scenarios/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

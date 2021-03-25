@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>May2019Ballot - FHIRcast</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "May2019Ballot";
+    var mkdocs_page_input_path = "specification/May2019Ballot.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> FHIRcast</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specification</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../STU2/">Current - STU2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../STU1/">STU1</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Event Catalog</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../events/template/">new-event-template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/syncerror/">syncerror</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/userlogout/">userlogout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/userhibernate/">userhibernate</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/patient-open/">Patient-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/patient-close/">Patient-close</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/imagingstudy-open/">ImagingStudy-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/imagingstudy-close/">ImagingStudy-close</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../launch-scenarios/">Launch Scenarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../syncconsiderations/">Synchronization Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../security-considerations/">Security Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../multitab-considerations/">Multi-tab Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">FHIRcast</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>May2019Ballot</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header.png" width=90px" /></p>
+<h1 id="fhircast">FHIRcast</h1>
+<blockquote>
+<p>"1.0 Draft" This is the draft of the 1.0 release of the FHIRcast specification. We are currently working towards a 1.0 release and would love your feedback and proposed changes. Look at our <a href="https://github.com/fhircast/docs/issues">current issue list</a> and get involved!</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>The FHIRcast specification describes the APIs and interactions to synchronize healthcare applications in real time to show the same clinical content to a user. All data exchanged through the HTTP APIs MUST be sent and received as <a href="https://tools.ietf.org/html/rfc8259">JSON</a> structures, and MUST be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in <a href="https://tools.ietf.org/html/rfc2818">RFC2818</a>. FHIRcast is modeled on the webhook design pattern and specifically the <a href="https://www.w3.org/TR/websub/">W3C WebSub RFC</a> and builds on the <a href="http://www.hl7.org/fhir/smart-app-launch">HL7 SMART on FHIR launch protocol</a>. </p>
+<p>An app subscribes to specific workflow events for a given session, the subscription is verified and the app is notified when those workflow events occur; for example, by the clinician opening a patient's chart. The subscring app may query a session's current context and initiate context changes by accessing APIs exposed by the Hub. The app deletes its subscription when it no longer wants to receive notifications. In all cases the app authenticates to the Hub with an OAuth 2.0 bearer token. </p>
+<h2 id="session-discovery">Session Discovery</h2>
+<p>Before establishing a subscription, an app must know the <code>hub.topic</code> which is an unique url identifying the session, and the <code>cast-hub</code> which is the base url of the Hub. The app discovers these two urls as part of a SMART on FHIR launch. </p>
+<p>The app MUST either be launched from the driving application following the <a href="http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence">SMART on FHIR EHR launch</a> flow or the app may initiate the launch following the <a href="http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence">SMART on FHIR standalone launch</a>. In either case, the app MUST request and be granted the <code>fhircast</code> OAuth2.0 scope. Accompanying this scope grant, the authorization server MUST supply the <code>cast-hub</code> and <code>hub.topic</code> SMART launch parameters alongside the access token. These parameters identify the Hub's base url, and a unique, opaque identifier of the current user's session, respectivly. Per SMART, when scopes of <code>openid</code> and <code>fhirUser</code> are granted, the app will additionally receive the current user's identity in an <code>id_token</code>.</p>
+<h3 id="smart-launch-example">SMART Launch Example</h3>
+<p>Note that the SMART launch parameters include the Hub's base url and and the session identifier in the <code>cast-hub</code> and <code>hub.topic</code> fields.</p>
+<pre><code>{
+  &quot;access_token&quot;: &quot;i8hweunweunweofiwweoijewiwe&quot;,
+  &quot;token_type&quot;: &quot;bearer&quot;,
+  &quot;expires_in&quot;: 3600,
+  &quot;patient&quot;:  &quot;123&quot;,
+  &quot;encounter&quot;: &quot;456&quot;,
+  &quot;imagingstudy&quot;: &quot;789&quot;,
+  &quot;cast-hub&quot; : &quot;https://hub.example.com&quot;,
+  &quot;hub.topic&quot;: &quot;https://hub.example.com/7jaa86kgdudewiaq0wtu&quot;,
+}
+</code></pre>
+
+<p>Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization  protocols may be possible. See <a href="/launch-scenarios">other launch scenarios</a> for guidance.</p>
+<h2 id="subscribing-and-unsubscribing">Subscribing and Unsubscribing</h2>
+<p>Subscribing consists of two exchanges:</p>
+<ul>
+<li>Subscriber requests a subscription at the <code>cast-hub</code> url.</li>
+<li>Hub confirms the subscription was actually requested by the subscriber by contacting the <code>hub.callback</code> url. </li>
+</ul>
+<p>Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.</p>
+<h3 id="subscription-request">Subscription Request</h3>
+<p>To create a subscription, the subscribing app performs an HTTP POST (<a href="https://www.w3.org/TR/websub/#bib-RFC7231">RFC7231</a>) to the Hub's base url (as specified in <code>cast-hub</code>) with the following parameters, authenticating with the Bearer access token.</p>
+<p>This request MUST have a Content-Type header of <em>application/x-www-form-urlencoded</em>  and MUST use the following parameters in its body, formatted accordingly:</p>
+<h6 id="subscription-request-parameters">Subscription Request Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.callback</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.</td>
+</tr>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "subscribe" or "unsubscribe", depending on the goal of the request.</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The uri of the user's session that the subscriber wishes to subscribe to or unsubscribe from.</td>
+</tr>
+<tr>
+<td><code>hub.secret</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A subscriber-provided cryptographically random unique secret string that will be used to compute an HMAC digest delivered in each notification. This parameter MUST be less than 200 bytes in length.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.</td>
+</tr>
+<tr>
+<td><code>hub.lease_seconds</code></td>
+<td>Optional</td>
+<td><em>number</em></td>
+<td>Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter.</td>
+</tr>
+</tbody>
+</table>
+<p>Hubs MUST allow subscribers to re-request subscriptions that are already activated. Each subsequent request to a hub to subscribe or unsubscribe MUST override the previous subscription state for a specific topic, and callback URL combination once the action is verified. </p>
+<p>The callback URL MAY contain arbitrary query string parameters (e.g., ?foo=bar&amp;red=fish). Hubs MUST preserve the query string during subscription verification by appending new parameters to the end of the list using the &amp; (ampersand) character to join. When sending the content distribution request, the hub will make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.</p>
+<p>Within FHIRcast, the client that creates a subscription and the server that hosts the callback url are the same entity. If these roles are split, the Hub assumes that the same authorization and access rights apply to both systems. </p>
+<h4 id="subscription-request-example">Subscription Request Example</h4>
+<p>In this example, the app asks to be notified of the <code>open-patient-chart</code> and <code>close-patient-chart</code> events.</p>
+<pre><code>POST https://hub.example.com
+Host: hub.example.com
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/x-www-form-urlencoded
+
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&amp;hub.mode=subscribe&amp;hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&amp;hub.secret=shhh-this-is-a-secret&amp;hub.events=patient-open-chart,patient-close-chart
+</code></pre>
+
+<h3 id="subscription-response">Subscription Response</h3>
+<p>If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub MUST respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. The Hub SHOULD perform the verification of intent as soon as possible.</p>
+<p>If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic URIs based on their own policies.</p>
+<h4 id="subscription-response-example">Subscription Response Example</h4>
+<pre><code>HTTP/1.1 202 Accepted
+</code></pre>
+
+<h3 id="subscription-denial">Subscription Denial</h3>
+<p>If (and when) the subscription is denied, the Hub MUST inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended.</p>
+<h6 id="subscription-denial-parameters">Subscription Denial Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "denied".</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The topic uri given in the corresponding subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.reason</code></td>
+<td>Optional</td>
+<td><em>string</em></td>
+<td>The Hub may include a reason for which the subscription has been denied. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="subscription-denial-example">Subscription Denial Example</h4>
+<pre><code>GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&amp;hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&amp;hub.events=open-patient-chart,close-patient-chart&amp;hub.challenge=meu3we944ix80ox&amp;hub.reason=session+unexpectedly+stopped HTTP 1.1
+Host: subscriber
+</code></pre>
+
+<h3 id="intent-verification">Intent Verification</h3>
+<p>If (and when) the subscription is accepted, the Hub MUST perform the verification of intent of the subscriber. The <code>hub.callback</code> url verification process ensures that the subscriber actually controls the callback url.</p>
+<h4 id="intent-verification-request">Intent Verification Request</h4>
+<p>In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub verifies a subscription request by sending an HTTPS GET (<a href="https://www.w3.org/TR/websub/#bib-RFC2818">RFC2818</a>) request to the subscriber's callback URL as given in the subscription request. This request has the following query string arguments appended:</p>
+<h6 id="verification-parameters">Verification Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "subscribe" or "unsubscribe", which matches the original request to the hub from the subscriber.</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The topic session uri given in the corresponding subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.challenge</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A Hub-generated, random string that MUST be echoed by the subscriber to verify the subscription.</td>
+</tr>
+<tr>
+<td><code>hub.lease_seconds</code></td>
+<td>Required</td>
+<td><em>number</em></td>
+<td>The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. Subscribers must renew their subscription before the lease seconds period is over to avoid interruption.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="intent-verification-request-example">Intent Verification Request Example</h5>
+<pre><code>GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&amp;hub.topic=7jaa86kgdudewiaq0wtu&amp;hub.events=open-patient-chart,close-patient-chart&amp;hub.challenge=meu3we944ix80ox HTTP 1.1
+Host: subscriber
+</code></pre>
+
+<h4 id="intent-verification-response">Intent Verification Response</h4>
+<p>The subscriber MUST confirm that the <code>hub.topic</code> corresponds to a pending subscription or unsubscription that it wishes to carry out. If so, the subscriber MUST respond with an HTTP success (2xx) code with a response body equal to the <code>hub.challenge</code> parameter. If the subscriber does not agree with the action, the subscriber MUST respond with a 404 "Not Found" response.</p>
+<p>The Hub MUST consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the <code>hub.challenge</code> parameter, the Hub MUST also consider verification to have failed.</p>
+<h5 id="intent-verification-response-example">Intent Verification Response Example</h5>
+<pre><code>HTTP/1.1 200 Success
+Content-Type: text/html
+
+meu3we944ix80ox
+</code></pre>
+
+<h3 id="unsubscribe">Unsubscribe</h3>
+<p>Once a subscribing app no longer wants to receive event notifications, it MUST unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message with only a single difference: the <code>hub.mode</code> MUST be equal to the string <em>unsubscribe</em>.</p>
+<h4 id="unsubscribe-request-example">Unsubscribe Request Example</h4>
+<pre><code>POST https://hub.example.com
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/x-www-form-urlencoded
+
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&amp;hub.mode=unsubscribe&amp;hub.topic=https%3A%2F%2Fhub.example.com%2F7jaa86kgdudewiaq0wtu&amp;hub.secret=shhh-this-is-a-secret&amp;hub.events=open-patient-chart,close-patient-chart
+
+</code></pre>
+
+<h2 id="event-notification">Event Notification</h2>
+<p>The Hub MUST notify subscribed apps of workflow events to which the app is subscribed, as the event occurs. The notification is an HTTPS POST containing a JSON object in the request body.</p>
+<h3 id="event-notification-request">Event Notification Request</h3>
+<p>Using the hub.secret from the subscription request, the hub MUST generate an HMAC signature of the payload and include that signature in the request headers of the notification. The <code>X-Hub-Signature</code> header's value MUST be in the form <em>method=signature</em> where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature MUST be computed using the HMAC algorithm (<a href="https://www.w3.org/TR/websub/#bib-RFC6151">RFC6151</a>) with the request body as the data and the <code>hub.secret</code> as the key.</p>
+<p>In addition to a description of the subscribed event that just occurred, the notification to the subscriber MUST include an <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601-2</a> formatted timestamp in UTC and an event identifer that is universally unique for the Hub. See the <a href="#notification-parameters">notification parameters table</a> for details. The timestamp should be used by subscribers to establish message affinity through the use of a message queue. The event identifier should be used to differentiate retried messages from user actions. </p>
+<h4 id="event-notification-request-details">Event Notification Request Details</h4>
+<p>The notification's <code>hub.event</code> and <code>context</code> fields inform the subscriber of the current state of the user's session. The <code>hub.event</code> is a user workflow event, from the Event Catalog. The <code>context</code> is an array of named FHIR objects (similar to <a href="https://cds-hooks.org/specification/1.0/#http-request_1">CDS Hooks's context</a> field) that describe the current content of the user's session. Each event in the <a href="#event-catalog">Event Catalog</a> defines what context is expected in the notification. Hubs MAY use the <a href="https://www.hl7.org/fhir/search.html#elements">FHIR _elements parameter</a> to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers MUST accept a full FHIR resource or the <a href="https://www.hl7.org/fhir/search.html#elements">_elements</a>-limited resource as defined in the Event Catalog.</p>
+<h6 id="notification-parameters">Notification Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Event identifier used to recognize retried notifications. This id MUST be globally unique for the Hub, SHOULD be opaque to the subscriber and MAY be a GUID.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Required</td>
+<td><em>object</em></td>
+<td>A json object describing the event. See <a href="#event-object-parameters">below</a>.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="event-object-parameters">Event Object Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The topic session uri given in the subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.event</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The event that triggered this notification, taken from the list of events from the subscription request.</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Required</td>
+<td>array</td>
+<td>An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub MUST only return FHIR resources that are authorized to be accessed with the existing OAuth2 access_token.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-notification-request-example">Event Notification Request Example</h4>
+<pre><code>POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
+Host: subscriber
+X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693be6ff3ae
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:37:05.14&quot;,
+  &quot;id&quot;: &quot;q9v3jubddqt63n1&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;https://hub.example.com/7jaa86kgdudewiaq0wtu&quot;,
+    &quot;hub.event&quot;: &quot;open-patient-chart&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;patient&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;Patient&quot;,
+          &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+          &quot;identifier&quot;: [
+             {
+               &quot;type&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                            &quot;value&quot;: &quot;MR&quot;,
+                            &quot;display&quot;: &quot;Medication Record Number&quot;
+                         }
+                        &quot;text&quot;: &quot;MRN&quot;
+                      ]
+                  }
+              }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h3 id="event-notification-response">Event Notification Response</h3>
+<p>The subscriber MUST respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber MUST respond with an HTTP 200; otherwise, the subscriber MUST respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.</p>
+<h4 id="event-notification-response-example">Event Notification Response Example</h4>
+<pre><code>HTTP/1.1 200 Accepted
+</code></pre>
+
+<h2 id="query-for-current-context">Query for Current Context</h2>
+<p>In addition to receiving notification of events as they occur, a subscribing app may request the current context of a given session. The client queries the Hub's <code>hub.topic</code> url to receive the current context for the session. Event-driven context notifications should take precedence. Note that no <code>hub.event</code> is present in the response.</p>
+<h3 id="query-for-current-context-example">Query for Current Context Example</h3>
+<pre><code>GET https://hub.example.com/7jaa86kgdudewiaq0wtu 
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+</code></pre>
+
+<pre><code>{
+   &quot;timestamp&quot;:&quot;2018-01-08T01:40:05.14&quot;,
+   &quot;id&quot;:&quot;wYXStHqxFQyHFELh&quot;,
+   &quot;event&quot;:{
+      &quot;hub.topic&quot;:&quot;https://hub.example.com/7jaa86kgdudewiaq0wtu&quot;,
+      &quot;context&quot;:[
+         {
+            &quot;key&quot;:&quot;patient&quot;,
+            &quot;resource&quot;:{
+               &quot;resourceType&quot;:&quot;Patient&quot;,
+               &quot;id&quot;:&quot;798E4MyMcpCWHab9&quot;,
+               &quot;identifier&quot;: [
+                 {
+                   &quot;type&quot;: {
+                        &quot;coding&quot;: [
+                            {
+                                &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                                &quot;value&quot;: &quot;MR&quot;,
+                                &quot;display&quot;: &quot;Medication Record Number&quot;
+                             }
+                            &quot;text&quot;: &quot;MRN&quot;
+                          ]
+                      }
+                  }
+              ]
+            }
+         },
+         {
+            &quot;key&quot;:&quot;encounter&quot;,
+            &quot;resource&quot;:{
+               &quot;resourceType&quot;:&quot;Encounter&quot;,
+               &quot;id&quot;:&quot;ecgXt3jVqNNpsXnNXZ3KljA3&quot;,
+               &quot;identifier&quot;:[
+                  {
+                     &quot;use&quot;:&quot;usual&quot;,
+                     &quot;system&quot;:&quot;http://healthcare.example.org/identifiers/encounter&quot;,
+                     &quot;value&quot;:&quot;1853&quot;
+                  }
+               ]
+            }
+         },
+         {
+            &quot;key&quot;:&quot;study&quot;,
+            &quot;resource&quot;:{
+               &quot;resourceType&quot;:&quot;ImagingStudy&quot;,
+               &quot;id&quot;:&quot;8i7tbu6fby5ftfbku6fniuf&quot;,
+               &quot;uid&quot;:&quot;urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045&quot;,
+               &quot;accession&quot;:{
+                  &quot;use&quot;:&quot;usual&quot;,
+                  &quot;type&quot;:{
+                     &quot;coding&quot;:[
+                        {
+                           &quot;system&quot;:&quot;http://hl7.org/fhir/v2/0203&quot;,
+                           &quot;code&quot;:&quot;ACSN&quot;
+                        }
+                     ]
+                  }
+               },
+               &quot;identifier&quot;:[
+                  {
+                     &quot;system&quot;:&quot;7678&quot;,
+                     &quot;value&quot;:&quot;185444&quot;
+                  }
+               ]
+            }
+         }
+      ]
+   }
+}
+</code></pre>
+
+<h2 id="request-context-change">Request Context Change</h2>
+<p>Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the <code>hub.topic</code> url. The Hub MUST either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber MUST be capable of gracefully handling a rejected context request. </p>
+<p>Once a requested context change is accepted, the Hub MUST broadcast the context notification to all subscribers, including the original requestor. </p>
+<h3 id="request-context-change-request">Request Context Change Request</h3>
+<pre><code>POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:40:05.14&quot;,
+  &quot;id&quot;: &quot;wYXStHqxFQyHFELh&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;https://hub.example.com/7jaa86kgdudewiaq0wtu&quot;,
+    &quot;hub.event&quot;: &quot;close-patient-chart&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;patient&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;Patient&quot;,
+          &quot;id&quot;: &quot;798E4MyMcpCWHab9&quot;,
+          &quot;identifier&quot;: [
+             {
+               &quot;type&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                            &quot;value&quot;: &quot;MR&quot;,
+                            &quot;display&quot;: &quot;Medication Record Number&quot;
+                         }
+                        &quot;text&quot;: &quot;MRN&quot;
+                      ]
+                  }
+              }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h2 id="event-notification-errors">Event Notification Errors</h2>
+<p>If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber MAY respond with a 'sync-error' event. The Hub MAY use these events to track synchronization state and MAY also forward these events to other subscribers of the same topic.</p>
+<h3 id="event-notification-error-example">Event Notification Error Example</h3>
+<pre><code>POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:37:05.14&quot;,
+  &quot;id&quot;: &quot;q9v3jubddqt63n1&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;https://hub.example.com/7jaa86kgdudewiaq0wtu&quot;,
+    &quot;hub.event&quot;: &quot;sync-error&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;operationoutcome&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;OperationOutcome&quot;,
+          &quot;issue&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;code&quot;: &quot;processing&quot;,
+              &quot;diagnostics&quot;: &quot;AppId3456 failed to follow context&quot;
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h2 id="event-catalog">Event Catalog</h2>
+<p>Each event definition in the catalog, below, specifies a single event name, a description of the event, and the  required or optional contextual information associated with the event. Alongside the event name, the contextual information is used by the subscriber.</p>
+<p>FHIR is the interoperable data model used by FHIRcast. The fields within <code>context</code> are subsets of FHIR resources. Hubs MUST send the results of FHIR reads in the context, as specified below. For example, when the <code>open-image-study</code> event occurs, the notification sent to a subscriber MUST include the ImagingStudy FHIR resource. Hubs SHOULD send the results of an ImagingStudy FHIR read using the <em>_elements</em> query parameter, like so:  <code>ImagingStudy/{id}?_elements=identifier,accession</code> and in accordance with the <a href="https://www.hl7.org/fhir/search.html#elements">FHIR specification</a>. </p>
+<p>A FHIR server may not support the <em>_elements</em> query parameter; a subscriber MUST gracefully handle receiving a full FHIR resource in the context of a notification.</p>
+<p>The name of the event SHOULD succinctly and clearly describe the activity or event. Event names are unique so event creators SHOULD take care to ensure newly proposed events do not conflict with an existing event name. Event creators SHALL name their event with reverse domain notation (e.g. <code>org.example.patient-transmogrify</code>) if the event is specific to an organization. Reverse domain notation SHALL not be used by a standard event catalog.</p>
+<h3 id="open-patient-chart">open-patient-chart</h3>
+<h4 id="description">Description:</h4>
+<p>User opened patient's medical record. </p>
+<h4 id="example">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+           {
+             &quot;type&quot;: {
+                  &quot;coding&quot;: [
+                      {
+                          &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                          &quot;value&quot;: &quot;MR&quot;,
+                          &quot;display&quot;: &quot;Medication Record Number&quot;
+                       }
+                      &quot;text&quot;: &quot;MRN&quot;
+                    ]
+                }
+            }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Required</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context.</td>
+</tr>
+<tr>
+<td><code>encounter</code></td>
+<td>Optional</td>
+<td><code>Encounter/{id}?_elements=identifier</code></td>
+<td>FHIR Encounter resource in context in the newly opened patient's chart.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="switch-patient-chart">switch-patient-chart</h3>
+<h4 id="description_1">Description:</h4>
+<p>User changed from one open patient's medical record to another previously opened patient's medical record. The context documents the patient whose record is currently open.</p>
+<h4 id="example_1">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+           {
+             &quot;type&quot;: {
+                  &quot;coding&quot;: [
+                      {
+                          &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                          &quot;value&quot;: &quot;MR&quot;,
+                          &quot;display&quot;: &quot;Medication Record Number&quot;
+                       }
+                      &quot;text&quot;: &quot;MRN&quot;
+                    ]
+                }
+            }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Required</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context..</td>
+</tr>
+<tr>
+<td><code>encounter</code></td>
+<td>Optional</td>
+<td><code>Encounter/{id}?_elements=identifier</code></td>
+<td>FHIR Encounter resource in context in the newly opened patient's chart.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="close-patient-chart">close-patient-chart</h3>
+<h4 id="description-user-closed-patients-medical-record">Description: User closed patient's medical record.</h4>
+<h4 id="example_2">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+           {
+             &quot;type&quot;: {
+                  &quot;coding&quot;: [
+                      {
+                          &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                          &quot;value&quot;: &quot;MR&quot;,
+                          &quot;display&quot;: &quot;Medication Record Number&quot;
+                       }
+                      &quot;text&quot;: &quot;MRN&quot;
+                    ]
+                }
+            }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Required</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context..</td>
+</tr>
+<tr>
+<td><code>encounter</code></td>
+<td>Optional</td>
+<td><code>Encounter/{id}?_elements=identifier</code></td>
+<td>FHIR Encounter resource in context in the newly opened patient's chart.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="open-imaging-study">open-imaging-study</h3>
+<h4 id="description-user-opened-record-of-imaging-study">Description: User opened record of imaging study.</h4>
+<h4 id="example_3">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          },
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000&quot;,
+            &quot;value&quot;: &quot;2667&quot;
+          }
+        ]
+      }
+    },
+    {
+      &quot;key&quot;: &quot;study&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;ImagingStudy&quot;,
+        &quot;id&quot;: &quot;8i7tbu6fby5ftfbku6fniuf&quot;,
+        &quot;uid&quot;: &quot;urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;7678&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          }
+        ],
+        &quot;patient&quot;: {
+          &quot;reference&quot;: &quot;Patient/ewUbXT9RWEbSj5wPEdgRaBw3&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Optional</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context.</td>
+</tr>
+<tr>
+<td><code>study</code></td>
+<td>Required</td>
+<td><code>ImagingStudy/{id}?_elements=identifier,accession</code></td>
+<td>FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="switch-imaging-study">switch-imaging-study</h3>
+<h4 id="description-user-changed-from-one-open-imaging-study-to-another-previously-opened-imaging-study-the-context-documents-the-study-and-optionally-patient-for-the-currently-open-record">Description: User changed from one open imaging study to another previously opened imaging study. The context documents the study, and optionally patient, for the currently open record.</h4>
+<h4 id="example_4">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          },
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000&quot;,
+            &quot;value&quot;: &quot;2667&quot;
+          }
+        ]
+      }
+    },
+    {
+      &quot;key&quot;: &quot;study&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;ImagingStudy&quot;,
+        &quot;id&quot;: &quot;8i7tbu6fby5ftfbku6fniuf&quot;,
+        &quot;uid&quot;: &quot;urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;7678&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          }
+        ],
+        &quot;patient&quot;: {
+          &quot;reference&quot;: &quot;Patient/ewUbXT9RWEbSj5wPEdgRaBw3&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Optional</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context.</td>
+</tr>
+<tr>
+<td><code>study</code></td>
+<td>Required</td>
+<td><code>ImagingStudy/{id}?_elements=identifier,accession</code></td>
+<td>FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="close-imaging-study">close-imaging-study</h3>
+<h4 id="description-user-closed-imaging-study">Description: User closed imaging study.</h4>
+<h4 id="example_5">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;patient&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;Patient&quot;,
+        &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          },
+          {
+            &quot;system&quot;: &quot;urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000&quot;,
+            &quot;value&quot;: &quot;2667&quot;
+          }
+        ]
+      }
+    },
+    {
+      &quot;key&quot;: &quot;study&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;ImagingStudy&quot;,
+        &quot;id&quot;: &quot;8i7tbu6fby5ftfbku6fniuf&quot;,
+        &quot;uid&quot;: &quot;urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045&quot;,
+        &quot;identifier&quot;: [
+          {
+            &quot;system&quot;: &quot;7678&quot;,
+            &quot;value&quot;: &quot;185444&quot;
+          }
+        ],
+        &quot;patient&quot;: {
+          &quot;reference&quot;: &quot;Patient/ewUbXT9RWEbSj5wPEdgRaBw3&quot;
+        }
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>patient</code></td>
+<td>Optional</td>
+<td><code>Patient/{id}?_elements=identifier</code></td>
+<td>FHIR Patient resource describing the patient whose chart is currently in context.</td>
+</tr>
+<tr>
+<td><code>study</code></td>
+<td>Required</td>
+<td><code>ImagingStudy/{id}?_elements=identifier,accession</code></td>
+<td>FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user-logout">user-logout</h3>
+<h4 id="description-user-gracefully-exited-the-application">Description: User gracefully exited the application.</h4>
+<h4 id="example_6">Example:</h4>
+<p>{
+}</p>
+<p>No Context </p>
+<h3 id="user-hibernate">user-hibernate</h3>
+<h4 id="description-user-temporarily-suspended-her-session-the-users-session-will-eventually-resume">Description: User temporarily suspended her session. The user's session will eventually resume.</h4>
+<h4 id="example_7">Example:</h4>
+<p>{
+}</p>
+<p>No Context</p>
+<h3 id="sync-error">sync-error</h3>
+<h4 id="description-a-syncronization-error-has-been-detected-inform-subscribed-clients">Description: A syncronization error has been detected. Inform subscribed clients.</h4>
+<h4 id="example_8">Example:</h4>
+<pre><code>{
+  &quot;context&quot;: [
+    {
+      &quot;key&quot;: &quot;operationoutcome&quot;,
+      &quot;resource&quot;: {
+        &quot;resourceType&quot;: &quot;OperationOutcome&quot;,
+        &quot;issue&quot;: [
+          {
+            &quot;severity&quot;: &quot;warning&quot;,
+            &quot;code&quot;: &quot;processing&quot;,
+            &quot;diagnostics&quot;: &quot;AppId3456 failed to follow context&quot;
+          }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Optionality</th>
+<th>FHIR operation to generate context</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>operationoutcome</code></td>
+<td>Optional</td>
+<td><code>OperationOutcome</code></td>
+<td>FHIR resource describing an outcome of an unsuccessful system action..</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

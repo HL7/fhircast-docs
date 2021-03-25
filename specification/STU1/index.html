@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>STU1 - FHIRcast</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "STU1";
+    var mkdocs_page_input_path = "specification/STU1.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> FHIRcast</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specification</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../STU2/">Current - STU2</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">STU1</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#fhircast">FHIRcast</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#overview">Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#session-discovery">Session Discovery</a></li>
+        
+            <li><a class="toctree-l4" href="#subscribing-and-unsubscribing">Subscribing and Unsubscribing</a></li>
+        
+            <li><a class="toctree-l4" href="#event-notification">Event Notification</a></li>
+        
+            <li><a class="toctree-l4" href="#event-notification-errors">Event Notification Errors</a></li>
+        
+            <li><a class="toctree-l4" href="#request-context-change">Request Context Change</a></li>
+        
+            <li><a class="toctree-l4" href="#events">Events</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Event Catalog</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../events/template/">new-event-template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/syncerror/">syncerror</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/userlogout/">userlogout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/userhibernate/">userhibernate</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/patient-open/">Patient-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/patient-close/">Patient-close</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/imagingstudy-open/">ImagingStudy-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../events/imagingstudy-close/">ImagingStudy-close</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../launch-scenarios/">Launch Scenarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../syncconsiderations/">Synchronization Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../security-considerations/">Security Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../multitab-considerations/">Multi-tab Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">FHIRcast</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Specification &raquo;</li>
+        
+      
+    
+    <li>STU1</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header-good-resolution.png" width=20%" /></p>
+<h1 id="fhircast">FHIRcast</h1>
+<blockquote>
+<p>"Standard for Trial Use" (STU1) This is the 1.0 release of the FHIRcast specification. </p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). </p>
+<p>Once the subscribing app <a href="#session-discovery">knows about the session</a>, the app may <a href="#subscribing-and-unsubscribing">subscribe</a> to specific workflow-related events for the given session. The subscription is <a href="#intent-verification-request">verified</a> and the app is <a href="#event-notification">notified</a> when those workflow-related events occur; for example, by the clinician opening a patient's chart. The subscribing app may <a href="#request-context-change">initiate context changes</a> by accessing APIs exposed by the Hub; for example, closing the patient's chart. The app <a href="#unsubscribe">deletes its subscription</a> to no longer receive notifications. The notification message describing the workflow event is a simple json wrapper around one or more FHIR resources. </p>
+<p>FHIRcast is modeled on the webhook design pattern and specifically the <a href="https://www.w3.org/TR/websub/">W3C WebSub RFC</a>, such as its use of GET vs POST interactions and a Hub for managing subscriptions. FHIRcast recommends the <a href="http://www.hl7.org/fhir/smart-app-launch">HL7 SMART on FHIR launch protocol</a> for both session discovery and API authentication. The below flow diagram illustrates the series of interactions. </p>
+<p><img alt="FHIRcast flow diagram overview" src="/img/FHIRcast%20overview%20for%20abstract.png" /></p>
+<p>All data exchanged through the HTTP APIs SHALL be sent and received as <a href="https://tools.ietf.org/html/rfc8259">JSON</a> structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS and defined in <a href="https://tools.ietf.org/html/rfc2818">RFC2818</a>. </p>
+<h2 id="session-discovery">Session Discovery</h2>
+<p>A session is an abstract concept representing a shared workspace, such as user's login session over multiple applications or a shared view of one application distributed to multiple users. FHIRcast requires a session to have a unique, unguessable and opaque identifier. This identifier is exchanged as the value of the <code>hub.topic</code> parameter. Before establishing a subscription, an app must not only know the <code>hub.topic</code>, but also the <code>hub.url</code> which contains the base url of the Hub. </p>
+<p>Systems SHOULD use SMART on FHIR to authorize, authenticate and exchange initial shared context. If using SMART, following a <a href="http://www.hl7.org/fhir/smart-app-launch#ehr-launch-sequence">SMART on FHIR EHR launch</a> or <a href="http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence">SMART on FHIR standalone launch</a>, the app SHALL request and, if authorized, SHALL be granted one or more fhircast OAuth 2.0 scopes. Accompanying this scope grant, the authorization server SHALL supply the <code>hub.url</code> and <code>hub.topic</code> SMART launch parameters alongside the access token and other parameters appropriate to establish initial shared context. Per SMART, when scopes of <code>openid</code> and <code>fhirUser</code> are granted, the authorization server additionally sends the current user's identity in an <code>id_token</code>.</p>
+<p>Although FHIRcast works best with the SMART on FHIR launch and authorization process, implementation-specific launch, authentication, and authorization protocols may be possible. If not using SMART on FHIR, the mechanism enabling the app to discover the <code>hub.url</code> and <code>hub.topic</code> is not defined in FHIRcast. See <a href="/launch-scenarios">other launch scenarios</a> for guidance.</p>
+<h3 id="fhircast-authorization-smart-scopes">FHIRcast Authorization &amp; SMART scopes</h3>
+<p>FHIRcast defines OAuth 2.0 access scopes that correspond directly to <a href="#events">FHIRcast events</a>. Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events should ask for read scopes. Apps that request context changes should ask for write scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.</p>
+<p>Expressed in EBNF notation, FHIRcast's scope syntax is:</p>
+<p><code>scope ::= ( 'fhircast' ) '/' ( FHIRcast-event ) '.' ( 'read' | 'write' | '*' )</code></p>
+<p><img alt="FHIRcast SMART scopes" src="../../img/fhircast-smart-scopes.png" /></p>
+<p>The FHIRcast event name is also a <a href="#event-definition-format-hook-name">computable syntax</a>, the complete syntax for FHIRcast scopes is:</p>
+<p><code>scope    ::= 'fhircast' '/' fhir-resource '-' ( 'open' | 'close' | '*' ) '.' ( 'read' | 'write' | '*' )</code></p>
+<p><img alt="FHIRcast SMART scopes and event syntax" src="../../img/fhircast-event-and-smart-scope.png" /></p>
+<h3 id="smart-launch-example">SMART Launch Example</h3>
+<p>Note that the SMART launch parameters include the Hub's base url and the session identifier in the <code>hub.url</code> and <code>hub.topic</code> fields.</p>
+<pre><code>{
+  &quot;access_token&quot;: &quot;i8hweunweunweofiwweoijewiwe&quot;,
+  &quot;token_type&quot;: &quot;bearer&quot;,
+  &quot;patient&quot;:  &quot;123&quot;,
+  &quot;expires_in&quot;: 3600,
+  &quot;encounter&quot;: &quot;456&quot;,
+  &quot;imagingstudy&quot;: &quot;789&quot;,
+  &quot;hub.url&quot; : &quot;https://hub.example.com&quot;,
+  &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;,
+}
+</code></pre>
+
+<h2 id="subscribing-and-unsubscribing">Subscribing and Unsubscribing</h2>
+<p>Subscribing consists of two exchanges:</p>
+<ul>
+<li>Subscriber requests a subscription at the <code>hub.url</code> url.</li>
+<li>Hub confirms the subscription was actually requested by the subscriber by contacting the <code>hub.callback</code> url. </li>
+</ul>
+<p>Unsubscribing works in the same way, except with a single parameter changed to indicate the desire to unsubscribe.</p>
+<h3 id="subscription-request">Subscription Request</h3>
+<p>To create a subscription, the subscribing app SHALL perform an HTTP POST (<a href="https://www.w3.org/TR/websub/#bib-RFC7231">RFC7231</a>) to the Hub's base url (as specified in <code>hub.url</code>) with the parameters in the table below.</p>
+<p>This request SHALL have a <code>Content-Type</code> header of <code>application/x-www-form-urlencoded</code> and SHALL use the following parameters in its body, formatted accordingly:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.callback</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.</td>
+</tr>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "subscribe" or "unsubscribe", depending on the goal of the request.</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The identifier of the user's session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a guid.</td>
+</tr>
+<tr>
+<td><code>hub.secret</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an <a href="https://www.w3.org/TR/websub/#bib-RFC6151">HMAC digest</a> delivered in each notification. This parameter SHALL be less than 200 bytes in length.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Comma-separated list of event types from the Event Catalog for which the Subscriber wants notifications.</td>
+</tr>
+<tr>
+<td><code>hub.lease_seconds</code></td>
+<td>Optional</td>
+<td><em>number</em></td>
+<td>Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.</td>
+</tr>
+</tbody>
+</table>
+<p>If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.</p>
+<p>Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific topic / callback URL combination.</p>
+<p>The callback URL MAY contain arbitrary query string parameters (e.g., <code>?foo=bar&amp;red=fish</code>). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the <code>&amp;</code> (ampersand) character to join. When sending the event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.</p>
+<p>The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.</p>
+<h4 id="subscription-request-example">Subscription Request Example</h4>
+<p>In this example, the app asks to be notified of the <code>patient-open</code> and <code>patient-close</code> events.</p>
+<pre><code>POST https://hub.example.com
+Host: hub.example.com
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/x-www-form-urlencoded
+
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&amp;hub.mode=subscribe&amp;hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&amp;hub.secret=shhh-this-is-a-secret&amp;hub.events=patient-open,patient-close
+</code></pre>
+
+<h3 id="subscription-response">Subscription Response</h3>
+<p>If the Hub URL supports FHIRcast and is able to handle the subscription or unsubscription request, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response to indicate that the request was received and will now be verified by the Hub. The Hub SHOULD perform the verification of intent as soon as possible.</p>
+<p>If a Hub finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) MUST be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, used to assist the client developer in understanding the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some callback URLs or topic based on their own policies.</p>
+<h4 id="subscription-response-example">Subscription Response Example</h4>
+<pre><code>HTTP/1.1 202 Accepted
+</code></pre>
+
+<h3 id="subscription-denial">Subscription Denial</h3>
+<p>If (and when) the subscription is denied, the Hub SHALL inform the subscriber by sending an HTTP GET request to the subscriber's callback URL as given in the subscription request. This can occur when the subscription is requested for a variety of reasons, or it can occur after the subscription had already been accepted because the Hub no longer supports that subscription (e.g. it has expired). This request has the following query string arguments appended, to which the subscriber SHALL respond with an HTTP success (2xx) code.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "denied".</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The topic given in the corresponding subscription request. MAY be a guid.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied.</td>
+</tr>
+<tr>
+<td><code>hub.reason</code></td>
+<td>Optional</td>
+<td><em>string</em></td>
+<td>The Hub may include a reason. The subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.</td>
+</tr>
+</tbody>
+</table>
+<p>The below flow diagram and example illustrate the subscription denial sequence and message details.</p>
+<h6 id="subscription-denial-sequence">Subscription Denial Sequence</h6>
+<p><img alt="Subscription denial flow diagram" src="/img/Denied%20Subscription%20Sequence.png" /></p>
+<h6 id="subscription-denial-example">Subscription Denial Example</h6>
+<pre><code>GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&amp;hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065hub.events=patient-open,patient-close&amp;hub.reason=session+unexpectedly+stopped HTTP 1.1
+Host: subscriber
+</code></pre>
+
+<h3 id="intent-verification">Intent Verification</h3>
+<p>If the subscription is not denied, the Hub SHALL perform the verification of intent of the subscriber, this applies to apps unsubscribing as well. The <code>hub.callback</code> url verification process ensures that the subscriber actually controls the callback url.</p>
+<h4 id="intent-verification-request">Intent Verification Request</h4>
+<p>In order to prevent an attacker from creating unwanted subscriptions on behalf of a subscriber (or unsubscribing desired ones), a Hub must ensure that the subscriber did indeed send the subscription request. The Hub SHALL verify a subscription request by sending an HTTPS GET request to the subscriber's callback URL as given in the subscription request. This request SHALL have the following query string arguments appended</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.mode</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The literal string "subscribe" or "unsubscribe", which matches the original request to the Hub from the subscriber.</td>
+</tr>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>The session topic given in the corresponding subscription request. MAY be a guid.</td>
+</tr>
+<tr>
+<td><code>hub.events</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.challenge</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.</td>
+</tr>
+<tr>
+<td><code>hub.lease_seconds</code></td>
+<td>Required</td>
+<td><em>number</em></td>
+<td>The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once <code>lease_seconds</code> has expired and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="intent-verification-request-example">Intent Verification Request Example</h5>
+<pre><code>GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=subscribe&amp;hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&amp;hub.events=patient-open,patient-close&amp;hub.challenge=meu3we944ix80ox&amp;hub.lease_seconds=7200 HTTP 1.1
+Host: subscriber
+</code></pre>
+
+<h4 id="intent-verification-response">Intent Verification Response</h4>
+<p>If the <code>hub.topic</code> of the Intent Verification Request corresponds to a pending subscription or unsubscription that the subscriber wishes to carry out it SHALL respond with an HTTP success (2xx) code, a header of <code>Content-Type: text/html</code>, and a response body equal to the <code>hub.challenge</code> parameter. If the subscriber does not agree with the action, the subscriber SHALL respond with a 404 "Not Found" response.</p>
+<p>The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the <code>hub.challenge</code> parameter, the Hub SHALL also consider verification to have failed.</p>
+<p>The below flow diagram and example illustrate the successful subscription sequence and message details.</p>
+<h6 id="successful-subscription-sequence">Successful Subscription Sequence</h6>
+<p><img alt="Successful subscription flow diagram" src="/img/Successful%20Subscription%20Sequence.png" /></p>
+<h6 id="intent-verification-response-example">Intent Verification Response Example</h6>
+<pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+
+meu3we944ix80ox
+</code></pre>
+
+<blockquote>
+<p>NOTE
+The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.</p>
+</blockquote>
+<h3 id="unsubscribe">Unsubscribe</h3>
+<p>Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. The unsubscribe request message mirrors the subscribe request message with only a single difference: the <code>hub.mode</code> MUST be equal to the lowercase string <em>unsubscribe</em>.</p>
+<h4 id="unsubscribe-request-example">Unsubscribe Request Example</h4>
+<pre><code>POST https://hub.example.com
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/x-www-form-urlencoded
+
+hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2Fcallback%2Fv7tfwuk17a&amp;hub.mode=unsubscribe&amp;hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&amp;hub.secret=shhh-this-is-a-secret&amp;hub.events=patient-open,patient-close
+
+</code></pre>
+
+<h2 id="event-notification">Event Notification</h2>
+<p>The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is an HTTPS POST containing a JSON object in the request body.</p>
+<h3 id="event-notification-request">Event Notification Request</h3>
+<p>Using the <code>hub.secret</code> from the subscription request, the Hub SHALL generate an HMAC signature of the payload and include that signature in the request headers of the notification. The <code>X-Hub-Signature</code> header's value SHALL be in the form <em>method=signature</em> where method is one of the recognized algorithm names and signature is the hexadecimal representation of the signature. The signature SHALL be computed using the HMAC algorithm (<a href="https://www.w3.org/TR/websub/#bib-RFC6151">RFC6151</a>) with the request body as the data and the <code>hub.secret</code> as the key.</p>
+<p>The notification to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp MAY be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.</p>
+<h4 id="event-notification-request-details">Event Notification Request Details</h4>
+<p>The notification's <code>hub.event</code> and <code>context</code> fields inform the subscriber of the current state of the user's session. The <code>hub.event</code> is a user workflow event, from the Event Catalog (or an organization-specific event in reverse-domain name notation). The <code>context</code> is an array of named FHIR resources (similar to <a href="https://cds-hooks.hl7.org/1.0/#http-request_1">CDS Hooks's context</a> field) that describe the current content of the user's session. Each event in the Event Catalog defines what context is expected in the notification. Hubs MAY use the <a href="https://www.hl7.org/fhir/search.html#elements">FHIR _elements parameter</a> to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the <a href="https://www.hl7.org/fhir/search.html#elements">_elements</a>-limited resource as defined in the Event Catalog.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a GUID.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Required</td>
+<td><em>object</em></td>
+<td>A json object describing the event. See below.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The session topic given in the subscription request. MAY be a guid.</td>
+</tr>
+<tr>
+<td><code>hub.event</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The event that triggered this notification, taken from the list of events from the subscription request.</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Required</td>
+<td>array</td>
+<td>An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List. The Hub SHALL only return FHIR resources that are authorized to be accessed with the existing OAuth 2.0 access_token.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-notification-request-example">Event Notification Request Example</h4>
+<pre><code>POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
+Host: subscriber
+X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693be6ff3ae
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:37:05.14&quot;,
+  &quot;id&quot;: &quot;q9v3jubddqt63n1&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;,
+    &quot;hub.event&quot;: &quot;patient-open&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;patient&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;Patient&quot;,
+          &quot;id&quot;: &quot;ewUbXT9RWEbSj5wPEdgRaBw3&quot;,
+          &quot;identifier&quot;: [
+             {
+               &quot;type&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                            &quot;value&quot;: &quot;MR&quot;,
+                            &quot;display&quot;: &quot;Medication Record Number&quot;
+                         }
+                        &quot;text&quot;: &quot;MRN&quot;
+                      ]
+                  }
+              }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h3 id="event-notification-response">Event Notification Response</h3>
+<p>The subscriber SHALL respond to the notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP [RFC7231] 2xx response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.</p>
+<h4 id="event-notification-response-example">Event Notification Response Example</h4>
+<pre><code>HTTP/1.1 200 OK
+</code></pre>
+
+<h2 id="event-notification-errors">Event Notification Errors</h2>
+<p>All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural <code>syncerror</code> event. </p>
+<p>If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL respond with an HTTP error status code as described in <a href="#event-notification-response">Event Notification Response</a>. If the Hub does not receive a successful HTTP status from an event notification, it SHOULD generate a <code>syncerror</code> event to the other subscribers of that topic. A <code>syncerror</code> notification has the same structure as the other event notification with a single FHIR <code>OperationOutcome</code> as the event's context.</p>
+<h3 id="event-notification-error-request">Event Notification Error Request</h3>
+<h6 id="request-context-change-parameters">Request Context Change Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Event identifier, which MAY be used to recognize retried notifications. This id SHALL be unique and could be a GUID. This id SHOULD be re-used from the previous event communicated to subscribers related to the synchronization failure.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Required</td>
+<td><em>object</em></td>
+<td>A json object describing the event. See <a href="#event-notification-error-event-object-parameters">below</a>.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="event-notification-error-event-object-parameters">Event Notification Error Event Object Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The session topic given in the subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.event</code></td>
+<td>Required</td>
+<td>string</td>
+<td>Shall be the string <code>syncerror</code>.</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Required</td>
+<td>array</td>
+<td>An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of <code>processing</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="event-notification-error-example">Event Notification Error Example</h3>
+<pre><code>POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:37:05.14&quot;,
+  &quot;id&quot;: &quot;q9v3jubddqt63n1&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;,
+    &quot;hub.event&quot;: &quot;syncerror&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;operationoutcome&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;OperationOutcome&quot;,
+          &quot;issue&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;code&quot;: &quot;processing&quot;,
+              &quot;diagnostics&quot;: &quot;AppId3456 failed to follow context&quot;
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h2 id="request-context-change">Request Context Change</h2>
+<p>Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the <code>hub.url</code>. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. The subscriber SHALL be capable of gracefully handling a rejected context request. </p>
+<p>Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. </p>
+<h3 id="request-context-change-request">Request Context Change Request</h3>
+<h6 id="request-context-change-parameters_1">Request Context Change Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>ISO 8601-2 timestamp in UTC describing the time at which the event occurred with subsecond accuracy.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Required</td>
+<td><em>string</em></td>
+<td>Event identifier, which MAY be used to recognize retried notifications. This id SHALL be uniquely generated by the subscriber and could be a GUID. Following an accepted context change request, the Hub MAY re-use this value in the broadcasted event notifications.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Required</td>
+<td><em>object</em></td>
+<td>A json object describing the event. See <a href="#request-context-change-event-object-parameters">below</a>.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="request-context-change-event-object-parameters">Request Context Change Event Object Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Optionality</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hub.topic</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The session topic given in the subscription request.</td>
+</tr>
+<tr>
+<td><code>hub.event</code></td>
+<td>Required</td>
+<td>string</td>
+<td>The event that triggered this request for the subscriber, taken from the list of events from the subscription request.</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Required</td>
+<td>array</td>
+<td>An array of named FHIR objects corresponding to the user's context after the given event has occurred. Common FHIR resources are: Patient, Encounter, ImagingStudy and List.</td>
+</tr>
+</tbody>
+</table>
+<pre><code>POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+Host: hub
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+Content-Type: application/json
+
+{
+  &quot;timestamp&quot;: &quot;2018-01-08T01:40:05.14&quot;,
+  &quot;id&quot;: &quot;wYXStHqxFQyHFELh&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;,
+    &quot;hub.event&quot;: &quot;close-patient-chart&quot;,
+    &quot;context&quot;: [
+      {
+        &quot;key&quot;: &quot;patient&quot;,
+        &quot;resource&quot;: {
+          &quot;resourceType&quot;: &quot;Patient&quot;,
+          &quot;id&quot;: &quot;798E4MyMcpCWHab9&quot;,
+          &quot;identifier&quot;: [
+             {
+               &quot;type&quot;: {
+                    &quot;coding&quot;: [
+                        {
+                            &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/v2-0203&quot;,
+                            &quot;value&quot;: &quot;MR&quot;,
+                            &quot;display&quot;: &quot;Medication Record Number&quot;
+                         }
+                        &quot;text&quot;: &quot;MRN&quot;
+                      ]
+                  }
+              }
+          ]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+
+<h2 id="events">Events</h2>
+<p>FHIRcast describes a workflow event subscription and notification scheme towards the goal of improving a clinician's workflow across multiple disparate applications. The set of events defined here are not a closed set; anyone is able to define new events to fit their use cases and propose those events to the community. </p>
+<p>New events are proposed in a prescribed format using the <a href="../../events/template">documentation template</a> by submitting a <a href="https://github.com/fhircast/docs/tree/master/docs/events">pull request</a>. FHIRcast events are versioned, and mature according to the <a href="#event-maturity-model">Event Maturity Model</a>.</p>
+<p>FHIRcast events are stateless. Context changes are a complete replacement of any previously communicated context, not "deltas". Understanding an event SHALL not require receiving a previous or future event. </p>
+<h3 id="event-definition-format">Event Definition Format</h3>
+<p>Each event definition, specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notification MAY include other elements of these resources. The source of these resources is the application's context or the FHIR server. The Hub SHALL return FHIR resources from the application's context. If the resource is not part of the application's context, it SHALL read them from the FHIR server.</p>
+<p>For example, when the <a href="../../events/imagingstudy-open"><code>ImagingStudy-open</code></a> event occurs, the notification sent to a subscriber SHALL include the ImagingStudy FHIR resource. Hubs should send the results of an ImagingStudy FHIR read using the <em>_elements</em> query parameter, like so:  <code>ImagingStudy/{id}?_elements=identifier,accession</code> and in accordance with the <a href="https://www.hl7.org/fhir/search.html#elements">FHIR specification</a>. </p>
+<p>A Hub may not support the <em>_elements</em> query parameter; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification.</p>
+<p>Each defined event in the standard event catalog SHALL be defined in the following format.</p>
+<h4 id="event-definition-format-hook-name">Event Definition Format: hook-name</h4>
+<p>Most FHIRcast events conform to an extensible syntax based upon FHIR resources. In the rare case where the FHIR data model doesn't describe content in the session, FHIRcast events MAY be statically named. For example, FHIR doesn't cleanly contain the concept of a user or user's session.  </p>
+<p>FHIRcast events SHOULD conform to this extensible syntax, patterned after the SMART on FHIR scope syntax. Expressed in EBNF notation, the FHIRcast syntax for workflow related events is:</p>
+<p><code>hub.events ::= ( fhir-resource ) '-' ( 'open' | 'close' | '*' )</code></p>
+<p><img alt="syntax for new events" src="/img/events-railroad.png" /></p>
+<p>Event names are unique and case-insensitive. Statically named events, specific to an organization, SHALL be named with reverse domain notation (e.g. <code>org.example.patient-transmogrify</code>). Reverse domain notation SHALL not be used by a standard event catalog. Statically named events SHALL not contain a dash ("-").</p>
+<h4 id="event-definition-format-workflow">Event Definition Format: Workflow</h4>
+<p>Describe the workflow in which the event occurs. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.</p>
+<h4 id="event-definition-format-context">Event Definition Format: Context</h4>
+<p>Describe the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL not contain any additional fields.</p>
+<p>All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:</p>
+<ul>
+<li><strong>Key</strong>: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field.</li>
+<li><strong>Optionality</strong>: A string value of either <code>REQUIRED</code>, <code>OPTIONAL</code> or <code>Required, if exists</code></li>
+<li><strong>FHIR operation to generate context</strong>: A FHIR read or search string illustrating the intended content of the event. </li>
+<li><strong>Description</strong>: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.</li>
+</ul>
+<h4 id="event-maturity-model">Event Maturity Model</h4>
+<p>The intent of the FHIRcast Event Maturity Model is to attain broad community engagement and consensus, before an event is labeled as mature, and to ensure that the event is necessary, implementable, and worthwhile to the systems that would reasonably be expected to use it. Implementer feedback should drive the maturity of new events. Diverse participation in open developer forums and events, such as HL7 FHIR Connectathons, is necessary to achieve significant implementer feedback. The below criteria will be evaluated with these goals in mind. </p>
+<table>
+<thead>
+<tr>
+<th>Maturity Level</th>
+<th>Maturity title</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Draft</td>
+<td>Event is correctly named and defined per the <a href="../../events/template">FHIRcast event template</a>.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Submitted</td>
+<td><em>The above, and …</em> Event definition is written up as a pull request using the <a href="../../events/template/">Event template</a> and community feedback is solicited from the community (e.g. the zulip FHIRcast stream](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)).</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tested</td>
+<td><em>The above, and …</em> The event has been tested and successfully supports interoperability among at least one Hub and two independent subscribing apps using semi-realistic data and scenarios (e.g. at a FHIR Connectathon). The github pull request defining the event is approved and published.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Considered</td>
+<td><em>The above, and …</em> At least 3 distinct organizations recorded ten distinct implementer comments (including a github issue, tracker item, or comment on the event definition page), including at least two Hubs and three subscribing apps. The event has been tested at two connectathons.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Documented</td>
+<td><em>The above, and …</em> The author agrees that the artifact is sufficiently stable to require implementer consultation for subsequent non-backward compatible changes.  The event is implemented in the standard FHIRcast reference implementation and multiple prototype projects. The Event specification SHALL: <ul><ol>Identify a broad set of example contexts in which the event may be used with a minimum of three, but as many as 8-10.</ol><ol>Clearly differentiate the event from similar events or other standards to help an implementer determine if the event is correct for their scenario.</ol><ol>Explicitly document example scenarios when the event should not be used.</ol></ul></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mature</td>
+<td><em>The above, and ...</em> The event has been implemented in production in at least two Hubs and three independent subscribing apps. An HL7 working group ballots the event and the event has passed HL7 STU ballot.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Normative</td>
+<td><em>The above, and ...</em> the responsible HL7 working group and the sponsoring working group agree the material is ready to lock down and the event has passed HL7 normative ballot</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-maturity">Event Maturity</h4>
+<p>As each event progresses through a process of being defined, tested, implemented, used in production environments, and balloted, the event's formal maturity level increases. Each event has its own maturity level, which SHALL be defined in the event's definition and correspond to the <a href="#event-maturity-model">Event Maturity Model</a>. </p>
+<h4 id="change-log">Change Log</h4>
+<p>Changes made to an event's definition SHALL be documented in a change log to ensure event consumers can track what has been changed over the life of an event. The change log SHALL contain the following elements:</p>
+<ul>
+<li>Version: The version of the change</li>
+<li>Description: A description of the change and its impact</li>
+</ul>
+<p>For example:</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Added new context FHIR object</td>
+</tr>
+<tr>
+<td>1.0.1</td>
+<td>Clarified workflow description</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>Initial Release</td>
+</tr>
+<tr>
+<td>---</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../events/template/" class="btn btn-neutral float-right" title="new-event-template">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../STU2/" class="btn btn-neutral" title="Current - STU2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../STU2/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../events/template/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Multi-tab Considerations - FHIRcast</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Multi-tab Considerations";
+    var mkdocs_page_input_path = "multitab-considerations.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> FHIRcast</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specification</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../specification/STU2/">Current - STU2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../specification/STU1/">STU1</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Event Catalog</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../events/template/">new-event-template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/syncerror/">syncerror</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/userlogout/">userlogout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/userhibernate/">userhibernate</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/patient-open/">Patient-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/patient-close/">Patient-close</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/imagingstudy-open/">ImagingStudy-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/imagingstudy-close/">ImagingStudy-close</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../launch-scenarios/">Launch Scenarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../syncconsiderations/">Synchronization Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../security-considerations/">Security Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Multi-tab Considerations</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#considerations-for-application-with-simultaneous-contexts">Considerations for application with simultaneous contexts</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#single-and-multiple-tab-applications">Single and Multiple Tab Applications</a></li>
+        
+            <li><a class="toctree-l3" href="#recommendations">Recommendations</a></li>
+        
+            <li><a class="toctree-l3" href="#launching-a-context-less-tab">Launching A Context-Less Tab</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">FHIRcast</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Multi-tab Considerations</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <div class="admonition info">
+<p class="admonition-title">Implementer guidance</p>
+<p>This page contains guidance to implementers and is not part of the normative-track <a href="../specification/STU2">FHIRcast specification</a>.</p>
+</div>
+<h1 id="considerations-for-application-with-simultaneous-contexts">Considerations for application with simultaneous contexts</h1>
+<p>Just as a modern web browser supports multiple pages loaded, but only a single in active use at a given time, some healthcare applications support multiple, distinct patient charts loaded even though  only a single chart is interacted with at a given time. Other applications in healthcare may only support a single patient (or study or ...) context being loaded in the application at a given time. It's important to be able to synchronize the context between two applications supporting these different behaviors. For convenience, we refer to these two types of application behavior as "multi-tab" and "single tab".</p>
+<h2 id="single-and-multiple-tab-applications">Single and Multiple Tab Applications</h2>
+<p>Applications can have different capabilities and layouts, but with FHIRcast they should still be able to stay in sync. A potential situation that could cause confusion is when a single and a multi-tab application work together. While the below guidance describes a patient chart as the primary concept for synchronization, the same guidance applies for other concepts.  </p>
+<p>Let's start with a simple case.</p>
+<h3 id="opening-and-closing-a-patient">Opening and Closing a Patient</h3>
+<p>The diagrams below show two applications without any context, followed by a <code>patient-open</code> event communicated to the other app resulting in same patient being opened in the receiving app. When the patient is closed, a <code>patient-close</code> event is triggered leading to the patient being closed in the other app as well.</p>
+<p><img alt="Simple patient open and close example" src="/img/PatientOpenAndClose.png" /></p>
+<h3 id="opening-multiple-patients">Opening Multiple Patients</h3>
+<p>As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial <code>patient-open</code> works as expected by synchronizing the two apps for Patient 1. When the multi-tab app opens a second patient (without closing the first) the single-tab app follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab app, the single-tab app can still stay in sync with the current context.</p>
+<p><img alt="Multiple patient open example" src="/img/MultiplePatientOpens.png" /></p>
+<h2 id="recommendations">Recommendations</h2>
+<ul>
+<li>When synchronizing with a multi-tab application, receiving multiple, sequential <code>-open</code> events (for example, <code>patient-open</code>) does not indicate a synchronization error. </li>
+<li>Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a <code>-close</code> event. </li>
+</ul>
+<h2 id="launching-a-context-less-tab">Launching A Context-Less Tab</h2>
+<p>Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another app has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a <code>patient-open</code> (or <code>imagingstudy-open</code> or ...) with a patient (or study or ...). </p>
+</div>
+<p>Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to <code>userlogout</code>).</p>
+<h3 id="home-open">home-open</h3>
+<p>eventMaturity | <a href="../../specification/STU1/#event-maturity-model">1 - Submitted</a></p>
+<h4 id="workflow">Workflow</h4>
+<p>The user has opened or switched back to the application's home page or tab which does not have any FHIR related context.</p>
+<p>Unlike most of FHIRcast events, <code>home-open</code> is representing the lack of a FHIR resource context and therefore does not fully follow the <code>FHIR-resource</code>-<code>[open|close]</code> syntax.</p>
+<h4 id="context">Context</h4>
+<p>The context is empty.</p>
+<h4 id="example">Example</h4>
+<p><mark></p>
+<pre><code class="json">{
+  &quot;timestamp&quot;: &quot;2019-11-25T13:16:00.00&quot;,
+  &quot;id&quot;: &quot;35d0b1d4-de45-4b5b-a0e9-9c51b21ee71a&quot;,
+  &quot;event&quot;: {
+    &quot;hub.topic&quot;: &quot;fdb2f928-5546-4f52-87a0-0648e9ded065&quot;, 
+    &quot;hub.event&quot;: &quot;home-open&quot;, 
+    &quot;context&quot;: [] 
+  }
+}
+</code></pre>
+
+<p></mark></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../security-considerations/" class="btn btn-neutral" title="Security Considerations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../security-considerations/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

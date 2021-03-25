@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Security Considerations - FHIRcast</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Security Considerations";
+    var mkdocs_page_input_path = "security-considerations.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> FHIRcast</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specification</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../specification/STU2/">Current - STU2</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../specification/STU1/">STU1</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Event Catalog</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../events/template/">new-event-template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/syncerror/">syncerror</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/userlogout/">userlogout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/userhibernate/">userhibernate</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/patient-open/">Patient-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/patient-close/">Patient-close</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/imagingstudy-open/">ImagingStudy-open</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../events/imagingstudy-close/">ImagingStudy-close</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../launch-scenarios/">Launch Scenarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../syncconsiderations/">Synchronization Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Security Considerations</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#security-considerations">Security Considerations</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#actors">Actors</a></li>
+        
+            <li><a class="toctree-l3" href="#sources-of-risk">Sources of Risk</a></li>
+        
+            <li><a class="toctree-l3" href="#smart-on-fhir">SMART on FHIR</a></li>
+        
+            <li><a class="toctree-l3" href="#http-web-hooks-using-websub">HTTP Web Hooks using WebSub</a></li>
+        
+            <li><a class="toctree-l3" href="#experimental-websockets-support">Experimental Websockets support</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../multitab-considerations/">Multi-tab Considerations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">FHIRcast</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Security Considerations</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <div class="admonition info">
+<p class="admonition-title">Implementer guidance</p>
+<p>This page contains guidance to implementers and is not part of the normative-track <a href="../specification/STU2">FHIRcast specification</a>.</p>
+</div>
+<h1 id="security-considerations">Security Considerations</h1>
+<p>FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain Protected Health Information (PHI). </p>
+<h2 id="actors">Actors</h2>
+<ul>
+<li>Subscribing app</li>
+<li>Hub</li>
+<li>Authorization Server</li>
+<li>Resource server</li>
+</ul>
+<p>FHIRcast ties SMART as the authnz layer together with WebSub for subscription and event notification.</p>
+<h2 id="sources-of-risk">Sources of Risk</h2>
+<ol>
+<li>The FHIRcast Hub pushes PHI to a dynamic url specified by the authenticated app. </li>
+<li>An app's credentials or a Hub's lack of authentication could be used by a malicious system to control the user's session.</li>
+<li>FHIRcast recommends the use of SMART on FHIR, but does not require it. Implementation-specific launch, authentication, and authorization protocols may be possible. These alternate protocols should be scrutinized by implementers for additional security risks.</li>
+</ol>
+<h2 id="smart-on-fhir">SMART on FHIR</h2>
+<p><a href="http://www.hl7.org/fhir/smart-app-launch/">SMART on FHIR</a> profiles <a href="https://tools.ietf.org/html/rfc6749#section-1.3.1">OAuth 2.0's authorization code grant type</a> and extends it by introducing an "<a href="http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence">EHR Launch Sequence</a>". The Argonaut Project performed a formal security review of SMART on FHIR, resulting in a <a href="http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf">Risk Assessment report</a>.</p>
+<p>FHIRcast builds on SMART by introducing a new <a href="/specification/STU1/#fhircast-authorization-smart-scopes">syntax for standard OAuth 2.0 scopes</a>, as well as two new SMART launch parameters of <code>hub.url</code> and <code>hub.topic</code>. </p>
+<ul>
+<li><a href="http://www.hl7.org/fhir/smart-app-launch/">HL7 SMART on FHIR specification</a></li>
+<li><a href="http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf">Argonaut Risk Assessment report</a>.</li>
+<li><a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations</a></li>
+</ul>
+<h2 id="http-web-hooks-using-websub">HTTP Web Hooks using WebSub</h2>
+<p><a href="https://www.w3.org/TR/websub/">WebSub</a> is a W3C RFC designed for the distribution of web content through a standardized web hooks architecture. FHIRcast uses WebSub to allow clients to subscribe and unsubscribe to the Hub and, for the Hub to notify subscribers of events. </p>
+<p>Unlike WebSub, FHIRcast requires that both the Hub and the subscribing apps endpoints are exposed over https.</p>
+<p>The below <a href="https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing">flow diagram</a> illustrates each of the interactions. </p>
+<p><img alt="FHIRcast flow diagram" src="/img/FHIRcast%20WebSub%20security%20sequence.png" /></p>
+<h3 id="how-does-the-subscriber-authenticate-to-the-hub">How does the subscriber authenticate to the Hub?</h3>
+<p>The subscribing app can make three distinct API calls to the Hub. For each of these calls, the subscribing app authenticates to the Hub with the Hub's authorization server issued SMART <code>access_token</code>. Per SMART on FHIR, this <code>access_token</code> is presented to the Hub in the HTTP Authorization header.</p>
+<ol>
+<li>App subscribes to Hub</li>
+<li>App requests change to shared context</li>
+<li>App unsubscribes from session</li>
+</ol>
+<pre><code>POST https://hub.example.com
+Host: hub.example.com
+Authorization: Bearer i8hweunweunweofiwweoijewiwe
+</code></pre>
+
+<h3 id="how-does-the-hub-validate-the-subscriber">How does the Hub validate the subscriber?</h3>
+<p>The Hub can make three distinct API calls to the subscribing app's <code>hub.callback</code> url. </p>
+<ol>
+<li>Hub verifies callback url with app</li>
+<li>Hub notifies app of event</li>
+<li>Hub denies subscription</li>
+</ol>
+<p>This <a href="https://drive.google.com/file/d/1sqh3Jghd2QGzq_EhRR-uv6axgIkVW1EE/view?usp=sharing">flow diagram</a> describes the actors and actions. </p>
+<p><img alt="WebSub security flow" src="/img/WebSub%20security%20sequence%20flow.png" /></p>
+<p>The <a href="http://fhircast.org/#app-subscribes-to-session">subscribing app initiates</a> the FHIRcast subscription, authenticating to the Hub with its bearer token, and providing the <code>hub.secret</code> and <code>hub.callback</code> url. The Hub verifies intent and ownership by performing an HTTP GET to the <code>hub.callback</code> url, with a <code>hub.challenge</code>. The subscribing app must echo the <code>hub.challenge</code> in the body of an HTTP 202 response. Once a workflow event occurs, the Hub notifies the app of the event by POSTing to the subscribing app's <code>hub.callback</code> url. The Hub provides an <a href="https://www.w3.org/TR/websub/#bib-RFC6151">HMAC signature</a> of the previously provided <code>hub.secret</code> in the <code>X-Hub-Signature</code> HTTP header.</p>
+<pre><code>POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
+Host: subscriber
+X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693be6ff3ae
+</code></pre>
+
+<p>The client that creates the subscription may not be the same system as the server hosting the callback url. (For example, some type of federated authorization model could possibly exist between these two systems.) However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the subscribing client and the callback url.</p>
+<h3 id="websub-security-considerations">WebSub Security Considerations</h3>
+<p>The WebSub RFC defines <a href="https://www.w3.org/TR/websub/#security-considerations">specific security considerations</a>, including the below, which are listed here for emphasis or elevation from optional to mandatory.
+* Subscribers must communicate with a Hub over https.
+* Hub must reject unsecured http callback urls. 
+* The subscribing app's <code>hub.callback</code> url should be unique and unguessable. 
+* Subscribing apps must provide a <code>hub.secret</code> and validate the <code>X-Hub-Signature</code> in the notification message.
+* Hubs must reject subscriptions if the callback url does not echo the <code>hub.challenge</code> as part of the intent verification GET.
+* When computing the HMAC digest with the <code>hub.secret</code> for the <code>X-Hub-Signature</code> HTTP header, Hubs must use SHA-256 or greater and must not use SHA-1.
+* For each subscription, the <code>hub.secret</code> must be unique, unguessable and securely stored by both the Hub and the app. 
+* To prevent a subscriber from continuing to receive information after its authorization has ended, if using OAuth 2.0, the Hub must limit the subscription's <code>lease_seconds</code> to be less than or equal to the access token's expiration timestamp.</p>
+<ul>
+<li><a href="https://www.w3.org/TR/websub/">W3C WebSub RFC</a></li>
+<li><a href="https://www.w3.org/TR/websub/#security-considerations">W3C WebSub RFC's Security Considerations</a></li>
+<li><a href="https://www.w3.org/TR/websub/#bib-RFC6151">HMAC RFC 6151</a></li>
+</ul>
+<h2 id="experimental-websockets-support">Experimental Websockets support</h2>
+<p>In addition to the web hooks communication pattern, the FHIRcast community is experimenting with the use of websockets for event notification. Below are some incomplete considerations for a potential websockets implementation.</p>
+<p>Subscribers SHOULD only use and Hub's SHOULD only accept connections made over the secure <em>wss://</em> websocket protocol and not the unsecured <em>ws://</em> websocket protocol.</p>
+<p>The WebSockets standard defines an <code>Origin</code> header, sent from the client to the server and intended to contain the url of the client. Subscribers using websockets may be running in a browser, in which case the browser enforces origin reporting to the Hub, or native apps in which the origin reported to the Hub can not be trusted. Therefore, a Hub exposing a websocket connection MUST not rely upon the origin sent by the subscriber. </p>
+<p>While native app subscribers can send any standard HTTP headers, notably including <em>Authorization: Bearer</em>, browser-based subscribers are limited to only HTTP Basic Auth or cookies. Therefore, the typical use of the OAuth 2.0 access_token for bearer authentication does not consistently work with websockets. FHIRcast describes a "ticket"-based authentication system, in which the <code>hub.topic</code> provided to the subscriber as part of the secured SMART app launch serves not only as a unique session identifier, but also as an "authorization ticket". This authorization ticket effectively acts as a bearer token. The Hub should therefore take care to generate opaque and unique <code>hub.topic</code> values. </p>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc6455">The WebSocket Protocol RFC 6455</a></li>
+<li><a href="https://devcenter.heroku.com/articles/websocket-security">Heroku's excellent explanation of websocket security</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../multitab-considerations/" class="btn btn-neutral float-right" title="Multi-tab Considerations">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../syncconsiderations/" class="btn btn-neutral" title="Synchronization Considerations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>®© HL7.org 2017+ <a rel="license" href="https://www.hl7.org/fhir/license.html"><img src="https://www.hl7.org/fhir/cc0.png" alt="CC0"></a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../syncconsiderations/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../multitab-considerations/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
