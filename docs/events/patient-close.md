@@ -4,14 +4,14 @@ eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 
 ## Workflow
 
-User closed patient's medical record. A previously open and in context patient chart is no longer open nor in context. The previously open patient may have been within the context of a specific encounter, or not. 
+User closed patient's medical record. A previously open and in context patient chart is no longer open nor in context. 
 
 ## Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart was previously in context.
-`encounter` | REQUIRED, if exists | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource previously in context in the now closed patient's chart.
+~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource previously in context in the now closed patient's chart.~~ DEPRECATED in favor of dedicated `encounter-close` event.
 
 
 ### Examples
@@ -58,3 +58,5 @@ Key | Optionality | Fhir operation to generate context | Description
 Version | Description
 ---- | ----
 1.0 | Initial Release
+1.1 | Deprecate encounter element in favor of dedicated `encounter-close` event.
+
