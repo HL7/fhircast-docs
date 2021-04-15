@@ -20,7 +20,7 @@ content | Resources created during a user's interaction with the active context.
 ##### Transactional Updates
 A key concept of the information sharing events is that information is shared in a transactional manner.
 
-![**Transactional Updates**](Images/TransactionalUpdates.png)
+![**Transactional Updates**](img/TransactionalUpdates.png)
 
 The above diagram shows a series of operations beginning with an [`<DiagnosticReport>FHIR Resource>-open` request](#fhir-resource-open-message) followed by three [`<FHIR Resource>-update` requests](#fhir-resource-update-message).  The anchor context is built up by the successive [`<FHIR Resource>-update` requests](#fhir-resource-update-message) which contain only changes to the current state.  These changes are propagated by the Hub to all subscribed clients with the [`<FHIR Resource>-update` events](#fhir-resource-update-message) containing only the changes.
 
