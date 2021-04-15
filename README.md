@@ -40,7 +40,7 @@ Interested parties may subscribe to the Infrastructure and Messaging listsrv by 
 The Conference call calendar is available at https://www.hl7.org/concalls/Default.aspx?ref=nav then from the drop-down select Infrastructure And Messaging.
 
 ## Copyright & License
-Copyright (c) 2018, HL7
+Copyright (c) 2021+ Health Level Seven® International (HL7) 
 
 This document is licensed under the terms of HL7's FHIR license.
 http://hl7.org/fhir/license.html
