@@ -18,6 +18,7 @@ nav:
     - Synchronization Considerations: syncconsiderations.md
     - Security Considerations: security-considerations.md
     - Multi-tab Considerations: multitab-considerations.md
+    - Content sharing research: content-sharing-research.md
     - About: about.md
 theme: readthedocs
 
