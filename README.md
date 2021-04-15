@@ -33,7 +33,11 @@ We encourage and welcome any contributions to FHIRcast.
 
 If you want to report an issue or enhancement, please make sure to browse our [existing issues](https://github.com/hl7/fhircast-docs) before logging new issues.
 
-In support of a healthy and inclusive community, we use and enforce a [code of conduct](./CODE_OF_CONDUCT.md) for all members of our community. Our code of conduct is adapted from the [CDS Hooks project](https://github.com/cds-hooks/docs) which was adapted from the) [Contributor Covenant](http://contributor-covenant.org/).
+In support of a healthy and inclusive community, we use and enforce a [code of conduct](./CODE_OF_CONDUCT.md) for all members of our community. Our code of conduct is adapted from the [CDS Hooks project](https://github.com/cds-hooks/docs) which was adapted from the) [Contributor Covenant](http://contributor-covenant.org/). In addition, FHIRcast is now a work-product governed by the decison making practices of the HL7 Infrastructure and Messaging work group.
+
+Interested parties may subscribe to the Infrastructure and Messaging listsrv by creating a FREE logon to HL7.org, then navigating to  https://www.hl7.org/myhl7/managelistservs.cfm to choose the Infrastructure and messaging/Infrastructure and Management(Primary list), and subscribing.
+
+The Conference call calendar is available at https://www.hl7.org/concalls/Default.aspx?ref=nav then from the drop-down select Infrastructure And Messaging.
 
 ## Copyright & License
 Copyright (c) 2018, HL7
