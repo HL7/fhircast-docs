@@ -3,6 +3,7 @@ site_name: FHIRcast
 nav:
     - Home: index.md
     - Specification: 
+        - 'Draft': 'specification/STU3BallotDraft.md'
         - 'Current - STU2': 'specification/STU2.md'
         - 'STU1': 'specification/STU1.md'
     - Event Catalog: 
