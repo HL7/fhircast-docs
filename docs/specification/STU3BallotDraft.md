@@ -295,6 +295,12 @@ Field | Optionality | Type | Description
 ###### `websocket` Successful Subscription Sequence
 ![Successful web socket subscription flow diagram](/img/Successful%20WebSocket%20Subscription%20Sequence.png)
 
+
+### Current context notification upon successful subscription
+Upon the successful creation of a new subscription, the subscribing application will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs MAY follow a successful subscription with an event notification informing the newly subscribed application of the most recent \*-open event for which no \*-close event has occurred, according to the app's subscription.  Hubs that implement this feature, SHALL not send an app events to which it is not subscribed. 
+
+ Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event trigged notification, as specified in Event Notification](#event-notification). 
+
 ### Unsubscribe
 
 Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
