@@ -616,6 +616,42 @@ Content-Type: application/json
   }
 }
 ```
+## Sharing of Content
+In addition to basic context synchronization, FHIRcast supports real-time exchange of resources between clients subscribed to the same topic.
+
+A key concept of the content sharing events is that the content is shared in a transactional manner.
+
+![Transactional Updates](/img/TransactionalUpdates.png)
+
+The above diagram shows a series of operations beginning with a [`[FHIR resource]-open`](#fhir-resource-open) request followed by three [`[FHIR resource]-update`](#fhir-resource-update) requests.  The content in an anchor context is built up by the successive [`[FHIR resource]-update`](#fhir-resource-update) requests which contain only changes to the current state.  These changes are propagated by the Hub to all subscribed clients using [`[FHIR resource]-update`](#fhir-resource-update) events containing only the changes to be made.
+
+In order to avoid lost updates and other out of sync conditions, the Hub serves as the transaction coordinator.  It fulfills this responsibility by creating a version of the content's state with each operation.  If an operation is requested by a client which provides an incorrect version, this request is rejected.  This approach is similar to the version concurrency approach used by [FHIR versions and managing resource contention](https://www.hl7.org/fhir/http.html#concurrency).  Additionally, many of the FHIRcast content sharing concepts have similarities to the [FHIR messaging mechanisms](https://www.hl7.org/fhir/messaging.html) and where possible the approaches and structures are aligned.
+
+FHIR resources are used to convey the structured information being exchanged in [`[FHIR resource]-update`](#fhir-resource-update) operations.  However, it is important to note that these resources may never be persisted in a FHIR server.  During the exchange of information, the content (FHIR resource instances) may be very dynamic in nature with a user creating, modifying, and even removing information which is being exchanged.  For example, a measurement made in an imaging application may be altered many times before it is finalized and it may be entirely removed.
+
+### Responsibilities of a FHIRcast Hub and a Subscribed Client
+
+Hubs must fulfill additional responsibilities when supporting content sharing operations:
+1. Assign and maintain an anchor context's `versionId` when processing a [`[FHIR resource]-open`](#fhir-resource-open) request
+2. Validate [`[FHIR resource]-update`](#fhir-resource-update) and [`[FHIR resource]-select`](#fhir-resource-select) requests for the correct `versionId` and reject the request if the version does not match the current `versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content
+3. Assign and maintain a new `versionId` for the anchor context's content and provide the new `versionId` in the event corresponding to the validated request 
+4. Maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`[FHIR resource]-open`](#fhir-resource-open) request and when responding to a [`GET Context`](#get-context) request
+5. When a [`[FHIR resource]-close`](#fhir-resource-close)  request is received, the Hub no longer retains the content for that anchor context
+
+A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources in a manner sufficient to perform its required capabilities (e.g., find the `id` of a resource and the `versionId` of the anchor context's content), a Hub is not responsible for additional structural checking. 
+
+A Hub is not responsible for any long-term persistence of shared information and should purge the content when a [`[FHIR resource]-close`](#fhir-resource-close) request is received.
+
+Additionally, a Hub is not responsible to prevent applications participating in exchanging structured information from causing inconsistencies in the information exchanged.  For example, an inconsistency could arise if an application removes from the anchor context's content a resource which is referenced by another resource.  The Hub may check [`[FHIR resource]-update`](#fhir-resource-update) requests for such inconsistencies and reject the request with an appropriate error message; however, it is not required to do so.  Additionally, a Hub may check for inconsistencies which it deems to be critical but not perform exhaustive validation. For example, a Hub could validate that the content in a `DiagnosticReport` anchor context always includes at least one primary imaging study.
+
+Clients wishing to exchange structure information must:
+1. Adhere to a FHIRcast event naming convention as follows: [FHIR resource]-[open|update|select|close]
+2. Use a [`[FHIR resource]-open`](#fhir-resource-open) request to open a new resource which becomes the anchor context
+3. Make a [`[FHIR resource]-update`](#fhir-resource-update) request when appropriate. The [`[FHIR resource]-update`](#fhir-resource-update) request contains a `Bundle` resource which is a collection of resources that are atomically processed by the Hub with the anchor context's content being adjusted appropriately
+4. Maintain the current `versionId` of the anchor context provided by the Hub so that a subsequent [`[FHIR resource]-update`](#fhir-resource-update) request may provide the current `versionId`
+5. Appropriately process [FHIR resource]-[open|update|select|close] events; note that a client may choose to ignore the contents of a [FHIR resource]-[open|update|select|close] event but should still track the `versionId` for subsequent use
+6. If a [`[FHIR resource]-update`](#fhir-resource-update) request fails with the Hub, the client may issue a [`GET Context`](#get-context) request to the Hub in order to retrieve the current content in the anchor context and its current `versionId`
+7. When using websockets, clients will now receive the current content (if any exists) of the anchor context (if one has been established) in response to the Subscribe request, see [`return of current content`](#websocket-return-of-current-content).  Clients that don't support the exchange of structured information may ignore the content of the Subscribe response payload.
 
 ## Conformance
 The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on its FHIR server's CapabilityStatement as described below. 
@@ -718,12 +754,16 @@ Version | Description
 
 ## Glossary
 
-* session: an abstract concept representing a shared workspace, such as a user's login session across multiple applications or a shared view of one application distributed to multiple users.  A session results from a user logging into an application and can encompass one or more workflows.
-* topic: an identifier of a session
-* client: subscribes to and requests or receives session events
-* current context: data associated with a session at a given time and communicated between clients that share a session
-* session event: a user initiated workflow event, communicated to clients, containing the current context
-
+Concept | Description
+--- | ---
+session | an abstract concept representing a shared workspace, such as a user's login session across multiple applications or a shared view of one application distributed to multiple users - a session results from a user logging into an application and can encompass one or more workflows
+topic | an identifier of a session
+client | subscribes to and requests or receives session events
+context | a resource associated with a session and communicated between clients that share a session which indicates a subject on which all clients should synchronize as appropriate to their functionality
+current context | the context associated with a session that is active at a given time
+anchor context | a context which is serving as a container for shared content, typical anchor contexts are resources such as Patient, Encounter, ImagingStudy, and DiagnosticReport - content sharing events include the anchor context and the content shared in these events
+content | resources created during a user's interaction with the anchor context - for example, if the anchor context is an imaging study the user may make a measurement resulting in an observation containing measurement information, the shared content either directly or indirectly references the anchor context
+session event | a user initiated workflow event, communicated to clients, containing the current context
 
 ## Revision History
 All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
