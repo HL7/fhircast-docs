@@ -1,4 +1,4 @@
-# home-[open|close]
+# home-open
 
 eventMaturity | [0 - Draft](../../specification/STU2/#event-maturity-model)
 
@@ -6,7 +6,7 @@ eventMaturity | [0 - Draft](../../specification/STU2/#event-maturity-model)
 
 The user has opened or switched back to the application's home page or tab which does not have any FHIR related context.
 
-Unlike most of FHIRcast events, `home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the FHIR-resource-[open|close] syntax.
+Unlike most of FHIRcast events, `home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the [FHIR-resource]-[open|close] syntax.
 
 ## Context
 
