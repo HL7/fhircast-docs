@@ -4,7 +4,9 @@ eventMaturity | [0 - Draft](../../specification/STU2/#event-maturity-model)
 
 ## Workflow
 
-For multi-tab applications, this event occurs when the user switches to a context-less activity. 
+The user has opened or switched back to the application's home page or tab which does not have any FHIR related context.
+
+Unlike most of FHIRcast events, `home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the FHIR-resource-[open|close] syntax.
 
 ## Context
 
