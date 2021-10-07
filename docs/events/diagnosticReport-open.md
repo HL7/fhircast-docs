@@ -24,7 +24,6 @@ Key | Optionality | FHIR operation to generate context | Description
 #### [FHIR resource]-open Example Request
 The following example shows a report being opened that contains a single primary study.  Note that the diagnostic report's `imagingStudy` and `subject` attributes have references to the imaging study and patient which are also in the open request.
 
-<mark>
 ```
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
@@ -96,12 +95,10 @@ The following example shows a report being opened that contains a single primary
   }
 }
 ```
-</mark>
 
 #### DiagnosticReport-open Event Example
 The event distributed by the Hub includes a version context with a `versionId` which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
 
-<mark>
 ```
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
@@ -180,7 +177,6 @@ The event distributed by the Hub includes a version context with a `versionId` w
   }
 }
 ```
-</mark>
 
 ## Change Log
 Version | Description
