@@ -4,6 +4,13 @@ eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
 ## Workflow
 A `DiagnosticReport-close` event is posted to the Hub when an application desires to close the active anchor context centered workflow.  After the event is distributed to all applications subscribed to the topic, it is expected that the Hub will remove any content associated with the anchor context from its memory.
 
+## Context
+
+### Context
+Key | Optionality | FHIR operation to generate context | Description
+---- | ---- | ---- | ----
+`report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
+
 ## Examples
 
 ### DiagnosticReport-close Example
