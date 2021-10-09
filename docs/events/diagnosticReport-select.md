@@ -12,9 +12,8 @@ If a resource is noted as selected, any other resource which had been selected i
 ## Context
 
 ### Context
-
 Key | Optionality | FHIR operation to generate context | Description
---- | --- | --- | ---
+---- | ---- | ---- | ----
 `report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
 `select` | REQUIRED | not applicable | Contains zero or more references to selected resources. If a reference to a resource is present in the `select` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `select` array, this is an indication that any previously selected resource is now unselected.
 `version` | REQUIRED | not applicable | Current content version
