@@ -7,7 +7,7 @@ A `DiagnosticReport-open` request is posted to the Hub when a new or existing Di
 When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 ### Content Sharing Support
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `versionId` with the anchor context.  Subscribed applications MUST submit this `versionId` in subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.  If a client will neither make a [`DiagnosticReport-update`](../diagnosticReport-update) request or respond to [`DiagnosticReport-update`](../diagnosticReport-update) events, the versionId can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `versionId` with the anchor context.  Subscribed applications MUST submit this `versionId` in subsequent [`DiagnosticReport-update`](./diagnosticReport-update.md) requests.  If a client will neither make a [`DiagnosticReport-update`](./diagnosticReport-update.md) request or respond to [`DiagnosticReport-update`](./diagnosticReport-update.md) events, the versionId can be safely ignored.
 
 ## Context
 
