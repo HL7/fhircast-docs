@@ -4,7 +4,7 @@ eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
 ## Workflow
 A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
 
-When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to an event posted by an image reading application by creating and opening a new or existing report.
+When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 ### Content Sharing Support
 If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `versionId` with the anchor context.  Subscribed applications MUST submit this `versionId` in subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.  If a client will neither make a [`DiagnosticReport-update`](../diagnosticReport-update) request or respond to [`DiagnosticReport-update`](../diagnosticReport-update) events, the versionId can be safely ignored.
@@ -112,9 +112,6 @@ The event distributed by the Hub includes a version context with a `versionId` w
         "resource": {
           "resourceType": "DiagnosticReport",
           "id": "40012366",
-          "meta": {
-            "versionId": "0"
-          },
           "status": "unknown",
           "subject": {
             "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
