@@ -134,7 +134,7 @@ The following example shows adding an imaging study to the existing diagnostic r
 ```
 
 #### DiagnosticReport-update Event Example
-The HUB SHALL distribute a corresponding event to all applications currently subscribed to the topic. The Hub SHALL replace the `versionId` in the request with a new `versionId` generated and retained by the Hub.  The prior `versionId` of the content is also provided in the `version` key to ensure that a client is currently in sync with the content prior to applying the new changes.
+The HUB SHALL distribute a corresponding event to all applications currently subscribed to the topic. The Hub SHALL replace the `versionId` in the request with a new `versionId` generated and retained by the Hub.  The prior version, `priorVersionId`, of the content is also provided in the `version` key to ensure that a client is currently in sync with the content prior to applying the new changes.  If the value of `priorVersionId` is not in agreement with the `versionId` last received by the application, it is recommended that the application issue a GET request to the Hub in order to retrieve the latest version of the content (note that the GET request returns all existing content and the its `versionId`).
 
 ```
 {
