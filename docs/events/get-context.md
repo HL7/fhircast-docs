@@ -7,7 +7,7 @@ Returns:<br>
 This method returns an object containing the current context of a topic. The current context is made up of one or more "top-level" contextual resources and the type of the anchor context in the `contextType` field.  For example, if the current context was established using a [`Patient-open`](./patient-open.md) request the returned object will contain `contextType: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](./diagnosticReport-open.md) request the returned object will contain `contextType: "DiagnosticReport"`.
 
 ## Content Sharing Support
-If a Hub supports content sharing, the Hub returns the current content in an `updates` key and the content version in a `version` key.  `Bundle` entries SHALL not contain a `request` attribute.  The enclosed `Bundle` resource SHALL have a `type` of `collection`.
+If a Hub supports content sharing, the Hub returns the current content in an `content` key and the content version in a `version` key.  `Bundle` entries SHALL not contain a `request` attribute.  The enclosed `Bundle` resource SHALL have a `type` of `collection`.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
 
 ## Context
 
@@ -15,7 +15,7 @@ If a Hub supports content sharing, the Hub returns the current content in an `up
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 resource key | REQUIRED | `[resourceType]/{id}?_elements=identifier` | 1..* contextual resources
-`updates` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context
+`content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context
 `version`| REQUIRED if content sharing is supported | not applicable | Current content version
  
 ## Examples
@@ -87,7 +87,7 @@ The following example shows a response to the get context request when the curre
       }
     },
     {
-      "key": "updates",
+      "key": "content",
       "resource": {
         "resourceType": "Bundle",
         "id": "8i7tbu6fby5fuuey7133eh",
