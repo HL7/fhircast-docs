@@ -9,180 +9,218 @@ The updates could include (but are not limited to) any of the following:
 * adding, updating, or removing other FHIR resources contained in the anchor context
 * updating attributes of the anchor context resource's attributes
 
-The context MUST contain a `Bundle` in an `updates` key which contains one or more resources as entries in the Bundle.
+The context MUST contain a `Bundle` resource in an `updates` key which contains one or more resources which are to be updated as entries in the Bundle.
 
-The exchange of information is made using a transactional approach using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key); therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
+Exchange of information is made using a transactional approach using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key); therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
 
 The Hub plays a critical role in helping applications stay synchronized with the current state of exchanged information.  On receiving a `[FHIR resource]-update` request the Hub SHALL examine the `versionId` of the anchor context, which is in the `version` key of the event.   The Hub SHALL compare the `versionId` of the incoming request with the `versionId` the Hub previously assigned to the anchor context (i.e, the `versionId` assigned by the Hub when the previous `DiagnosticReport-open` or `DiagnosticReport-update` request was processed). If the incoming `versionId` and last assigned `versionId` do not match, the request SHALL be rejected and the Hub SHALL return a 4xx/5xx HTTP Status Code.
  
-If the `versionId` values match, the Hub proceeds with processing each of the FHIR resources in the Bundle and SHALL process all Bundle entries in an atomic manner.  After updating its copy of the current state of exchanged information, the Hub SHALL assign a new `versionId` to the anchor context and use this new `versionId` in the `[FHIR resource]-update` event it forwards to subscribed applications.  The distributed update event SHALL contain a Bundle resource with the same Bundle `id` which was contained in the request. 
+If the `versionId` values match, the Hub proceeds with processing each of the FHIR resources in the Bundle and SHALL process all Bundle entries in an atomic manner.  After updating its copy of the current state of exchanged information, the Hub SHALL assign a new `versionId` to the anchor context and use this new `versionId` in the `DiagnosticReport-update` event it forwards to subscribed applications.  The distributed update event SHALL contain a Bundle resource with the same Bundle `id` which was contained in the request. 
 
-When a  `[FHIR resource]-update` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `versionId` of the anchor context provided in the event for later use.
+When a  `DiagnosticReport-update` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `versionId` of the anchor context provided in the event for later use.
 
 ## Context
 
-#### Context
+### Context
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
-`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Type of the [FHIR resource] being opened
-`study` | OPTIONAL | ImagingStudy/{id}?_elements=identifier,accession | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided 
+`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
+`updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context 
 `version`| REQUIRED | not applicable | Current content version
 
-### Examples
+## Supported Update Request Methods
+Each entry in the `updates` Bundle resource must contain one of the below `method` values in the entry's `request` attribute.
 
+Request Method | Operation
+--- | ---
+`POST` | Add a new resource
+`PUT` | Replace/update an existing resource
+`PATCH` | Update attributes of an existing resource
+`DELETE` | Remove an existing resource
 
+## Examples
 
-
-
-#### [FHIR resource]-open Example Request
-The following example shows a report being opened that contains a single primary study.  Note that the diagnostic report's `imagingStudy` and `subject` attributes have references to the imaging study and patient which are also in the open request.
+### DiagnosticReport-update Request Example
+The following example shows adding an imaging study to the existing diagnostic report context.  The `context` holds the `id` and `versionId` of the diagnostic report as required in all  `DiagnosticReport-update` events.  The Bundle holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study. 
 
 ```
 {
-  "timestamp": "2020-09-07T14:58:45.988Z",
-  "id": "0d4c9998",
+  "timestamp": "2019-09-10T14:58:45.988Z",
+  "id": "0d4c7776",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "DiagnosticReport-open",
+    "hub.event": "DiagnosticReport-update",
     "context": [
       {
-        "key": "Report",
+        "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "40012366",
-          "status": "unknown",
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          },
-          "imagingStudy": [
-            {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
-            }
-          ]
+          "id": "40012366"
         }
       },
       {
-        "key": "patient",
+        "key": "updates",
         "resource": {
-          "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
+          "resourceType": "Bundle",
+          "id": "8i7tbu6fby5fuuey7133eh",
+          "type": "transaction",
+          "entry": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            }
-          ]
-        }
-      },
-      {
-        "key": "study",
-        "resource": {
-          "resourceType": "ImagingStudy",
-          "description": "CHEST XRAY",
-          "started": "2010-01-30T23:00:00.000Z",
-          "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "identifier": [
-            {
-              "type": {
-                "coding": [
+              "request": {
+                "method": "POST"
+              },
+              "resource": {
+                "resourceType": "ImagingStudy",
+                "description": "CHEST XRAY",
+                "started": "2010-02-14T01:10:00.000Z",
+                "id": "3478116342",
+                "identifier": [
                   {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code": "ACSN"
+                    "type": {
+                      "coding": [
+                        {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "code": "ACSN"
+                        }
+                      ]
+                    },
+                    "value": "3478116342"
+                  },
+                  {
+                    "system": "urn:dicom:uid",
+                    "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
                   }
                 ]
-              },
-              "value": "342123458"
+              }
             },
             {
-              "system": "urn:dicom:uid",
-              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
+              "request": {
+                "method": "POST"
+              },
+              "resource": {
+                "resourceType": "Observation",
+                "id": "435098234",
+                "partOf": {
+                  "reference": "ImagingStudy/3478116342"
+                },
+                "status": "preliminary",
+                "category": {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "imaging",
+                  "display": "Imaging"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://www.radlex.org",
+                      "code": "RID49690",
+                      "display": "simple cyst"
+                    }
+                  ] 
+                },
+                "issued": "2020-09-07T15:02:03.651Z"
+              }
             }
-          ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+          ]
         }
+      },
+      {
+        "key": "version",
+        "versionId": "1"
       }
     ]
   }
 }
 ```
 
-#### DiagnosticReport-open Event Example
-The event distributed by the Hub includes a version context with a `versionId` which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
+#### DiagnosticReport-update Event Example
+The HUB SHALL distribute a corresponding event to all applications currently subscribed to the topic. The Hub SHALL replace the `versionId` in the request with a new `versionId` generated and retained by the Hub.  The prior `versionId` of the content is also provided in the `version` key to ensure that a client is currently in sync with the content prior to applying the new changes.
 
 ```
 {
-  "timestamp": "2020-09-07T14:58:45.988Z",
-  "id": "0d4c9998",
+  "timestamp": "2019-09-10T14:58:45.988Z",
+  "id": "0d4c7776",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "DiagnosticReport-open",
+    "hub.event": "DiagnosticReport-update",
     "context": [
       {
-        "key": "Report",
+        "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "40012366",
-          "status": "unknown",
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          },
-          "imagingStudy": [
-            {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
-            }
-          ]
+          "id": "40012366"
         }
       },
       {
-        "key": "patient",
+        "key": "updates",
         "resource": {
-          "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
+          "resourceType": "Bundle",
+          "id": "8i7tbu6fby5fuuey7133eh",
+          "type": "transaction",
+          "entry": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            }
-          ]
-        }
-      },
-      {
-        "key": "study",
-        "resource": {
-          "resourceType": "ImagingStudy",
-          "description": "CHEST XRAY",
-          "started": "2010-01-30T23:00:00.000Z",
-          "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "identifier": [
-            {
-              "type": {
-                "coding": [
+              "request": {
+                "method": "POST"
+              },
+              "resource": {
+                "resourceType": "ImagingStudy",
+                "description": "CHEST XRAY",
+                "started": "2010-02-14T01:10:00.000Z",
+                "id": "3478116342",
+                "identifier": [
                   {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code": "ACSN"
+                    "type": {
+                      "coding": [
+                        {
+                          "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                          "code": "ACSN"
+                        }
+                      ]
+                    },
+                    "value": "3478116342"
+                  },
+                  {
+                    "system": "urn:dicom:uid",
+                    "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
                   }
                 ]
-              },
-              "value": "342123458"
+              }
             },
             {
-              "system": "urn:dicom:uid",
-              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
+              "request": {
+                "method": "POST"
+              },
+              "resource": {
+                "resourceType": "Observation",
+                "id": "435098234",
+                "partOf": {
+                  "reference": "ImagingStudy/3478116342"
+                },
+                "status": "preliminary",
+                "category": {
+                  "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                  "code": "imaging",
+                  "display": "Imaging"
+                },
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://www.radlex.org",
+                      "code": "RID49690",
+                      "display": "simple cyst"
+                    }
+                  ] 
+                },
+                "issued": "2020-09-07T15:02:03.651Z"
+              }
             }
-          ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+          ]
         }
       },
       {
         "key": "version",
-        "versionId": "1"
+        "versionId": "2",
+        "priorVersionId": "1"
       }
     ]
   }
