@@ -12,6 +12,7 @@ If a resource is noted as selected, any other resource which had been selected i
 ## Context
 
 ### Context
+
 Key | Optionality | FHIR operation to generate context | Description
 - | - | - | -
 `report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
