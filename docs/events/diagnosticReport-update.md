@@ -220,7 +220,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
       {
         "key": "version",
         "versionId": "2",
-        "priorVersionId": "1"
+        "priorVersionId": "13134134"
       }
     ]
   }
