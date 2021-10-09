@@ -15,8 +15,8 @@ If a Hub supports content sharing, when it distributes a `DiagnosticReport-open`
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
-`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Type of the [FHIR resource] being opened
-`study` | OPTIONAL | ImagingStudy/{id}?_elements=identifier,accession | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided 
+`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
+`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided 
 `version`| REQUIRED if content sharing is supported | not applicable | Current content version
 
 ### Examples
