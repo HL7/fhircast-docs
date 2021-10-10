@@ -1,12 +1,10 @@
 # DiagnosticReport-update
 eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
 
-## Workflow
-The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a contained FHIR resource in the content of the current anchor context. One or more updates MAY occur while the anchor context is open.
+ The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a contained FHIR resource in the content of the current anchor context. One or more updates MAY occur while the anchor context is open.
 
-The updates could include (but are not limited to) any of the following:
-* adding, updating, or removing observations contained in the DiagnosticReport anchor context
-* adding, updating, or removing other FHIR resources contained in the anchor context
+The updates include:
+* adding, updating, or removing FHIR resources contained in the anchor context
 * updating attributes of the anchor context resource's attributes
 
 The context MUST contain a `Bundle` resource in an `updates` key which contains one or more resources which are to be updated as entries in the Bundle.
@@ -19,6 +17,13 @@ If the `versionId` values match, the Hub proceeds with processing each of the FH
 
 When a  `DiagnosticReport-update` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `versionId` of the anchor context provided in the event for later use.
 
+## Content Information
+FHIR resources are used to carry the information being displayed.  These are the entries in the `Bundle` resource inside the `updates` key.  Commonly the information is contained in an `entry`'s resource. For example, an `Observation` resource most likely contains all information regarding that observation.
+
+However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained.  When exchanging a resource by reference, an `entry`'s `fullUrl` is populated with a uri from which the full content of the resource may be retrieved.  Additionally, the `entry`'s `resource` attribute contains at least the `type` and `id` of the resource.  Finally, the `method` value in an entry's `request` attribute must be appropriately populated.
+
+If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance.  Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session as controlled by the Hub with a FHIR retrieve endpoint.
+
 ## Context
 
 ### Context
@@ -29,7 +34,7 @@ Key | Optionality | FHIR operation to generate context | Description
 `version`| REQUIRED | not applicable | Current content version
 
 ## Supported Update Request Methods
-Each entry in the `updates` Bundle resource must contain one of the below `method` values in the entry's `request` attribute.
+Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
 
 Request Method | Operation
 --- | ---
