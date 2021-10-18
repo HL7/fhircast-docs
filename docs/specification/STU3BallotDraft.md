@@ -623,7 +623,7 @@ A key concept of the content sharing events is that the content is shared in a t
 
 ![Transactional Updates](../img/TransactionalUpdates.png)
 
-The above diagram shows a series of operations beginning with a `[FHIR resource]-open request followed by three `[FHIR resource]-update` requests.  The content in an anchor context is built up by the successive `[FHIR resource]-update` requests which contain only changes to the current state.  These changes are propagated by the Hub to all subscribed clients using `[FHIR resource]-update` events containing only the changes to be made.
+The above diagram shows a series of operations beginning with a `[FHIR resource]-open` request followed by three `[FHIR resource]-update` requests.  The content in an anchor context is built up by the successive `[FHIR resource]-update` requests which contain only changes to the current state.  These changes are propagated by the Hub to all subscribed clients using `[FHIR resource]-update` events containing only the changes to be made.
 
 In order to avoid lost updates and other out of sync conditions, the Hub serves as the transaction coordinator.  It fulfills this responsibility by creating a version of the content's state with each operation.  If an operation is requested by a client which provides an incorrect version, this request is rejected.  This approach is similar to the version concurrency approach used by [FHIR versions and managing resource contention](https://www.hl7.org/fhir/http.html#concurrency).  Additionally, many of the FHIRcast content sharing concepts have similarities to the [FHIR messaging mechanisms](https://www.hl7.org/fhir/messaging.html) and where possible the approaches and structures are aligned.
 
@@ -663,6 +663,10 @@ Exchanged content need not have an independent existence. For the purposes of a 
 
 Structured information may be added, changed, or removed quite frequently during the lifetime of a context. Exchanged information is transitory and it is not required that the information exchanged during the collaboration is persisted. However, as required by their use cases, each participating application may choose to persist information in their own structures which may or may not be expressed as a FHIR resource. Even if stored in the form of a FHIR resource, the resource may or may not be stored in a system which provides access to the information through a FHIR server and associated FHIR operations (i.e., it may be persisted only in storage specific to a given application).
 
+| ![Basic Exchange of Content](../img/Basic%20Content%20Exchange.png) |
+|:--:|
+| Basics of Content Sharing |
+
 #### Diagnostic Report Centered Workflow Events
 When the anchor context is a 'DiagnosticReport' the following events are possible during content sharing. 
 
@@ -674,10 +678,17 @@ Operation | Description
 [`DiagnosticReport-close`](../events/diagnosticReport-close.md) | This notification is used to close the current diagnostic report anchor context with the current state of the exchanged content stored by subscribed applications as appropriate and cleared from these applications and the Hub. 
 
 #### Example Use Case
+A frequent scenario which illustrates a diagnostic report centered workflow involves an EHR, an image reading application, a reporting application, and an advanced quantification application.  The EHR, image reading application, and reporting application are authenticated and subscribed to the same topic using a FHIRcast Hub with the EHR establishing a patient context, see messages 1 through 7 in the below sequence diagram.
 
-![Subscription denial flow diagram](../img/Basic%20Content%20Exchange.png)
+In an EHR a clinical users opens a patient with the EHR sending a Patient-open request to the Hub (messages 1 and 2).  The Hub notes the context and if it supports content sharing assigns a version to the context then distributes the Patient-open events (messages 3 and 4a, 4b, and 4c). The reporting application reacts to the patient context in some manner such as displaying available reports and imaging studies associated with the patient while storing the version of the patient context in case content is shared in this anchor context (message 5).  The imaging application is not interested in patient contexts so it ignores the event entirely (message 6) while the EHR identifies the Patient-open event as one it triggered and stores the version of the context provided by the Hub in case it would like to contribute content is this context (message 7).
 
-A frequent scenario which illustrates a diagnostic report centered workflow involves an EHR, an image reading application, a reporting application, and an advanced quantification application.  The EHR, image reading application, and reporting application are authenticated and subscribed to the same topic using a FHIRcast Hub with the EHR establishing a patient context.  Using a reporting application, a clinical user decides to create a report by choosing an imaging study as the primary subject of the report.  The reporting application creates a report and then opens a diagnostic report context by posting a [`DiagnosticReport-open`](../events/diagnosticReport-open.md) request to the Hub. On receiving the [`DiagnosticReport-open`](../events/diagnosticReport-open.md) event from the Hub, an EHR decides not to react to this event noticing that the patient context has not changed. The image reading application responds to the event by opening the imaging study referenced in the `DiagnosticReport` anchor context.
+Next the clinical user decides to create diagnostic report using the reporting application, see messages 8 through `4 in the below sequence diagram.
+
+Using a reporting application, a clinical user creates a report by choosing an imaging study as the primary subject of the report (message 8).  The reporting application creates a report and then opens a diagnostic report context by posting a [`DiagnosticReport-open`](../events/diagnosticReport-open.md) request to the Hub (message 9). The Hub notes the context, assigns a version to the context and then distributes a [`DiagnosticReport-open`](../events/diagnosticReport-open.md) event with that version to subscribed applications (messages 10, 11a, 11b, and 11c). On receiving the [`DiagnosticReport-open`](../events/diagnosticReport-open.md) event from the Hub, an EHR decides not to react to this event noticing that the patient context has not changed (message 14). The image reading application responds to the event by opening the imaging study referenced in the diagnostic report anchor context (message 13) while the reporting application identifies the [`DiagnosticReport-open`](../events/diagnosticReport-open.md) event as one it triggered and stores the version of the context provided by the Hub (message 12).
+
+| ![Opening a Diagnostic Report Context](../img/Open%20Report.png) |
+|:--:|
+| Opening a Diagnostic Report Context |
 
 The clinical user takes a measurement using the imaging reading application which then provides the reporting application this measurement by making a [`DiagnosticReport-update`](../events/diagnosticReport-update.md) request to the Hub. The reporting application receives the measurement through a [`DiagnosticReport-update`](../events/diagnosticReport-update.md) event from the Hub and adds this information to the report. As the clinical user continues the reporting process they select a measurement or other structured information in the reporting application, the reporting application may note this selection by posting a [`DiagnosticReport-select`](../events/diagnosticReport-select.md) request to the Hub. Upon receiving the [`DiagnosticReport-select`](../events/diagnosticReport-select.md) event the image reading application may navigate to the image on which this measurement was acquired.
 
