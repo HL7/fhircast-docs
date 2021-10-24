@@ -9,7 +9,7 @@ The updates include:
 
 The context MUST contain a `Bundle` resource in an `updates` key which contains one or more resources which are to be updated as entries in the Bundle.
 
-Exchange of information is made using a transactional approach using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key); therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
+Exchange of information is made transactionally using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key).  Therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
 
 The Hub plays a critical role in helping applications stay synchronized with the current state of exchanged information.  On receiving a `[FHIR resource]-update` request the Hub SHALL examine the `versionId` of the anchor context, which is in the `version` key of the event.   The Hub SHALL compare the `versionId` of the incoming request with the `versionId` the Hub previously assigned to the anchor context (i.e, the `versionId` assigned by the Hub when the previous `DiagnosticReport-open` or `DiagnosticReport-update` request was processed). If the incoming `versionId` and last assigned `versionId` do not match, the request SHALL be rejected and the Hub SHALL return a 4xx/5xx HTTP Status Code.
  
@@ -31,7 +31,7 @@ Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
 `updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context 
-`version`| REQUIRED | not applicable | Current content version
+`version`| REQUIRED | not applicable | In the request the current content version - the event distributed by the Hub contains the new `versionId` as well as the `priorVersionId` of the content (i.e., the `versionId` passed in the update request)
 
 ## Supported Update Request Methods
 Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
@@ -131,7 +131,7 @@ The following example shows adding an imaging study to the existing diagnostic r
       },
       {
         "key": "version",
-        "versionId": "1"
+        "versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
       }
     ]
   }
@@ -224,8 +224,8 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
       },
       {
         "key": "version",
-        "versionId": "2",
-        "priorVersionId": "1"
+        "versionId": "efcac43a-ed38-49e4-8d79-73f78290292a",
+        "priorVersionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
       }
     ]
   }
