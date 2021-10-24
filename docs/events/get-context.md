@@ -123,7 +123,7 @@ The following example shows a response to the get context request when the curre
     },
     {
       "key": "version",
-      "versionId": "2"
+      "versionId": "023fe970-a6d9-442f-a499-dfb71f1edba6"
     }
   ]
 }
