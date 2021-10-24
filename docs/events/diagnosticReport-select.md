@@ -6,7 +6,7 @@ A `DiagnosticReport-select` request will be made to the Hub when an application 
 
 This event allows other participating applications to adjust their UIs as appropriate.  For example, a reporting system may indicate that the user has selected a particular observation associated with a measurement value. After receiving this event an image reading application which created the measurement may wish to change its user display such that the image from which the measurement was acquired is visible.
     
-If a resource is noted as selected, any other resource which had been selected is no longer selected (i.e. an implicit unselect of the previously selected resource).  Additionally, an application may indicate that all selections have been cleared by posting a `DiagnosticReport-select` with an empty `select` array. 
+If a resource is noted as selected, any other resource which had been selected is no longer selected (i.e., an implicit unselect of any previously selected resource).  Additionally, an application may indicate that all selections have been cleared by posting a `DiagnosticReport-select` with an empty `select` array. 
 
     
 ## Context
@@ -48,7 +48,7 @@ The following example shows the selection of a single Observation resource in an
       },
       {
         "key": "version",
-        "versionId": "5"
+        "versionId": "f2f90ff4-a218-47cb-afa5-b987e1154b3b"
       }
     ]
   }
