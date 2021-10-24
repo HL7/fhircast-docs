@@ -17,7 +17,7 @@ Key | Optionality | FHIR operation to generate context | Description
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
 `study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided 
-`version`| REQUIRED if content sharing is supported | not applicable | Current content version
+`version`| REQUIRED if content sharing is supported | not applicable | Current content version which is present in the Hub distributed event but not present in the open request
 
 ### Examples
 
@@ -168,7 +168,7 @@ The event distributed by the Hub includes a version context with a `versionId` w
       },
       {
         "key": "version",
-        "versionId": "1"
+        "versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
       }
     ]
   }
