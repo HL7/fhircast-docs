@@ -14,6 +14,22 @@ Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's `details.coding.code` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid" and the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" . Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
 
+## OperationOutcome profile
+
+The profile of the OperationOutcome resource expressed in FHIR shorthand.
+
+```
+Profile:     SyncErrorOperationOutcome
+Parent:      OperationOutcome
+Id:          sync-error-operationoutcome
+Description: The OperationOutcome included in a syncerror event.
+* issue[0].severity.code = #error
+* issue[0].code = #conflict
+* issue[0].details.coding 2..
+* issue[0].details.coding[0].system = https://fhircast.hl7.org/events/syncerror/eventid
+* issue[0].details.coding[1].system = https://fhircast.hl7.org/events/syncerror/eventname
+* issue[0].diagnostics 0..1
+```
 
 
 ### Examples
@@ -34,7 +50,7 @@ Key | Optionality | Fhir operation to generate context | Description
           "resourceType": "OperationOutcome",
           "issue": [
             {
-              "severity": "warning",
+              "severity": "error",
               "code": "processing",
               "diagnostics": "AppId3456 failed to follow context",
               "details": {
