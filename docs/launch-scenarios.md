@@ -59,7 +59,6 @@ The app then [subscribes](/#app-subscribes-to-session) to the identified session
 
 Two different launch scenarios are supported. For each launch scenario, the app discovers the session topic to which it [subscribes](/#app-subscribes-to-session).
 
-
 ### EHR Launch: User SSO's into app from EHR
 
 The simplest launch scenario is the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence), in which the subscribing app is launched from an EHR authenticated session. The app requests both the `launch` and desired FHIRcast scopes (for example, `fhircast/ImagingStudy-open.read`) and  receives information about the user and session as part of the launch. The app subsequently subscribes to the launching user's session. 

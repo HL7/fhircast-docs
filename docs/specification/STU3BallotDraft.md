@@ -115,6 +115,7 @@ Subscribing consists of two exchanges:
 Unsubscribing works in the same way, using the same message format. The `hub.mode` parameter is set to a value of `unsubscribe`, instead of `subscribe`. The Hub SHALL NOT validate unsubscribe requests with the subscriber.
 
 ### Subscription Request
+
 To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below.
 
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
@@ -129,7 +130,7 @@ Field | Optionality | Channel | Type | Description
 `hub.callback` | Required | `webhook` | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.secret` | Optional | `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.channel.endpoint` | Conditional | `websocket` | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. The WSS URL identifying an existing WebSocket subscription. 
-`subscriber.name` | Optional | All | *string* | An optional description of the subscriber that will be used in syncerror notifications when an event is refused or cannot be delivered.
+`subscriber.name` | Optional | All | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
