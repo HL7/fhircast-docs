@@ -1,7 +1,0 @@
-@startuml
-
-App1 -> Hub: send Patient-open
-Hub -X App2: send Patient-open
-Hub -> App1: send Patient-open
-Hub -> App1: send syncerror
-@enduml

@@ -2,8 +2,9 @@
 # FHIRcast
 
 !!! important Draft "Standard for Trial Use" (STU3) This is the draft of the 1.2 release of the FHIRcast specification. We are currently working towards a 1.2 release and would love your feedback and proposed changes. Look at our current issue list and get involved!
-										      
+
 ## Overview
+
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
 
 Once the subscribing app [knows about the session](#session-discovery), the app [subscribes](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is then [notified](#event-notification) when those workflow-related events occur; for example, when the clinician opens a patient's chart. The subscribing app can also [initiate context changes](#request-context-change) by accessing APIs defined in this specification; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification messages describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources. 
@@ -356,7 +357,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### Event Notification Request
 
-The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
+The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### Event Notification Request Details
 
@@ -498,7 +499,7 @@ All standard events are defined outside of the base FHIRcast specification in th
 If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL communicate the error to the Hub in one of two ways.
 
 * Responding to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
-* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error or refusing the change, send a `syncerror` event to the Hub. 
+* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error or refusing the change, send a `syncerror` event to the Hub. If the application cannot determine whether it will follow context within 10  10 seconds after reception of the event it SHOULD send a `syncerror` event.
 
 If the Hub receives an error notification from a subscriber, it SHALL generate a `syncerror` event to the other subscribers of that topic. `syncerror` events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource.
 
