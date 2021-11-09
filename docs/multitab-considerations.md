@@ -34,8 +34,6 @@ Many applications can have a "home" or "default" tab that contains no clinical c
 Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `userlogout`).
 
 
-
-
 ### home-open
 
 eventMaturity | [1 - Submitted](../../specification/STU1/#event-maturity-model)
@@ -67,3 +65,11 @@ The context is empty.
 </mark>
 
 
+## notes
+Assumption: Open of an already open means a select.
+
+Late joining  - event stating the current selected patient.
+
+### Risk
+
+Order of patients can be different between different application. (Late app joining, temperarely out of sync)
