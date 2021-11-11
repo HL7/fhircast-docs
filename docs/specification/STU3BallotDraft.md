@@ -2,8 +2,9 @@
 # FHIRcast
 
 !!! important Draft "Standard for Trial Use" (STU3) This is the draft of the 1.2 release of the FHIRcast specification. We are currently working towards a 1.2 release and would love your feedback and proposed changes. Look at our current issue list and get involved!
-										      
+
 ## Overview
+
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). 
 
 Once the subscribing app [knows about the session](#session-discovery), the app [subscribes](#subscribing-and-unsubscribing) to specific workflow-related events for the given session. The app is then [notified](#event-notification) when those workflow-related events occur; for example, when the clinician opens a patient's chart. The subscribing app can also [initiate context changes](#request-context-change) by accessing APIs defined in this specification; for example, closing the patient's chart. The app [deletes its subscription](#unsubscribe) to no longer receive notifications. The notification messages describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources. 
@@ -115,6 +116,7 @@ Subscribing consists of two exchanges:
 Unsubscribing works in the same way, using the same message format. The `hub.mode` parameter is set to a value of `unsubscribe`, instead of `subscribe`. The Hub SHALL NOT validate unsubscribe requests with the subscriber.
 
 ### Subscription Request
+
 To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below.
 
 This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
@@ -129,6 +131,7 @@ Field | Optionality | Channel | Type | Description
 `hub.callback` | Required | `webhook` | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
 `hub.secret` | Optional | `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.channel.endpoint` | Conditional | `websocket` | *string* | Required when `hub.channel.type`=`websocket` for re-subscribes and unsubscribes. The WSS URL identifying an existing WebSocket subscription. 
+`subscriber.name` | Optional | All | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
@@ -354,7 +357,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### Event Notification Request
 
-The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. The event identifier MAY be used to differentiate retried messages from user actions.
+The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### Event Notification Request Details
 
@@ -449,9 +452,17 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. The Hub MAY use these statuses to track synchronization state.
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an any of the response codes indicated below:
+HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code. 
 
-In the case of a successful notification, if the subscriber is able to implement the context change, an HTTP 200 (OK) is the appropriate code; if the subscriber has successfully received the event notification, but has not yet taken action: an HTTP 202 (Accepted). 
+Code  |        | Description
+--- | ---      | ---
+200 | OK       | The subscriber is able to implement the context change.
+202 | Accepted | The subscriber has successfully received the event notification, but has not yet taken action. If it decides to refuse the event, it will send a syncerror event. Clients are RECOMMENDED to do so within 5 seconds after receiving the context event.
+500 | Server Error | There is an issue in the client preventing it from processing the event. The hub SHALL send a syncerror indicating the event was not delivered.
+409 | Conflict | The client refuses to follow the context change. The hub SHALL send a syncerror indicating the event was refused.
+
+The Hub MAY use these statuses to track synchronization state.
 
 #### `webhook` Event Notification Response Example
 
@@ -485,12 +496,12 @@ Field | Optionality | Type | Description
 
 All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural `syncerror` event. 
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHOULD communicate the error to the Hub in one of two ways.
+If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL communicate the error to the Hub in one of two ways.
 
 * Responding to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
-* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error, send a `syncerror` event to the Hub. 
+* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error or refusing the change, send a `syncerror` event to the Hub. If the application cannot determine whether it will follow context within 10  10 seconds after reception of the event it SHOULD send a `syncerror` event.
 
-If the Hub receives an error notification from a subscriber, it SHOULD generate a `syncerror` event to the other subscribers of that topic. `syncerror` events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource. 
+If the Hub receives an error notification from a subscriber, it SHALL generate a `syncerror` event to the other subscribers of that topic. `syncerror` events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource.
 
 ### Event Notification Error Request
 ###### Request Context Change Parameters
