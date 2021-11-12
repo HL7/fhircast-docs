@@ -3,7 +3,7 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.fhircast
-canonical: http://hl7.org/fhir/inm/fhircast
+canonical: http://hl7.org/fhir/fhircast
 name: FHIRcast
 status: draft
 version: current
