@@ -1,4 +1,4 @@
-## Encounter-open
+<!-- ## Encounter-open -->
 
 eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
 

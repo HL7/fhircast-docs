@@ -1,3 +1,5 @@
+<!-- ## heartbeat -->
+
 !!! important Implementator feedback is requested for the need to support heartbeats for websockets.
 
 

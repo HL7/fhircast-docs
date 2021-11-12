@@ -1,4 +1,4 @@
-## Patient-close
+<!-- ## Patient-close -->
 
 eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 

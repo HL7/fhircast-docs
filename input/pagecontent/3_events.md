@@ -1,4 +1,20 @@
-This the definition of the event maturity model and the events defined in this specification. What events are supported by a hub is defined by the hub.
+<!-- ## Events -->
+
+This section contains the definition of the event maturity model and the events defined in this specification. What events are supported by a hub is defined by the hub.
+
+Changes made to an event's definition SHALL be documented in a change log to ensure event consumers can track what has been changed over the life of an event. The change log SHALL contain the following elements:
+
+- Version: The version of the change
+- Description: A description of the change and its impact
+
+For example:
+
+Version | Description
+---- | ----
+1.1 | Added new context FHIR object
+1.0.1 | Clarified workflow description
+1.0 | Initial Release
+
 
 The sections in this chapter are:
 

@@ -27,6 +27,8 @@ pages:
       title: Conformance
   3_events.md:
     title: Event library
+    3-0-EventMaturityModel.md:
+      title: Event maturity model
     3-1-template.md:
       title: Event template
     3-2-patient-open.md:

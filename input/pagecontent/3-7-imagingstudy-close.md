@@ -1,4 +1,4 @@
-## ImagingStudy-close
+<!-- ## ImagingStudy-close -->
 
 eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 

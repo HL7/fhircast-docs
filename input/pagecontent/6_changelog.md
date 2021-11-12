@@ -1,19 +1,3 @@
-Changes made to an event's definition SHALL be documented in a change log to ensure event consumers can track what has been changed over the life of an event. The change log SHALL contain the following elements:
-
-- Version: The version of the change
-- Description: A description of the change and its impact
-
-For example:
-
-Version | Description
----- | ----
-1.1 | Added new context FHIR object
-1.0.1 | Clarified workflow description
-1.0 | Initial Release
----
-
-
-
 ### Revision History
 All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
 

@@ -118,6 +118,7 @@ In the scenarios where the Hub is aware of a synchronization error, it is advisa
 #### Subscription has expired
 
 The client subscription has expired causing it no longer receive event. The application can prevent this by resubscribing before the subscription expires.
+
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync.

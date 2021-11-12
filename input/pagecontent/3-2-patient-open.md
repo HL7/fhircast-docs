@@ -1,4 +1,4 @@
-## Patient-open
+<!-- ## Patient-open -->
 
 eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 
