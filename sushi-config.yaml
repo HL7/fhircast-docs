@@ -1,0 +1,86 @@
+# ╭──────────────────────────────────────ImplementationGuide───────────────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: hl7.fhir.uv.fhircast
+canonical: http://hl7.org/fhir/inm/fhircast
+name: FHIRcast
+status: draft
+version: current
+fhirVersion: 4.0.1
+pages:
+  index.md: 
+    title: Introduction
+  2_specification.md:
+    title: FHIRcast specification
+    2-1-EventDefinition.md:
+      title: Event Definition
+    2-2-fhircastSmartScopes.md:
+      title: FHIRcast SMART scopes
+    2-3-subscribing.md:
+      title: Subscribing and unsubscribing
+    2-4-eventNotification.md:
+      title: Event notification
+    2-5-requestContextChange.md:
+      title: Request Context Change
+    2-6-conformance.md:
+      title: Conformance
+  3_events.md:
+    title: Event library
+    3-1-template.md:
+      title: Event template
+    3-2-patient-open.md:
+      title: Patient open event
+    3-3-patient-close.md:
+      title: Patient close event
+    3-4-encounter-open.md:
+      title: Encounter open event
+    3-5-encounter-close.md:
+      title: Encounter close event
+    3-6-imagingstudy-open.md:
+      title: ImagingStudy open event
+    3-7-imagingstudy-close.md:
+      title: ImagingStudy close event
+    3-8-syncerror.md:
+      title: Sync error event
+    3-9-userlogout.md:
+      title: User logout event
+    3-10-userhibernate.md:
+      title: User hibernate event
+    3-11-heartbeat.md:
+      title: Heartbeat event
+  4_scenarios.md:
+    title: Scenario's
+    4-1-launch-scenarios.md:
+      title: App launch scenarios and session discovery
+    4-2-syncconsiderations.md:
+      title: Synchronization considerations
+    4-3-security-considerations.md:
+      title: Security considerations
+    4-4-multitab-considerations.md:
+      title: Multi-tab considerations
+    4-5-multi-anchor-considerations.md:
+      title: Multi-anchor considerations
+  5_glossary.md:
+    title: Glossary
+  6_changelog.md:
+    title: Change log
+  7_OpenIssues.md:
+    title: Open Issues
+copyrightYear: 2021+
+releaseLabel: ci-build
+publisher:
+  name: FHIR InM
+  url: http://hl7.org
+
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  TOC: toc.html
+  Specification: 2_specification.html
+  Events: 3_events.html
+  Scenario's: 4_scenarios.html
+  Artifacts: artifacts.html
