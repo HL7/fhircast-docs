@@ -1,6 +1,3 @@
-<img style="float: left;padding-right: 5px;" src="img/hl7-logo-header-good-resolution.png" width=20%" />
-# FHIRcast <span style="font-size: medium;">- _modern, simple application context synchronization_</span>
-
 ## Overview
 
 FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), she wants each of these three systems to display the same study or patient at the same time. 
