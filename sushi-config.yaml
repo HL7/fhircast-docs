@@ -63,6 +63,8 @@ pages:
       title: Multi-tab considerations
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor considerations
+  5_content_sharing.md:
+    title: Content Sharing for Imaging
   5_glossary.md:
     title: Glossary
   6_changelog.md:
