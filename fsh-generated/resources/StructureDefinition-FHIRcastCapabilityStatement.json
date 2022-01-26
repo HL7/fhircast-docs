@@ -1,0 +1,124 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "FHIRcastCapabilityStatement",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Foundation.Conformance"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "anonymous"
+    }
+  ],
+  "url": "http://hl7.org/fhir/fhircast/StructureDefinition/FHIRcastCapabilityStatement",
+  "version": "current",
+  "name": "FHIRcastCapabilityStatement",
+  "status": "active",
+  "description": "CapabilityStatment stating support for FHIRcast.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "objimpl",
+      "uri": "http://hl7.org/fhir/object-implementation",
+      "name": "Object Implementation Information"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "CapabilityStatement",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/CapabilityStatement",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "CapabilityStatement.implementationGuide",
+        "path": "CapabilityStatement.implementationGuide",
+        "min": 1
+      },
+      {
+        "id": "CapabilityStatement.rest",
+        "path": "CapabilityStatement.rest",
+        "slicing": {
+          "rules": "open",
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "mode"
+            }
+          ],
+          "description": "Slice stating support for FHIRcast extension"
+        }
+      },
+      {
+        "id": "CapabilityStatement.rest:client",
+        "path": "CapabilityStatement.rest",
+        "sliceName": "client",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "CapabilityStatement.rest:client.mode",
+        "path": "CapabilityStatement.rest.mode",
+        "patternCode": "client"
+      },
+      {
+        "id": "CapabilityStatement.rest:server",
+        "path": "CapabilityStatement.rest",
+        "sliceName": "server",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "CapabilityStatement.rest:server.extension",
+        "path": "CapabilityStatement.rest.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "CapabilityStatement.rest:server.extension:fhircast",
+        "path": "CapabilityStatement.rest.extension",
+        "sliceName": "fhircast",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/fhircast/StructureDefinition/fhircast-configuration-extensions"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "CapabilityStatement.rest:server.mode",
+        "path": "CapabilityStatement.rest.mode",
+        "patternCode": "server"
+      }
+    ]
+  }
+}

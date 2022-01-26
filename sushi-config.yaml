@@ -51,6 +51,16 @@ pages:
       title: User hibernate event
     3-11-heartbeat.md:
       title: Heartbeat event
+    3-12-diagnosticreport-open.md:
+      title: DiagnosticReport-open Event
+    3-13-diagnosticreport-update.md:
+      title: DiagnosticReport-update Event
+    3-14-diagnosticreport-close.md:
+      title: DiagnosticReport-close Event
+    3-15-diagnosticreport-select.md:
+      title: DiagnosticReport-select Event
+    3-16-get-context.md:
+      title: Get Context Request
   4_scenarios.md:
     title: Scenario's
     4-1-launch-scenarios.md:
@@ -63,13 +73,13 @@ pages:
       title: Multi-tab considerations
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor considerations
-  5_content_sharing.md:
-    title: Content Sharing for Imaging
-  5_glossary.md:
+  5_content-sharing.md:
+    title: Content Sharing
+  6_glossary.md:
     title: Glossary
-  6_changelog.md:
+  7_change-log.md:
     title: Change log
-  7_OpenIssues.md:
+  8_open-issues.md:
     title: Open Issues
 copyrightYear: 2021+
 releaseLabel: ci-build
@@ -86,5 +96,6 @@ menu:
   TOC: toc.html
   Specification: 2_specification.html
   Events: 3_events.html
-  Scenario's: 4_scenarios.html
+  Scenarios: 4_scenarios.html
+  Content Sharing: 5_content-sharing.html
   Artifacts: artifacts.html
