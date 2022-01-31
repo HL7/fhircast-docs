@@ -31,7 +31,7 @@ The following example shows a report being opened that contains a single primary
     "hub.event": "DiagnosticReport-open",
     "context": [
       {
-        "key": "Report",
+        "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
           "id": "40012366",
@@ -106,7 +106,7 @@ The event distributed by the Hub includes a version context with a `versionId` w
     "hub.event": "DiagnosticReport-open",
     "context": [
       {
-        "key": "Report",
+        "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
           "id": "40012366",
