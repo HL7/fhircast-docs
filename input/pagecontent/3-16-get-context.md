@@ -3,7 +3,7 @@ eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
 HTTP Method: GET<br>
 Endpoint: base-hub-URL/{topic}<br>
 Returns:<br>
-This method returns an object containing the current context of a topic. The current context is made up of one or more "top-level" contextual resources and the type of the anchor context in the `contextType` field.  For example, if the current context was established using a [`Patient-open`](3-2-patient-open.html) request the returned object will contain `contextType: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-12-diagnosticReport-open.html) request the returned object will contain `contextType: "DiagnosticReport"`.
+This method returns an object containing the current context of a topic. The current context is made up of one or more "top-level" contextual resources and the type of the anchor context in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-2-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-12-diagnosticReport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.
 
 ### Content Sharing Support
 If a Hub supports content sharing, the Hub returns the current content in an `content` key and the content version in a `version` key.  `Bundle` entries SHALL not contain a `request` attribute.  The enclosed `Bundle` resource SHALL have a `type` of `collection`.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
@@ -14,7 +14,6 @@ Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 resource key | REQUIRED | `[resourceType]/{id}?_elements=identifier` | 1..* contextual resources
 `content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context
-`version`| REQUIRED if content sharing is supported | not applicable | Current content version
  
 ### Examples
 
@@ -23,7 +22,8 @@ The following example shows a response to the get context request when the curre
 
 ```
 {
-  "contextType": "DiagnosticReport",
+  "context.type": "DiagnosticReport",
+  "context.versionId": "023fe970-a6d9-442f-a499-dfb71f1edba6",
   "context": [
     {
       "key": "Report",
@@ -118,10 +118,6 @@ The following example shows a response to the get context request when the curre
           }
         ]
       }
-    },
-    {
-      "key": "version",
-      "versionId": "023fe970-a6d9-442f-a499-dfb71f1edba6"
     }
   ]
 }
