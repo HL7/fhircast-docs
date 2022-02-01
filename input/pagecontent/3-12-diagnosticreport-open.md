@@ -6,16 +6,15 @@ A `DiagnosticReport-open` request is posted to the Hub when a new or existing Di
 When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 #### Content Sharing Support
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `versionId` with the anchor context.  Subscribed applications MUST submit this `versionId` in subsequent [`DiagnosticReport-update`](./diagnosticReport-update.md) requests.  If a client will neither make a [`DiagnosticReport-update`](./diagnosticReport-update.md) request or respond to [`DiagnosticReport-update`](./diagnosticReport-update.md) events, the versionId can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](./diagnosticReport-update.md) requests.  If a client will neither make a [`DiagnosticReport-update`](./diagnosticReport-update.md) request or respond to [`DiagnosticReport-update`](./diagnosticReport-update.md) events, the versionId can be safely ignored.
 
 ### Context
 
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided 
-`version`| REQUIRED if content sharing is supported | not applicable | Current content version which is present in the Hub distributed event but not present in the open request
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
+`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
 
 ### Examples
 
@@ -95,7 +94,7 @@ The following example shows a report being opened that contains a single primary
 ```
 
 #### DiagnosticReport-open Event Example
-The event distributed by the Hub includes a version context with a `versionId` which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
 
 ```
 {
@@ -104,6 +103,7 @@ The event distributed by the Hub includes a version context with a `versionId` w
   "event": {
     "hub.topic": "DrXRay",
     "hub.event": "DiagnosticReport-open",
+    "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
     "context": [
       {
         "key": "report",
@@ -163,10 +163,6 @@ The event distributed by the Hub includes a version context with a `versionId` w
             "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
           }
         }
-      },
-      {
-        "key": "version",
-        "versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
       }
     ]
   }
