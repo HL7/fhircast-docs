@@ -103,7 +103,7 @@ The event distributed by the Hub includes a context version in the `context.vers
   "event": {
     "hub.topic": "DrXRay",
     "hub.event": "DiagnosticReport-open",
-    "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1"
+    "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
       {
         "key": "report",

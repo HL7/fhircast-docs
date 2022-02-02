@@ -34,4 +34,4 @@ The sections in this chapter are:
 * [DiagnosticReport-update Event](3-13-diagnosticreport-update.html)
 * [DiagnosticReport-close Event](3-14-diagnosticreport-close.html)
 * [DiagnosticReport-select Event](3-15-diagnosticreport-select.html)
-* [Get Context Request](3-16-get-context.html)
+* [Get Current Context Request](3-16-get-context.html)

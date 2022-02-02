@@ -13,7 +13,6 @@ Key | Optionality | FHIR operation to generate context | Description
 ---- | ---- | ---- | ----
 `report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
 `select` | REQUIRED | not applicable | Contains zero or more references to selected resources. If a reference to a resource is present in the `select` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `select` array, this is an indication that any previously selected resource is now unselected.
-`version` | REQUIRED | not applicable | Current content version
 
 ### Examples
 
@@ -27,6 +26,7 @@ The following example shows the selection of a single Observation resource in an
   "event": {
     "hub.topic": "DrXRay",
     "hub.event": "DiagnosticReport-select",
+    "context.versionId": "f2f90ff4-a218-47cb-afa5-b987e1154b3b",
     "context": [
       {
         "key": "report",
@@ -42,10 +42,6 @@ The following example shows the selection of a single Observation resource in an
             "id": "a67tbi5891trw123u6f9134"
           }
         ]
-      },
-      {
-        "key": "version",
-        "versionId": "f2f90ff4-a218-47cb-afa5-b987e1154b3b"
       }
     ]
   }

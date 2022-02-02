@@ -60,7 +60,7 @@ pages:
     3-15-diagnosticreport-select.md:
       title: DiagnosticReport-select Event
     3-16-get-context.md:
-      title: Get Context Request
+      title: Get Current Context Request
   4_scenarios.md:
     title: Scenario's
     4-1-launch-scenarios.md:
