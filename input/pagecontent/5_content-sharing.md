@@ -32,6 +32,11 @@ Clients wishing to exchange structured information must:
 6. If a `[FHIR resource]-update` request fails with the Hub, the client may issue a [`GET Context`](3-16-get-context.html) request to the Hub in order to retrieve the current content in the anchor context and its current `versionId`
 7. When using websockets, clients will now receive the current content (if any exists) of the anchor context (if one has been established) in response to the Subscribe request, see [`return of current content`](#websocket-return-of-current-content).  Clients that don't support the exchange of structured information may ignore the content of the Subscribe response payload.
 
+### FHIR Resource Profiles for Content Sharing
+The following profiles ensure a basic level of interoperability between applications participating in a content sharing session:
+* [`Observation`](StructureDefinition-fhircast-observation.html)
+* ImagingStudy 
+
 ### Example of Content Sharing in an Anchor Context
 The below example uses a `DiagnosticReport` as the anchor context.  However, the pattern of the example holds when other FHIR resource types are the anchor context.
 
