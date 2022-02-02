@@ -12,7 +12,7 @@ FHIR resources are used to convey the structured information being exchanged in 
 
 If supporting content sharing, a FHIRcast Hub MUST fulfill additional responsibilities:
 1. Assign and maintain an anchor context's `versionId` when processing a `[FHIR resource]-open` request - the `versionId` does not need to follow any convension but must unique in the scope of a topic  
-2. Validate `[FHIR resource]-update` and `[FHIR resource]-select` requests for the correct `versionId` and reject the request if the version does not match the current `versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
+2. Reject `[FHIR resource]-update` and `[FHIR resource]-select` requests if the version does not match the current `versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
 3. Assign and maintain a new `versionId` for the anchor context's content and provide the new `versionId` along with the `priorVersionId` in the event corresponding to the validated update request
 4. Maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Context`](3-16-get-context.html) request
 5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the anchor context since the Hub has no responsibility to persist the content
