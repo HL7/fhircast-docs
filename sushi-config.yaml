@@ -62,7 +62,7 @@ pages:
     3-16-get-context.md:
       title: Get Current Context Request
   4_scenarios.md:
-    title: Scenario's
+    title: Scenarios
     4-1-launch-scenarios.md:
       title: App launch scenarios and session discovery
     4-2-syncconsiderations.md:
@@ -73,13 +73,13 @@ pages:
       title: Multi-tab considerations
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor considerations
-  5_content-sharing.md:
-    title: Content Sharing
-  6_glossary.md:
+    4-6-content-sharing.md:
+      title: Content Sharing
+  5_glossary.md:
     title: Glossary
-  7_change-log.md:
+  6_change-log.md:
     title: Change log
-  8_open-issues.md:
+  7_open-issues.md:
     title: Open Issues
 copyrightYear: 2021+
 releaseLabel: ci-build
@@ -97,5 +97,5 @@ menu:
   Specification: 2_specification.html
   Events: 3_events.html
   Scenarios: 4_scenarios.html
-  Content Sharing: 5_content-sharing.html
+  Glossary: 5_glossary.html
   Artifacts: artifacts.html
