@@ -3,6 +3,7 @@ Profile: FHIRcastCapabilityStatement
 Parent: CapabilityStatement
 Description: "CapabilityStatment stating support for FHIRcast."
 * implementationGuide 1..*
+* rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value
 * rest ^slicing.discriminator.path = "mode"
 * rest ^slicing.description = "Slice stating support for FHIRcast extension"
