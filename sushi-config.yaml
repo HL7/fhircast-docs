@@ -51,8 +51,18 @@ pages:
       title: User hibernate event
     3-11-heartbeat.md:
       title: Heartbeat event
+    3-12-diagnosticreport-open.md:
+      title: DiagnosticReport-open Event
+    3-13-diagnosticreport-update.md:
+      title: DiagnosticReport-update Event
+    3-14-diagnosticreport-close.md:
+      title: DiagnosticReport-close Event
+    3-15-diagnosticreport-select.md:
+      title: DiagnosticReport-select Event
+    3-16-get-context.md:
+      title: Get Current Context Request
   4_scenarios.md:
-    title: Scenario's
+    title: Scenarios
     4-1-launch-scenarios.md:
       title: App launch scenarios and session discovery
     4-2-syncconsiderations.md:
@@ -63,11 +73,13 @@ pages:
       title: Multi-tab considerations
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor considerations
+    4-6-content-sharing.md:
+      title: Content Sharing
   5_glossary.md:
     title: Glossary
-  6_changelog.md:
+  6_change-log.md:
     title: Change log
-  7_OpenIssues.md:
+  7_open-issues.md:
     title: Open Issues
 copyrightYear: 2021+
 releaseLabel: ci-build
@@ -84,5 +96,6 @@ menu:
   TOC: toc.html
   Specification: 2_specification.html
   Events: 3_events.html
-  Scenario's: 4_scenarios.html
+  Scenarios: 4_scenarios.html
+  Glossary: 5_glossary.html
   Artifacts: artifacts.html
