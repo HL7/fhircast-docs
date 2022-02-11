@@ -15,7 +15,42 @@ The use of the SMART on FHIR OAuth 2.0 profile simplifies, secures and standardi
 
 ## SMART on FHIR
 
-FHIRcast extends SMART on FHIR to support clinical context synchronization between disparate, full featured healthcare applications which cannot be embedded within one another. Two launch scenarios are explicitly supported. The app is authorized to synchronize to a user's session using the OAuth2.0 [FHIRcast scopes](../specification/STU1/#fhircast-authorization-smart-scopes).
+FHIRcast extends SMART on FHIR to support clinical context synchronization between disparate, full featured healthcare applications which cannot be embedded within one another.
+This section defines the extensions on SMART On FHIR that allow for integration of FHIRcast with applications launched using SMART on FHIR.
+
+### FHIRcast Authorization & SMART scopes
+
+FHIRcast defines [OAuth 2.0 access scopes](2-3-FhircastScopes.html)) that correspond directly to [FHIRcast events](#3-Events.html). Our scopes associate read or write permissions to an event. Apps that need to receive workflow related events SHOULD ask for `read` scopes. Apps that request context changes SHOULD ask for `write` scopes. Hubs may decide what specific interactions and operations will be enabled by these scopes.
+
+Expressed in [Extended Backus-Naur Form](https://www.iso.org/obp/ui/#iso:std:iso-iec:14977:ed-1:v1:en) (EBNF) notation, the FHIRcast syntax for OAuth 2.0 access scopes is:
+
+`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event | '*' ) '.' ( 'read' | 'write' | '*' )`
+
+{% include img.html img="fhircast-smart-scopes.png" caption="Figure: Syntax for FHIRcast scopes" %}
+
+For example, a requested scope of `fhircast/patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/patient-open.write` authorizes the subscribed app to [request a context change](#request-context-change).
+
+#### SMART Launch Example
+
+ An example of the launch parameters presented to the app during a SMART on FHIR launch is presented below.
+
+```json
+{
+  "access_token": "i8hweunweunweofiwweoijewiwe",
+  "token_type": "bearer",
+  "patient":  "123",
+  "expires_in": 3600,
+  "encounter": "456",
+  "imagingstudy": "789",
+  "hub.url" : "https://hub.example.com",
+  "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
+}
+```
+
+Note that the SMART launch parameters include the Hub's base URL and the session identifier in the `hub.url` and `hub.topic` fields.
+
+
+Two launch scenarios are explicitly supported. The app is authorized to synchronize to a user's session using the OAuth2.0 [FHIRcast scopes](../specification/STU1/#fhircast-authorization-smart-scopes).
 
 During the OAuth2.0 handshake, the app [requests and is granted](http://www.hl7.org/fhir/smart-app-launch/#2-ehr-evaluates-authorization-request-asking-for-end-user-input) one or more FHIRcast scopes. The EHR's authorization server returns the hub url and any relevant session topics as SMART launch parameters. 
 

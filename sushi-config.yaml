@@ -11,21 +11,25 @@ fhirVersion: 4.0.1
 pages:
   index.md: 
     title: Introduction
-  2_specification.md:
+  2_Specification.md:
     title: FHIRcast specification
-    2-1-EventDefinition.md:
-      title: Event Definition
-    2-2-fhircastSmartScopes.md:
-      title: FHIRcast SMART scopes
-    2-3-subscribing.md:
+    2-1-SessionDiscovery.md:
+      title: Session Discovery
+    2-2-FhircastScopes.md:
+      title: OAuth2 authorization scopes
+    2-3-Events.md:
+      title: Event format
+    2-4-Subscribing.md:
       title: Subscribing and unsubscribing
-    2-4-eventNotification.md:
+    2-5-EventNotification.md:
       title: Event notification
-    2-5-requestContextChange.md:
+    2-6-RequestContextChange.md:
       title: Request Context Change
-    2-6-conformance.md:
+    2-7-Conformance.md:
       title: Conformance
-  3_events.md:
+    2-8-Extensions.md:
+      title: Extensions
+  3-Events.md:
     title: Event library
     3-0-EventMaturityModel.md:
       title: Event maturity model

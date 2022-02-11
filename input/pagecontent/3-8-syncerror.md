@@ -10,6 +10,8 @@ Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does
 
 ## Context
 
+An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to as a `code` with the `system` value of `https://fhircast.hl7.org/events/syncerror/eventid` and the name of the relevant event with a `system` value of `https://fhircast.hl7.org/events/syncerror/eventname`. Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`. The OperationOutcome's `diagnostics` element should contain additional information to aid subsequent investigation or presentation to the end-user.
+
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action.
@@ -25,7 +27,7 @@ The `diagnostics` field SHALL contain a human readable explanation on the source
 
 The profile of the OperationOutcome resource expressed in FHIR shorthand.
 
-```
+```text
 
 Profile:     SyncErrorOperationOutcome
 Parent:      OperationOutcome
@@ -40,7 +42,7 @@ Description: The OperationOutcome included in a syncerror event.
 * issue[0].details.coding ^slicing.discriminator.description = "Reason and source of syncerror."
 * issue[0].details.coding 
         contains eventid 1..1 MS and 
-        eventname 1..1 MS
+                 eventname 1..1 MS
 * issue[0].details.coding[eventid].system = https://fhircast.hl7.org/events/syncerror/eventid
 * issue[0].details.coding[eventname].system = https://fhircast.hl7.org/events/syncerror/eventname
 

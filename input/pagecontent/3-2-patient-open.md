@@ -13,11 +13,9 @@ Key | Optionality | Fhir operation to generate context | Description
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
 ~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource in context in the newly opened patient's chart.~~ DEPRECATED in favor of a dedicated `encounter-open` event. 
 
-
 ### Examples
 
 <mark>
-
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",

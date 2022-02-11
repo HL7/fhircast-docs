@@ -15,7 +15,6 @@ Version | Description
 1.0.1 | Clarified workflow description
 1.0 | Initial Release
 
-
 The sections in this chapter are:
 
 * [Event Maturity Model](3-0-EventMaturityModel.html)

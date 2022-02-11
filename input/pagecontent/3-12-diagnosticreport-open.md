@@ -19,9 +19,10 @@ Key | Optionality | FHIR operation to generate context | Description
 ### Examples
 
 #### DiagnosticReport-open Example Request
+
 The following example shows a report being opened that contains a single primary study.  Note that the diagnostic report's `imagingStudy` and `subject` attributes have references to the imaging study and patient which are also in the open request.
 
-```
+```json
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
@@ -94,9 +95,10 @@ The following example shows a report being opened that contains a single primary
 ```
 
 #### DiagnosticReport-open Event Example
+
 The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
 
-```
+```json
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
@@ -170,6 +172,7 @@ The event distributed by the Hub includes a context version in the `context.vers
 ```
 
 ### Change Log
+
 Version | Description
 ---- | ----
 0.1 | Initial draft

@@ -11,7 +11,6 @@ Depending upon the expectations of the user and the error handling of the applic
 Also note that synchronization failure is a worst-case scenario and should rarely occur in production.
 Machine-to-machine-to-machine: Different machines, different times
 
-
 ## Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician walks away from her desktop EHR and accesses an app on her mobile device which synchronizes to the EHR's hibernated session.
