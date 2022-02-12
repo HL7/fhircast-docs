@@ -1,4 +1,4 @@
-# DiagnosticReport-update
+### Event-name: DiagnosticReport-update
 
 eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
 
@@ -18,7 +18,7 @@ If the `context.versionId` values match, the Hub proceeds with processing each o
 
 When a  `DiagnosticReport-update` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `context.versionId` of the anchor context provided in the event for later use.
 
-## Content Information
+### Content Information
 
 FHIR resources are used to carry the information being displayed.  These are the entries in the `Bundle` resource inside the `updates` key.  Commonly the information is contained in an `entry`'s resource. For example, an `Observation` resource most likely contains all information regarding that observation.
 
@@ -26,9 +26,9 @@ However, in some cases the information of a resource may best be conveyed by ref
 
 If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance.  Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
 
-## Context
-
 ### Context
+
+#### Context
 
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
@@ -37,7 +37,7 @@ Key | Optionality | FHIR operation to generate context | Description
 `study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the Patient resource associated with the report have changed
 `updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context 
 
-## Supported Update Request Methods
+### Supported Update Request Methods
 
 Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
 
@@ -47,9 +47,9 @@ Request Method | Operation
 `PUT` | Replace/update an existing resource
 `DELETE` | Remove an existing resource
 
-## Examples
+### Examples
 
-### DiagnosticReport-update Request Example
+#### DiagnosticReport-update Request Example
 
 The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context` holds the `id` and `versionId` of the diagnostic report as required in all  `DiagnosticReport-update` events.  The `Bundle` holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
 
@@ -232,7 +232,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
 }
 ```
 
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----

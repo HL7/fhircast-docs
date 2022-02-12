@@ -8,6 +8,7 @@ This chapter consists of the following sections:
 [2.6 Request context change](2-6-RequestContextChange.html) |
 [2.7 Conformance](2-7-Conformance.html) |
 [2.8 Extensions](2-8-Extensions.html) |
+[2.9 Get Current Context](2-9-GetCurrentContext.html) |
 
 The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users).
 

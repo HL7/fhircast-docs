@@ -29,6 +29,8 @@ pages:
       title: Conformance
     2-8-Extensions.md:
       title: Extensions
+    2-9-GetCurrentContext.md:
+      title: Get Current Context  
   3-Events.md:
     title: Event library
     3-0-EventMaturityModel.md:
@@ -63,8 +65,6 @@ pages:
       title: DiagnosticReport-close Event
     3-15-diagnosticreport-select.md:
       title: DiagnosticReport-select Event
-    3-16-get-context.md:
-      title: Get Current Context Request
   4_scenarios.md:
     title: Scenarios
     4-1-launch-scenarios.md:
@@ -98,8 +98,8 @@ publisher:
 menu:
   Home: index.html
   TOC: toc.html
-  Specification: 2_specification.html
-  Events: 3_events.html
+  Specification: 2_Specification.html
+  Events: 3_Events.html
   Scenarios: 4_scenarios.html
   Glossary: 5_glossary.html
   Artifacts: artifacts.html

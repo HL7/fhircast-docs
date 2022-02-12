@@ -1,19 +1,17 @@
-# Encounter-open
+### Event-name: `Encounter-open`
 
 eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
 
-## Workflow
+### Workflow
 
 User opened patient's medical record in the context of a single encounter. Only a single patient and encounter is currently in context.
 
-## Context
+### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 `encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
-
-
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 ### Examples
 

@@ -1,12 +1,12 @@
-# Patient-open
+### Event name: `Patient-open`
 
 eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
 
-## Workflow
+### Workflow
 
 User opened patient's medical record. Only a single patient is currently in context.  
 
-## Context
+### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
@@ -15,7 +15,6 @@ Key | Optionality | Fhir operation to generate context | Description
 
 ### Examples
 
-<mark>
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
@@ -49,9 +48,7 @@ Key | Optionality | Fhir operation to generate context | Description
 }
 ```
 
-</mark>
-
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----

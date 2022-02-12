@@ -1,20 +1,18 @@
-# userhibernate
+### Event-name: userhibernate
 
 eventMaturity | [1 - Submitted](../../specification/STU1/#event-maturity-model)
 
-## Workflow
+### Workflow
 
 User temporarily suspended their session. The user's session will eventually resume.
  
 Unlike most of FHIRcast events, `userhibernate` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
 
-## Context
+### Context
 
 The context is empty.
 
 ### Examples
-
-<mark>
 
 ```json
 {
@@ -28,9 +26,7 @@ The context is empty.
 }
 ```
 
-</mark>
-
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----
