@@ -1,6 +1,6 @@
 ### Event-name: ImagingStudy-close
 
-eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
+eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
 
 ### Workflow
 

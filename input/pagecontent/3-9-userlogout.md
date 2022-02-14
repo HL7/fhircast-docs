@@ -1,6 +1,6 @@
 ### Event-name: userlogout
 
-eventMaturity | [1 - Submitted](../../specification/STU1/#event-maturity-model)
+eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
 
 ### Workflow
 

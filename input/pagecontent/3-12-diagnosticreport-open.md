@@ -1,6 +1,6 @@
 ### Event-name: DiagnosticReport-open
 
-eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
+eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
 
 ### Workflow
 
@@ -10,7 +10,7 @@ When a `DiagnosticReport-open` event is received by an application, the applicat
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](./diagnosticReport-update.md) requests.  If a client will neither make a [`DiagnosticReport-update`](./diagnosticReport-update.md) request or respond to [`DiagnosticReport-update`](./diagnosticReport-update.md) events, the versionId can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) requests.  If a client will neither make a [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) events, the versionId can be safely ignored.
 
 ### Context
 
@@ -100,7 +100,7 @@ The following example shows a report being opened that contains a single primary
 
 #### DiagnosticReport-open Event Example
 
-The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) requests.
 
 ```json
 {

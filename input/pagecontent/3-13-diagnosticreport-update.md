@@ -1,10 +1,11 @@
 ### Event-name: DiagnosticReport-update
 
-eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
+eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
 
  The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a FHIR resource contained in the content of the current anchor context. One or more updates MAY occur while the anchor context is open.
 
 The updates include:
+
 * adding, updating, or removing FHIR resources contained in the anchor context
 * updating attributes of the anchor context (the DiagnosticReport resource) or associated context resources (Patient and/or ImagingStudy resources)
 
@@ -35,7 +36,7 @@ Key | Optionality | FHIR operation to generate context | Description
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
 `patient` | OPTIONAL | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed
 `study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the Patient resource associated with the report have changed
-`updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context 
+`updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context
 
 ### Supported Update Request Methods
 

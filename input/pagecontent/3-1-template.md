@@ -2,7 +2,7 @@ This section presents the template to use for defining new events.
 
 ### [FHIR resource]-[open|close]
 
-eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
+eventMaturity | [0 - Draft](3-0-EventMaturityModel.html)
 
 #### Workflow
 

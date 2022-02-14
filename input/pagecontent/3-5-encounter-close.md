@@ -1,6 +1,6 @@
 ### Event-name: Encounter-close
 
-eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
+eventMaturity | [0 - Draft](3-0-EventMaturityModel.html)
 
 ### Workflow
 

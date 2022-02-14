@@ -15,6 +15,6 @@ The sections in this chapter are:
 [3.13 DiagnosticReport-open Event](3-12-diagnosticreport-open.html) |
 [3.14 DiagnosticReport-update Event](3-13-diagnosticreport-update.html) |
 [3.15 DiagnosticReport-close Event](3-14-diagnosticreport-close.html) |
-[3.16 DiagnosticReport-select Event](3-15-diagnosticreport-select.html) |./geno 
+[3.16 DiagnosticReport-select Event](3-15-diagnosticreport-select.html) |
 
 This chapter contains the definition of the event maturity model and the events defined in this specification. What events are supported by a hub is defined by the hub (see [Conformance](2-7-Conformance.html)).
