@@ -1,15 +1,15 @@
 !!! important Implementator feedback is requested for the need to support heartbeats for websockets.
 
 
-# Heartbeat event
+### Event-name: Heartbeat event
 The heartbeat event is sent regularly to indicate a channel is open (typically by the hub).
 
 The name of the event is: heartbeat
 
-## Workflow
+### Workflow
 This event SHALL be send at least every 10 second, or an order of magnitude lower than the subscription time-out.
 
-## Context
+### Context
 The context of the -monitor event described in the table below.
 
 | Key       | Optionality   | #   | type      | *Description*       |
@@ -18,7 +18,7 @@ The context of the -monitor event described in the table below.
 
 The `period` field indicates the repeat interval. If an event is not received within this time period, the connection may be assumed to be lost.
 
-## Example
+### Example
 
 An example heartbeat event is indicated below.
 
@@ -36,3 +36,10 @@ An example heartbeat event is indicated below.
     "hub.event":"heartbeat"
   }
 }
+
+
+### Change Log
+
+Version | Description
+---- | ----
+1.0 | Initial Release

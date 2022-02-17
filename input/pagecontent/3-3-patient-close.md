@@ -1,22 +1,19 @@
-# Patient-close
+### Event-name: Patient-close
 
-eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
+eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
 
-## Workflow
+### Workflow
 
 User closed patient's medical record. A previously open and in context patient chart is no longer open nor in context. 
 
-## Context
+### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart was previously in context.
 ~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource previously in context in the now closed patient's chart.~~ DEPRECATED in favor of dedicated `encounter-close` event.
 
-
 ### Examples
-
-<mark>
 
 ```json
 {
@@ -50,8 +47,6 @@ Key | Optionality | Fhir operation to generate context | Description
   }
 }
 ```
-
-</mark>
 
 ## Change Log
 

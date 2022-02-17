@@ -1,12 +1,16 @@
-eventMaturity | [1 - Submitted](../../specification/STU3/#event-maturity-model)
+### Event-name: DiagnosticReport-open
+
+eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
 
 ### Workflow
+
 A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
 
 When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 #### Content Sharing Support
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](./diagnosticReport-update.md) requests.  If a client will neither make a [`DiagnosticReport-update`](./diagnosticReport-update.md) request or respond to [`DiagnosticReport-update`](./diagnosticReport-update.md) events, the versionId can be safely ignored.
+
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) requests.  If a client will neither make a [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) events, the versionId can be safely ignored.
 
 ### Context
 
@@ -19,9 +23,10 @@ Key | Optionality | FHIR operation to generate context | Description
 ### Examples
 
 #### DiagnosticReport-open Example Request
+
 The following example shows a report being opened that contains a single primary study.  Note that the diagnostic report's `imagingStudy` and `subject` attributes have references to the imaging study and patient which are also in the open request.
 
-```
+```json
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
@@ -94,9 +99,10 @@ The following example shows a report being opened that contains a single primary
 ```
 
 #### DiagnosticReport-open Event Example
-The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](../diagnosticReport-update) requests.
 
-```
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](3-13-diagnosticreport-update.html) requests.
+
+```json
 {
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
@@ -170,6 +176,7 @@ The event distributed by the Hub includes a context version in the `context.vers
 ```
 
 ### Change Log
+
 Version | Description
 ---- | ----
 0.1 | Initial draft

@@ -11,21 +11,27 @@ fhirVersion: 4.0.1
 pages:
   index.md: 
     title: Introduction
-  2_specification.md:
+  2_Specification.md:
     title: FHIRcast specification
-    2-1-EventDefinition.md:
-      title: Event Definition
-    2-2-fhircastSmartScopes.md:
-      title: FHIRcast SMART scopes
-    2-3-subscribing.md:
+    2-1-SessionDiscovery.md:
+      title: Session Discovery
+    2-2-FhircastScopes.md:
+      title: OAuth2 authorization scopes
+    2-3-Events.md:
+      title: Event format
+    2-4-Subscribing.md:
       title: Subscribing and unsubscribing
-    2-4-eventNotification.md:
+    2-5-EventNotification.md:
       title: Event notification
-    2-5-requestContextChange.md:
+    2-6-RequestContextChange.md:
       title: Request Context Change
-    2-6-conformance.md:
+    2-7-Conformance.md:
       title: Conformance
-  3_events.md:
+    2-8-Extensions.md:
+      title: Extensions
+    2-9-GetCurrentContext.md:
+      title: Get Current Context  
+  3_Events.md:
     title: Event library
     3-0-EventMaturityModel.md:
       title: Event maturity model
@@ -59,9 +65,7 @@ pages:
       title: DiagnosticReport-close Event
     3-15-diagnosticreport-select.md:
       title: DiagnosticReport-select Event
-    3-16-get-context.md:
-      title: Get Current Context Request
-  4_scenarios.md:
+  4_Scenarios.md:
     title: Scenarios
     4-1-launch-scenarios.md:
       title: App launch scenarios and session discovery
@@ -94,8 +98,8 @@ publisher:
 menu:
   Home: index.html
   TOC: toc.html
-  Specification: 2_specification.html
-  Events: 3_events.html
-  Scenarios: 4_scenarios.html
+  Specification: 2_Specification.html
+  Events: 3_Events.html
+  Scenarios: 4_Scenarios.html
   Glossary: 5_glossary.html
   Artifacts: artifacts.html

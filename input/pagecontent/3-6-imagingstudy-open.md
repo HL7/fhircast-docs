@@ -1,22 +1,19 @@
-# ImagingStudy-open
+### Event-name: ImagingStudy-open
 
-eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
+eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
 
-## Workflow
+### Workflow
 
 User opened record of imaging study. The newly open study may have been associated with a specific patient, or not. 
 
-## Context
+### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
 `study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
 
-
 ### Examples
-
-<mark>
   
 ```json
 {
@@ -65,9 +62,7 @@ Key | Optionality | Fhir operation to generate context | Description
 }
 ```
 
-</mark>
-
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----

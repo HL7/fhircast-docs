@@ -1,23 +1,23 @@
-# <mark>[FHIR resource]-[open|close]</mark>
+This section presents the template to use for defining new events. 
 
-eventMaturity | [0 - Draft](../../specification/STU1/#event-maturity-model)
+### [FHIR resource]-[open|close]
 
-## Workflow
+eventMaturity | [0 - Draft](3-0-EventMaturityModel.html)
 
-<mark>Describe when this event occurs in a workflow. Describe how the context fields relate to one another. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.</mark>
+#### Workflow
 
-## Context
+Describe when this event occurs in a workflow. Describe how the context fields relate to one another. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.
 
-<mark>Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource. </mark>
+#### Context
+
+Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource.
 
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-<mark>`example`</mark> | REQUIRED | `FHIRresource/{id}?_elements=identifer` | <mark>Describe the context value</mark>
-<mark>`encounter`</mark> | OPTIONAL | `Encounter/{id}` | <mark>Describe the context value</mark>
+`example` | REQUIRED | `FHIRresource/{id}?_elements=identifer` | Describe the context value
+`encounter` | OPTIONAL | `Encounter/{id}` | Describe the context value
 
-### Examples
-
-<mark>
+#### Examples
 
 ```json
 {
@@ -44,10 +44,18 @@ Key | Optionality | FHIR operation to generate context | Description
 }
 ```
 
-</mark>
-
 ## Change Log
+
+Changes made to an event's definition SHALL be documented in a change log to ensure event consumers can track what has been changed over the life of an event. The change log SHALL contain the following elements:
+
+- Version: The version of the change
+- Description: A description of the change and its impact
+
+For example:
 
 Version | Description
 ---- | ----
+1.1 | Added new context FHIR object
+1.0.1 | Clarified workflow description
 1.0 | Initial Release
+

@@ -1,22 +1,19 @@
-# Patient-open
+### Event name: `Patient-open`
 
-eventMaturity | [2 - Tested](../../specification/STU1/#event-maturity-model)
+eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
 
-## Workflow
+### Workflow
 
 User opened patient's medical record. Only a single patient is currently in context.  
 
-## Context
+### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
 ~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource in context in the newly opened patient's chart.~~ DEPRECATED in favor of a dedicated `encounter-open` event. 
 
-
 ### Examples
-
-<mark>
 
 ```json
 {
@@ -51,9 +48,7 @@ Key | Optionality | Fhir operation to generate context | Description
 }
 ```
 
-</mark>
-
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----

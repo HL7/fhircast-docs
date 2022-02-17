@@ -8,4 +8,10 @@ env/
 site/
 
 .idea/
-input-cache/publisher.jar
+
+# FHIR publisher 
+input-cache/
+temp/
+fsh-generated/
+template/
+output/
