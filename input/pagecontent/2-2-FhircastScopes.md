@@ -6,4 +6,4 @@ Expressed in [Extended Backus-Naur Form](https://www.iso.org/obp/ui/#iso:std:iso
 
 {% include img.html img="fhircast-smart-scopes.png" caption="Figure: Syntax for FHIRcast scopes" %}
 
-For example, a requested scope of `fhircast/patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/patient-open.write` authorizes the subscribed app to [request a context change](2-5-EventNotification.html).
+Note the [FHIRcast event format](2-3-Events.html#event-name) contains a noun-verb, for example: `patient-open`. So, a requested scope of `fhircast/patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/patient-open.write` authorizes the subscribed app to [request a context change](2-5-EventNotification.html).
