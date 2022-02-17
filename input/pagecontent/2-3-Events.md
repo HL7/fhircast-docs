@@ -8,7 +8,7 @@ FHIRcast events do not communicate previous state. For a given event, opens and 
 
 Each event definition: specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notifications MAY include other elements of these resources.
 
-All events are documents in the [standard event catalog(3_Events.html)] and SHALL be defined in the following format.
+All events are documents in the [standard event catalog](3_Events.html) and SHALL be defined in the following format.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
