@@ -1,6 +1,6 @@
 ### Event name: `Patient-open`
 
-eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
+eventMaturity | [2 - Tested](3-1-EventMaturityModel.html)
 
 ### Workflow
 

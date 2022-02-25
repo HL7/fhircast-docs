@@ -2,11 +2,11 @@ Subscribing and unsubscribing is how applications establish their connection and
 
 Subscribing consists of different exchanges:
 
-[Subscription Request](#-subscription-request) | Subscriber requests a subscription at the `hub.url` URL
-[Subscription Response](#-subscription-confirmation) | The hub confirms that the subscription was requested by the subscriber.
-[Subscription Confirmation](#-subscription-confirmation) | The client confirms the subscription
-[Subscription Denial](#-subscription-denial) | The hub indicates that the subscription has ended.
-[Unsubscribing](#-unsubscribe) | Subscriber indicates that it wants to unsubscribe.
+[Subscription Request](#subscription-request) | Subscriber requests a subscription at the `hub.url` URL
+[Subscription Response](#subscription-confirmation) | The hub confirms that the subscription was requested by the subscriber.
+[Subscription Confirmation](#subscription-confirmation) | The client confirms the subscription
+[Subscription Denial](#subscription-denial) | The hub indicates that the subscription has ended.
+[Unsubscribing](#unsubscribe) | Subscriber indicates that it wants to unsubscribe.
 
 These exchanges can be implemented in two ways depending on the channel type:
 
@@ -124,7 +124,7 @@ The below flow diagram and example illustrate the successful subscription sequen
 
 ##### `webhook` Successful Subscription Sequence
 
-{% include img.html img="Successful%20Subscription%20Sequence.png" caption="Figure: Successful subscription sequence" %}
+{% include img.html img="Successful Subscription Sequence.png" caption="Figure: Successful subscription sequence" %}
 
 ##### `webhook` Intent Verification Response Example
 
@@ -162,7 +162,7 @@ Field | Optionality | Type | Description
 
 ##### `websocket` Successful Subscription Sequence
 
-{% include img.html img="Successful%20WebSocket%20Subscription%20Sequence.png" caption="Figure: Successful web socket subscription flow diagram" %}
+{% include img.html img="Successful WebSocket Subscription Sequence.png" caption="Figure: Successful web socket subscription flow diagram" %}
 
 ### Current context notification upon successful subscription
 
@@ -192,7 +192,7 @@ To deny a `webhook` subscription, the Hub sends an HTTP GET request to the subsc
 
 ##### `webhook` Subscription Denial Sequence
 
-{% include img.html img="Denied%20Webhook%20Subscription%20Sequence.png" caption="Figure: Webhook subscription denial" %}
+{% include img.html img="Denied Webhook Subscription Sequence.png" caption="Figure: Webhook subscription denial" %}
 
 ##### `webhook` Subscription Denial Example
 
@@ -207,7 +207,7 @@ To deny a `websocket` subscription, the Hub sends a JSON object to the subscribe
 
 ##### `websocket`Subscription Denial Sequence
 
-{% include img.html img="Denied%20Websocket%20Subscription%20Sequence.png" caption="Figure: Websocket subscription denial" %}
+{% include img.html img="Denied Websocket Subscription Sequence.png" caption="Figure: Websocket subscription denial" %}
 
 ##### `websocket` Subscription Denial Example
 

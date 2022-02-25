@@ -1,6 +1,6 @@
 ### Event-name: DiagnosticReport-update
 
-eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
+eventMaturity | [1 - Submitted](3-1-EventMaturityModel.html)
 
  The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a FHIR resource contained in the content of the current anchor context. One or more updates MAY occur while the anchor context is open.
 

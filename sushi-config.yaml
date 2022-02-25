@@ -3,11 +3,17 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.fhircast
-canonical: http://hl7.org/fhir/fhircast
+canonical: http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast
 name: FHIRcast
 status: draft
 version: current
+jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
+copyrightYear: 2017+
+releaseLabel: ci-build
+publisher:
+  name: FHIR InM
+  url: http://hl7.org
 pages:
   index.md: 
     title: Introduction
@@ -30,41 +36,42 @@ pages:
     2-8-Extensions.md:
       title: Extensions
     2-9-GetCurrentContext.md:
-      title: Get Current Context  
+      title: Get Current Context
   3_Events.md:
     title: Event library
-    3-0-EventMaturityModel.md:
+    3-1-EventMaturityModel.md:
       title: Event maturity model
     3-1-template.md:
       title: Event template
-    3-2-patient-open.md:
+    3-2-syncerror.md:
+      title: Sync error event
+    3-2-heartbeat.md:
+      title: Heartbeat event
+    3-2-userlogout.md:
+      title: User logout event
+    3-2-userhibernate.md:
+      title: User hibernate event
+    3-3-patient-open.md:
       title: Patient open event
     3-3-patient-close.md:
       title: Patient close event
     3-4-encounter-open.md:
       title: Encounter open event
-    3-5-encounter-close.md:
+    3-4-encounter-close.md:
       title: Encounter close event
-    3-6-imagingstudy-open.md:
+    3-5-imagingstudy-open.md:
       title: ImagingStudy open event
-    3-7-imagingstudy-close.md:
+    3-5-imagingstudy-close.md:
       title: ImagingStudy close event
-    3-8-syncerror.md:
-      title: Sync error event
-    3-9-userlogout.md:
-      title: User logout event
-    3-10-userhibernate.md:
-      title: User hibernate event
-    3-11-heartbeat.md:
-      title: Heartbeat event
-    3-12-diagnosticreport-open.md:
+    3-6-diagnosticreport-open.md:
       title: DiagnosticReport-open Event
-    3-13-diagnosticreport-update.md:
+    3-6-diagnosticreport-update.md:
       title: DiagnosticReport-update Event
-    3-14-diagnosticreport-close.md:
+    3-6-diagnosticreport-close.md:
       title: DiagnosticReport-close Event
-    3-15-diagnosticreport-select.md:
+    3-6-diagnosticreport-select.md:
       title: DiagnosticReport-select Event
+      
   4_Scenarios.md:
     title: Scenarios
     4-1-launch-scenarios.md:
@@ -85,12 +92,6 @@ pages:
     title: Change log
   7_open-issues.md:
     title: Open Issues
-copyrightYear: 2021+
-releaseLabel: ci-build
-publisher:
-  name: FHIR InM
-  url: http://hl7.org
-
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │

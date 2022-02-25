@@ -1,5 +1,6 @@
-> info "Implementer guidance"
-> This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
+<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
+This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
+<p></p><p></p>
 
 FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain Protected Health Information (PHI).
 
@@ -36,7 +37,7 @@ Unlike WebSub, FHIRcast requires that both the Hub and the subscribing apps endp
 
 The below [flow diagram](https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing) illustrates each of the interactions.
 
-{% include img.html img="FHIRcast%20WebSub%20security%20sequence.png" caption="Figure: FHIRcast flow diagram" %}
+{% include img.html img="FHIRcast WebSub security sequence.png" caption="Figure: FHIRcast flow diagram" %}
 
 #### How does the subscriber authenticate to the Hub?
 
@@ -62,7 +63,7 @@ The Hub can make three distinct API calls to the subscribing app's `hub.callback
 
 This [flow diagram](https://drive.google.com/file/d/1sqh3Jghd2QGzq_EhRR-uv6axgIkVW1EE/view?usp=sharing) describes the actors and actions.
 
-{% include img.html img="WebSub%20security%20sequence%20flow.png" caption="Figure: WebSub security flow" %}
+{% include img.html img="WebSub security sequence flow.png" caption="Figure: WebSub security flow" %}
 
 The [subscribing app initiates](http://fhircast.org/#app-subscribes-to-session) the FHIRcast subscription, authenticating to the Hub with its bearer token, and providing the `hub.secret` and `hub.callback` url. The Hub verifies intent and ownership by performing an HTTP GET to the `hub.callback` url, with a `hub.challenge`. The subscribing app must echo the `hub.challenge` in the body of an HTTP 202 response. Once a workflow event occurs, the Hub notifies the app of the event by POSTing to the subscribing app's `hub.callback` url. The Hub provides an [HMAC signature](https://www.w3.org/TR/websub/#bib-RFC6151) of the previously provided `hub.secret` in the `X-Hub-Signature` HTTP header.
 

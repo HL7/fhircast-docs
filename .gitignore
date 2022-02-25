@@ -15,3 +15,5 @@ temp/
 fsh-generated/
 template/
 output/
+updateWebsite.sh
+nginx.conf

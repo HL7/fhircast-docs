@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/sdc/2019May" ciUrl="http://hl7.org/fhir/ig/HL7/sdc" defaultVersion="3.0.0" defaultWorkgroup="fhir-i" gitUrl="https://github.com/HL7/sdc" url="http://hl7.org/fhir/uv/sdc">
+<version code="current" url="https://build.fhir.org/ig/HL7/fhircast-docs/"/>
+<version code="2.0.0" deprecated="true" url="https://fhircast.org/specification/STU2/"/>
+<version code="1.0.0" deprecated="true" url="https://fhircast.org/specification/STU1/"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page key="home" name="Home"/>
+<page key="specification" name="Specification"/>
+<page key="specificationDiscovery" name="Specification: Session Discovery"/>
+<page key="specificationScopes" name="Specification: FHIRcast scopes"/>
+<page key="specificationEvent" name="Specification: Event format"/>
+<page key="specificationSubscr" name="Specification: Subscribing to events"/>
+<page key="specificationEventNot" name="Specification: Event notification"/>
+<page key="specificationReqContChange" name="Specification: Request Context Change"/>
+<page key="specificationConformance" name="Specification: Conformance"/>
+<page key="specificationExtensions" name="Specification: Extensions"/>
+<page key="specificationGetCurrentContext" name="Specification: Get current context"/>
+<page key="events" name="Events"/>
+<page key="scenarios" name="Scenario's"/>
+<page key="scenariosAppLaunch" name="Scenario: App Launch scenario's and session Discovery"/>
+<page key="scenariosSynchronization" name="Scenario: Synchronization Considerations"/>
+<page key="scenariosSecurity" name="Scenario: Security Considerations"/>
+<page key="scenariosMultiTab" name="Scenario: Multi-tab Considerations"/>
+<page key="scenariosMultiAnchor" name="Scenario: Multi-anchor Considerations"/>
+<page key="scenarioContentSharing" name="Scenario: Content sharing"/>
+</specification>
