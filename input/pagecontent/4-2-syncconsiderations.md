@@ -16,11 +16,11 @@ Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician walks away from her desktop EHR and accesses an app on her mobile device which synchronizes to the EHR's hibernated session.
 
-| Consideration | Risk |
-|--|--|
-|Synchronization failure significance | low |
-|Performance expectations|negligible|
-|User inability to distinguish between synchronized applications| n/a|
+| Consideration                                                   | Risk       |
+| --------------------------------------------------------------- | ---------- |
+| Synchronization failure significance                            | low        |
+| Performance expectations                                        | negligible |
+| User inability to distinguish between synchronized applications | n/a        |
 
 **Summary**: This serial or sequential use-case is a convenience synchronization and the clinical risk for synchronization failure is low.
 
@@ -28,11 +28,11 @@ Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician accesses her desktop EHR as well an app on her mobile device at the same time. Mobile device synchronizes with the EHR desktop session.
 
-|Consideration|Risk|
-|--|--|
-|Synchronization failure significance|medium|
-|Performance expectations|low|
-|User inability to distinguish between synchronized applications| low|
+| Consideration                                                   | Risk   |
+| --------------------------------------------------------------- | ------ |
+| Synchronization failure significance                            | medium |
+| Performance expectations                                        | low    |
+| User inability to distinguish between synchronized applications | low    |
 
 **Summary**: The user clearly distinguishes between the applications synchronized on multiple devices and therefore clinical risk for a synchronization failure depends upon the workflow and implementer's goals. User manual action may be appropriate when synchronization fails.
 
@@ -40,11 +40,11 @@ Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician is accessing two or more applications on the same machine in a single workflow.  
 
-|Consideration|Risk|
-|--|--|
-|Synchronization failure significance| medium|
-|Performance expectations|high|
-|User inability to distinguish between synchronized applications| medium|
+| Consideration                                                   | Risk   |
+| --------------------------------------------------------------- | ------ |
+| Synchronization failure significance                            | medium |
+| Performance expectations                                        | high   |
+| User inability to distinguish between synchronized applications | medium |
 
 **Summary**: Although, the applications applications are distinguishable from one another, the workflow requires rapidly accessing one then another application. Application responsivity to synchronization is particularly important. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
 
@@ -52,11 +52,11 @@ Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician accesses multiple applications within a single user interface.
 
-|Consideration|Risk|
-|--|--|
-|Synchronization failure significance|very high|
-|Performance expectations|high|
-|User inability to distinguish between synchronized applications|very high|
+| Consideration                                                   | Risk      |
+| --------------------------------------------------------------- | --------- |
+| Synchronization failure significance                            | very high |
+| Performance expectations                                        | high      |
+| User inability to distinguish between synchronized applications | very high |
 
 **Summary**: Disparate applications indistinguishable from one another require the greatest amount of context synchronization. Clinical risk of synchronization failure is critical. Application responsivity to synchronization should be high. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
 
@@ -64,10 +64,10 @@ Machine-to-machine-to-machine: Different machines, different times
 
 **Scenario**: Clinician accesses multiple applications on different monitors and machines at the same time. Each application fulfills a specific role. A typical example of such set-up is a radiology workstation.
 
-|Consideration | Risk |
-|--|--|
-| Synchronization failure significance | very high |
-| Performance expectations | high |
+| Consideration                                                   | Risk      |
+| --------------------------------------------------------------- | --------- |
+| Synchronization failure significance                            | very high |
+| Performance expectations                                        | high      |
 | User inability to distinguish between synchronized applications | very high |
 
 **Summary**: Different applications that work together require the greatest amount of context synchronization. Clinical risk of synchronization failure is critical. Application responsivity to synchronization should be high. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is required.
@@ -83,31 +83,31 @@ There are in some cases good reasons for a client not to follow the subscribed c
 
 Many applications go into edit mode or start a modal dialog that locks the system from changing context without user intervention. Examples can be when modifying texts, reports, annotating images or performing administrative tasks. The clients may then decline to follow the subscribed context to prevent loss of end user data.
 
-|System|Failure mode|Possible actions|
-|--|--|--|
-| Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
-| Subscribing Client | Unable to change context | Respond with a http status code of 409 conflict|
-| Subscribing Client | Ask user whether context can be changed, user refuses. | The Client responds to the initial event with an 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
-| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with an 202 Accepted. When the user does not respond within 10 seccond,  it sends a `syncerror` text change is refused, stating the source and reason for change. |
-| Hub | One of the subscribing clients cannot follow context | No action/Update all subscribing clients with event sync-error |
+| System             | Failure mode                                                                | Possible actions                                                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict.                                                                           |
+| Subscribing Client | Unable to change context                                                    | Respond with a http status code of 409 conflict                                                                                                                                                            |
+| Subscribing Client | Ask user whether context can be changed, user refuses.                      | The Client responds to the initial event with an 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change.                                        |
+| Subscribing Client | Ask user whether context can be changed, user does not react in time.       | The Client responds to the initial event with an 202 Accepted. When the user does not respond within 10 seccond,  it sends a `syncerror` text change is refused, stating the source and reason for change. |
+| Hub                | One of the subscribing clients cannot follow context                        | No action/Update all subscribing clients with event sync-error                                                                                                                                             |
 
 ## Failure off subscribing client preventing context synchronization
 
 Although not intended, application do fail. In this case the event is received by the application but some internal error prevents it from processing it.
-|System|Failure mode|Possible actions|
-|--|--|--|
-| Subscribing Client | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X. |
-| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription. |
+| System             | Failure mode                                           | Possible actions                                                                                                                              |
+| ------------------ | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Subscribing Client | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X.          |
+| Hub                | One of the subscribing clients cannot follow context   | No action/update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription. |
 
 ## Connection is lost
 
 This error scenario is all about the Hub losing contact with its subscribing clients. This may be due to a client crash, mis-configured callback URL or simply an underlying network failure. In these cases, the clients are usually not aware of the fact that the context has changed or that the subscription messages are not received.
 To mitigate this situation, clients are recommended to register for `heartbeat` events.
 
-|System|Failure mode|Possible actions|
-|--|--|--|
+| System             | Failure mode                                              | Possible actions                                                                                                                                                                                   |
+| ------------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync. |
-| Hub | Timeout or error from client callback URL | No action/Retry/Update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription. |
+| Hub                | Timeout or error from client callback URL                 | No action/Retry/Update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription.                                                |
 
 ## Race condition during launch
 
@@ -117,26 +117,26 @@ Once an app is launched with initial context, for example, the currently in cont
 
 In the scenarios where the Hub is aware of a synchronization error, it is advisable for the Hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.
 
-| System | Failure mode | Possible actions |
-|--|--|--|
+| System             | Failure mode                       | Possible actions                                                               |
+| ------------------ | ---------------------------------- | ------------------------------------------------------------------------------ |
 | Subscribing Client | Sync-error event received from Hub | Present end user with clear indication that contextual synchronization is lost |
 
 ## Subscription has expired
 
 The client subscription has expired causing it no longer receive event. The application can prevent this by resubscribing before the subscription expires.
-| System | Failure mode | Possible actions |
-|--|--|--|
-| Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync.
-| Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So it cannot mitigate this.|
+| System             | Failure mode             | Possible actions                                                                                                                                                                                   |
+| ------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync. |
+| Hub                | None                     | The hub cannot distinguish between an intentional and unintentional subscription expiration. So it cannot mitigate this.                                                                           |
 
 ## Race condition between context changes
 
 Two or more clients are sending context change event shortly after each other causing the events to cross.
-| System | Failure mode | Possible actions |
-|--|--|--|
-| Subscribing Client | Receive older events | Ensure that the timestamp is checked and that events older than the event that triggered the current context state are ignored. |
-| Subscribing Client | Conflicting events | When a client detects an event with a suggested context change that is send shortly after its own event, it should compare the timestamp of these events and treat the most recent event as current. It should also not respond with a resend of its context change without querying the user to prevent triggering an endless context switch waterfall. |
-| Hub | None | The hub cannot and should not be involved in distinguishing between an intentional and unintentional event  expiration. So it cannot mitigate this. |
+| System             | Failure mode         | Possible actions                                                                                                                                                                                                                                                                                                                                         |
+| ------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Subscribing Client | Receive older events | Ensure that the timestamp is checked and that events older than the event that triggered the current context state are ignored.                                                                                                                                                                                                                          |
+| Subscribing Client | Conflicting events   | When a client detects an event with a suggested context change that is send shortly after its own event, it should compare the timestamp of these events and treat the most recent event as current. It should also not respond with a resend of its context change without querying the user to prevent triggering an endless context switch waterfall. |
+| Hub                | None                 | The hub cannot and should not be involved in distinguishing between an intentional and unintentional event  expiration. So it cannot mitigate this.                                                                                                                                                                                                      |
 
 # Reestablishing sync
 
@@ -144,7 +144,7 @@ The situations in which a sync error can occur are indicated in the previous sec
 
 ## Clients that initiate a context change
 
-A Client that initiates a context change and receives a `syncerror` related to a context change event it send, SHOULD resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
+A Client that initiates a context change and receives a `syncerror` related to a context change event it sent, SHOULD resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
 
 ## Clients that follow context change
 
