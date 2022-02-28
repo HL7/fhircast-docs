@@ -29,7 +29,7 @@ Content-Type: application/json
   "id": "wYXStHqxFQyHFELh",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "close-patient-chart",
+    "hub.event": "patient-close",
     "context": [
       {
         "key": "patient",
