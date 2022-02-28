@@ -116,3 +116,15 @@ The figure below illustrates the `webhook` and `websocket` Event Notification Er
 {% include img.html img="ErrorSequence.png" caption="Figure: Event Notification Error flow diagram" %}
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
+
+## Hub Generated `syncerror` Events
+
+In addition to distributing `syncerror` events sent by a subscribed application to all subscribed applications, the Hub may generate `syncerror` events under certain conditions and distribute these events to all subscribed applications.
+
+The Hub SHALL NOT generate `syncerror` events in the following situations:
+1. If a client fails to respond to a [heartbeat Event](3-11-heartbeat.html)
+2. If a client closes its WebSocket connection to the Hub with a Close Reason of 1000 or 1001 (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6)).  Note that if an application is deliberately shutdown, the application should unsubscribe as part of their shutdown process (thus avoiding this scenario).
+
+The Hub SHALL generate `syncerror` events when a change context request is received ([FHIR Resource]-open or [FHIR Resource]-close) and a subscribed application:
+1.  has previously closed its WebSocket connection to the Hub with a Close Reason other than 1000 or 1001 (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6))
+2. does not respond to the event distributed by the Hub within 10 seconds
