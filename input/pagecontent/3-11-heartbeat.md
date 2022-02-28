@@ -2,7 +2,7 @@
 
 
 ### Event-name: Heartbeat event
-The heartbeat event is sent regularly to indicate a channel is open (typically by the hub).
+The heartbeat event is sent regularly by the Hub to indicate that a connection should remain open.
 
 The name of the event is: heartbeat
 
@@ -12,9 +12,9 @@ This event SHALL be send at least every 10 second, or an order of magnitude lowe
 ### Context
 The context of the -monitor event described in the table below.
 
-| Key       | Optionality   | #   | type      | *Description*       |
-|-----------|:--------------|-----|-----------|---------------------|
-| `period` | REQUIRED      | 1   | decimal   | The maximum resend period in seconds |
+| Key      | Optionality | #   | type    | *Description*                        |
+| -------- | :---------- | --- | ------- | ------------------------------------ |
+| `period` | REQUIRED    | 1   | decimal | The maximum resend period in seconds |
 
 The `period` field indicates the repeat interval. If an event is not received within this time period, the connection may be assumed to be lost.
 
@@ -40,6 +40,6 @@ An example heartbeat event is indicated below.
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+| Version | Description     |
+| ------- | --------------- |
+| 1.0     | Initial Release |
