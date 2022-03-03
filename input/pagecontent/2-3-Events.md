@@ -8,7 +8,7 @@ FHIRcast events do not communicate previous state. For a given event, opens and 
 
 Each event definition: specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notifications MAY include other elements of these resources.
 
-All events are documents in the [standard event catalog(3_Events.html)] and SHALL be defined in the following format.
+All events are documents in the [standard event catalog](3_Events.html) and SHALL be defined in the following format.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
@@ -24,11 +24,11 @@ Most FHIRcast events conform to an extensible syntax based upon FHIR resources. 
 
 FHIRcast events that describe context changes SHOULD conform to the following extensible syntax.
 
-Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related events is:
+Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context change related events is:
 
 `hub.events ::= ( fhir-resource | '*' ) '-' ( 'open' | 'close' | '*' )`
 
-{% include img.html img="events-railroad.png" caption="Figure: Syntax for new events" %}
+{% include img.html img="events-railroad.png" caption="Figure: Syntax for FHIRcast events" %}
 
 Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
@@ -49,6 +49,6 @@ Context change events will include the resource the context change relates to. C
 
 For example, when the [`ImagingStudy-open`](3-6-imagingstudy-open.html) event occurs, the notification sent to a subscriber includes an ImagingStudy FHIR resource, which includes at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-The key used for indicating a context-change events SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resource that represent there own context, these can be included as well. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
+The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
