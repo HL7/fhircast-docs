@@ -20,7 +20,8 @@ The notification's `hub.event` and `context` fields inform the subscriber of the
 
 ### Event name
 
-The event name defines the events. Most FHIRcast events conform to an extensible syntax based upon FHIR resources. 
+The event name defines the event. Most FHIRcast events conform to an extensible syntax based upon FHIR resources. 
+
 
 `event-name ::= ( fhir-resource  ) '-' ( 'suffix' )`
 
