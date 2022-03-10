@@ -121,7 +121,8 @@ More information on the source of notification errors and how to resolve them ca
 
 In addition to distributing [`syncerror`](3-8-syncerror.html) events sent by one application to other subscribed applications, the Hub MAY generate and communicate [`syncerror`](3-8-syncerror.html) events to applications under the following conditions -- 
 
-1.  has previously closed its WebSocket connection to the Hub with a Close Reason other than 1000 or 1001 (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6))
+1.  A subscribed application's WebSocket connection is closed with any Connection Close Reason other than 1000 (normal closure) or 1001 (going away) (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6) and [WebSocket Status Codes](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4))
+
 2. does not respond to the distributed event by the Hub within 10 seconds
 
 Generated [`syncerror`](3-8-syncerror.html) events should be distributed only to applications which have subscribed to the event which triggered the [`syncerror`](3-8-syncerror.html) to be generated.
