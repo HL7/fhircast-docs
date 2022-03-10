@@ -123,7 +123,10 @@ In addition to distributing [`syncerror`](3-8-syncerror.html) events sent by one
 
 1.  A subscribed application's WebSocket connection is closed with any Connection Close Reason other than 1000 (normal closure) or 1001 (going away) (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6) and [WebSocket Status Codes](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4))
 
-2. does not respond to the distributed event by the Hub within 10 seconds
+2. And, the subscribed application, does not respond to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
+
+Implementer input is solicited on the amount and specificity of time, in the above.
+
 
 Generated [`syncerror`](3-8-syncerror.html) events should be distributed only to applications which have subscribed to the event which triggered the [`syncerror`](3-8-syncerror.html) to be generated.
 
