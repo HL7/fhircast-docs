@@ -91,6 +91,7 @@ Selection events use the suffix `select`. The format of selection events is:
 
 `hub.events ::= ( fhir-resource  ) '-' ( select )`
 
-The `fhir-resource` indicates the context of the selection. The context of a select event typically contains two fields. One with the name of the fhir-resource holding a the anchor resource. One or more named `select` indicating the resources that selected.
+The `fhir-resource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `fhir-resource` holding a the anchor resource and one or more named `select` indicating the resources that is selected.
+
 
 This allows of communication of different select sets for the different anchor-types.
