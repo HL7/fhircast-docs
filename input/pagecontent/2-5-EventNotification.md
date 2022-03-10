@@ -128,7 +128,8 @@ In addition to distributing [`syncerror`](3-8-syncerror.html) events sent by one
 Implementer input is solicited on the amount and specificity of time, in the above.
 
 
-Generated [`syncerror`](3-8-syncerror.html) events should be distributed only to applications which have subscribed to the event which triggered the [`syncerror`](3-8-syncerror.html) to be generated.
+[`syncerror`](3-8-syncerror.html) events are distributed only to applications which have subscribed to `syncerror`s. The Hub MAY only send syncerrors to application that are also subscribed to the event which triggered the [`syncerror`](3-8-syncerror.html).
+
 
 After the Hub generates and distributes a [`syncerror`](3-8-syncerror.html) indicating that an application is not responsive, the Hub shall remove that application from its list of applications subscribed to the topic so that no additional [`syncerror`](3-8-syncerror.html) events are distributed on behalf of the nonresponsive application.
 
