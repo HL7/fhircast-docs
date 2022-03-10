@@ -25,7 +25,8 @@ The event name defines the event. Most FHIRcast events conform to an extensible 
 
 `event-name ::= ( fhir-resource  ) '-' ( 'suffix' )`
 
-The `fhir-resource` indicates the anchor-type that is focus of the event, the `suffix` defines the type of event.
+The `fhir-resource` indicates the focus of the event; the `suffix` defines the type of event.
+
 
 FHIRcast events MAY be named differently. For example, FHIR doesn't cleanly contain the concept of a user or user's session.  
 
