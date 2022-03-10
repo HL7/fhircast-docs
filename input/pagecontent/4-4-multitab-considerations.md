@@ -1,5 +1,6 @@
-!!! info "Implementer guidance"
-    This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](../specification/STU2).
+<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
+This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html).
+<p></p><p></p>
 
 ### Considerations for application with simultaneous contexts
 
@@ -41,7 +42,7 @@ Since we are inherently representing the lack of context, the event will not ful
 
 ##### home-open
 
-eventMaturity | [1 - Submitted](3-0-EventMaturityModel.html)
+eventMaturity | [1 - Submitted](3-1-EventMaturityModel.html)
 
 ###### Workflow
 

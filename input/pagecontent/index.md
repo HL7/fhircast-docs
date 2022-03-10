@@ -22,7 +22,7 @@ The app subscribes to specific workflow events for the given user's session by c
 
 A radiologist working in their reporting system clicks a button to open their dictation system. The dictation app is authorized and subscribes to the radiologist's session. Each time the radiologist opens a patient's chart in the reporting system, the dictation app will be notified of the current patient and therefore presents the corresponding patient information on its own UI. The reporting system and dictation app share the same session's context.
 
-{% include img.html img="colorful%20overview%20diagram.png" caption="Figure: FHIRcast Overview" %}
+{% include img.html img="colorful overview diagram.png" caption="Figure: FHIRcast Overview" %}
 
 * Event notifications are thin json wrappers around FHIR resources.
 * The app can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure. 	

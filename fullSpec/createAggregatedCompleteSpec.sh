@@ -39,5 +39,5 @@ jekyll b
 # mv ../$fullspec .
 # kramdown --auto-ids $fullspec > FHIRcast.html
 
-# <img align="left" width="100%"  src="colorful%20overview%20diagram.png">
+# <img align="left" width="100%"  src="colorful overview diagram.png">
 # {% include img.html img="events-railroad.png" caption="Figure: Syntax for new events" %}

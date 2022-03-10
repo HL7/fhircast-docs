@@ -1,5 +1,6 @@
-> info "Implementer guidance"
-> This page contains guidance to implementers and is not part of the normative-track [FHIRcast specification](2_Specification.html).
+<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
+This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
+<p></p><p></p>
 
 FHIRcast describes a mechanism for synchronizing distinct applications. Sometimes things go wrong, and applications fail to synchronize or become out of sync. For example, the user within the EHR opens a new patient's record, but the app fails to process the update and continues displaying the initial patient.
 

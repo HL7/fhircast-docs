@@ -1,8 +1,8 @@
 This section presents the template to use for defining new events. 
 
-### [FHIR resource]-[open|close]
+### Event-name: [FHIR resource]-[suffix]
 
-eventMaturity | [0 - Draft](3-0-EventMaturityModel.html)
+eventMaturity | [0 - Draft](3-1-EventMaturityModel.html)
 
 #### Workflow
 

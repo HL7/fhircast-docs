@@ -1,27 +1,29 @@
-### Event-name: ImagingStudy-open
+### Event-name: ImagingStudy-close
 
-eventMaturity | [2 - Tested](3-0-EventMaturityModel.html)
+eventMaturity | [2 - Tested](3-1-EventMaturityModel.html)
 
 ### Workflow
 
-User opened record of imaging study. The newly open study may have been associated with a specific patient, or not. 
+User opened record of imaging study.
+
+User closed patient's medical record. A previously open and in context study is no longer open nor in context. The previously open study may have been associated with a specific patient, or not.
 
 ### Context
 
 Key | Optionality | Fhir operation to generate context | Description
------ | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
+----- | -------- | ---- | ----
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource previously in context. Note that in addition to the request identifier and `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
+accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
 
 ### Examples
-  
+
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "imagingstudy-open",
+    "hub.event": "imagingstudy-close",
     "context": [
       {
         "key": "patient",
