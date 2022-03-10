@@ -74,7 +74,8 @@ Context change events will include the resource the context change relates to. C
 
 In the case the resource refers to other FHIR resources that represent there own context, these can be included as well. E.g. an [`Encounter-open`](3-4-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
-FHIRcast supports all events that follow this format. For the most common events definitions have been provided in the [event catalog](3_Events.html).
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).
+
 
 #### Infrastructure events
 
