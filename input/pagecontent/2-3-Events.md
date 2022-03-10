@@ -79,7 +79,8 @@ FHIRcast supports all events that follow this format. The most common events def
 
 #### Infrastructure events
 
-This event category contains events required to maintain the FHIRcast network. The main events in this category are:
+This event category contains events required to maintain a FHIRcast session. The main events in this category are:
+
 
 | [`syncerror`](3-2-syncerror.html) | indicates refusal to follow context or inability to deliver an event
 | [`heartbeat`](3-2-heartbeat.html) | for monitoring the connection to the hub
