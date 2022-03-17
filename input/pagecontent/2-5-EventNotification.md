@@ -132,7 +132,7 @@ Implementer input is solicited on the amount and specificity of time, in the abo
 
 
 
-After the Hub generates and distributes a [`syncerror`](3-8-syncerror.html) indicating that an application is not responsive, the Hub shall remove that application from its list of applications subscribed to the topic so that no additional [`syncerror`](3-8-syncerror.html) events are distributed on behalf of the nonresponsive application.
+Upon communicating a `syncerror` resulting from an unresponsive app, the Hub SHALL unsubscribe the application. 
 
 The Hub SHALL NOT generate [`syncerror`](3-8-syncerror.html) events in the following situations:
 1. If a client fails to respond to a [`heartbeat`](3-11-heartbeat.html) event
