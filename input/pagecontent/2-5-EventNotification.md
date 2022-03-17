@@ -136,7 +136,10 @@ Upon communicating a `syncerror` resulting from an unresponsive app, the Hub SHA
 
 The Hub SHALL NOT generate [`syncerror`](3-8-syncerror.html) events in the following situations:
 1. If a client fails to respond to a [`heartbeat`](3-11-heartbeat.html) event
-2. If a client closes its WebSocket connection to the Hub with a Close Reason of 1000 or 1001 (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6)).  Note that if an application is deliberately shutdown, the application should unsubscribe (Unscrube event here) as part of their shutdown process (thus avoiding this scenario).
+2. The application closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
+
+During a normal shutdown of an application, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive app.
+
 
 <u>Implementer feedback is solicited on Hub Generated `syncerror` Events particularly on the following topics:</u>
 
