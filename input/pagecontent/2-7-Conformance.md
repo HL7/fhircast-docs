@@ -15,6 +15,7 @@ Field | Optionality | Type | Description
 `websocketSupport` | Required | boolean | The static value: `true`, indicating support for websockets.
 `webhookSupport` | Optional | boolean | `true` or `false` indicating support for webhooks. Hubs SHOULD indicate their support for web hooks. 
 `fhircastVersion` | Optional | string | `STU1` or `STU2` indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported. 
+`getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the [Get Current Context](2-9-GetCurrentContext.html) API. 
 
 #### Wellknown endpoint discovery example
 
