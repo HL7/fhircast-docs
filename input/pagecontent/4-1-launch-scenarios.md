@@ -68,9 +68,18 @@ In this scenario, the EHR authorizes the app to synchronize. The EHR provides a 
 
 #### Standalone launch: User authenticates to EHR to authorize synchronization
 
-If the app can't be launched from the EHR, for example, it's opening on a different machine, it can use the standard [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence).
+> This is an advanced scenario and is likely to not be widely supported.  Implementer feedback is solicited.
+
+If the app can't be launched from the EHR, for example, it's opening on a different machine, it may be able to use the standard [SMART on FHIR standalone launch](http://www.hl7.org/fhir/smart-app-launch/#standalone-launch-sequence).
 
 In this scenario, the user authorizes the app to synchronize to her session by authenticating to the EHR's authorization server. The app requests desired FHIRcast scopes and the EHR provides a session topic as a SMART launch parameter which belongs to the EHR's authorizing user.
+
+#### Dynamic Registration for Native apps: Following SMART launch, parent client registers dynamic client which participates in FHIRcast session
+
+> This is an advanced scenario and is likely to not be widely supported.  Implementer feedback is solicited.
+
+Although dynamic registration for native apps is often appropriate from a security perspective, this technology is not widely implemented in healthcare. FHIRcast does not specify how the `hub.topic ` and `hub.url` should be communicated to a dynamic client if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native app implementer in the absence of other guidance. 
+
 
 #### SMART Launch Example
 
