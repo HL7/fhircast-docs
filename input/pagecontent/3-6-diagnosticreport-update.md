@@ -112,7 +112,7 @@ The following example shows adding an imaging study to the existing diagnostic r
               "resource": {
                 "resourceType": "Observation",
                 "id": "435098234",
-                "partOf": {
+                "derivedFrom": {
                   "reference": "ImagingStudy/3478116342"
                 },
                 "status": "preliminary",
@@ -204,7 +204,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
               "resource": {
                 "resourceType": "Observation",
                 "id": "435098234",
-                "partOf": {
+                "derivedFrom": {
                   "reference": "ImagingStudy/3478116342"
                 },
                 "status": "preliminary",
