@@ -40,6 +40,15 @@ The following example shows a report being opened that contains a single primary
           "resourceType": "DiagnosticReport",
           "id": "40012366",
           "status": "unknown",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "30675-3",
+                "display": "MR Prostate"
+              }
+            ]
+          },
           "subject": {
             "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
           },

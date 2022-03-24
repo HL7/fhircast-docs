@@ -9,10 +9,10 @@ Description: "Defines the minimum set of attributes which an application wanting
 * hasMember MS
 * derivedFrom MS
 
-Instance: FHIRcastObservation-1
+Instance: FHIRcastObservation-Example
 InstanceOf: FHIRcastObservation
 Usage: #example
-Description: "CT Radiation Dose Summary example 1"
+Description: "Example of a simple observation which could be exchanged using FHIRcast"
 * id = "435098234"
 * derivedFrom = Reference(ImagingStudy/3478116342)
 * derivedFrom.identifier.system = "urn:dicom:uid"
