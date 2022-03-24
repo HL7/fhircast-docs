@@ -11,7 +11,7 @@ Description: "Defines the minimum set of attributes which an application handlin
 Instance: FHIRcastDiagnosticReport-Example
 InstanceOf: FHIRcastDiagnosticReport
 Usage: #example
-Description: "Example of a simple diagnostic report FHIRcast context"
+Description: "Example of a simple diagnostic report used to establish a FHIRcast context"
 * id = "40012366"
 * subject = Reference(Patient/ewUbXT9RWEbSj5wPEdgRaBw3)
 * subject.identifier.system = "urn:oid:1.2.840.114350"

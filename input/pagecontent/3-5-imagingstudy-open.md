@@ -4,16 +4,27 @@ eventMaturity | [2 - Tested](3-1-EventMaturityModel.html)
 
 ### Workflow
 
-User opened record of imaging study. The newly open study may have been associated with a specific patient, or not. 
+An `ImagingStudy-open` request is posted to the Hub when an image study is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the `ImagingStudy` resource.
+
+When an `ImagingStudy-open` event is received by an application, the application should respond as is appropriate for its clinical use.
+
+#### Content Sharing Support
+
+If a Hub supports content sharing, when it distributes an `ImagingStudy-open` event the Hub associates a `context.versionId` with the anchor context.
 
 ### Context
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the imaging study
+`encounter` | OPTIONAL | `Encounter/{id}?_elements=identifier	` | Encounter resource describing the encounter associated with the imaging study, if known
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier` | FHIR ImagingStudy being opened
 
 ### Examples
+
+#### ImagingStudy-open Example Request
+
+The following example shows an image study being opened.  Note that the imaging study's `subject` attribute references the patient which is also in the open request.
   
 ```json
 {
@@ -45,14 +56,14 @@ Key | Optionality | Fhir operation to generate context | Description
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
-          "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
+          "status": "unknown",
           "identifier": [
             {
-              "system": "7678",
-              "value": "185444"
+              "system": "urn:dicom:uid",
+              "value": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045"
             }
           ],
-          "patient": {
+          "subject": {
             "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
           }
         }

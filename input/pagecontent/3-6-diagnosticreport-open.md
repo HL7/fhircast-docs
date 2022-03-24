@@ -4,7 +4,7 @@ eventMaturity | [1 - Submitted](3-1-EventMaturityModel.html)
 
 ### Workflow
 
-A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
+A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the `DiagnosticReport` resource.
 
 When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
@@ -17,8 +17,8 @@ If a Hub supports content sharing, when it distributes a `DiagnosticReport-open`
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the diagnostic report
+`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
 
 ### Examples
 
