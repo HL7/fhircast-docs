@@ -1,7 +1,7 @@
 Profile: FHIRcastImagingStudy
 Parent: ImagingStudy
 Id: fhircast-imaging-study
-Title: "FHIRcast Observation"
+Title: "FHIRcast Imaging Study"
 Description: "Defines the minimum set of attributes which an application handling ImagingStudy contexts must support"
 * numberOfSeries 0..0
 * numberOfInstances 0..0

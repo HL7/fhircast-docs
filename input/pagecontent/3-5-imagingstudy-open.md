@@ -18,14 +18,14 @@ Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the imaging study
 `encounter` | OPTIONAL | `Encounter/{id}?_elements=identifier	` | Encounter resource describing the encounter associated with the imaging study, if known
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier` | FHIR ImagingStudy being opened
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier` | ImagingStudy being opened
 
 ### Examples
 
 #### ImagingStudy-open Example Request
 
 The following example shows an image study being opened.  Note that the imaging study's `subject` attribute references the patient which is also in the open request.
-  
+
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
@@ -41,12 +41,17 @@ The following example shows an image study being opened.  Note that the imaging 
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
           "identifier": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR",
+                    "display" : "Medical Record Number"
+                  }
+                ]
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "213434"
             }
           ]
         }
