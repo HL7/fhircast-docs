@@ -12,19 +12,19 @@ The sections in this chapter are:
 | [3.5 User logout event](3-2-userlogout.html) |
 | [3.6 User hibernate event](3-2-userhibernate.html) |
 
-|**Patient**|
+| **Patient** |
 | [3.7 Patient open event]( 3-3-patient-open.html) |
 | [3.8 Patient close event]( 3-3-patient-close.html) |
 
-|**Encounter**|
+| **Encounter** |
 | [3.9 Encounter open event](3-4-encounter-open.html) |
 | [3.10 Encounter close event](3-4-encounter-close.html) |
 
-|**ImagingStudy**|
+| **ImagingStudy** |
 | [3.11 ImagingStudy open event](3-5-imagingstudy-open.html) |
 | [3.12 ImagingStudy close event](3-5-imagingstudy-close.html) |
 
-|**DiagnosticReport**
+| **DiagnosticReport** |
 | [3.13 DiagnosticReport-open Event](3-6-diagnosticreport-open.html) |
 | [3.14 DiagnosticReport-update Event](3-6-diagnosticreport-update.html) |
 | [3.15 DiagnosticReport-close Event](3-6-diagnosticreport-close.html) |
