@@ -1,6 +1,7 @@
 
 Profile: FHIRcastCapabilityStatement
 Parent: CapabilityStatement
+Id: fhircast-capabilitystatement
 Description: "CapabilityStatment stating support for FHIRcast."
 * implementationGuide 1..*
 * rest ^slicing.rules = #open
