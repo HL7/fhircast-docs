@@ -4,7 +4,6 @@ eventMaturity | [2 - Tested](3-1-EventMaturityModel.html)
 
 ### Workflow
 
-User opened patient's medical record. Only a single patient is currently in context.  
 A `Patient-open` request is posted to the Hub when a patient is opened by an application and established as the anchor context of a topic.
 
 When an `Patient-open` event is received by an application, the application should respond as is appropriate for its clinical use.

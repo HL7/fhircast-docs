@@ -10,7 +10,7 @@ Description: "Defines the minimum set of attributes which an application handlin
 Instance: FHIRcastPatient-Example
 InstanceOf: FHIRcastPatient
 Usage: #example
-Description: "Example of a simple imaging study used to establish a FHIRcast context"
+Description: "Example of a simple patient used to establish a FHIRcast context"
 * id = "8i7tbu6fby5ftfbku6fniuf"
 * identifier.type = HL7IdType#MR "Medical Record Number"
 * identifier.system = "urn:oid:1.2.36.146.595.217.0.1"
