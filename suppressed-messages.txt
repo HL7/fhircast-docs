@@ -1,1 +1,0 @@
-WARNING: The Implementation Guide contains no examples for this profile
