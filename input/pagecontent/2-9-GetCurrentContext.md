@@ -1,12 +1,14 @@
-> This is draft content. Implementer feedback is solicited around this topic.
+> Implementer feedback is solicited around this topic. 
 
-In some situations, Subscribers may want to verify the current context, or they choose not to subscribe to events. This section defines a method in which the current context can be retrieved using a GET call.
+In some situations, subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call.
+
+Hubs MAY support returning the current context of a session, as defined below.
 
 ### Get current context Request
 
-The Requester makes an HTTP GET call to the following URL:
+The requester makes an HTTP GET call to the following URL:
 
-`base-hub-URL/{topic}`
+GET `base-hub-URL/{topic}`
 
 ### Get current context Response
 
