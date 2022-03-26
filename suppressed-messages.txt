@@ -1,4 +1,0 @@
-WARNING: The Implementation Guide contains no examples for this profile
-WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast/StructureDefinition/fhircast-observation')
-WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast/StructureDefinition/fhircast-configuration-extensions')
-WARNING: StructureDefinition.where(url = 'http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast/StructureDefinition/fhircast-capabilitystatement')
