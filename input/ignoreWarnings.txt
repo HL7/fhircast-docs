@@ -6,3 +6,4 @@ The Implementation Guide contains no examples for this profile
 Code System URI 'http://www.radlex.org' is unknown so the code cannot be validated
 # The link is in an example
 Unable to resolve resource 'ImagingStudy/3478116342'
+The link 'ImagingStudy/3478116342' for "ImagingStudy/3478116342" cannot be resolved
