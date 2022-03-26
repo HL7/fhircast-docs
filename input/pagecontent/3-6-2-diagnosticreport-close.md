@@ -1,6 +1,6 @@
 ### Event-name: DiagnosticReport-close
 
-eventMaturity | [1 - Submitted](3-1-EventMaturityModel.html)
+eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 

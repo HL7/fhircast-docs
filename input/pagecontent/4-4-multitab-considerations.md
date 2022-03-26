@@ -42,7 +42,7 @@ Since we are inherently representing the lack of context, the event will not ful
 
 ##### home-open
 
-eventMaturity | [1 - Submitted](3-1-EventMaturityModel.html)
+eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ###### Workflow
 
