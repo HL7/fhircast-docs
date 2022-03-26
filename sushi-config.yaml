@@ -37,41 +37,54 @@ pages:
       title: Extensions
     2-9-GetCurrentContext.md:
       title: Get Current Context
+
   3_Events.md:
     title: Event library
-    3-1-EventMaturityModel.md:
-      title: Event maturity model
-    3-1-template.md:
-      title: Event template
-    3-2-syncerror.md:
-      title: Sync error event
-    3-2-heartbeat.md:
-      title: Heartbeat event
-    3-2-userlogout.md:
-      title: User logout event
-    3-2-userhibernate.md:
-      title: User hibernate event
-    3-3-patient-open.md:
-      title: Patient open event
-    3-3-patient-close.md:
-      title: Patient close event
-    3-4-encounter-open.md:
-      title: Encounter open event
-    3-4-encounter-close.md:
-      title: Encounter close event
-    3-5-imagingstudy-open.md:
-      title: ImagingStudy open event
-    3-5-imagingstudy-close.md:
-      title: ImagingStudy close event
-    3-6-diagnosticreport-open.md:
-      title: DiagnosticReport-open Event
-    3-6-diagnosticreport-update.md:
-      title: DiagnosticReport-update Event
-    3-6-diagnosticreport-close.md:
-      title: DiagnosticReport-close Event
-    3-6-diagnosticreport-select.md:
-      title: DiagnosticReport-select Event
-      
+    3-1-0-eventstructures.md:
+      title: FHIRcast Event Definitions
+      3-1-1-template.md:
+        title: Event template
+      3-1-2-eventmaturitymodel.md:
+        title: Event maturity model
+    3-2-0-infrastructureevents.md:
+      title: Infrastructure Events
+      3-2-1-syncerror.md:
+        title: Sync error event
+      3-2-2-heartbeat.md:
+        title: Heartbeat event
+      3-2-3-userlogout.md:
+        title: User logout event
+      3-2-4-userhibernate.md:
+        title: User hibernate event
+    3-3-0-patientevents.md:
+      title: Patient Events
+      3-3-1-patient-open.md:
+        title: Patient open event
+      3-3-2-patient-close.md:
+        title: Patient close event
+    3-4-0-encounterevents.md:
+      title: Encounter Events
+      3-4-1-encounter-open.md:
+        title: Encounter open event
+      3-4-2-encounter-close.md:
+        title: Encounter close event
+    3-5-0-imagingstudyevents.md:
+      title: ImagingStudy Events
+      3-5-1-imagingstudy-open.md:
+        title: ImagingStudy open event
+      3-5-2-imagingstudy-close.md:
+        title: ImagingStudy close event
+    3-6-0-diagnosticreportevents.md:
+      title: DiagnosticReport Events
+      3-6-1-diagnosticreport-open.md:
+        title: DiagnosticsReport open event
+      3-6-2-diagnosticreport-close.md:
+        title: DiagnosticReport close event
+      3-6-3-diagnosticreport-update.md:
+        title: DiagnosticsReport update event
+      3-6-4-diagnosticreport-select.md:
+        title: DiagnosticReport select event
+
   4_Scenarios.md:
     title: Scenarios
     4-1-launch-scenarios.md:
@@ -86,10 +99,13 @@ pages:
       title: Multi-anchor considerations
     4-6-content-sharing.md:
       title: Content Sharing
+
   5_glossary.md:
     title: Glossary
+
   6_change-log.md:
     title: Change log
+
   7_open-issues.md:
     title: Open Issues
 
