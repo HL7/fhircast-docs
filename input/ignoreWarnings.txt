@@ -1,0 +1,3 @@
+== Suppressed Messages ==
+StructureDefinition.where(url = 'http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast/StructureDefinition/fhircast-capabilitystatement'):The Implementation Guide contains no examples for this profile
+StructureDefinition.where(url = 'http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast/StructureDefinition/fhircast-configuration-extensions'):The Implementation Guide contains no examples for this extension
