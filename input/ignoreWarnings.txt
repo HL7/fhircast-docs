@@ -1,3 +1,4 @@
 == Suppressed Messages ==
 # No examples are derivable at this time
 The Implementation Guide contains no examples for this extension
+The Implementation Guide contains no examples for this profile
