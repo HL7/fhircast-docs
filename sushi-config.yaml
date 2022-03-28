@@ -10,7 +10,7 @@ version: FHIRCast
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
-releaseLabel: FHIRCast STU1 Ballot
+releaseLabel: STU1 Ballot
 publisher:
   name: FHIR InM
   url: http://hl7.org
