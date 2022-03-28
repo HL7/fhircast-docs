@@ -3,16 +3,16 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.fhircast
-canonical: http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast
+canonical: http://hl7.org/fhir/uv/fhircast-docs
 name: FHIRcast
 status: draft
-version: current
+version: STU1
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
-releaseLabel: ci-build
+releaseLabel: FHIRcast 
 publisher:
-  name: FHIR InM
+  name: HL7 Infrastructure & Messaging 
   url: http://hl7.org
 pages:
   index.md: 
