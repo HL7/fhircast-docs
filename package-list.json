@@ -1,5 +1,6 @@
 {
     "package-id": ""hl7.fhir.uv.fhircast-docs"",
+    "title": "FHIRcast",
     "canonical": "https://hl7.org/fhir/fhircast-docs",
 	"title": "FHIRCast Implementation Guide",
 	"introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
@@ -28,5 +29,5 @@
     "package-id": "hl7.fhir.uv.fhircast",
     "title": "FHIRCast",
     "canonical": "http://hl7.org/fhir/uv/fhircast",
-    "category": "Orders and Observaitons"
+    "category": "Orders and Observations"
   }
