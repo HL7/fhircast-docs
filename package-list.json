@@ -27,7 +27,6 @@
       }
     ],
     "package-id": "hl7.fhir.uv.fhircast",
-    "title": "FHIRCast",
     "canonical": "http://hl7.org/fhir/uv/fhircast",
     "category": "Orders and Observations"
   }
