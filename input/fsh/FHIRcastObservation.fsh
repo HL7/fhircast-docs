@@ -14,7 +14,6 @@ InstanceOf: FHIRcastObservation
 Usage: #example
 Description: "Example of a simple observation which could be exchanged using FHIRcast"
 * id = "435098234"
-* derivedFrom = Reference(ImagingStudy/3478116342)
 * derivedFrom.identifier.system = "urn:dicom:uid"
 * derivedFrom.identifier.value = "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
 * status = #preliminary
