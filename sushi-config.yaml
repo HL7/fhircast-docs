@@ -12,7 +12,7 @@ version: current
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
-releaseLabel: ci-build
+releaseLabel: ballot
 publisher:
   name: HL7 International - Infrastructure and Messaging
   url: http://hl7.org/Special/committees/inm
