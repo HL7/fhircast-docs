@@ -5,14 +5,14 @@
 id: hl7.fhir.uv.fhircast
 canonical: http://hl7.org/fhir/uv/fhircast-docs
 name: FHIRcast
-status: ballot
+status: draft
 version: current
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
-releaseLabel: FHIRcast 
+releaseLabel: STU1 Ballot
 publisher:
-  name: HL7 Infrastructure & Messaging 
+  name: FHIR InM
   url: http://hl7.org
 pages:
   index.md: 
