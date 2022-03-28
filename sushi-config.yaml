@@ -5,6 +5,8 @@
 id: hl7.fhir.uv.fhircast
 canonical: http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast
 name: FHIRcast
+title: FHIRcast
+description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
 version: current
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
@@ -12,8 +14,9 @@ fhirVersion: 4.0.1
 copyrightYear: 2017+
 releaseLabel: ci-build
 publisher:
-  name: FHIR InM
-  url: http://hl7.org
+  name: HL7 International - Infrastructure and Messaging
+  url: http://hl7.org/Special/committees/inm
+  email: inm@lists.HL7.org 
 pages:
   index.md: 
     title: Introduction
