@@ -8,11 +8,8 @@
   {
    "version": "current",
    "path": "http://build.fhir.org/ig/HL7/fhircast-docs",
-   "desc": "Continuous Integration Build (latest in version control)",
-   "fhirversion": "4.0.1",
-   "status": "ci-build",
-   "current": true,
-   "date": "2022-03-24"
+   "descmd": "Continuous Integration Build (latest in version control)",
+   "status": "ci-build"
   }
  ]
 }
