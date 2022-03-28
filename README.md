@@ -47,3 +47,6 @@ http://hl7.org/fhir/license.html
 
 Creative Commons "No Rights Reserved" [![CC0](https://www.hl7.org/fhir/cc0.png)](https://www.hl7.org/fhir/license.html) 
 
+##ANSI Anti-Trust Policy:
+
+Professional Associations, such as HL7, which bring together competing entities are subject to strict scrutiny under applicable antitrust laws. HL7 recognizes that the antitrust laws were enacted to promote fairness in competition and, as such, supports laws against monopoly and restraints of trade and their enforcement. Each individual participating in HL7 meetings and conferences, regardless of venue, is responsible for knowing the contents of and adhering to the HL7 Antitrust Policy as stated in §05.01 of the Governance and Operations Manual (GOM).
