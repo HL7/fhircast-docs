@@ -1,15 +1,15 @@
 {
- "package-id": "hl7.fhir.ig.fhircast",
- "canonical": "http://hl7.org/fhir/uv/fhircast",
- "title": "FHIRCast Implementation Guide",
- "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
- "category": "Context Management",
- "list": [
-  {
-   "version": "current",
-   "path": "http://build.fhir.org/ig/HL7/fhircast-docs",
-   "descmd": "Continuous Integration Build (latest in version control)",
-   "status": "ci-build"
-  }
- ]
+    "package-id" : "hl7.fhir.ig.fhircast",
+    "canonical" : "http://hl7.org/fhir/uv/fhircast",
+    "title" : "FHIRCast Implementation Guide",
+    "introduction" : "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
+    "category" : "Context Management",
+    "list" : [
+        {
+            "version" : "current",
+            "path" : "http://build.fhir.org/ig/HL7/fhircast-docs",
+            "desc" : "Continuous Integration Build (latest in version control)",
+            "status" : "ci-build"
+        }
+    ]
 }
