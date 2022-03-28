@@ -6,7 +6,7 @@ id: hl7.fhir.uv.fhircast
 canonical: http://hl7.org/fhir/uv/fhircast-docs
 name: FHIRcast
 status: ballot
-version: STU3
+version: current
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
