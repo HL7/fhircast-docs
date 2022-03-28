@@ -1,5 +1,5 @@
 {
-    "package-id": ""hl7.fhir.uv.fhircast-docs"",
+    "package-id": "hl7.fhir.uv.fhircast-docs",
     "title": "FHIRcast",
     "canonical": "https://hl7.org/fhir/fhircast-docs",
 	"title": "FHIRCast Implementation Guide",
