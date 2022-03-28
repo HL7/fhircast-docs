@@ -1,5 +1,5 @@
 {
-    "package-id" : "hl7.fhir.ig.fhircast-docs",
+    "package-id" : "hl7.fhir.uv.fhircast",
     "canonical" : "http://hl7.org/fhir/uv/fhircast-docs",
     "title" : "FHIRCast Implementation Guide",
     "category" : "Context Management",
