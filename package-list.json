@@ -7,7 +7,7 @@
     "list"  [
            {
           "version": "current",
-          "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
+          "path": "https://build.fhir.org/ig/HL7/fhircast",
           "desc": "Continuous Integration Build (latest in version control)",
           "fhirversion": "4.0.1",
           "status": "ci-build",
