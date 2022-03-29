@@ -11,7 +11,7 @@
         "desc": "Continuous Integration Build (latest in version control)",
         "fhirversion": "4.0.1",
         "status": "ci-build",
-        "current": true,
+        "current": false,
         "date": "2022-03-24"
       },
       {
@@ -20,9 +20,18 @@
         "status": "ballot",
         "sequence": "STU1",
         "fhirversion": "4.0.1",
-        "path": "http://hl7.org/fhir/uv/fhircast/2022May",
+        "path": "https://fhircast.hl7.org/specification/STU1",
         "date": "2022-05-01",
         "current": false
-      }
-    ]
+      },
+      {
+        "version": "0.2.0",
+        "desc": "Ballot 3 for STU Release 1",
+        "status": "ballot",
+        "sequence": "STU1",
+        "fhirversion": "4.0.1",
+        "path": "http://hl7.org/fhir/uv/fhircast/2022May",
+        "date": "2022-05-01",
+        "current": true
+      }    ]
   }
