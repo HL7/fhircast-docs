@@ -3,9 +3,9 @@
 The Implementation Guide contains no examples for this extension
 The Implementation Guide contains no examples for this profile
 
+# We believe that this error is caused by infrastructure, not by the content of this IG. See cpb-15's xpath.
+value should not start or finish with whitespace ' not(f:kind/@value='instance')...exists(f:software))'
+
+
 # Code system URI is in an example
 Code System URI 'http://www.radlex.org' is unknown so the code cannot be validated
-
-# The link is in an example
-Unable to resolve resource 'ImagingStudy/3478116342'
-The link 'ImagingStudy/3478116342' for "ImagingStudy/3478116342" cannot be resolved
