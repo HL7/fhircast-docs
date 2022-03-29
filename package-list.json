@@ -27,7 +27,7 @@
             },  
             {
            "version": "STU1",
-           "desc": "Standard for Trial Use" (STU1) This is the 1.0 release of the FHIRcast specification.",
+           "desc": "Standard for Trial Use (STU1) This is the 1.0 release of the FHIRcast specification.",
            "status": "trial-use",
            "sequence": "STU1",
            "fhirversion": "4.0.1",
@@ -37,7 +37,7 @@
             },
             {
             "version": "STU3",
-            "desc": "Standard for Trial Use" (STU3) This is the 1.0 release of the FHIRcast specification.",
+            "desc": "Standard for Trial Use (STU3) This is the 1.0 release of the FHIRcast specification.",
             "status": "ballot",
             "sequence": "STU3",
             "fhirversion": "4.0.1",
