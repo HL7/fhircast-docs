@@ -8,7 +8,7 @@
         "version": "current",
         "descmd": "Continuous Integration Build (latest in version control)",
         "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
-        "status": "ci-build"
+        "status": "ci-build",
         "current" : true
       },
       {
