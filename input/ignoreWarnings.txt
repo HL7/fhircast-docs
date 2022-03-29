@@ -5,7 +5,3 @@ The Implementation Guide contains no examples for this profile
 
 # We believe that this error is caused by infrastructure, not by the content of this IG. See cpb-15's xpath.
 value should not start or finish with whitespace ' not(f:kind/@value='instance')...exists(f:software))'
-
-
-# Code system URI is in an example
-Code System URI 'http://www.radlex.org' is unknown so the code cannot be validated
