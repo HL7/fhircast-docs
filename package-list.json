@@ -12,7 +12,7 @@
         "current" : true
       },
       {
-        "version": "1.2.0-ballot",
+        "version": "2.1.0-ballot",
         "desc": "Ballot for STU Release 3",
         "status": "ballot",
         "sequence": "STU3",
@@ -22,7 +22,7 @@
         "current" : true
       },
       {
-        "version": "STU2",
+        "version": "2.0.0",
         "desc": "STU 2 Publication",
         "status": "trial-use",
         "sequence": "STU2",
@@ -32,7 +32,7 @@
         "current": true
       },	 
       {
-        "version": "STU1",
+        "version": "1.0.0",
         "desc": "Standard for Trial Use (STU1) This is the 1.0 release of the FHIRcast specification.",
         "status": "trial-use",
         "sequence": "STU1",
