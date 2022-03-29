@@ -9,6 +9,7 @@
         "descmd": "Continuous Integration Build (latest in version control)",
         "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
         "status": "ci-build"
+        "date" : "2022-03-29"
       },
       {
         "version": "1.2.0-ballot",
@@ -40,5 +41,5 @@
         "current": false
       }
     ],
-    "category": "Orders and Observations"
+    "category": "Imaging"
   }
