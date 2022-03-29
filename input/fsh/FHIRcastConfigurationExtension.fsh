@@ -1,6 +1,6 @@
 Extension: FHIRcastConfigurationExtension
 Id: fhircast-configuration-extensions
-Title: "FHIRcast extension"
+Title: "FHIRcast configuration extension"
 Description: """
 Extension in CapabilityStatement stating the location of the FHIRcast hub to be used with this FHIR server.
 """

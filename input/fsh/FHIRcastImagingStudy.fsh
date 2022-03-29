@@ -3,6 +3,16 @@ Parent: ImagingStudy
 Id: fhircast-imaging-study
 Title: "FHIRcast Imaging Study"
 Description: "Defines the minimum set of attributes which an application handling ImagingStudy contexts must support"
+* identifier ^slicing.discriminator.type = #type
+* identifier ^slicing.discriminator.path = "reference"
+* identifier ^slicing.rules = #open
+* identifier ^slicing.description = "Study Instance UID Identifier"
+* identifier contains studyInstanceUid 1..1 MS
+* identifier[studyInstanceUid] ^short = "Study Instance UID"
+* identifier[studyInstanceUid].system 1..1
+* identifier[studyInstanceUid].system = "urn:dicom:uid"
+* identifier[studyInstanceUid].value 1..1
+* identifier[studyInstanceUid].value ^short = "In the format 'urn:oid:{Study Instance UID}'"
 * numberOfSeries 0..0
 * numberOfInstances 0..0
 * series 0..0
