@@ -17,7 +17,7 @@
         "sequence": "STU3",
         "fhirversion": "4.0.1",
         "path": "http://hl7.org/fhir/uv/fhircast/2022May",
-        "date": "2022-03-29",
+        "date": "2022-03-29"
       },
       {
         "version": "STU2",
