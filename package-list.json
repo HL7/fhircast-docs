@@ -1,37 +1,49 @@
 {
     "package-id": "hl7.fhir.uv.fhircast",
-    "canonical": "https://hl7.org/fhir/fhircast-docs",
+    "canonical": "https://hl7.org/fhir/fhircast",
     "title": "FHIRCast Implementation Guide",
-	  "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
+    "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
     "category": "Context Management"
-    "list": [
-      {
-        "version": "current",
-        "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
-        "desc": "Continuous Integration Build (latest in version control)",
-        "fhirversion": "4.0.1",
-        "status": "ci-build",
-        "current": false,
-        "date": "2022-03-24"
-      },
-      {
-        "version": "1.0.0-ballot",
-        "desc": "Ballot for STU Release 1",
-        "status": "ballot",
-        "sequence": "STU1",
-        "fhirversion": "4.0.1",
-        "path": "https://fhircast.hl7.org/specification/STU1",
-        "date": "2022-05-01",
-        "current": false
-      },
-      {
-        "version": "0.2.0",
-        "desc": "Ballot 3 for STU Release 1",
-        "status": "ballot",
-        "sequence": "STU1",
-        "fhirversion": "4.0.1",
-        "path": "http://hl7.org/fhir/uv/fhircast/2022May",
-        "date": "2022-05-01",
-        "current": true
-      }    ]
+    "list"  [
+           {
+          "version": "current",
+          "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
+          "desc": "Continuous Integration Build (latest in version control)",
+          "fhirversion": "4.0.1",
+          "status": "ci-build",
+          "current": true,
+          "date": "2022-03-29"
+           },
+            {
+            "version": "STU2",
+            "desc": "STU 2 Publication",
+            "status": "trial-use",
+            "sequence": "STU2",
+            "fhirversion": "4.0.1",
+            "path": "https://fhircast.hl7.org/specification/STU2/",
+
+            "date": "2021-02-03",
+            "current": true
+            },  
+            {
+           "version": "STU1",
+           "desc": "Standard for Trial Use" (STU1) This is the 1.0 release of the FHIRcast specification.",
+           "status": "trial-use",
+           "sequence": "STU1",
+           "fhirversion": "4.0.1",
+           "path": "https://fhircast.hl7.org/specification/STU1/",
+           "date": "2019-09-10",
+           "current": false
+            },
+            {
+            "version": "STU3",
+            "desc": "Standard for Trial Use" (STU3) This is the 1.0 release of the FHIRcast specification.",
+            "status": "ballot",
+            "sequence": "STU3",
+            "fhirversion": "4.0.1",
+            "path": "http://hl7.org/fhir/uv/fhircast/2022May",
+            "date": "2022-05-01",
+            "current": true
+            }   
+    ]
   }
