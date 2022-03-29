@@ -8,8 +8,7 @@
         "version": "current",
         "descmd": "Continuous Integration Build (latest in version control)",
         "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
-        "status": "ci-build",
-        "current" : true
+        "status": "ci-build"
       },
       {
         "version": "2.1.0-ballot",
@@ -18,8 +17,7 @@
         "sequence": "STU3",
         "fhirversion": "4.0.1",
         "path": "http://hl7.org/fhir/uv/fhircast/2022May",
-        "date": "2022-05-01",
-        "current" : true
+        "date": "2022-05-01"
       },
       {
         "version": "2.0.0",
