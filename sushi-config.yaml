@@ -13,7 +13,7 @@ copyrightYear: 2017+
 releaseLabel: STU1 Ballot
 publisher:
   name: FHIR InM
-  url: http://hl7.org
+  url: http://hl7.org/Special/committees/inm
 pages:
   index.md: 
     title: Introduction
