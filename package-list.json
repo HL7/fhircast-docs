@@ -1,7 +1,7 @@
 {
-    "package-id": "hl7.fhir.uv.fhircast-docs",
+    "package-id": "hl7.fhir.uv.fhircast",
     "title": "FHIRcast",
-    "canonical": "https://hl7.org/fhir/fhircast-docs",
+    "canonical": "https://hl7.org/fhir/uv/fhircast",
 	"title": "FHIRCast Implementation Guide",
 	"introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 
