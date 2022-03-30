@@ -11,7 +11,6 @@
         "status": "ci-build",
         "sequence": "STU3",
         "fhirversion": "4.0.1",
-        "date": "2022-03-30",
         "current" : true
       },
       {
