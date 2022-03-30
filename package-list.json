@@ -1,5 +1,5 @@
 {
-    "package-id": "hl7.fhir.uv.fhircast",
+    "package-id": "hl7.fhir.uv.fhircast#s.1.0-ballot",
     "title": "FHIRcast",
     "canonical": "http://hl7.org/fhir/uv/fhircast",
     "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
