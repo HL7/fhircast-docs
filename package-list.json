@@ -19,7 +19,7 @@
         "fhirversion": "4.0.1",
         "path": "http://hl7.org/fhir/uv/fhircast/2022May",
         "date": "2022-05-01",
-         "current: true
+         "current": true
       },
       {
         "version": "2.0.0",
