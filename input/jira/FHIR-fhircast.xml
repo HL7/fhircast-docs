@@ -8,7 +8,7 @@
                gitUrl="https://github.com/HL7/fhircast-docs" 
                url="http://hl7.org/fhir/uv/fhircast">
  
-<version code="current" url="https://build.fhir.org/ig/HL7/fhircast/#2.1.0-ballot"/>
+<version code="current" url="https://build.fhir.org/ig/HL7/fhircast/"/>
 <version code="2.0.0" deprecated="true" url="https://fhircast.org/specification/STU2/"/>
 <version code="1.0.0" deprecated="true" url="https://fhircast.org/specification/STU1/"/>
 <artifactPageExtension value="-definitions"/>
