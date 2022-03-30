@@ -21,10 +21,28 @@
         "sequence": "STU3",
         "fhirversion": "4.0.1",
         "path": "http://hl7.org/fhir/uv/fhircast/2022May",
-        "date": "2022-05-01",
+        "date": "2022-05-01"
+      },
+      {
+        "version": "2.0.0",
+        "desc": "STU 2 Publication",
+        "status": "trial-use",
+        "sequence": "STU2",
+        "fhirversion": "4.0.1",
+        "path":  "https://fhircast.hl7.org/specification/STU2/",
+        "date": "2021-02-03",
         "current": true
+      },	 
+      {
+        "version": "1.0.0",
+        "desc": "Standard for Trial Use (STU1) This is the 1.0 release of the FHIRcast specification.",
+        "status": "trial-use",
+        "sequence": "STU1",
+        "fhirversion": "4.0.1",
+        "path":  "https://fhircast.hl7.org/specification/STU1/",
+        "date": "2019-09-10",
+        "current": false
       }
-      
     ],
     "category": "Imaging"
   }
