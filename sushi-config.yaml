@@ -8,7 +8,7 @@ name: FHIRcast
 title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
-version: current
+version: 2.1.0-ballot
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
 copyrightYear: 2017+
