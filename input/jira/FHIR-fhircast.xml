@@ -7,8 +7,8 @@
                url="http://hl7.org/fhir/uv/fhircast">
 <version code="current" url="http://hl7.org/fhir/uv/fhircast"/>
 <version code="2.1.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
-<version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2/"/>
-<version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1/"/>
+<version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
+<version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
