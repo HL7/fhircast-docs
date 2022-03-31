@@ -28,7 +28,7 @@
         "status": "trial-use",
         "sequence": "STU2",
         "fhirversion": "4.0.1",
-        "path":  "https://fhircast.hl7.org/specification/STU2/",
+        "path":  "https://fhircast.hl7.org/specification/STU2",
         "date": "2021-02-03",
         "current": true
       },	 
@@ -38,7 +38,7 @@
         "status": "trial-use",
         "sequence": "STU1",
         "fhirversion": "4.0.1",
-        "path":  "https://fhircast.hl7.org/specification/STU1/",
+        "path":  "https://fhircast.hl7.org/specification/STU1",
         "date": "2019-09-10",
         "current": false
       }
