@@ -3,6 +3,6 @@
 The Implementation Guide contains no examples for this extension
 The Implementation Guide contains no examples for this profile
 
-# We believe that this error is caused by infrastructure, not by the content of this IG. See cpb-15's xpath.
+# We believe that this error is caused by infrastructure: https://jira.hl7.org/browse/FHIR-36685.
 value should not start or finish with whitespace ' not(f:kind/@value='instance')...exists(f:software))'
 
