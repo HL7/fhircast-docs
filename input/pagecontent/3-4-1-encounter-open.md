@@ -4,18 +4,18 @@ eventMaturity | [0 - Draft](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened patient's medical record in the context of a single encounter. Only a single patient and encounter is currently in context.
+An `Encounter-open` request is posted to the Hub when an encounter is opened by an application and established as the anchor context of a topic.
+
+When an `Encounter-open` event is received by an application, the application should respond as is appropriate for its clinical use.
 
 ### Context
 
 Key | Optionality | Fhir operation to generate context | Description
------ | -------- | ---- | ---- 
-`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
+----- | -------- | ---- | ----
+`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier` | Encounter being opened
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the encounter
 
 ### Examples
-
-<mark>
 
 ```json
 {
@@ -26,10 +26,32 @@ Key | Optionality | Fhir operation to generate context | Description
     "hub.event": "encounter-open",
     "context": [
       {
+        "key": "encounter",
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "90235y2347t7nwer7gw7rnhgf",
+          "identifier": [
+            {
+              "system": "http://healthcare.example.org/identifiers/encounter",
+              "value": "1234213.52345873"
+            }
+          ],
+          "status": "in-progress",
+          "class": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "IMP",
+            "display": "inpatient encounter"
+          },
+          "subject": {
+            "reference": "Patient/8i7tbu6fby5ftfbku6fniuf"
+          }
+        }
+      },
+      {
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "id": "8i7tbu6fby5ftfbku6fniuf",
           "identifier": [
             {
               "type": {
@@ -41,22 +63,6 @@ Key | Optionality | Fhir operation to generate context | Description
                   }
                 ]
               }
-            },
-            {
-              "key": "encounter",
-              "resource": {
-                "resourceType": "Encounter",
-                "id": "90235y2347t7nwer7gw7rnhgf",
-                "identifier": [
-                  {
-                    "system": "28255",
-                    "value": "344384384"
-                  }
-                ],
-                "patient": {
-                  "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-                }
-              }
             }
           ]
         }
@@ -65,8 +71,6 @@ Key | Optionality | Fhir operation to generate context | Description
   }
 }
 ```
-
-</mark>
 
 ## Change Log
 

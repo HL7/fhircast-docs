@@ -16,4 +16,4 @@ Description: "Example of a simple encounter used to establish a FHIRcast context
 * identifier.value = "1234213.52345873"
 * status = #in-progress
 * class = HL7ActCode#IMP "inpatient encounter"
-* subject.reference = "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+* subject.reference = "Patient/8i7tbu6fby5ftfbku6fniuf"

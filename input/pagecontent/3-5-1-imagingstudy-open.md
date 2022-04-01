@@ -4,17 +4,26 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened record of imaging study. The newly open study may have been associated with a specific patient, or not. 
+An `ImagingStudy-open` request is posted to the Hub when an image study is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the `ImagingStudy` resource.
+
+ When an `ImagingStudy-open` event is received by an application, the application should respond as is appropriate for its clinical use.
+
+ #### Content Sharing Support
+
+ If a Hub supports content sharing, when it distributes an `ImagingStudy-open` event the Hub associates a `context.versionId` with the anchor context.
 
 ### Context
 
 Key | Optionality | Fhir operation to generate context | Description
------ | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
+----- | -------- | ---- | ----
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier` | ImagingStudy being opened
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the imaging study
+`encounter` | OPTIONAL | `Encounter/{id}?_elements=identifier` | Encounter resource describing the encounter associated with the imaging study, if known
 
 ### Examples
-  
+
+The following example shows an image study context being established.  Note that the imaging study's `subject` attribute references the patient which is also in the open request.
+
 ```json
 {
   "timestamp": "2018-01-08T01:37:05.14",
@@ -24,37 +33,42 @@ Key | Optionality | Fhir operation to generate context | Description
     "hub.event": "imagingstudy-open",
     "context": [
       {
-        "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
-            {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
-            }
-          ]
-        }
-      },
-      {
         "key": "study",
         "resource": {
           "resourceType": "ImagingStudy",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
+          "id": "kr8r9rg00094hf331",
+          "status": "unknown",
           "identifier": [
             {
-              "system": "7678",
-              "value": "185444"
+              "system": "urn:dicom:uid",
+              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
             }
           ],
-          "patient": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+          "subject": {
+            "reference": "Patient/8i7tbu6fby5ftfbku6fniuf"
           }
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "8i7tbu6fby5ftfbku6fniuf",
+          "identifier": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "MR",
+                    "display": "Medical Record Number"
+                  }
+                ]
+              },
+              "system": "urn:oid:1.2.36.146.595.217.0.1",
+              "value": "213434"
+            }
+          ]
         }
       }
     ]
@@ -67,3 +81,4 @@ Key | Optionality | Fhir operation to generate context | Description
 Version | Description
 ---- | ----
 1.0 | Initial Release
+1.1 | Updated example

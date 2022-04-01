@@ -4,7 +4,7 @@ Id: fhircast-imaging-study
 Title: "FHIRcast Imaging Study"
 Description: "Defines the minimum set of attributes which an application handling ImagingStudy contexts must support"
 * identifier ^slicing.discriminator.type = #value
-* identifier ^slicing.discriminator.path = "value"
+* identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier ^slicing.description = "Study Instance UID Identifier"
 * identifier contains studyInstanceUid 1..1 MS
