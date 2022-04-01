@@ -1,30 +1,19 @@
 {
-    "package-id": "hl7.fhir.uv.fhircast-docs",
-    "title": "FHIRcast",
-    "canonical": "https://hl7.org/fhir/fhircast-docs",
-	"title": "FHIRCast Implementation Guide",
-	"introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
-
-    "list": [
-      {
-        "version": "current",
-        "path": "https://build.fhir.org/ig/HL7/fhircast-docs",
-        "desc": "Continuous Integration Build (latest in version control)",
-        "fhirversion": "4.0.1",
-        "status": "ci-build",
-        "current": true,
-        "date": "2022-03-24"
-      },
-      {
-        "version": "1.0.0-ballot",
-        "desc": "Ballot for STU Release 1",
-        "status": "ballot",
-        "sequence": "STU1",
-        "fhirversion": "4.0.1",
-        "path": "http://hl7.org/fhir/uv/fhircast/2022May",
-        "date": "2022-05-01",
-        "current": false
-      }
-    ],
-    "category": "Orders and Observations"
-  }
+  "package-id": "hl7.fhir.uv.fhircast",
+  "canonical": "http://hl7.org/fhir/uv/fhircast-docs",
+  "title": "FHIRCast Implementation Guide",
+  "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
+  "list": [
+    {
+      "version": "STU3",
+      "path": "'http://hl7.org/fhir/uv/fhircast-docs",
+      "desc": "Continuous Integration Build (latest in version control)",
+      "sequence": "STU3",
+      "fhirversion": "4.0.1",
+      "status": "ballot",
+      "current": true,
+      "date": "2022-03-24"
+    }
+  ],
+  "category": "Exchange"
+}
