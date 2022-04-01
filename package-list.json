@@ -1,19 +1,48 @@
 {
-  "package-id": "hl7.fhir.uv.fhircast",
-  "canonical": "http://hl7.org/fhir/uv/fhircast-docs",
-  "title": "FHIRCast Implementation Guide",
-  "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
-  "list": [
-    {
-      "version": "STU3",
-      "path": "'http://hl7.org/fhir/uv/fhircast-docs",
-      "desc": "Continuous Integration Build (latest in version control)",
-      "sequence": "STU3",
-      "fhirversion": "4.0.1",
-      "status": "ballot",
-      "current": true,
-      "date": "2022-03-24"
-    }
-  ],
-  "category": "Exchange"
-}
+    "package-id": "hl7.fhir.uv.fhircast",
+    "title": "FHIRcast",
+    "canonical": "http://hl7.org/fhir/uv/fhircast",
+    "introduction": "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user.",
+    "list": [
+      {
+        "version": "current",
+        "desc": "Continuous Integration Build (latest in version control)",
+        "path": "http://hl7.org/fhir/uv/fhircast",
+        "status": "ci-build",
+        "sequence": "STU3",
+        "fhirversion": "4.0.1",
+        "current" : true
+      },
+      {
+        "version": "2.1.0-ballot",
+        "desc": "Ballot for STU Release 3",
+        "status": "ballot",
+        "sequence": "STU3",
+        "fhirversion": "4.0.1",
+        "path": "http://hl7.org/fhir/uv/fhircast/2022May",
+        "date": "2022-05-01"
+      },
+      {
+        "version": "2.0.0",
+        "desc": "STU 2 Publication",
+        "status": "trial-use",
+        "sequence": "STU2",
+        "fhirversion": "4.0.1",
+        "path":  "https://fhircast.hl7.org/specification/STU2",
+        "date": "2021-02-03",
+        "current": true
+      },	 
+      {
+        "version": "1.0.0",
+        "desc": "Standard for Trial Use (STU1) This is the 1.0 release of the FHIRcast specification.",
+        "status": "trial-use",
+        "sequence": "STU1",
+        "fhirversion": "4.0.1",
+        "path":  "https://fhircast.hl7.org/specification/STU1",
+        "date": "2019-09-10",
+        "current": false
+      }
+    ],
+    "category": "Imaging"
+  }
+  
