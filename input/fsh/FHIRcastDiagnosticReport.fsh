@@ -13,7 +13,7 @@ InstanceOf: FHIRcastDiagnosticReport
 Usage: #example
 Description: "Example of a simple diagnostic report used to establish a FHIRcast context"
 * id = "40012366"
-* subject = Reference(Patient/ewUbXT9RWEbSj5wPEdgRaBw3)
+* subject = Reference(Patient/8i7tbu6fby5ftfbku6fniuf)
 * subject.identifier.system = "urn:oid:1.2.840.114350"
 * subject.identifier.value = "185444"
 * status = #preliminary
