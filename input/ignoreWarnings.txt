@@ -3,9 +3,6 @@
 The Implementation Guide contains no examples for this extension
 The Implementation Guide contains no examples for this profile
 
-# Code system URI is in an example
-Code System URI 'http://www.radlex.org' is unknown so the code cannot be validated
+# We believe that this error is caused by infrastructure: https://jira.hl7.org/browse/FHIR-36685.
+value should not start or finish with whitespace ' not(f:kind/@value='instance')...exists(f:software))'
 
-# The link is in an example
-Unable to resolve resource 'ImagingStudy/3478116342'
-The link 'ImagingStudy/3478116342' for "ImagingStudy/3478116342" cannot be resolved

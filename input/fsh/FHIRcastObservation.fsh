@@ -19,4 +19,4 @@ Description: "Example of a simple observation which could be exchanged using FHI
 * status = #preliminary
 * code = Loinc#45651-7 "Pathological bone fracture [Minimum Data Set]"
 * issued = "2020-09-07T15:02:03.651Z"
-* valueCodeableConcept.coding.code = Loinc#LA33-6 "Yes"
+* valueCodeableConcept.coding = Loinc#LA33-6 "Yes"
