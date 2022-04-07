@@ -5,7 +5,7 @@ Parent: Encounter
 Id: fhircast-encounter
 Title: "FHIRcast Encounter"
 Description: "Defines the minimum set of attributes which an application handling Encounter contexts must support"
-* identifier 1..* MS
+* identifier 0..* MS
 
 Instance: FHIRcastEncounter-Example
 InstanceOf: FHIRcastEncounter
