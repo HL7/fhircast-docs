@@ -14,7 +14,7 @@ The context MUST contain a `Bundle` resource in an `updates` key which contains 
 Exchange of information is made transactionally using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key).  Therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
 
 The Hub plays a critical role in helping applications stay synchronized with the current state of exchanged information.  On receiving a `[FHIR resource]-update` request the Hub SHALL examine the `context.versionId` of the anchor context.   The Hub SHALL compare the `context.versionId` of the incoming request with the `context.versionId` the Hub previously assigned to the anchor context (i.e, the `context.versionId` assigned by the Hub when the previous `DiagnosticReport-open` or `DiagnosticReport-update` request was processed). If the incoming `context.versionId` and last assigned `context.versionId` do not match, the request SHALL be rejected and the Hub SHALL return a 4xx/5xx HTTP Status Code.
- 
+
 If the `context.versionId` values match, the Hub proceeds with processing each of the FHIR resources in the Bundle and SHALL process all Bundle entries in an atomic manner.  After updating its copy of the current state of exchanged information, the Hub SHALL assign a new `context.versionId` to the anchor context and use this new `context.versionId` in the `DiagnosticReport-update` event it forwards to subscribed applications.  The Hub SHALL also include the `context.priorVersionId` in the distributed event which receiving applications MAY use to ensure they are apply the updates to the proper context version. The distributed update event SHALL contain a Bundle resource with the same Bundle `id` which was contained in the request.
 
 When a  `DiagnosticReport-update` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `context.versionId` of the anchor context provided in the event for later use.
@@ -85,7 +85,7 @@ The following example shows adding an imaging study to the existing diagnostic r
                 "resourceType": "ImagingStudy",
                 "description": "CHEST XRAY",
                 "started": "2010-02-14T01:10:00.000Z",
-                "id": "3478116342",
+                "id": "kr8r9rg00094hf331",
                 "identifier": [
                   {
                     "type": {
@@ -100,7 +100,7 @@ The following example shows adding an imaging study to the existing diagnostic r
                   },
                   {
                     "system": "urn:dicom:uid",
-                    "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
+                    "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
                   }
                 ]
               }
@@ -112,8 +112,8 @@ The following example shows adding an imaging study to the existing diagnostic r
               "resource": {
                 "resourceType": "Observation",
                 "id": "435098234",
-                "partOf": {
-                  "reference": "ImagingStudy/3478116342"
+                "derivedFrom": {
+                  "reference": "ImagingStudy/kr8r9rg00094hf331"
                 },
                 "status": "preliminary",
                 "category": {
@@ -128,7 +128,7 @@ The following example shows adding an imaging study to the existing diagnostic r
                       "code": "RID49690",
                       "display": "simple cyst"
                     }
-                  ] 
+                  ]
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }
@@ -177,7 +177,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
                 "resourceType": "ImagingStudy",
                 "description": "CHEST XRAY",
                 "started": "2010-02-14T01:10:00.000Z",
-                "id": "3478116342",
+                "id": "kr8r9rg00094hf331",
                 "identifier": [
                   {
                     "type": {
@@ -204,8 +204,8 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
               "resource": {
                 "resourceType": "Observation",
                 "id": "435098234",
-                "partOf": {
-                  "reference": "ImagingStudy/3478116342"
+                "derivedFrom": {
+                  "reference": "ImagingStudy/kr8r9rg00094hf331"
                 },
                 "status": "preliminary",
                 "category": {
@@ -220,7 +220,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
                       "code": "RID49690",
                       "display": "simple cyst"
                     }
-                  ] 
+                  ]
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }

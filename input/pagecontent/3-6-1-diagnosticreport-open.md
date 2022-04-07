@@ -4,21 +4,22 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
+A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the `DiagnosticReport` resource.
 
 When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a client will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the versionId can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a client will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the `context.versionId` can be safely ignored.
 
 ### Context
 
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | Patient resource describing the patient associated with the diagnostic report
+`encounter` | OPTIONAL | `Encounter/{id}?_elements=identifier` | Encounter resource describing the encounter associated with the diagnostic report, if known
+`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
 
 ### Examples
 
@@ -40,12 +41,21 @@ The following example shows a report being opened that contains a single primary
           "resourceType": "DiagnosticReport",
           "id": "40012366",
           "status": "unknown",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "30675-3",
+                "display": "MR Prostate"
+              }
+            ]
+          },
           "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+            "reference": "Patient/8i7tbu6fby5ftfbku6fniuf"
           },
           "imagingStudy": [
             {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
+              "reference": "ImagingStudy/kr8r9rg00094hf331"
             }
           ]
         }
@@ -54,7 +64,7 @@ The following example shows a report being opened that contains a single primary
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "id": "8i7tbu6fby5ftfbku6fniuf",
           "identifier": [
             {
               "system": "urn:oid:1.2.840.114350",
@@ -70,7 +80,7 @@ The following example shows a report being opened that contains a single primary
           "description": "CHEST XRAY",
           "started": "2010-01-30T23:00:00.000Z",
           "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
+          "id": "kr8r9rg00094hf331",
           "identifier": [
             {
               "type": {
@@ -81,7 +91,7 @@ The following example shows a report being opened that contains a single primary
                   }
                 ]
               },
-              "value": "342123458"
+              "value": "3478116342"
             },
             {
               "system": "urn:dicom:uid",
@@ -89,7 +99,7 @@ The following example shows a report being opened that contains a single primary
             }
           ],
           "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+            "reference": "Patient/8i7tbu6fby5ftfbku6fniuf"
           }
         }
       }
@@ -118,11 +128,11 @@ The event distributed by the Hub includes a context version in the `context.vers
           "id": "40012366",
           "status": "unknown",
           "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+            "reference": "Patient/8i7tbu6fby5ftfbku6fniuf"
           },
           "imagingStudy": [
             {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
+              "reference": "ImagingStudy/kr8r9rg00094hf331"
             }
           ]
         }
@@ -131,7 +141,7 @@ The event distributed by the Hub includes a context version in the `context.vers
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "id": "8i7tbu6fby5ftfbku6fniuf",
           "identifier": [
             {
               "system": "urn:oid:1.2.840.114350",
@@ -147,7 +157,7 @@ The event distributed by the Hub includes a context version in the `context.vers
           "description": "CHEST XRAY",
           "started": "2010-01-30T23:00:00.000Z",
           "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
+          "id": "kr8r9rg00094hf331",
           "identifier": [
             {
               "type": {
@@ -158,7 +168,7 @@ The event distributed by the Hub includes a context version in the `context.vers
                   }
                 ]
               },
-              "value": "342123458"
+              "value": "3478116342"
             },
             {
               "system": "urn:dicom:uid",

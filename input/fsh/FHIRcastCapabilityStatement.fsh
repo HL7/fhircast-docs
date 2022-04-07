@@ -1,8 +1,7 @@
-
 Profile: FHIRcastCapabilityStatement
 Parent: CapabilityStatement
 Id: fhircast-capabilitystatement
-Description: "CapabilityStatment stating support for FHIRcast."
+Description: "CapabilityStatment stating support for FHIRcast"
 * implementationGuide 1..*
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value
@@ -12,4 +11,3 @@ Description: "CapabilityStatment stating support for FHIRcast."
 * rest[client].mode = #client
 * rest[server].mode = #server
 * rest[server].extension contains FHIRcastConfigurationExtension named fhircast 0..1 MS
-
