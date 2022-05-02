@@ -4,13 +4,13 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened record of imaging study.
+User closed an imaging study.
 
-User closed patient's medical record. A previously open and in context study is no longer open nor in context. The previously open study may have been associated with a specific patient, or not.
+A previously open and in context study is no longer open nor in context. The previously open study may have been associated with a specific patient, or not.
 
 ### Context
 
-Key | Optionality | Fhir operation to generate context | Description
+Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ----
 `study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource previously in context. Note that in addition to the request identifier and `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
 accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
@@ -47,7 +47,6 @@ accession elements, the DICOM uid and FHIR patient reference are included becaus
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
-          "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
           "identifier": [
             {
               "system": "7678",

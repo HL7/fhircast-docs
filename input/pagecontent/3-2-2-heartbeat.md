@@ -35,7 +35,7 @@ An example heartbeat event is indicated below.
     "hub.event":"heartbeat"
   }
 }
-
+````
 
 ### Change Log
 

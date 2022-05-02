@@ -4,11 +4,11 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened record of imaging study. The newly open study may have been associated with a specific patient, or not. 
+User opened an imaging study. The newly open study may have been associated with a specific patient, or not. 
 
 ### Context
 
-Key | Optionality | Fhir operation to generate context | Description
+Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
 `study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
@@ -45,7 +45,6 @@ Key | Optionality | Fhir operation to generate context | Description
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
-          "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
           "identifier": [
             {
               "system": "7678",

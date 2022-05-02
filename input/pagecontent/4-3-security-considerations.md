@@ -11,11 +11,11 @@ FHIRcast enables the synchronization of healthcare applications user interfaces 
 * Authorization Server
 * Resource server
 
-FHIRcast ties SMART as the authnz layer together with WebSub for subscription and event notification.
+FHIRcast ties SMART as the authorization layer together with a web-sub mechanism for subscription and event notification.
 
 ### Sources of Risk
 
-1. The FHIRcast Hub pushes PHI to a dynamic url specified by the authenticated app.
+1. The FHIRcast Hub pushes PHI to a dynamic URL specified by the authenticated app.
 1. An app's credentials or a Hub's lack of authentication could be used by a malicious system to control the user's session.
 1. FHIRcast recommends the use of SMART on FHIR, but does not require it. Implementation-specific launch, authentication, and authorization protocols may be possible. These alternate protocols should be scrutinized by implementers for additional security risks.
 
@@ -29,13 +29,11 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 * [Argonaut Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
 * [OAuth 2.0 Threat Model and Security Considerations](https://tools.ietf.org/html/rfc6819)
 
-### HTTP Web Hooks using WebSub
+### FHIRcast using HTTP Web Hooks
 
-[WebSub](https://www.w3.org/TR/websub/) is a W3C RFC designed for the distribution of web content through a standardized web hooks architecture. FHIRcast uses WebSub to allow clients to subscribe and unsubscribe to the Hub and, for the Hub to notify subscribers of events.
+FHIRcast uses a websub based approach to allow clients to subscribe and unsubscribe to the Hub and, for the Hub to notify subscribers of events. FHIRcast requires that both the Hub and the subscribing apps endpoints are exposed over https.
 
-Unlike WebSub, FHIRcast requires that both the Hub and the subscribing apps endpoints are exposed over https.
-
-The below [flow diagram](https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing) illustrates each of the interactions.
+The below flow diagram illustrates each of the interactions.
 
 {% include img.html img="FHIRcast WebSub security sequence.png" caption="Figure: FHIRcast flow diagram" %}
 
