@@ -76,10 +76,9 @@ In this scenario, the user authorizes the app to synchronize to her session by a
 
 #### Dynamic Registration for Native apps: Following SMART launch, parent client registers dynamic client which participates in FHIRcast session
 
-> This is an advanced scenario and is likely to not be widely supported.  Implementer feedback is solicited.
+> Implementer feedback is solicited.
 
-Although dynamic registration for native apps is often appropriate from a security perspective, this technology is not widely implemented in healthcare. FHIRcast does not specify how the `hub.topic ` and `hub.url` should be communicated to a dynamic client if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native app implementer in the absence of other guidance. 
-
+OAuth 2.0 dynamic registration for native apps is an appropriate technology for issuing distinct credentials and app identify to an instance of an app. FHIRcast does not specify how the `hub.topic ` and `hub.url` should be communicated to a dynamic client if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native app implementer in the absence of other guidance. 
 
 #### SMART Launch Example
 
