@@ -12,8 +12,8 @@ User closed patient's medical record. A previously open and in context study is 
 
 Key | Optionality | Fhir operation to generate context | Description
 ----- | -------- | ---- | ----
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource previously in context. Note that in addition to the request identifier and `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource previously in context. In FHIR DSTU2, STU3 `accession` SHALL also be provided if present.
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
 
 ### Examples
 
