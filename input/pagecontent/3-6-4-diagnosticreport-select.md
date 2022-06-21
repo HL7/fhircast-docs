@@ -52,6 +52,7 @@ The following example shows the selection of a single Observation resource in an
 ```
 
 ### Change Log
+
 | Version | Description   |
 | ------- | ------------- |
 | 0.1     | Initial draft |
