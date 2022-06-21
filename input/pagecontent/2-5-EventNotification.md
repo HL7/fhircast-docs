@@ -132,12 +132,10 @@ Implementer input is solicited on the amount and specificity of time, in the abo
 
 [`syncerror`](3-2-1-syncerror.html) events are distributed only to applications which have subscribed to `syncerror`s. 
 
-
-
 Upon communicating a `syncerror` resulting from an unresponsive app, the Hub SHALL unsubscribe the application. 
 
 The Hub SHALL NOT generate [`syncerror`](3-2-1-syncerror.html) events in the following situations:
-1. If a client fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event
+1. If a client fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event (because occasional missed heartbearts are expected and are not a context synchronization failure).
 2. The application closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
 
 During a normal shutdown of an application, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive app.
