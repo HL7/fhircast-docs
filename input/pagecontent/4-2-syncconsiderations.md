@@ -91,7 +91,8 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 
 #### Failure off subscribing client preventing context synchronization
 
-Although not intended, application do fail. In this case the event is received by the application, but some internal error prevents it from processing it.
+Although not intended, applications do fail. In this case the event is received by the application, but some internal error prevents it from processing it.
+
 
 |System|Failure mode|Possible actions|
 |--|--|--|
