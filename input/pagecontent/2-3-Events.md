@@ -39,6 +39,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 | `*-*` | All events  |
 | `Patient-*` | All events that use the `Patient` fhir-resource |
 | `*-select` | All select events |
+| `*-update` | All events updating content in the specified context |
 
 ### Context
 
