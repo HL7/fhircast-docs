@@ -92,6 +92,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 #### Failure of subscribing client preventing context synchronization
 
 Although not intended, application do fail. In this case the event is received by the application but some internal error prevents it from processing it.
+
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X. |
