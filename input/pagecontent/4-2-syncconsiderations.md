@@ -123,6 +123,7 @@ In the scenarios where the Hub is aware of a synchronization error, it is advisa
 #### Subscription has expired
 
 The client subscription has expired causing it no longer receive event. The application can prevent this by resubscribing before the subscription expires.
+
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync.
@@ -131,6 +132,7 @@ The client subscription has expired causing it no longer receive event. The appl
 #### Race condition between context changes
 
 Two or more clients are sending context change event shortly after each other causing the events to cross.
+
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Receive older events | Ensure that the timestamp is checked and that events older than the event that triggered the current context state are ignored. |
