@@ -65,6 +65,7 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 ### Event Notification Response
 
 The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with any of the response codes indicated below:
+HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code.
 
 Code  |        | Description
 --- | ---      | ---
