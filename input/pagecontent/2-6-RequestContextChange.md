@@ -43,7 +43,7 @@ Content-Type: application/json
                         {
                             "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
                             "value": "MR",
-                            "display": "Medication Record Number"
+                            "display": "Medical Record Number"
                          }
                         "text": "MRN"
                       ]
