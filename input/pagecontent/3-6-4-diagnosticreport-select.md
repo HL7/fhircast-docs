@@ -3,11 +3,11 @@
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
-A `DiagnosticReport-select` request will be made to the Hub when an application desires to indicate that one or more FHIR resources contained in the anchor context's content are to be made visible, in focus, or otherwise "selected". It is assumed that a FHIR resource (e.g., observation) with the specified `id` is contained in the current anchor context's content, the Hub MAY or MAY NOT provide validation of its presence.
+A `DiagnosticReport-select` request will be made to the Hub when an application desires to indicate that one or more FHIR resources contained in the DiagnosticReport context's content are to be made visible, in focus, or otherwise "selected". It is assumed that a FHIR resource (e.g., observation) with the specified `id` is contained in the current anchor context's content, the Hub MAY or MAY NOT provide validation of its presence.
 
 This event allows other participating applications to adjust their UIs as appropriate.  For example, a reporting system may indicate that the user has selected a particular observation associated with a measurement value. After receiving this event an image reading application which created the measurement may wish to change its user display such that the image from which the measurement was acquired is visible.
 
-If a resource is noted as selected, any other resource which had been selected is no longer selected (i.e., an implicit unselect of any previously selected resource).  Additionally, an application may indicate that all selections have been cleared by posting a `DiagnosticReport-select` with an empty `select` array. 
+If one or more resources are noted as selected, any other resource which had been selected is no longer selected (i.e., an implicit unselect of any previously selected resource).  Additionally, an application may indicate that all selections have been cleared by posting a `DiagnosticReport-select` with an empty `select` array. 
 
 ### Context
 

@@ -2,16 +2,16 @@
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
- The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a FHIR resource contained in the content of the current anchor context. One or more updates MAY occur while the anchor context is open.
+ The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports [content sharing](4-6-content-sharing.html).  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a change be made to the current state of exchanged information or to add or remove a reference to a FHIR resource contained in the content of the current DiagnosticReport. One or more updates MAY occur while the anchor context is open.
 
 The updates include:
 
-* adding, updating, or removing FHIR resources contained in the anchor context
-* updating attributes of the anchor context (the DiagnosticReport resource) or associated context resources (Patient and/or ImagingStudy resources)
+* adding, updating, or removing FHIR resources contained in the DiagnosticReport
+* updating attributes of the DiagnosticReport or associated context resources (Patient and/or ImagingStudy resources)
 
-The context MUST contain a `Bundle` resource in an `updates` key which contains zero or more resources which are to be updated as entries in the Bundle.  Normally at least one entry exists in the `Bundle` resource; however, if only updating attributes of the anchor context or associated context resources the `Bundle` resource may have no entries.
+The context MUST contain an `updates` key with a `Bundle` resource in which contains zero or more resources which are to be updated as entries in the Bundle.  Normally at least one entry exists in the `Bundle` resource; however, if only updating attributes of the anchor context or associated context resources the `Bundle` resource may have no entries.
 
-Exchange of information is made transactionally using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key).  Therefore it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
+Exchange of information is made transactionally using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key).  Therefore, it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
 
 The Hub plays a critical role in helping applications stay synchronized with the current state of exchanged information.  On receiving a `[FHIR resource]-update` request the Hub SHALL examine the `context.versionId` of the anchor context.   The Hub SHALL compare the `context.versionId` of the incoming request with the `context.versionId` the Hub previously assigned to the anchor context (i.e, the `context.versionId` assigned by the Hub when the previous `DiagnosticReport-open` or `DiagnosticReport-update` request was processed). If the incoming `context.versionId` and last assigned `context.versionId` do not match, the request SHALL be rejected and the Hub SHALL return a 4xx/5xx HTTP Status Code.
  
