@@ -9,7 +9,7 @@ The updates include:
 * adding, updating, or removing FHIR resources contained in the DiagnosticReport
 * updating attributes of the DiagnosticReport or associated context resources (Patient and/or ImagingStudy resources)
 
-The context MUST contain an `updates` key with a `Bundle` resource in which contains zero or more resources which are to be updated as entries in the Bundle.  Normally at least one entry exists in the `Bundle` resource; however, if only updating attributes of the anchor context or associated context resources the `Bundle` resource may have no entries.
+The context SHALL contain one and only one `Bundle` resource in an `updates` key which contains zero or more resources which are to be updated as entries in the Bundle. Normally at least one entry exists in the Bundle resource; however, if only updating attributes of the anchor context or associated context resources the Bundle resource may have no entries.
 
 Exchange of information is made transactionally using change sets in the `DiagnosticReport-update` event (i.e., the complete current state of the content is not provided in the `Bundle` resource in the `updates` key).  Therefore, it is essential that applications interested in the current state of exchanged information process all events and process the events in the order in which they were successfully received by the Hub.  Each `DiagnosticReport-update` event posted to the Hub SHALL be processed atomically by the Hub (i.e., all entries in the request's `Bundle` should be processed prior to the Hub accepting another request).
 
