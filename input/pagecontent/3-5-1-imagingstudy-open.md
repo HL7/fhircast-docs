@@ -28,6 +28,7 @@ Key | Optionality | FHIR operation to generate context | Description
         "resource": {
           "resourceType": "Patient",
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "status": "available",
           "identifier": [
             {
               "system": "urn:oid:1.2.840.114350",
@@ -45,6 +46,7 @@ Key | Optionality | FHIR operation to generate context | Description
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
+          "status": "available",
           "identifier": [
             {
               "system": "7678",
