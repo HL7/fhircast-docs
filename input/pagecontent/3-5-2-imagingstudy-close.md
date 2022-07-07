@@ -29,6 +29,7 @@ accession elements, the DICOM uid and FHIR patient reference are included becaus
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
+          "status": "available",
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
           "identifier": [
             {
@@ -47,6 +48,7 @@ accession elements, the DICOM uid and FHIR patient reference are included becaus
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
+          "status": "available",
           "identifier": [
             {
               "system": "7678",
