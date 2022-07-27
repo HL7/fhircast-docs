@@ -24,6 +24,11 @@ A radiologist working in their reporting system clicks a button to open their di
 
 {% include img.html img="colorful overview diagram.png" caption="Figure: FHIRcast Overview" %}
 
+By convention a driving application is the application which opens a context.  The driving application could be an EHR, a PACS, a worklist or any other clinical workflow system.  As part of a SMART launch, an application requests appropriate FHIRcast OAuth 2.0 scopes and receives the current context as well as the location of the Hub and a unique hub.topic session identifier.
+
+An app subscribes to specific workflow events for the topic during its subscription request.  The Hub verifies the subscription and notifies the subscribed application when the requested workflow events occur; for example, by the clinician opening a patient’s chart a Patient-open event would be sent. An app unsubscribes from a topic when it no longer wants to receive notifications.  Note that subscribed applications other than the driving application could send a close event for an open context; however, such a scenario is usually not desirable.
+
+
 * Event notifications are thin json wrappers around FHIR resources.
 * The app can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure. 	
 * The Event Catalog documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
