@@ -8,7 +8,7 @@ User closed patient's medical record. A previously open and in context patient c
 
 ### Context
 
-Key | Optionality | Fhir operation to generate context | Description
+Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart was previously in context.
 ~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource previously in context in the now closed patient's chart.~~ DEPRECATED in favor of dedicated `encounter-close` event.
@@ -48,7 +48,7 @@ Key | Optionality | Fhir operation to generate context | Description
 }
 ```
 
-## Change Log
+### Change Log
 
 Version | Description
 ---- | ----

@@ -8,7 +8,7 @@ User opened record of imaging study. The newly open study is the current imaging
 
 ### Context
 
-Key | Optionality | Fhir operation to generate context | Description
+Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient currently in context. (Note that there may be cases in which the imagingstudy.subject references a different patient, or even other resource, from the patient in context).
 `study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. Note, in DSTU2 and STU3, the top-level `accession` element SHALL be included if present. 
@@ -28,6 +28,7 @@ Key | Optionality | Fhir operation to generate context | Description
         "resource": {
           "resourceType": "Patient",
           "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "status": "available",
           "identifier": [
             {
               "system": "urn:oid:1.2.840.114350",
@@ -45,7 +46,7 @@ Key | Optionality | Fhir operation to generate context | Description
         "resource": {
           "resourceType": "ImagingStudy",
           "id": "8i7tbu6fby5ftfbku6fniuf",
-          "uid": "urn:oid:2.16.124.113543.6003.1154777499.30246.19789.3503430045",
+          "status": "available",
           "identifier": [
             {
               "system": "7678",

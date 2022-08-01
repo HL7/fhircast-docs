@@ -4,11 +4,11 @@ This section presents the template to use for defining new events.
 
 eventMaturity | [0 - Draft](3-1-2-eventmaturitymodel.html)
 
-#### Workflow
+### Workflow
 
 Describe when this event occurs in a workflow. Describe how the context fields relate to one another. Event creators SHOULD include as much detail and clarity as possible to minimize any ambiguity or confusion amongst implementors.
 
-#### Context
+### Context
 
 Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource.
 
@@ -17,7 +17,7 @@ Key | Optionality | FHIR operation to generate context | Description
 `example` | REQUIRED | `FHIRresource/{id}?_elements=identifer` | Describe the context value
 `encounter` | OPTIONAL | `Encounter/{id}` | Describe the context value
 
-#### Examples
+### Examples
 
 ```json
 {
