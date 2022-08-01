@@ -16,7 +16,7 @@ The large number of vendor-specific or proprietary context synchronization metho
 
 The _driving application_ could be an EHR, a PACS, a worklist or any other clinical workflow system. The driving application integrates the Hub, the SMART authorization server and a FHIR server. As part of a SMART launch, the app requests appropriate [FHIRcast OAuth 2.0 scopes](2-2-FhircastScopes.html) and receives the initial shared context as well as the location of the Hub and a unique `hub.topic` session identifier.
 
-The app subscribes to specific workflow events for the given user's session by contacting the Hub. The Hub verifies the subscription notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app unsubscribes from its subscription when it no longer wants to receive notifications.
+The app subscribes to specific workflow events for the given user's session by contacting the Hub. The Hub verifies the subscription, then notifies the app when those workflow events occur; for example, by the clinician opening a patient's chart. The app unsubscribes from its subscription when it no longer wants to receive notifications.
 
 #### Example scenario
 
