@@ -12,7 +12,7 @@ All events are documents in the [standard event catalog](3_Events.html) and SHAL
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
 
