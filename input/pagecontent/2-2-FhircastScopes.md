@@ -2,7 +2,7 @@ FHIRcast defines OAuth 2.0 access scopes that correspond directly to [FHIRcast e
 
 Expressed in [Extended Backus-Naur Form](https://www.iso.org/obp/ui/#iso:std:iso-iec:14977:ed-1:v1:en) (EBNF) notation, the FHIRcast syntax for OAuth 2.0 access scopes is:
 
-`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event | '*' ) '.' ( 'read' | 'write' | '*' )`
+`scope ::= ( 'fhircast' ) '/' ( FHIRcast-event-name | '*' ) '.' ( 'read' | 'write' | '*' )`
 
 {% include img.html img="fhircast-smart-scopes.png" caption="Figure: Syntax for FHIRcast scopes" %}
 
