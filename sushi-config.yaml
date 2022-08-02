@@ -40,6 +40,8 @@ pages:
       title: Extensions
     2-9-GetCurrentContext.md:
       title: Get Current Context
+    2-10-ContentSharing.md:
+      title: Content Sharing
 
   3_Events.md:
     title: Event library
