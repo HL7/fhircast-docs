@@ -15,17 +15,17 @@ In addition to basic context synchronization, FHIRcast supports real-time exchan
  1. Assign and maintain an anchor context's `context.versionId` when processing a `[FHIR resource]-open` request - the `context.versionId` does not need to follow any convention but must unique in the scope of a topic  
  2. Reject `[FHIR resource]-update` and `[FHIR resource]-select` requests if the version does not match the current `context.versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
  3. Assign and maintain a new `context.versionId` for the anchor context's content and provide the new `context.versionId` along with the `context.priorVersionId` in the event corresponding to the validated update request
- 4. Maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Context`](2-9-GetCurrentContext.html) request
+ 4. Process each `[FHIR resource]-update` request in an atomic fashion and maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Context`](2-9-GetCurrentContext.html) request
  5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the anchor context since the Hub has no responsibility to persist the content
  6. Forward a `[FHIR resource]-select` event to all subscribed applications 
 
- A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.
+ A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.  If the Hub does not rejects an update request, for any reason, it SHALL reject the entire request - it SHALL NOT accept some changes specified in the bundle and reject others.
 
  A Hub is not responsible for any long-term persistence of shared information and should purge the content when a `[FHIR resource]-close` request is received.
 
- Additionally, a Hub is not responsible to prevent applications participating in exchanging structured information from causing inconsistencies in the information exchanged.  For example, an inconsistency could arise if an application removes from the anchor context's content a resource which is referenced by another resource.  The Hub may check `[FHIR resource]-update` requests for such inconsistencies and reject the request with an appropriate error message; however, it is not required to do so.  Additionally, a Hub may check for inconsistencies which it deems to be critical but not perform exhaustive validation. For example, a Hub could validate that the content in a `DiagnosticReport` anchor context always includes at least one primary imaging study.
+ Additionally, a Hub is not responsible to prevent applications participating in exchanging structured information from causing inconsistencies in the information exchanged.  For example, an inconsistency could arise if an application removes from the anchor context's content a resource which is referenced by another resource.  The Hub may check `[FHIR resource]-update` requests for such inconsistencies and MAY reject the request with an appropriate error message; however, it is not required to do so.  Additionally, a Hub MAY check for inconsistencies which it deems to be critical but not perform exhaustive validation. For example, a Hub could validate that the content in a `DiagnosticReport` anchor context always includes at least one primary imaging study.
 
- Clients wishing to exchange structured information must:
+ Clients wishing to exchange structured information MUST:
 
  1. Handle FHIRcast events for anchor context types it supports: [FHIR resource]-[open\|update\|close\|select]
  2. Use a `[FHIR resource]-open` request to open a new resource which becomes the anchor context
