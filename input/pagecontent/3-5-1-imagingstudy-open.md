@@ -4,14 +4,14 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened an imaging study. The newly open study may have been associated with a specific patient, or not. 
+User opened record of imaging study. The newly open study is the current imaging study in context. When the ImagingStudy refers to a Patient and this patient is the current patient in context, this patient SHALL be indicated in the event
 
 ### Context
 
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,accession` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification.
+`patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient currently in context. (Note that there may be cases in which the imagingstudy.subject references a different patient, or even other resource, from the patient in context).
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they're required by the FHIR specification. Note, in DSTU2 and STU3, the top-level `accession` element SHALL be included if present. 
 
 ### Examples
   
