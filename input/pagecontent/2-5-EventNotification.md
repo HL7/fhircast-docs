@@ -149,4 +149,5 @@ During a normal shutdown of an application, it SHALL unsubscribe, and provide a 
 
 ### Hub Generated `open` Events
 
-If a Hub granted subscriptions to different sets of `hub.events` to different applications for the same session, the Hub is responsible for generation of implied open events. When distributing a received event, a hub SHALL ensure open events for the referenced resource types of the received event, are also sent to subscribers. Hubs SHOULD NOT generate and send duplicative events.
+If a Hub grants subscriptions to different sets of `hub.events` to different applications for the same session, the Hub is responsible for generation of implied open events. When distributing a received event, a hub SHALL ensure open events for the referenced resource types of the received event are also sent to subscribers. Hubs SHOULD NOT generate and send duplicative events.
+
