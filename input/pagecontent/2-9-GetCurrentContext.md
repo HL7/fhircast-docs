@@ -43,7 +43,7 @@ The following example shows a response to the get context request when the curre
   "context.versionId": "023fe970-a6d9-442f-a499-dfb71f1edba6",
   "context": [
     {
-      "key": "Report",
+      "key": "report",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "40012366",
