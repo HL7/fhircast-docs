@@ -6,13 +6,13 @@ FHIRcast context events do not communicate previous contexts. For a given event,
 
 ### Event Definition Format
 
-Each event definition: specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notifications MAY include other elements of these resources.
+Each event definition specifies a single event name, a description of the workflow in which the event occurs, and contextual information associated with the event. FHIR is the interoperable data model used by FHIRcast. The context information associated with an event is communicated as subsets of FHIR resources. Resources are formatted in [the fhir+json json representation as defined by the base FHIR specification](https://www.hl7.org/fhir/json.html). Event notifications SHALL include the elements of the FHIR resources defined in the context from the event definition. Event notifications MAY include other elements of these resources.
 
 All events are documents in the [standard event catalog](3_Events.html) and SHALL be defined in the following format.
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
-`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a UUID.
+`hub.topic` | Required | string | The session topic given in the subscription request. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
 
@@ -25,9 +25,9 @@ The event name defines the event. Most FHIRcast events conform to an extensible 
 
 Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context change related events is:
 
-The `fhir-resource` indicates the focus of the event; the `suffix` defines the type of event.
-
 {% include img.html img="events-railroad.png" caption="Figure: Syntax for FHIRcast events" %}
+
+The `fhir-resource` indicates the focus of the event; the `suffix` defines the type of event.
 
 Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
@@ -38,6 +38,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 | `*`   | All events  |
 | `*-*` | All events  |
 | `Patient-*` | All events that use the `Patient` fhir-resource |
+| `*-update` | All update events |
 | `*-select` | All select events |
 
 ### Context
@@ -92,7 +93,7 @@ Selection events use the suffix `select`. The format of selection events is:
 
 `hub.events ::= ( fhir-resource  ) '-' ( select )`
 
-The `fhir-resource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `fhir-resource` holding a the anchor resource and one or more named `select` indicating the resources that is selected.
+The `fhir-resource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `fhir-resource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
 
 
-This allows of communication of different select sets for the different anchor-types.
+This allows communication of different select sets for the different anchor-types.

@@ -44,7 +44,7 @@ Machine-to-machine-to-machine: Different machines, different times
 |Performance expectations|high|
 |User inability to distinguish between synchronized applications| medium|
 
-**Summary**: Although, the applications applications are distinguishable from one another, the workflow requires rapidly accessing one then another application. Application responsivity to synchronization is particularly important. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
+**Summary**: Although, the applications are distinguishable from one another, the workflow requires rapidly accessing one then another application. Application responsivity to synchronization is particularly important. Synchronization failure may introduce clinical risk and therefore user notification of synchronization failure is suggested.
 
 #### Embedded apps: Same machine, same time, same UI
 
@@ -72,7 +72,7 @@ Machine-to-machine-to-machine: Different machines, different times
 
 ### Synchronization error situations
 
-FHIRcast is based on a subscription model where each subscribing client receives notifications of the updated state of the topic being subscribed to. There is no explicit requirement for a subscribing client to follow the context of another client. The subscription model also implies that it is the subscribing clients responsibility to maintain a contextual synchronization or to notify end users whenever the contextual synchronization is lost.
+FHIRcast is based on a subscription model where each subscribing client receives notifications of the updated state of the topic being subscribed to. There is no explicit requirement for a subscribing client to follow the context of another client. The subscription model also implies that it is the subscribing client's responsibility to maintain a contextual synchronization or to notify end users whenever the contextual synchronization is lost.
 However, as noted in above scenarios, there may be risk associated with the end user expectation of have two tightly synchronized applications if they fall out of sync.
 
 There are in some cases good reasons for a client not to follow the subscribed context and this section will outline some of the recommended approaches.
@@ -85,13 +85,13 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 |--|--|--|
 | Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
 | Subscribing Client | Unable to change context | Respond with a http status code of 409 conflict|
-| Subscribing Client | Ask user whether context can be changed, user refuses. | The Client responds to the initial event with an 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
-| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with an 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror` text change is refused, stating the source and reason for change. |
-| Hub | One of the subscribing clients cannot follow context | No action/Update all subscribing clients with event syncerror |
+| Subscribing Client | Ask user whether context can be changed, user refuses. | The Client responds to the initial event with a 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
+| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Text change is refused, stating the source and reason for change. |
+| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event syncerror. |
 
 #### Failure of subscribing client preventing context synchronization
 
-Although not intended, application do fail. In this case the event is received by the application but some internal error prevents it from processing it.
+Although not intended, applications do fail. In this case the event is received by the application, but some internal error prevents it from processing it.
 
 |System|Failure mode|Possible actions|
 |--|--|--|
@@ -149,15 +149,15 @@ A Client that initiates a context change and receives a `syncerror` related to a
 
 #### Clients that follow context change
 
-A Client that follow context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `syncerror`, it shall assume sync is restored unless a new `syncerror` is received.
+A Client that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `syncerror`, it shall assume sync is restored unless a new `syncerror` is received.
 
 #### Clients that lose the connection to the hub
 
-These Clients should resubscribe to the hub and topic. Once resubscribed, and the most recent relevant event has been received, the Client can assume that sync is restored.
+Clients that lose the connection to the hub should resubscribe to the hub and topic. Once resubscribed, and the most recent relevant event has been received, the Client can assume that sync is restored.
 
 #### Hubs
 
-A hub that send a `syncerror` event (e.g. as it is not able to deliver an event) MAY resend this event regularly until sync has been reestablished or a newer event has been received.
+A hub that sends a `syncerror` event (e.g. as it is not able to deliver an event) MAY resend this event regularly until the sync has been reestablished or a newer event has been received.
 
 ### Open topics
 

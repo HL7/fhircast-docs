@@ -27,7 +27,7 @@ Field | Optionality | Channel | Type | Description
 ---------- | ----- | -------- | -------------- | ----------
 `hub.channel.type` | Required | All | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | All | *string* | The literal string `subscribe` or `unsubscribe`, depending on the goal of the request.
-`hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
+`hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. 
 `hub.events` | Conditional | All | *string* | Required for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
 `hub.lease_seconds` | Optional | All | *number* | Number of seconds for which the subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.callback` | Required | `webhook` | *string* | The Subscriber's callback URL where notifications should be delivered. The callback URL SHOULD be an unguessable URL that is unique per subscription.
@@ -37,7 +37,8 @@ Field | Optionality | Channel | Type | Description
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
-Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific `hub.topic`, `hub.callback` / `hub.channel.endpoint` url combination. For example, a subscriber MAY modify its subscription by sending a subscription request (`hub.mode=subscribe`) with a different `hub.events` value with the same topic and callback/endpoint url, in which case the Hub SHALL replace the subscription’s previous `hub.events` with the newly provided list of events.
+Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific (`hub.topic`, `hub.callback`) combination or (`hub.topic`, `hub.channel.endpoint` url) combination. For example, a subscriber MAY modify its subscription by sending a subscription request (`hub.mode=subscribe`) with a different `hub.events` value with the same topic and callback/endpoint url, in which case the Hub SHALL replace the subscription’s previous `hub.events` with the newly provided list of events.
+
 
 For `webhook` subscriptions, the callback URL MAY contain arbitrary query string parameters (e.g., `?foo=bar&red=fish`). Hubs SHALL preserve the query string during subscription verification by appending new, Hub-defined, parameters to the end of the list using the `&` (ampersand) character to join. When sending event notifications, the Hub SHALL make a POST request to the callback URL including any query string parameters in the URL portion of the request, not as POST body parameters.
 
@@ -71,7 +72,7 @@ hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2F
 
 ### Subscription Response
 
-Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response. This indicates that the request was received and will now be verified by the Hub. When using WebSockets, the HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value of the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable. If using webhooks, the Hub SHOULD perform verification of intent as soon as possible.
+Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response. This indicates that the request was received and will now be verified by the Hub. When using WebSockets, the HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable. If using webhooks, the Hub SHOULD perform verification of intent as soon as possible.
 
 If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
 
@@ -102,7 +103,7 @@ In order to prevent an attacker from creating unwanted subscriptions on behalf o
 Field | Optionality | Type | Description
 ---  | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string `subscribe` or `unsubscribe`, which matches the original request to the Hub from the subscriber.
-`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a UUID.
+`hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. 
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired, close the websocket connection if used, and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
@@ -180,7 +181,7 @@ If (and when) a subscription is denied, the Hub SHALL inform the subscriber. Thi
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string `denied`.
-`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. MAY be a UUID.
+`hub.topic` | Required | *string* | The topic given in the corresponding subscription request. 
 `hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied.
 `hub.reason` | Optional | *string* | The Hub may include a reason. A subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
@@ -228,8 +229,7 @@ Field | Optionality | Channel | Type | Description
 ----- | ----------- | ------- | ---- | -----------
 `hub.channel.type` | Required | All | *string* | The subscriber SHALL specify a channel type of `websocket` or `webhook`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode` | Required | All | *string* | The literal string `unsubscribe`.
-`hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. MAY be a UUID.
-`hub.lease_seconds` | Optional | All | *number* | This parameter MAY be present for unsubscribe requests and MUST be ignored by the hub in that case.
+`hub.topic` | Required | All | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from. 
 `hub.callback` | Required | `webhook` | *string* | The Subscriber's callback URL. 
 `hub.secret` | Optional | `webhook` | *string* | A subscriber-provided cryptographically random unique secret string that SHALL be used to compute an [HMAC digest](https://www.w3.org/TR/websub/#bib-RFC6151) delivered in each notification. This parameter SHALL be less than 200 bytes in length.
 `hub.channel.endpoint` | Conditional | `websocket` | *string* |  Required for `websocket` re-subscribes and unsubscribes. The WSS URL identifying an existing WebSocket subscription.

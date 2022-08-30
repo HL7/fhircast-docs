@@ -2,13 +2,15 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 ### Event Notification Request
 
-The HTTP request notification interaction to the subscriber SHALL include a description of the subscribed event that just occurred, an ISO 8601-2 formatted timestamp in UTC and an event identifier that is universally unique for the Hub. The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
+The HTTP request notification interaction include the following fields:
 
 Field | Optionality | Type | Description
 --- | --- | --- | ---
 `timestamp` | Required | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred.
 `id` | Required | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event` | Required | *object* | A JSON object describing the event see [Event Definition](2-3-Events.html).
+
+The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### `webhook` Event Notification Request Details
 
@@ -62,7 +64,7 @@ For both `webhook` and `websocket` subscriptions, the event notification content
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with an any of the response codes indicated below:
+The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with any of the response codes indicated below:
 HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code.
 
 Code  |        | Description
@@ -117,9 +119,7 @@ The figure below illustrates the `webhook` and `websocket` Event Notification Er
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
 
-More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
-
-## Hub Generated `syncerror` Events
+### Hub Generated `syncerror` Events
 
 In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by one application to other subscribed applications, the Hub MAY generate and communicate [`syncerror`](3-2-1-syncerror.html) events to applications under the following conditions -- 
 
@@ -132,12 +132,10 @@ Implementer input is solicited on the amount and specificity of time, in the abo
 
 [`syncerror`](3-2-1-syncerror.html) events are distributed only to applications which have subscribed to `syncerror`s. 
 
-
-
 Upon communicating a `syncerror` resulting from an unresponsive app, the Hub SHALL unsubscribe the application. 
 
 The Hub SHALL NOT generate [`syncerror`](3-2-1-syncerror.html) events in the following situations:
-1. If a client fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event
+1. If a client fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event (because occasional missed heartbearts are expected and are not a context synchronization failure).
 2. The application closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
 
 During a normal shutdown of an application, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive app.
