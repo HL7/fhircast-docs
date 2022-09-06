@@ -140,6 +140,25 @@ Two or more clients are sending context change event shortly after each other ca
 | Subscribing Client | Conflicting events | When a client detects an event with a suggested context change that is send shortly after its own event, it should compare the timestamp of these events and treat the most recent event as current. It should also not respond with a resend of its context change without querying the user to prevent triggering an endless context switch waterfall. |
 | Hub | None | The hub cannot and should not be involved in distinguishing between an intentional and unintentional event  expiration. So it cannot mitigate this. |
 
+#### Synchronization considerations for userLogout, hibernate
+
+Most synchronization failure considerations revolve around the possibility of introducing incorrect information into the clinical decision making process. In addition to these considerations, failures to synchronize userLogout and userHibernate events must also take into consideration the risk of unsecured, unattended health applications, risking data breach and user impersonation.
+
+Distinct scenarios, ralted to userLogout and hibernate:
+
+1. User logs out of application A, then takes action in application B.
+Negligible risk. User does not expect synchronization.
+2. User hibernates application A, then takes action in application B.
+Negligible risk. User does not expect synchronization.
+3. Application A automatically hibernates without user action, user takes action in application B.
+Application A should consider reacting to events when hibernated; perhaps with a syncerror.
+4. User logs out of application A, walks away from workstation, application B remains open and unsecured.
+Negligible risk. Per typical application security best practices, applications should automatically secure following a period of un-use. Following an automatic secure, user remains logged into application B. 
+5. User hibernates application A, walks away from workstation, application B remains open and unsecured.
+Negligible risk. Per typical application security best practices, application should automatically secure following a period of un-use.
+
+
+
 ### Re-establishing sync
 
 The situations in which a sync error can occur are indicated in the previous section. Once a sync error situation occurs, applications need to be able to recover from it.
