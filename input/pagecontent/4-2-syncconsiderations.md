@@ -86,18 +86,17 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 | Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
 | Subscribing Client | Unable to change context | Respond with a http status code of 409 conflict|
 | Subscribing Client | Ask user whether context can be changed, user refuses. | The Client responds to the initial event with a 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
-| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror` text change is refused, stating the source and reason for change. |
-| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event sync-error |
+| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Text change is refused, stating the source and reason for change. |
+| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event syncerror. |
 
-#### Failure off subscribing client preventing context synchronization
+#### Failure of subscribing client preventing context synchronization
 
 Although not intended, applications do fail. In this case the event is received by the application, but some internal error prevents it from processing it.
-
 
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X. |
-| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription. |
+| Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event syncerror using information from the subscriber.name field in the original subscription. |
 
 #### Connection is lost
 
@@ -107,7 +106,7 @@ To mitigate this situation, clients are recommended to register for `heartbeat` 
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync. |
-| Hub | Timeout or error from client callback URL | No action/Retry/Update all subscribing clients with event sync-error using information from the subscriber.name field in the original subscription. |
+| Hub | Timeout or error from client callback URL | No action/Retry/Update all subscribing clients with event syncerror using information from the subscriber.name field in the original subscription. |
 
 #### Race condition during launch
 
@@ -119,7 +118,7 @@ In the scenarios where the Hub is aware of a synchronization error, it is advisa
 
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscribing Client | Sync-error event received from Hub | Present end user with clear indication that contextual synchronization is lost |
+| Subscribing Client | Syncerror event received from Hub | Present end user with clear indication that contextual synchronization is lost |
 
 #### Subscription has expired
 
@@ -162,6 +161,6 @@ A hub that sends a `syncerror` event (e.g. as it is not able to deliver an event
 
 ### Open topics
 
-* Do I get all sync-errors or only those related to events I subscribed to?
+* Do I get all syncerror's or only those related to events I subscribed to?
 * Does a hub send an `syncerror` for each client that cannot be reached or refused or is it allowed to combine them in one.
 * When the hub/application resends an context change event, is the `heartbeat` still needed?
