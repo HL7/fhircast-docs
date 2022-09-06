@@ -8,6 +8,8 @@ User's session has ended, perhaps by exiting the application through a logout, s
 
 Unlike most of FHIRcast events, `userlogout` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
 
+Implementers are encouraged to consider if and when their application should logout the user upon receiving an userLogout event, and if so, how to preserve application state.
+
 ### Context
 
 The context is empty.
