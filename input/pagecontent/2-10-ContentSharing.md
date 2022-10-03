@@ -53,3 +53,4 @@ Operation | Description
 [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) | This notification is used to make changes (updates) to the current report. These changes usually include adding/removing imaging studies and/or observations to the current report.
 [`DiagnosticReport-close`](3-6-2-diagnosticreport-close.html) | This notification is used to close the current diagnostic report anchor context with the current state of the exchanged content stored by subscribed applications as appropriate and cleared from these applications and the Hub.
 [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html) | This notification is sent to tell subscribers to make one or more images or observations visible (in focus), such as a measurement (or other finding).
+{:.grid}
