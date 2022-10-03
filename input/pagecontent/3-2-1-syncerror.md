@@ -4,51 +4,38 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A synchronization error has been detected. Inform subscribed clients. 
+A synchronization error has been detected and the condition is indicated to subscribed clients. 
 
 Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
 
+A `syncerror` is sent by a subscribed application when:
+1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, then the application decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `warning`
+
+A `syncerror` is broadcast by the Hub when one of the following conditions occur:
+1. A subscriber encounters an error when following a context, returning a server error (50X) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
+2. A subscriber decides not to follow a context, returning a server conflict (409) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
+3. The Hub detects a connection issue with a subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-Events)) - the `severity` of the `operationoutcome` resource shall be `information`
+
 ### Context
 
-An array containing a single FHIR OperationOutcome. The OperationOutcome SHALL use a code of `processing`. The OperationOutcome's details SHALL contain the id of the event that this error is related to as a `code` with the `system` value of `https://fhircast.hl7.org/events/syncerror/eventid` and the name of the relevant event with a `system` value of `https://fhircast.hl7.org/events/syncerror/eventname`. Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`. The OperationOutcome's `diagnostics` element should contain additional information to aid subsequent investigation or presentation to the end-user.
+The `context` array SHALL contain a single FHIR OperationOutcome.
 
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`operationoutcome` | OPTIONAL | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action.
+`operationoutcome` | REQUIRED | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action.
 
-The OperationOutcome SHALL use a code of `processing`.  
-The OperationOutcome's `issue[0].details.coding.code` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid".  
-The OperationOutcome's `issue[0].details.coding.code` SHALL contain the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname".  
-The OperationOutcome's `issue[0].details.coding.code` SHALL contain the name of the relevant subscriber `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber".  
-Other `coding` values can be included with different `system` values so as to include extra information about the `syncerror`.
-The `diagnostics` field SHALL contain a human readable explanation on the source and reason for the error.
+Content of the OperationOutcome resource SHALL be at least one `issue` with the initial `issue` containing:
+* `issue[0].severity` as per the above workflow section
+* `issue[0].code` of `processing`
+* `issue[0].code.details` SHALL be present
+* `issue[0].details.coding` SHALL contain at least three elements
+  * `issue[0].details.coding.code[0]` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid"
+  * `issue[0].details.coding.code[1]` SHALL contain the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" 
+  * `issue[0].details.coding.code[2]` SHALL contain the optional `subscriber.name` attribute of the original subscription of the relevant subscriber with a `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber"; the `code` attribute MAY be an empty string if no `subscriber.name` of the relevant subscriber was provided in the original subscription
+  * additional `coding` elements MAY be included with different `system` values to provide extra information about the `syncerror`
+* `issue[0].diagnostics` attribute SHALL contain a human readable explanation on the source and reason for the error.
 
-### OperationOutcome profile
-
-The profile of the OperationOutcome resource expressed in FHIR shorthand.
-
-```text
-
-Profile:     SyncErrorOperationOutcome
-Parent:      OperationOutcome
-Id:          sync-error-operationoutcome
-Description: The OperationOutcome included in a syncerror event.
-* issue[0].severity.code = #error
-* issue[0].code = #processing
-* issue[0].diagnostics MS
-* issue[0].diagnostics 1..1
-* issue[0].details.coding ^slicing.discriminator.type = #value
-* issue[0].details.coding ^slicing.discriminator.path = "system"
-* issue[0].details.coding ^slicing.discriminator.description = "Reason and source of syncerror."
-* issue[0].details.coding 
-        contains eventid 1..1 MS and 
-                 eventname 1..1 MS
-* issue[0].details.coding[eventid].system = https://fhircast.hl7.org/events/syncerror/eventid
-* issue[0].details.coding[eventname].system = https://fhircast.hl7.org/events/syncerror/eventname
-
-```
-
-### Examples
+### Example
 
 ```json
 {
@@ -64,9 +51,9 @@ Description: The OperationOutcome included in a syncerror event.
           "resourceType": "OperationOutcome",
           "issue": [
             {
-              "severity": "error",
+              "severity": "warning",
               "code": "processing",
-              "diagnostics": "AppId3456 failed to follow context",
+              "diagnostics": "Acme Product failed to follow context",
               "details": {
                 "coding": [
                   {
@@ -76,6 +63,10 @@ Description: The OperationOutcome included in a syncerror event.
                   {
                     "system": "https://fhircast.hl7.org/events/syncerror/eventname",
                     "code": "patient-open"
+                  },
+                  {
+                    "system": "https://fhircast.hl7.org/events/syncerror/subscriber",
+                    "code": "Acme Product"
                   },
                   {
                     "system": "http://example.com/events/syncerror/your-error-code-system",
@@ -98,3 +89,4 @@ Version | Description
 ---- | ----
 1.0 | Initial Release
 2.0 | Require id of event syncerror is about, in `OperationOutcome.details.coding.code`
+3.0 | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes
