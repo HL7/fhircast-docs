@@ -1,12 +1,12 @@
 ### Overview
 
-FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), in this case, each of these three systems needs to display the same study or patient at the same time.
+FHIRcast synchronizes healthcare applications in real time to ensure the user acts on the same clinical information across these applications. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), in this case, each of these three systems needs to display the same study or patient at the same time.
 
 FHIRcast isn't limited to radiology use-cases. Modeled after the common webhook design pattern and specifically [WebSub](https://www.w3.org/TR/websub/), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications.
 
 FHIRcast builds on the [CCOW](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=1) abstract model to specify an http-based and simple context synchronization specification that doesn't require a separate context manager. FHIRcast is intended to be both less sophisticated, and more implementer-friendly than CCOW and therefore is not a one-to-one replacement of CCOW, although it solves many of the same problems.
 
-Adopting the WebSub terminology, FHIRcast describes an app as a subscriber synchronizing with an EHR in the role of a Hub, but any user-facing application can synchronize with FHIRcast. While less common,  bidirectional communication between multiple applications is also possible.
+Adopting the WebSub terminology, FHIRcast describes an app as a Subscriber synchronizing with a Hub (which may be an EHR or other system).  Any user-facing application can synchronize with FHIRcast. While less common, bidirectional communication between multiple applications is also possible.
 
 #### Why?
 
