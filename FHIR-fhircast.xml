@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
+<version code="current" url="http://hl7.org/fhir/uv/fhircast"/>
+<version code="2.1.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
+<version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
+<version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
+<version code="0.1" deprecated="true"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<artifact id="StructureDefinition/fhircast-observation" key="StructureDefinition-fhircast-observation" name="FHIRcast Observation"/>
+<artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
+<artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
+<artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page deprecated="true" key="profiles" name="(profiles)"/>
+<page key="launch-scenarios" name="App launch scenarios and session discovery"/>
+<page key="artifacts" name="Artifacts Summary"/>
+<page key="change-log" name="Change log"/>
+<page key="conformance" name="Conformance"/>
+<page key="content-sharing" name="Content Sharing"/>
+<page key="content-sharing" name="Content Sharing"/>
+<page key="diagnosticreportevents" name="DiagnosticReport Events"/>
+<page key="diagnosticreport-close" name="DiagnosticReport close event"/>
+<page key="diagnosticreport-select" name="DiagnosticReport select event"/>
+<page key="diagnosticreport-open" name="DiagnosticsReport open event"/>
+<page key="diagnosticreport-update" name="DiagnosticsReport update event"/>
+<page key="encounterevents" name="Encounter Events"/>
+<page key="encounter-close" name="Encounter close event"/>
+<page key="encounter-open" name="Encounter open event"/>
+<page key="event-format" name="Event format"/>
+<page key="event-library" name="Event library"/>
+<page key="eventmaturitymodel" name="Event maturity model"/>
+<page key="eventnotification" name="Event notification"/>
+<page key="event-template" name="Event template"/>
+<page key="extensions" name="Extensions"/>
+<page key="event-definitions" name="FHIRcast Event Definitions"/>
+<page key="specification" name="FHIRcast specification"/>
+<page key="GetCurrentContext" name="Get Current Context"/>
+<page key="glossary" name="Glossary"/>
+<page key="heartbeat" name="Heartbeat event"/>
+<page key="imagingstudyevents" name="ImagingStudy Events"/>
+<page key="imagingstudy-close" name="ImagingStudy close event"/>
+<page key="imagingstudy-open" name="ImagingStudy open event"/>
+<page key="infrastructureevents" name="Infrastructure Events"/>
+<page key="introduction" name="Introduction"/>
+<page key="multi-anchor-considerations" name="Multi-anchor considerations"/>
+<page key="multitab-considerations" name="Multi-tab considerations"/>
+<page key="fhircast-oauth2-scopes" name="OAuth2 authorization scopes"/>
+<page key="open-issues" name="Open Issues"/>
+<page key="patientevents" name="Patient Events"/>
+<page key="patient-close" name="Patient close event"/>
+<page key="patient-open" name="Patient open event"/>
+<page key="RequestContextChange" name="Request Context Change"/>
+<page key="Scenarios" name="Scenarios"/>
+<page key="security-considerations" name="Security considerations"/>
+<page key="session-discovery" name="Session Discovery"/>
+<page key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
+<page key="syncerror" name="Sync error event"/>
+<page key="synchronization-considerations" name="Synchronization considerations"/>
+<page key="table-of-contents" name="Table of Contents"/>
+<page key="userhibernate" name="User hibernate event"/>
+<page key="userlogout" name="User logout event"/>
+</specification>
