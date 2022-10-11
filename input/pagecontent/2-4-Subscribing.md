@@ -104,7 +104,7 @@ Field | Optionality | Type | Description
 ---  | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string `subscribe` or `unsubscribe`, which matches the original request to the Hub from the subscriber.
 `hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. MAY be a UUID.
-`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.
+`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog related to the events string given in the corresponding subscription request. Note that the granted events may be the same as, a subset, or a superset of those requested. 
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired, close the websocket connection if used, and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
 
