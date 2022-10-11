@@ -105,7 +105,7 @@ To mitigate this situation, clients are recommended to register for `heartbeat` 
 
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync. |
+| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription).  |
 | Hub | Timeout or error from client callback URL | No action/Retry/Update all subscribing clients with event syncerror using information from the subscriber.name field in the original subscription. |
 
 #### Race condition during launch
@@ -126,7 +126,7 @@ The client subscription has expired causing it no longer receive event. The appl
 
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. The resend relevant event feature will make sure the application will come back into sync.
+| Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription). 
 | Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So it cannot mitigate this.|
 
 #### Race condition between context changes
