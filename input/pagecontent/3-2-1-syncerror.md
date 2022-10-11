@@ -4,7 +4,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A synchronization error has been detected and the condition is indicated to subscribed clients. 
+A synchronization error has been detected and this is indicated to subscribed clients. 
 
 Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
 
