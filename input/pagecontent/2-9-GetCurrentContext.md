@@ -10,34 +10,31 @@ The requester makes an HTTP GET call to the following URL:
 
 GET `base-hub-URL/{topic}`
 
-### Get current context Response
+### Get Current Context Response
 
-This method returns an object containing the current context of a topic; where the current context is the same event as the most recent open for a given subscriber.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.
-
-
+This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the app’s subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
 
 Field | Optionality | Type | Description
 ---   | --- | --- | ---
-`context.type` | Required | string | ResourceType of the context element.
+`context.type` | Required | string | ResourceType of the context element or an empty string if no context is currently established.
 `context.versionId` | Required | string | The versionId of the current context. Each time the context changes, a different versionId is generated.
-`context`   | Required | array | The context field of the corresponding context element as defined in the `-open` event of the resourceType.
+`context`   | Required | array | The context array of the corresponding context element as was supplied in the most recent `-open` event or an empty array if no context is currently established.
 
 ### Content Sharing Support
 
-If a Hub supports content sharing, the Hub returns the current content in an `content` key and the content version in a `version` key.  `Bundle` entries SHALL not contain a `request` attribute.  The enclosed `Bundle` resource SHALL have a `type` of `collection`.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
+If a Hub supports content sharing, the Hub returns the current content in a `content` key in the `context` array.  There SHALL be one and only one `Bundle` resource which SHALL have a `type` of `collection`.  No entry in the `Bundle` shall contain a `request` attribute.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
 
 #### Context
 
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
-resource key | REQUIRED | `[resourceType]/{id}?_elements=identifier` | 1..* contextual resources
-`content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context
+`content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context or a `Bundle` resource with no entries if no content is associated with the current context.
 
 ### Examples
 
 #### Get Context Response Example
 
-The following example shows a response to the get context request when the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request.  The response contains version 2 of the anchor context's content which contains a single `Observation` resource. 
+The following example shows a response to the get context request when the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request.  The response contains version "023fe970-a6d9-442f-a499-dfb71f1edba6" of the anchor context's content which contains a single `Observation` resource. 
 
 ```json
 {
@@ -118,6 +115,9 @@ The following example shows a response to the get context request when the curre
                 "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
               },
               "status": "preliminary",
+              "subject": {
+                "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+              },
               "category": {
                 "system": "http://terminology.hl7.org/CodeSystem/observation-category",
                 "code": "imaging",
@@ -139,5 +139,13 @@ The following example shows a response to the get context request when the curre
       }
     }
   ]
+}
+```
+The following example shows the returned structure when no context is established:
+
+```json
+{
+  "context.type": "",
+  "context": []
 }
 ```
