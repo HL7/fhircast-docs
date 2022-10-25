@@ -15,13 +15,13 @@ These exchanges can be implemented in two ways depending on the channel type:
 
 A Hub SHALL support WebSockets and MAY support webhooks subscriptions. A subscriber specifies the preferred `hub.channel.type` of either `webhook` or `websocket` during creation of its subscription. Websockets are particularly useful if a subscriber is unable to host an accessible callback URL.
 
+Any content returned from subscription requests SHALL be returned as `application/json`.
+
 > Implementer feedback is solicited around the optionality and possible deprecation of webhooks.
 
 ### Subscription Request
 
-To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below.
-
-This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
+To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 Field | Optionality | Channel | Type | Description
 ---------- | ----- | -------- | -------------- | ----------
@@ -224,6 +224,8 @@ To deny a `websocket` subscription, the Hub sends a JSON object to the subscribe
 ### Unsubscribe
 
 Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even for subscriptions using WebSockets. `websocket` unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
+
+To unsubscribe, the subscribed app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 Field | Optionality | Channel | Type | Description
 ----- | ----------- | ------- | ---- | -----------
