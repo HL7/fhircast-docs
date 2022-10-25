@@ -1,0 +1,3 @@
+Events ::= (fhir-resource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )
+
+using https://www.bottlecaps.de/rr/ui
