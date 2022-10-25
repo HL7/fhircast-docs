@@ -74,7 +74,7 @@ hub.channel.type=webhook&hub.callback=https%3A%2F%2Fapp.example.com%2Fsession%2F
 
 Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response. This indicates that the request was received and will now be verified by the Hub. When using WebSockets, the HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable. If using webhooks, the Hub SHOULD perform verification of intent as soon as possible.
 
-If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies.
+If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies, for example, a Hub may require that all applications subscribe to the same set of events. 
 
 #### `websocket` Subscription Response Example
 
@@ -104,7 +104,7 @@ Field | Optionality | Type | Description
 ---  | --- | --- | ---
 `hub.mode` | Required | *string* | The literal string `subscribe` or `unsubscribe`, which matches the original request to the Hub from the subscriber.
 `hub.topic` | Required | *string* | The session topic given in the corresponding subscription request. 
-`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request.
+`hub.events` | Required | *string* | A comma-separated list of events from the Event Catalog related to the events string given in the corresponding subscription request. Note that the granted events may be the same as, a subset, or a superset of those requested. 
 `hub.challenge` | Required | *string* | A Hub-generated, random string that SHALL be echoed by the subscriber to verify the subscription.
 `hub.lease_seconds` | Required | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the subscriber. If provided to the client, the Hub SHALL unsubscribe the client once `lease_seconds` has expired, close the websocket connection if used, and MAY send a subscription denial. If the subscriber wishes to continue the subscription it MAY resubscribe.
 

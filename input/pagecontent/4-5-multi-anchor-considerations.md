@@ -16,7 +16,12 @@ For example, an [`encounter-open`](3-4-1-encounter-open.html) implies a [`patien
 
 ### Hub derives open events
 
-The hub is responsible for identifying and sending these implied open events. When distributing a received event, a hub SHALL ensure open events are also sent to subscribers, for the referenced resource types of the received event. Hubs SHOULD NOT generate and send duplicative events. 
+The hub is responsible for identifying and sending these implied open events. When distributing a received event, the Hub is responsible for generating and communicating open events for the resource types referenced by the received event. It is important that Hubs do not generate and send duplicative events. 
+
+
+See details in the specification about:
+* Hubs can [reject subscriptions](2-4-Subscribing.html#subscription-response) according to their own internal business logic.
+* Hubs are [required](2-5-EventNotification.html#hub-generated-open-events) to derive and send open events. 
 
 ### Hub may or may not derive close events
 
