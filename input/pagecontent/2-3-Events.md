@@ -25,13 +25,15 @@ The event name defines the event. Most FHIRcast events conform to an extensible 
 
 Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context change related events is:
 
-{% include img.html img="events-railroad.png" caption="Figure: Syntax for FHIRcast events" %}
+```ebnf
+EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )
+```
 
-The `fhir-resource` indicates the focus of the event; the `suffix` defines the type of event.
+The `FHIRresource` indicates the focus of the event; the `suffix` defines the type of event.
 
 Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
-When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `fhir-resource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the subscriber subscribes to any event. The table below shows some typical examples.
+When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the subscriber subscribes to any event. The table below shows some typical examples.
 
 | **Event** | **Description** |
 |=======|=============|
@@ -68,9 +70,11 @@ The FHIRcast specification supports many different events. These events are defi
 
 #### Context-change events
 
-FHIRcast context-change events that describe context changes SHALL conform to the following extensible syntax. Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related events is:
+FHIRcast context-change events that describe context changes SHALL conform to the following extensible syntax. Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related event names is:
 
-`hub.events ::= ( fhir-resource  ) '-' ( 'open' | 'close' )`
+```ebnf
+ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
+```
 
 Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy and DiagnosticReport.
 
@@ -78,22 +82,22 @@ In the case the resource refers to other FHIR resources that represent there own
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).
 
-
 #### Infrastructure events
 
 This event category contains events required to maintain a FHIRcast session. The main events in this category are:
-
 
 | [`syncerror`](3-2-1-syncerror.html) | indicates refusal to follow context or inability to deliver an event
 | [`heartbeat`](3-2-2-heartbeat.html) | for monitoring the connection to the hub
 
 #### Selection events
 
-Selection events use the suffix `select`. The format of selection events is:
+Selection events use the suffix `select`. The format of selection event names is:
 
-`hub.events ::= ( fhir-resource  ) '-' ( select )`
+```ebnf
+SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
+```
 
-The `fhir-resource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `fhir-resource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
+The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `FHIRresource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
 
 
 This allows communication of different select sets for the different anchor-types.

@@ -1,0 +1,17 @@
+@startuml
+
+title FHIRcast interactions
+
+participant "Driving\nApplication 1" as DrivingApp1
+participant "App\n(Subscriber)" as Subscriber
+participant "FHIRcast\nHub" as Hub
+participant "Driving\nApplication 2" as DrivingApp2
+
+DrivingApp1 -> Subscriber: App launch
+Subscriber -> Hub: Subscribe
+DrivingApp2 -> Hub: request change context
+Hub --> Subscriber: context notification
+Hub --> DrivingApp1: context notification
+Hub --> DrivingApp2: context notification
+Subscriber -> Hub: Unsubscribe
+@enduml
