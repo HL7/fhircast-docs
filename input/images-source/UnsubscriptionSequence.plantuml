@@ -1,0 +1,19 @@
+@startuml
+
+title Unsubscription flow diagram
+
+participant "App\n(Subscriber)" as Subscriber
+participant "FHIRcast\nHub" as Hub
+
+Subscriber -> Hub++: POST Unsubscribe
+Subscriber <-- Hub--: 202 Accepted [<wss URL>]
+
+note right of Hub
+    App unsubscribes to Hub. Hub 
+    removes app from subscribed apps 
+    and closes the websocket (if any).
+end note
+
+Hub --> Subscriber++: WS: denial
+
+@enduml

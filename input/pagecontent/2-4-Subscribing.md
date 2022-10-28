@@ -88,7 +88,7 @@ Field               | Optionality | Type | Description
 
 #### Successful Subscription Sequence
 
-{% include img.html img="Successful WebSocket Subscription Sequence.png" caption="Figure: Successful web socket subscription flow diagram" %}
+{%include SuccessfulWebSocketSubscriptionSequence.svg%}
 
 ### Current context notification upon successful subscription
 
@@ -114,7 +114,7 @@ Field        | Optionality | Type     | Description
 
 ##### Subscription Denial Sequence
 
-{% include img.html img="Denied Websocket Subscription Sequence.png" caption="Figure: Websocket subscription denial" %}
+{%include DeniedSubscriptionSequence.svg%}
 
 ##### `websocket` Subscription Denial Example
 
@@ -153,4 +153,4 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
 
 #### Unsubscription Sequence
 
-{% include img.html img="UnsubscriptionSequence.png" caption="Figure: Unsubscription flow diagram" %}
+{%include UnsubscriptionSequence.svg %}
