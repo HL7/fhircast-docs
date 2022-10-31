@@ -1,3 +1,24 @@
+This folder holds the "Railroad Diagram Generator" (see below) and a set of shell scripts
+that allow generation of EBNF railroad diagrams based on EBNF input files.
+
+Files and folders:
+  _createAllEbnfPng.sh
+    Shell script that runs _createEbnfPng.sh on all ebnf files in input and copies the resulting png files to input/images
+  _createEbnfPng.sh
+    Shell script that takes an ebnf file as input and generates an png file in the diagram directory
+  input/
+    directory that holds the ebnf files
+  diagram/
+    directory that holds the generated png files
+  rr.war
+    The Railroad Diagram Generator
+  LICENSE/
+    directory that holds the Railroad Diagram Generator license information.
+
+
+===============================
+
+
 RR - Railroad Diagram Generator
 
   version 1.63

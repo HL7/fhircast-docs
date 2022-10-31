@@ -1,0 +1,1 @@
+EventName ::= (fhir-resource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )

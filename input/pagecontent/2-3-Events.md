@@ -29,6 +29,9 @@ Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, t
 EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )
 ```
 
+{% include img.html img="EventName.png" caption="Figure: Event-name specification" %}
+
+
 The `FHIRresource` indicates the focus of the event; the `suffix` defines the type of event.
 
 Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
@@ -76,6 +79,8 @@ FHIRcast context-change events that describe context changes SHALL conform to th
 ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 ```
 
+{% include img.html img="ContextEventName.png" caption="Figure: Context Event-name specification" %}
+
 Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy and DiagnosticReport.
 
 In the case the resource refers to other FHIR resources that represent there own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
@@ -97,7 +102,8 @@ Selection events use the suffix `select`. The format of selection event names is
 SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 ```
 
-The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `FHIRresource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
+{% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
 
+The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `FHIRresource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
 
 This allows communication of different select sets for the different anchor-types.
