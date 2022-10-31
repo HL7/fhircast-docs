@@ -10,7 +10,7 @@ rm -Rf $fullspec
 rm -Rf $fullspec.tmp
 
 echo "#" FHIRcast > $fullspec
-echo >> FHIRcast.md
+echo >> $fullspec
 
 echo 1. The generated Toc will be an ordered list >> $fullspec
 echo {:toc} >> $fullspec

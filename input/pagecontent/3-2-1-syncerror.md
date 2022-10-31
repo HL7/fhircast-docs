@@ -20,8 +20,9 @@ A `syncerror` is broadcast by the Hub when one of the following conditions occur
 
 The `context` array SHALL contain a single FHIR OperationOutcome.
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
+----- | -------- | ---- | ----
 `operationoutcome` | REQUIRED | `OperationOutcome` | FHIR resource describing an outcome of an unsuccessful system action.
 
 Content of the OperationOutcome resource SHALL be at least one `issue` with the initial `issue` containing:
@@ -85,8 +86,9 @@ Content of the OperationOutcome resource SHALL be at least one `issue` with the 
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
-2.0 | Require id of event syncerror is about, in `OperationOutcome.details.coding.code`
-3.0 | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes
+{:.grid}
+| Version | Description |
+| ------- | ------------- |
+| 1.0     | Initial Release |
+| 2.0     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
+| 3.0     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |

@@ -14,8 +14,9 @@ GET `base-hub-URL/{topic}`
 
 This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the app’s subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
 
+{:.grid}
 Field | Optionality | Type | Description
----   | --- | --- | ---
+----- | --- | --- | ---
 `context.type` | Required | string | ResourceType of the context element or an empty string if no context is currently established.
 `context.versionId` | Required | string | The versionId of the current context. Each time the context changes, a different versionId is generated.
 `context`   | Required | array | The context array of the corresponding context element as was supplied in the most recent `-open` event or an empty array if no context is currently established.
@@ -26,6 +27,7 @@ If a Hub supports content sharing, the Hub returns the current content in a `con
 
 #### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context or a `Bundle` resource with no entries if no content is associated with the current context.

@@ -8,6 +8,7 @@ User opened patient's medical record in the context of a single encounter. Only 
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
@@ -70,6 +71,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+{:.grid}
+| Version | Description
+| ---- | ----
+| 1.0 | Initial Release

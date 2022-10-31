@@ -10,6 +10,7 @@ User closed patient's medical record. A previously open and in context study is 
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ----
 `patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
@@ -67,6 +68,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+{:.grid}
+| Version | Description
+| ------- | ----
+| 1.0  | Initial Release

@@ -8,6 +8,7 @@ User closed patient's medical record encounter context. A previously open and in
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource previously in context.
@@ -66,6 +67,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+{:.grid}
+| Version | Description
+| ---- | ----
+| 1.0 | Initial Release

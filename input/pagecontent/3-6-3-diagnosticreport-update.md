@@ -31,6 +31,7 @@ If information is exchanged by reference, the `fullUrl` reference could be to a 
 
 #### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
@@ -235,6 +236,7 @@ The HUB SHALL distribute a corresponding event to all applications currently sub
 
 ### Change Log
 
-Version | Description
----- | ----
-0.1 | Initial draft
+{:.grid}
+| Version | Description
+| ------- | ----
+| 0.1 | Initial draft

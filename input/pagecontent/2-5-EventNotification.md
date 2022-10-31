@@ -4,6 +4,7 @@ The Hub SHALL notify subscribed apps of workflow-related events to which the app
 
 The HTTP request notification interaction include the following fields:
 
+{:.grid}
 Field       | Optionality | Type | Description
 ----------- | ----------- | ---- | ------------
 `timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred.
@@ -53,6 +54,7 @@ The timestamp SHOULD be used by subscribers to establish message affinity (messa
 The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with any of the response codes indicated below:
 HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code.
 
+{:.grid}
 Code  |          | Description
 ----- | -------- | ---
 200   | OK       | The subscriber is able to implement the context change.
@@ -66,6 +68,7 @@ The Hub MAY use these statuses to track synchronization state.
 
 The `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a JSON object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
+{:.grid}
 Field    | Optionality | Type     | Description
 -------- | ----------- | -------- | ---
 `id`     | Required    | *string* | Event identifier from the event notification to which this response corresponds.

@@ -8,6 +8,7 @@ User opened patient's medical record. The indicated patient is the current patie
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
@@ -50,8 +51,9 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
-1.1 | Deprecate encounter element in favor of dedicated `encounter-open` event.
+{:.grid}
+| Version | Description
+| ---- | ----
+| 1.0 | Initial Release
+| 1.1 | Deprecate encounter element in favor of dedicated `encounter-open` event.
 

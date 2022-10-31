@@ -8,6 +8,7 @@ Once a requested context change is accepted, the Hub SHALL broadcast the context
 
 The format of the Request Context Change request is presented below.
 
+{:.grid}
 Field       | Optionality | Type     | Description
 ----------- | ----------- | -------- | ---
 `timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred.

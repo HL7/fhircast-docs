@@ -14,8 +14,9 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Scenario**: Clinician walks away from her desktop EHR and accesses an app on her mobile device which synchronizes to the EHR's hibernated session.
 
+{:.grid}
 | Consideration | Risk |
-|--|--|
+|---------------|------|
 |Synchronization failure significance | low |
 |Performance expectations|negligible|
 |User inability to distinguish between synchronized applications| n/a|
@@ -26,6 +27,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Scenario**: Clinician accesses her desktop EHR as well an app on her mobile device at the same time. Mobile device synchronizes with the EHR desktop session.
 
+{:.grid}
 |Consideration|Risk|
 |--|--|
 |Synchronization failure significance|medium|
@@ -38,6 +40,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Scenario**: Clinician is accessing two or more applications on the same machine in a single workflow.  
 
+{:.grid}
 |Consideration|Risk|
 |--|--|
 |Synchronization failure significance| medium|
@@ -50,6 +53,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Scenario**: Clinician accesses multiple applications within a single user interface.
 
+{:.grid}
 |Consideration|Risk|
 |--|--|
 |Synchronization failure significance|very high|
@@ -62,6 +66,7 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 
 **Scenario**: Clinician accesses multiple applications on different monitors and machines at the same time. Each application fulfills a specific role. A typical example of such set-up is a radiology workstation.
 
+{:.grid}
 |Consideration | Risk |
 |--|--|
 | Synchronization failure significance | very high |
@@ -81,6 +86,7 @@ There are in some cases good reasons for a client not to follow the subscribed c
 
 Many applications go into edit mode or start a modal dialog that locks the system from changing context without user intervention. Examples can be when modifying texts, reports, annotating images or performing administrative tasks. The clients may then decline to follow the subscribed context to prevent loss of end user data.
 
+{:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
@@ -93,6 +99,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 
 Although not intended, applications do fail. In this case the event is received by the application, but some internal error prevents it from processing it.
 
+{:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X. |
@@ -103,6 +110,7 @@ Although not intended, applications do fail. In this case the event is received 
 This error scenario is all about the Hub losing contact with its subscribing clients. This may be due to a client crash, mis-configured callback URL or simply an underlying network failure. In these cases, the clients are usually not aware of the fact that the context has changed or that the subscription messages are not received.
 To mitigate this situation, clients are recommended to register for `heartbeat` events.
 
+{:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription).  |
@@ -116,6 +124,7 @@ Once an app is launched with initial context, for example, the currently in cont
 
 In the scenarios where the Hub is aware of a synchronization error, it is advisable for the Hub to signal this to the subscribing applications to minimize any patient risk associated with having one or many applications out of sync.
 
+{:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Syncerror event received from Hub | Present end user with clear indication that contextual synchronization is lost |
@@ -124,6 +133,7 @@ In the scenarios where the Hub is aware of a synchronization error, it is advisa
 
 The client subscription has expired causing it no longer receive event. The application can prevent this by resubscribing before the subscription expires.
 
+{:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription). 
@@ -133,6 +143,7 @@ The client subscription has expired causing it no longer receive event. The appl
 
 Two or more clients are sending context change event shortly after each other causing the events to cross.
 
+{:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
 | Subscribing Client | Receive older events | Ensure that the timestamp is checked and that events older than the event that triggered the current context state are ignored. |
@@ -155,8 +166,6 @@ Application A should consider reacting to events when hibernated; perhaps with a
 Negligible risk. Per typical application security best practices, applications should automatically secure following a period of un-use. Following an automatic secure, user remains logged into application B. 
 5. User hibernates application A, walks away from workstation, application B remains open and unsecured.
 Negligible risk. Per typical application security best practices, application should automatically secure following a period of un-use.
-
-
 
 ### Re-establishing sync
 

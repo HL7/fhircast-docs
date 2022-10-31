@@ -12,6 +12,7 @@ Describe when this event occurs in a workflow. Describe how the context fields r
 
 Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource.
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `example` | REQUIRED | `FHIRresource/{id}?_elements=identifer` | Describe the context value
@@ -53,9 +54,9 @@ Changes made to an event's definition SHALL be documented in a change log to ens
 
 For example:
 
+{:.grid}
 Version | Description
----- | ----
-1.1 | Added new context FHIR object
-1.0.1 | Clarified workflow description
-1.0 | Initial Release
-
+------- | ----
+1.1     | Added new context FHIR object
+1.0.1   | Clarified workflow description
+1.0     | Initial Release

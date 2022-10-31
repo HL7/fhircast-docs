@@ -14,6 +14,7 @@ Any content returned from subscription requests SHALL be returned as `applicatio
 
 To create a subscription, the subscribing app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
+{:.grid}
 Field                  | Optionality | Type     | Description
 ---------------------- | ----------- | -------- | ------------
 `hub.channel.type`     | Required    | *string* | The subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
@@ -68,6 +69,7 @@ HTTP/1.1 202 Accepted
 
 To confirm a subscription request, upon the subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation. This confirmation includes the following elements:
 
+{:.grid}
 Field               | Optionality | Type | Description
 ------------------- | ----------- | --- | ---
 `hub.mode`          | Required    | *string* | The literal string `subscribe`.
@@ -105,6 +107,7 @@ If (and when) a subscription is denied, the Hub SHALL inform the subscriber. Thi
 
 To deny a `websocket` subscription, the Hub sends a JSON object to the subscriber through the established WebSocket connection holding the fields indicated below.
 
+{:.grid}
 Field        | Optionality | Type     | Description
 ------------ | ----------- | -------- | ---
 `hub.mode`   | Required    | *string* | The literal string `denied`.
@@ -133,6 +136,7 @@ Once a subscribing app no longer wants to receive event notifications, it SHALL 
 
 To unsubscribe, the subscribed app SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
+{:.grid}
 Field                  | Optionality | Type     | Description
 ---------------------- | ----------- | -------- | -----------
 `hub.channel.type`     | Required    | *string* | The (un)subscriber SHALL specify a channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
