@@ -1,0 +1,24 @@
+@startuml
+title Event notification flow diagram
+
+participant "Drving App\n" as Controller
+participant "FHIRcast\nHub" as Hub
+participant "App1\n(Subscriber)" as Subscriber1
+participant "App2\n(Subscriber)" as Subscriber2
+
+Controller -> Hub: request context change
+
+note over Controller
+    Hub is notified of 
+    a context change.
+end note
+
+Hub -> Subscriber1++: Event Notification
+note over Subscriber1: context is changed
+Hub <-- Subscriber1--: { "id": "q9v3jubddqt63n1", "status": "200"}
+
+Hub -> Subscriber2++: Event Notification
+note over Subscriber2: context is changed
+Hub <-- Subscriber2--: { "id": "q9v3jubddqt63n1", "status": "200"}
+
+@enduml

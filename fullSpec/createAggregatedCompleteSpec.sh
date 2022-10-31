@@ -41,6 +41,3 @@ cp fullspec.html ../temp/pages
 # cd output
 # mv ../$fullspec .
 # kramdown --auto-ids $fullspec > FHIRcast.html
-
-# <img align="left" width="100%"  src="colorful overview diagram.png">
-# {% include img.html img="events-railroad.png" caption="Figure: Syntax for new events" %}
