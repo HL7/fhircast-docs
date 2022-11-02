@@ -14,7 +14,7 @@ A `syncerror` is sent by a subscribed application when:
 A `syncerror` is broadcast by the Hub when one of the following conditions occur:
 1. A subscriber encounters an error when following a context, returning a server error (50X) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
 2. A subscriber decides not to follow a context, returning a server conflict (409) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
-3. The Hub detects a connection issue with a subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-Events)) - the `severity` of the `operationoutcome` resource shall be `information`
+3. The Hub detects a connection issue with a subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-events)) - the `severity` of the `operationoutcome` resource shall be `information`
 
 ### Context
 
