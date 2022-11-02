@@ -120,8 +120,35 @@ pages:
 menu:
   Home: index.html
   TOC: toc.html
-  Specification: 2_Specification.html
-  Events: 3_Events.html
-  Scenarios: 4_Scenarios.html
+  Specification: 
+    Introduction: 2_Specification.html
+    Session Discovery: 2-1-SessionDiscovery.html
+    OAuth2 authorization scopes: 2-2-FhircastScopes.html
+    Event format: 2-3-Events.html
+    Subscribing and unsubscribing: 2-4-Subscribing.html
+    Event notification: 2-5-EventNotification.html
+    Request Context Change: 2-6-RequestContextChange.html
+    Conformance: 2-7-Conformance.html
+    Extensions: 2-8-Extensions.html
+    Get Current Context: 2-9-GetCurrentContext.html
+    Content Sharing: 2-10-ContentSharing.html
+  Events: 
+    Introduction: 3_Events.html
+    FHIRcast Event Definitions: 3-1-0-eventstructures.html
+    Event template: 3-1-1-template.html
+    Event maturity model: 3-1-2-eventmaturitymodel.html
+    Infrastructure Events: 3-2-0-infrastructureevents.html
+    Patient Events: 3-3-0-patientevents.html
+    Encounter Events: 3-4-0-encounterevents.html
+    ImagingStudy Events: 3-5-0-imagingstudyevents.html
+    DiagnosticReport Events: 3-6-0-diagnosticreportevents.html
+  Scenarios: 
+    Introduction: 4_Scenarios.html
+    App launch scenarios and session discovery: 4-1-launch-scenarios.html
+    Synchronization considerations: 4-2-syncconsiderations.html 
+    Security considerations: 4-3-security-considerations.html
+    Multi-tab considerations: 4-4-multitab-considerations.html
+    Multi-anchor considerations: 4-5-multi-anchor-considerations.html
+    Content Sharing: 4-6-content-sharing.html
   Glossary: 5_glossary.html
   Artifacts: artifacts.html
