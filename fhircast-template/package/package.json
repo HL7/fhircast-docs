@@ -1,0 +1,13 @@
+{
+"name": "fhicast.fhir.template",
+"version": "0.1.0",
+"type": "fhir.template",
+"license": "CC0-1.0",
+"description": "FHIRcast FHIR Template",
+"author": "http://hl7.org",
+"canonical": "http://fhir.org/templates/fhircast.fhir.template",
+"base": "hl7.fhir.template",
+"dependencies": {
+    "hl7.fhir.template": "current"
+    }
+}
