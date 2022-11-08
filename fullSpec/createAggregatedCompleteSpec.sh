@@ -23,7 +23,6 @@ do
     read line2
     echo title-: $line2
     echo md----: $line1 
-
     echo "##" ${line2#title:} >> $fullspec
     echo >> $fullspec
     fn=../input/pagecontent/${line1%":"}
