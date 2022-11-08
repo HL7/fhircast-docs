@@ -17,6 +17,8 @@ Field              | Optionality | Type  | Description
 `fhircastVersion`  | Optional | string | `STU1` or `STU2` or `STU3` indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
 `getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 
+A field of `webhookSupport` SHALL be ignored.
+
 #### Wellknown endpoint discovery example
 
 In this example the Hub URL is "www.hub.example.com/".
