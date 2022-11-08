@@ -1,7 +1,8 @@
 @startuml
 title Event notification flow diagram
 
-participant "Drving App\n" as Controller
+participant "Driving App\n" as Controller
+
 participant "FHIRcast\nHub" as Hub
 participant "App1\n(Subscriber)" as Subscriber1
 participant "App2\n(Subscriber)" as Subscriber2
