@@ -11,6 +11,7 @@ If one or more resources are noted as selected, any other resource which had bee
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ---- | ---- | ---- | ----
 `report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
@@ -53,6 +54,7 @@ The following example shows the selection of a single Observation resource in an
 
 ### Change Log
 
-| Version | Description   |
-| ------- | ------------- |
-| 0.1     | Initial draft |
+{:.grid}
+| Version | Description
+| ------- | -------------
+| 0.1     | Initial draft

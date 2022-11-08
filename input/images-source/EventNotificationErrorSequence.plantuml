@@ -1,0 +1,37 @@
+@startuml
+title Event notification error flow diagram
+
+participant "Drving App\n" as Controller
+participant "FHIRcast\nHub" as Hub
+participant "App1\n(Subscriber)" as Subscriber1
+participant "App2\n(Subscriber)" as Subscriber2
+
+Controller -> Hub: request context change
+
+note over Controller
+    Hub is notified of 
+    a context change.
+end note
+
+Hub -> Subscriber1++: Event Notification
+note over Subscriber1
+     Application is unable to 
+     follow context and 
+     responds with a 409 'conflict'
+end note
+Hub <-- Subscriber1--: { "id": "q9v3jubddqt63n1", "status": "409"}
+
+Hub -> Subscriber2++: Event Notification
+note over Subscriber2: context is changed
+Hub <-- Subscriber2--: { "id": "q9v3jubddqt63n1", "status": "200"}
+
+note over Hub
+    Subscribing applications are made aware 
+    that one of the subscribed applicationsis out
+    of sync. Clien can choose to rollback, notify 
+    user or with an implementation specific response.
+end note
+
+Hub -> Subscriber1: Event notification [syncerror]
+Hub -> Subscriber2: Event notification [syncerror]
+@enduml

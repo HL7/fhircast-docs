@@ -111,8 +111,8 @@ pages:
   6_change-log.md:
     title: Change log
 
-  7_open-issues.md:
-    title: Open Issues
+  7_design-notes.md:
+    title: Design notes
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │

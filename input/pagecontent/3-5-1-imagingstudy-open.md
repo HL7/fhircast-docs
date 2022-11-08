@@ -8,6 +8,7 @@ User opened record of imaging study. The newly open study is the current imaging
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient currently in context. (Note that there may be cases in which the imagingstudy.subject references a different patient, or even other resource, from the patient in context).
@@ -65,6 +66,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+{:.grid}
+| Version | Description
+| ------- | ----
+| 1.0 | Initial Release

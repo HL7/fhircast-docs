@@ -8,6 +8,7 @@ A `DiagnosticReport-close` event is posted to the Hub when an application desire
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ---- | ---- | ---- | ----
 `report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
@@ -40,6 +41,7 @@ This example closes a DiagnosticReport anchor context.
 
 ### Change Log
 
-Version | Description
----- | ----
-0.1 | Initial draft
+{:.grid}
+| Version | Description
+| ------- | ----
+| 0.1 | Initial draft

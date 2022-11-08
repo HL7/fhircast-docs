@@ -1,5 +1,6 @@
 The intent of the FHIRcast Event Maturity Model is to attain broad community engagement and consensus before an event is labeled as mature, and to ensure that the event is necessary, implementable, and worthwhile to the systems that would reasonably be expected to use it. Implementer feedback should drive the maturity of new events. Diverse participation in open developer forums and events, such as HL7 FHIR Connectathons, is necessary to achieve significant implementer feedback. The below criteria will be evaluated with these goals in mind. 
 
+{:.grid}
 Maturity Level | Maturity title | Requirements
 --- | --- | ---
 0 | Draft | Event is correctly named and defined per the [FHIRcast event template](3-1-1-template.html). 

@@ -47,6 +47,7 @@ The following profiles ensure a basic level of interoperability between applicat
 
 When the anchor context is a 'DiagnosticReport' the following events are possible during content sharing.
 
+{:.grid}
 Operation | Description
 --- | ---
 [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) | This notification is used to begin a new report. This should be the first event and establishes the anchor context.

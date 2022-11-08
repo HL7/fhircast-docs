@@ -21,6 +21,7 @@
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
 <page key="content-sharing" name="Content Sharing"/>
+<page key="7_design-notes" name="Design notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
 <page key="diagnosticreport-close" name="DiagnosticReport close event"/>
 <page key="diagnosticreport-select" name="DiagnosticReport select event"/>
@@ -48,7 +49,7 @@
 <page key="multi-anchor-considerations" name="Multi-anchor considerations"/>
 <page key="multitab-considerations" name="Multi-tab considerations"/>
 <page key="fhircast-oauth2-scopes" name="OAuth2 authorization scopes"/>
-<page key="open-issues" name="Open Issues"/>
+<page deprecated="true" key="open-issues" name="Open Issues"/>
 <page key="patientevents" name="Patient Events"/>
 <page key="patient-close" name="Patient close event"/>
 <page key="patient-open" name="Patient open event"/>

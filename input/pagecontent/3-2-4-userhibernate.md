@@ -28,6 +28,7 @@ The context is empty.
 
 ### Change Log
 
-Version | Description
----- | ----
-1.0 | Initial Release
+{:.grid}
+| Version | Description
+| ------- | ----
+| 1.0     | Initial Release

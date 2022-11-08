@@ -14,6 +14,7 @@ If a Hub supports content sharing, when it distributes a `DiagnosticReport-open`
 
 ### Context
 
+{:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
@@ -177,6 +178,7 @@ The event distributed by the Hub includes a context version in the `context.vers
 
 ### Change Log
 
-Version | Description
----- | ----
-0.1 | Initial draft
+{:.grid}
+| Version | Description
+| ------- | ----
+| 0.1 | Initial draft

@@ -1,0 +1,1 @@
+FhircastScopes ::= fhircast  '/' ( 'FHIRcast-event-name' | '*' ) '.' ( 'read' | 'write' | '*' )

@@ -2,7 +2,7 @@
 
 FHIRcast synchronizes healthcare applications in real time to ensure the user acts on the same clinical information across these applications. For example, a radiologist often works in three disparate applications at the same time (a radiology information system, a PACS and a dictation system), in this case, each of these three systems needs to display the same study or patient at the same time.
 
-FHIRcast isn't limited to radiology use-cases. Modeled after the common webhook design pattern and specifically [WebSub](https://www.w3.org/TR/websub/), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications.
+FHIRcast isn't limited to radiology use-cases. Modeled after the common event notification design pattern and specifically [WebSub](https://www.w3.org/TR/websub/), FHIRcast naturally extends the SMART on FHIR launch protocol to achieve tight integration between disparate, full-featured applications.
 
 FHIRcast builds on the [CCOW](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=1) abstract model to specify an http-based and simple context synchronization specification that doesn't require a separate context manager. FHIRcast is intended to be both less sophisticated, and more implementer-friendly than CCOW and therefore is not a one-to-one replacement of CCOW, although it solves many of the same problems.
 
@@ -25,7 +25,7 @@ By convention a driving application is the application which opens a context.  T
 Note that:
 
 * Event notifications are thin json wrappers around FHIR resources.
-* The app can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure. 	
+* The app can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure.
 * The [Event Catalog](3_Events.html) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
 ### Get involved
