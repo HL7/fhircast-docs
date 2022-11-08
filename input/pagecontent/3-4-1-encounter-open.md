@@ -16,7 +16,6 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Examples
 
-<mark>
 
 ```json
 {
