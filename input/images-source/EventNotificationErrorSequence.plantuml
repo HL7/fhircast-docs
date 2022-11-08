@@ -13,6 +13,10 @@ note over Controller
     a context change.
 end note
 
+Hub -> Controller++: Event Notification
+note over Controller: context change is confirmed
+Hub <-- Controller--: { "id": "q9v3jubddqt63n1", "status": "200"}
+
 Hub -> Subscriber1++: Event Notification
 note over Subscriber1
      Application is unable to 
@@ -33,5 +37,6 @@ note over Hub
 end note
 
 Hub -> Subscriber1: Event notification [syncerror]
+Hub -> Controller: Event notification [syncerror]
 Hub -> Subscriber2: Event notification [syncerror]
 @enduml
