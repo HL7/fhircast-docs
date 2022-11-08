@@ -92,7 +92,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 | Subscribing Client | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
 | Subscribing Client | Unable to change context | Respond with a http status code of 409 conflict|
 | Subscribing Client | Ask user whether context can be changed, user refuses. | The Client responds to the initial event with a 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
-| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Text change is refused, stating the source and reason for change. |
+| Subscribing Client | Ask user whether context can be changed, user does not react in time. | The Client responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Context change is refused, stating the source and reason for change. |
 | Hub | One of the subscribing clients cannot follow context | No action/update all subscribing clients with event syncerror. |
 
 #### Failure of subscribing client preventing context synchronization
