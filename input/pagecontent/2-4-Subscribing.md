@@ -1,4 +1,4 @@
-Subscribing and unsubscribing is how applications establish their connection and determine which events they will be notified of. Hubs SHALL support WebSockets. 
+Subscribing and unsubscribing is how applications establish their connection and determine which events they will be notified of. 
 
 Subscribing consists of different exchanges:
 
