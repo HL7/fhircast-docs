@@ -31,7 +31,6 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 
 ### Websockets Security Considerations
 
-Below are the considerations for a websockets implementation.
 
 Subscribers SHOULD only use and Hub's SHOULD only accept connections made over the secure _wss://_ websocket protocol and not the unsecured _ws://_ websocket protocol.
 
