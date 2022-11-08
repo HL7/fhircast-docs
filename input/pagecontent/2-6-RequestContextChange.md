@@ -2,7 +2,10 @@ Similar to the Hub's notifications to the subscriber, the subscriber MAY request
 
 Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. The requestor can use the broadcasted notification as confirmation of their request. The Hub reusing the request's `id` is further confirmation that the event is a result of their request.
 
-{%include EventNotificationSequence.svg%}
+<figure>
+  {% include EventNotificationSequence.svg %}
+  <figcaption><b>Figure: Event Notification Sequence</b></figcaption>
+</figure>
 
 ### Request Context Change body
 
