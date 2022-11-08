@@ -108,7 +108,7 @@ In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by o
 
 2. And, the subscribed application, does not respond to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
 
-Implementer input is solicited on the amount and specificity of time, in the above.
+> Implementer input is solicited on the amount and specificity of time, in the above.
 
 [`syncerror`](3-2-1-syncerror.html) events are distributed only to applications which have subscribed to `syncerror`s.
 
