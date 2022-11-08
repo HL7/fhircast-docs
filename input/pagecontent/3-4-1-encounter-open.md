@@ -66,7 +66,6 @@ Key | Optionality | FHIR operation to generate context | Description
 }
 ```
 
-</mark>
 
 ### Change Log
 
