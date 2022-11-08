@@ -90,7 +90,10 @@ Field               | Optionality | Type | Description
 
 #### Successful Subscription Sequence
 
-{%include SuccessfulWebSocketSubscriptionSequence.svg%}
+<figure>
+  {% include SuccessfulWebSocketSubscriptionSequence.svg %}
+  <figcaption><b>Figure: Successful WebSocket Subscription Sequence</b></figcaption>
+</figure>
 
 ### Current context notification upon successful subscription
 
@@ -117,7 +120,10 @@ Field        | Optionality | Type     | Description
 
 ##### Subscription Denial Sequence
 
-{%include DeniedSubscriptionSequence.svg%}
+<figure>
+  {% include DeniedSubscriptionSequence.svg %}
+  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
+</figure>
 
 ##### `websocket` Subscription Denial Example
 
@@ -157,4 +163,7 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
 
 #### Unsubscription Sequence
 
-{%include UnsubscriptionSequence.svg %}
+ <figure>
+  {% include UnsubscriptionSequence.svg %}
+  <figcaption><b>Figure: Unsubscription sequence</b></figcaption>
+</figure>

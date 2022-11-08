@@ -83,7 +83,10 @@ Field    | Optionality | Type     | Description
 
 ### Event Notification Sequence
 
-{%include EventNotificationSequence.svg%}
+<figure>
+  {% include EventNotificationSequence.svg %}
+  <figcaption><b>Figure: Event Notification Sequence</b></figcaption>
+</figure>
 
 ### Event Notification Errors
 
@@ -96,7 +99,10 @@ If the Hub receives an error notification from a subscriber, it SHALL generate a
 
 The figure below illustrates the Event Notification Error Sequence.
 
-{%include EventNotificationErrorSequence.svg%}
+<figure>
+  {% include EventNotificationErrorSequence.svg %}
+  <figcaption><b>Figure: Event Notification Error Sequencee</b></figcaption>
+</figure>
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
 
