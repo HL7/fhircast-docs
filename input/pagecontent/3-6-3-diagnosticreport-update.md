@@ -36,7 +36,7 @@ Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
 `report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
 `patient` | OPTIONAL | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the Patient resource associated with the report have changed
+`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
 `updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context
 
 ### Supported Update Request Methods
