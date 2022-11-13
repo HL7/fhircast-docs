@@ -3,7 +3,7 @@
 This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
 <p></p><p></p>
 
-A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, Subscribers and driving applications (also Subscribers to the topic) which are engaged in the shared session. The `hub.topic` must be known by an application for it to participate in the session. Typically, the Hub defines the `hub.topic`.
+A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, Subscribers and driving applications (also Subscribers to the topic) which are engaged in the shared session. The `hub.topic` must be known by an application for it to subscriber to the session. Typically, the Hub defines the `hub.topic`.
 
 The [HL7 SMART on FHIR app launch specification](http://www.hl7.org/fhir/smart-app-launch) enables the launched, synchronizing application to discover the `hub.topic`, because the SMART OAuth 2.0 server provides it during the OAuth 2.0 handshake as a SMART launch parameter. Use of SMART requires either that a synchronizing application supports the SMART on FHIR specification and specifically either be launched from the driving app or use the Hub's authorization server's login page.
 
@@ -78,7 +78,7 @@ In this scenario, the user authorizes the application to synchronize to its sess
 
 > Implementer feedback is solicited.
 
-OAuth 2.0 dynamic registration for native applications is an appropriate technology for issuing distinct credentials and application identity to an instance of an application. FHIRcast does not specify how the `hub.topic ` and `hub.url` should be communicated to a dynamic application if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native application implementer in the absence of other guidance. 
+OAuth 2.0 dynamic registration for native applications is an appropriate technology for issuing distinct credentials and application identity to an instance of an application. FHIRcast does not specify how the `hub.topic` and `hub.url` should be communicated to a dynamic application if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native application implementer in the absence of other guidance. 
 
 #### SMART Launch Example
 

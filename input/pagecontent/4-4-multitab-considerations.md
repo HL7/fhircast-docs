@@ -4,7 +4,7 @@ This page contains guidance to implementers and is not part of the [normative-tr
 
 ### Considerations for application with simultaneous contexts
 
-Just as a modern Web browser supports multiple pages loaded, but only a single in active use at a given time, some healthcare applications support multiple, distinct patient charts loaded even though only a single chart is interacted with at a given time. Other applications in healthcare may only support a single patient (or study or ...) context being loaded in the application at a given time. It's important to be able to synchronize the context between two applications supporting these different behaviors. For convenience, we refer to these two types of application behavior as "multi-tab" and "single tab".
+Just as a modern Web browser supports multiple pages loaded, but only a single in active use at a given time, some healthcare applications support multiple, distinct patient charts loaded even though only a single chart is interacted with at a given time. Other applications in healthcare may only support a single patient (or study or ...) context being loaded in the application at a given time. It's important to be able to synchronize the context between two Subscribers supporting these different behaviors. For convenience, we refer to these two types of application behavior as "multi-tab" and "single tab".
 
 ### Single and Multiple Tab Applications
 
@@ -74,4 +74,4 @@ Late joining  - event stating the current selected patient.
 
 ##### Risk
 
-Order of patients can be different between different application. (Late application joining, temporarily out of sync).
+Order of patients can be different between different applications. (late application joining, temporarily out of sync).

@@ -20,7 +20,7 @@ For example, an [`encounter-open`](3-4-1-encounter-open.html) implies a [`patien
 
 ### Hub derives open events
 
-The Hub is responsible for identifying and sending these implied *-open events. When distributing a received event, the Hub is responsible for generating and communicating open events for the resource types referenced by the received event. It is important that Hubs does not generate and send duplicative events. 
+The Hub is responsible for identifying and sending these implied *-open events. When distributing a received event, the Hub is responsible for generating and communicating open events for the resource types referenced by the received event. It is important that Hubs do not generate and send duplicative events. 
 
 
 See details in the specification about:

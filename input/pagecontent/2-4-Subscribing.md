@@ -5,7 +5,7 @@ Subscribing consists of different exchanges:
 [Subscription Request](#subscription-request) | Subscriber requests a subscription at the `hub.url` URL
 [Subscription Response](#subscription-confirmation) | The Hub confirms that the subscription was requested by the Subscriber
 [Subscription Confirmation](#subscription-confirmation) | The subscribing application confirms the subscription
-[Subscription Denial](#subscription-denial) | The Hub indicates that the subscription has denied
+[Subscription Denial](#subscription-denial) | The Hub indicates that the subscription has been denied
 [Unsubscribing](#unsubscribe) | Subscriber indicates that it wants to unsubscribe
 
 Any content returned from subscription requests SHALL be returned as `application/json`.
@@ -75,7 +75,7 @@ Field               | Optionality | Type | Description
 `hub.mode`          | Required    | *string* | The literal string `subscribe`.
 `hub.topic`         | Required    | *string* | The session topic given in the corresponding subscription request.
 `hub.events`        | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. Note that the granted events may be the same as, a subset, or a superset of those requested.
-`hub.lease_seconds` | Required    | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the Subscriber. If provided to the client, the Hub SHALL unsubscribe the Subscriber once `lease_seconds` has expired, close the WebSocket connection, and MAY send a subscription denial. If the Subscriber wishes to continue the subscription it MAY resubscribe.
+`hub.lease_seconds` | Required    | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the Subscriber. If provided to the Subscriber, the Hub SHALL unsubscribe the Subscriber once `lease_seconds` has expired, close the WebSocket connection, and MAY send a subscription denial. If the Subscriber wishes to continue the subscription it MAY resubscribe.
 
 #### Subscription Confirmation Example
 
@@ -100,7 +100,7 @@ Field               | Optionality | Type | Description
 > NOTE
  > Implementer feedback on this optional feature is required.
 
-Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event for which no \*-close event has occurred, according to the application's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
+Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
 
  Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event triggered notification, as specified in [Event Notification](2-5-EventNotification.html). Note that the `timestamp` in the event notification is the time at which the event occurred and not the time at which the notification is generated.
   
@@ -108,7 +108,7 @@ Upon the successful creation of a new subscription, the Subscriber will receive 
 
 If (and when) a subscription is denied, the Hub SHALL inform the Subscriber. This can occur when a subscription is requested for a variety of reasons, or it can occur after a subscription had already been accepted because the Hub no longer supports that subscription (e.g. it has expired).
 
-To deny a `WebSocket` subscription, the Hub sends a JSON object to the subscriber through the established WebSocket connection holding the fields indicated below.
+To deny a `WebSocket` subscription, the Hub sends a JSON object to the Subscriber through the established WebSocket connection holding the fields indicated below.
 
 {:.grid}
 Field        | Optionality | Type     | Description
