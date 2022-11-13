@@ -1,9 +1,9 @@
 
-The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on its FHIR server's CapabilityStatement as described below. 
+The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on the FHIR CapabilityStatement resource as described below. 
 
 ### Wellknown endpoint
 
-To support various architectures, including multiple decentralized FHIRcast hubs, the Hub exposes a `.well-known` endpoint containing additional information about the capabilities of that hub. A Hub's supported events, version and other capabilities can be exposed as a Well-Known Uniform Resource Identifiers (URIs) ([RFC5785](https://tools.ietf.org/html/rfc5785)) JSON document.
+To support various architectures, including multiple decentralized FHIRcast hubs, the Hub exposes a `.well-known` endpoint containing additional information about the capabilities of that Hub. A Hub's supported events, version, and other capabilities can be exposed as a Well-Known Uniform Resource Identifiers (URIs) ([RFC5785](https://tools.ietf.org/html/rfc5785)) JSON document.
 
 Hubs SHOULD serve a JSON document at the location formed by appending `/.well-known/fhircast-configuration` to their `hub.url`. Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the `hub.url` endpoint already contains a path component.
 
@@ -39,7 +39,7 @@ Content-Type: application/json
 {
   "eventsSupported": ["patient-open", "patient-close", "syncerror", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
-  "fhircastVersion": "STU2"
+  "fhircastVersion": "STU3"
 }
 ```
 
@@ -50,7 +50,7 @@ To supplement or optionally identify the location of a FHIRcast hub, a FHIR serv
 {:.grid}
 Extension | Cardinality | Type | Description
 --- | --- | --- | ---
-`hub.url`| 0..1 | url | The url at which an app subscribes. May not be supported by client-side Hubs.
+`hub.url`| 0..1 | url | The url at which an application can subscribe. May not be supported by client-side Hubs.
 
 #### CapabilityStatement Extension Example 
 

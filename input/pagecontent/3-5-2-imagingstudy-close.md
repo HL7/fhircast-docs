@@ -56,7 +56,7 @@ Key | Optionality | FHIR operation to generate context | Description
               "value": "185444"
             }
           ],
-          "patient": {
+          "subject": {
             "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
           }
         }
