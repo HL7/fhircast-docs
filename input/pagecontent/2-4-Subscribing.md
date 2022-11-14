@@ -39,7 +39,7 @@ The client that creates the subscription MAY NOT be the same system as the serve
 In this example, the app creates an initial subscription and asks to be notified of the `patient-open` and `patient-close` events.
 
 ```text
-POST https://hub.example.com
+POST https://hub.example.com HTTP/1.1
 Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
@@ -153,7 +153,7 @@ Field                  | Optionality | Type     | Description
 #### Unsubscribe Request Example
 
 ```text
-POST https://hub.example.com
+POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded

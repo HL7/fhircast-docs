@@ -8,11 +8,15 @@ name: FHIRcast
 title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
-version: 2.1.0-ballot
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1
+version: 3.0.0
+version-comparison:
+   - 2.0.0
+   - 2.1.0-ballot
+apply-version: 'true'
 copyrightYear: 2017+
-releaseLabel: ballot
+releaseLabel: CI Build
 publisher:
   name: HL7 International - Infrastructure and Messaging
   url: http://hl7.org/Special/committees/inm
@@ -114,6 +118,7 @@ pages:
   7_design-notes.md:
     title: Design notes
 
+  
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
