@@ -6,7 +6,6 @@ Subscribing consists of different exchanges:
 [Subscription Response](#subscription-confirmation) | The Hub confirms that the subscription was requested by the Subscriber
 [Subscription Confirmation](#subscription-confirmation) | The subscribing application confirms the subscription
 [Subscription Denial](#subscription-denial) | The Hub indicates that the subscription has ended
-
 [Unsubscribing](#unsubscribe) | Subscriber indicates that it wants to unsubscribe
 
 Any content returned from subscription requests SHALL be returned as `application/json`.
