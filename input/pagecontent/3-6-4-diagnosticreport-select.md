@@ -40,12 +40,12 @@ The following example shows the selection of a single Observation resource in an
         }
       },
       {
-        "select": [
-          {
-            "resourceType": "Observation",
-            "id": "a67tbi5891trw123u6f9134"
-          }
-        ]
+        "key": "select",
+        "resource": {
+          "resourceType": "Observation",
+          "id": "a67tbi5891trw123u6f9134"
+        }
+        
       }
     ]
   }
