@@ -80,7 +80,8 @@ Also note that synchronization failure is a worst-case scenario and should rarel
 FHIRcast is based on a subscription model where each Subscriber receives notifications of the updated state of the topic to which the Subscriber is subscribed. There is no explicit requirement for a Subscriber to follow the context of another Subscriber. The subscription model also implies that it is the Subsribers' responsibility to maintain a contextual synchronization or to notify end users whenever the contextual synchronization is lost.
 However, as noted in above scenarios, there may be risk associated with the end user expectation of having two tightly synchronized applications if they fall out of sync.
 
-There are in some cases good reasons for a Subscriber not to follow the context of the topic to which the Subscriber is subscribed and this section will outline some of the recommended approaches.
+There are in some cases good reasons for a Subscriber not to follow the subscribed context and this section will outline some of the recommended approaches.
+
 
 #### Blocking action on Subscriber preventing context synchronization
 
