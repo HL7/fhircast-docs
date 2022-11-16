@@ -9,7 +9,7 @@ title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
-fhirVersion: 4.0.1
+fhirVersion: 4.3.0
 version: 3.0.0
 version-comparison:
    - 2.0.0
@@ -45,7 +45,13 @@ pages:
     2-9-GetCurrentContext.md:
       title: Get Current Context
     2-10-ContentSharing.md:
-       title: Content Sharing
+      title: Content Sharing
+      2-10-1-ContentSharingFHIR.md:
+        title: FHIR based Content Sharing
+      2-10-2-ContentSharingFHIRcastMessaging.md:
+        title: Content Sharing using FHIRcast messaging
+      2-10-3-ContentSharingHybrid.md:
+        title: Hybrid solution
        
   3_Events.md:
     title: Event library

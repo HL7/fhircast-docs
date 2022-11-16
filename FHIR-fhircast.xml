@@ -12,6 +12,8 @@
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
+<artifact id="SubscriptionTopic/FhirCastContainerResourceTopic" key="SubscriptionTopic-FhirCastContainerResourceTopic" name="FhirCastContainerResourceTopic"/>
+<artifact id="SubscriptionTopic/FhirCastContainerTopicTopic" key="SubscriptionTopic-FhirCastContainerTopicTopic" name="FhirCastContainerTopicTopic"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
@@ -21,6 +23,7 @@
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
 <page key="content-sharing" name="Content Sharing"/>
+<page key="2-10-2-ContentSharingFHIRcastMessaging" name="Content Sharing using FHIRcast messaging"/>
 <page key="7_design-notes" name="Design notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
 <page key="diagnosticreport-close" name="DiagnosticReport close event"/>
@@ -36,11 +39,13 @@
 <page key="eventnotification" name="Event notification"/>
 <page key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
+<page key="2-10-1-ContentSharingFHIR" name="FHIR based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
 <page key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
 <page key="heartbeat" name="Heartbeat event"/>
+<page key="2-10-3-ContentSharingHybrid" name="Hybrid solution"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
 <page key="imagingstudy-close" name="ImagingStudy close event"/>
 <page key="imagingstudy-open" name="ImagingStudy open event"/>

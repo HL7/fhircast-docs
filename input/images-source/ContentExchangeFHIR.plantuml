@@ -1,0 +1,16 @@
+@startuml
+
+component "FHIRcast\nHub" as Hub
+component "FHIR\nserver" as FHIRserver
+component Subscriber as Subscriber1
+component Subscriber as Subscriber2
+component Subscriber as Subscriber3
+
+Subscriber1 -down-> Hub: fhircast
+Subscriber1 -down-> FHIRserver: FHIR
+Subscriber2 -down-> Hub: fhircast
+Subscriber2 -down-> FHIRserver: FHIR
+Subscriber3 -down-> Hub: fhircast
+Subscriber3 -down-> FHIRserver: FHIR
+
+@enduml

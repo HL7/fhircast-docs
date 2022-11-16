@@ -108,3 +108,15 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `FHIRresource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
 
 This allows communication of different select sets for the different anchor-types.
+
+#### Content events
+
+Content sharing events use the suffix `update`. The format of selection event names is:
+
+```ebnf
+ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
+```
+
+{% include img.html img="ContentSharingEventName.png" caption="Figure: Selection Event-name specification" %}
+
+The `FHIRresource` indicates the anchor context in which content is being shared. The `context` element in an update event contains at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
