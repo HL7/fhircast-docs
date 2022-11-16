@@ -18,7 +18,8 @@ Support of content sharing by a Hub is optional.  If supporting content sharing,
 3. Assign and maintain a new `context.versionId` for the anchor context's content and provide the new `context.versionId` along with the `context.priorVersionId` in the event corresponding to the validated update request
 4. Process each `[FHIR resource]-update` request in an atomic fashion and maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Context`](2-9-GetCurrentContext.html) request
 5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the anchor context since the Hub has no responsibility to persist the content
-6. Forward a `[FHIR resource]-select` event to all subscribed applications 
+6. Forward a `[FHIR resource]-select` event to all subscribed applications.
+7. Generate `[FHIR resource]-update` events when a resource in the Container of another Anchor Resource changes
 
 A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.  If the Hub does not rejects an update request, for any reason, it SHALL reject the entire request - it SHALL NOT accept some changes specified in the bundle and reject others.
 
