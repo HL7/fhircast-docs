@@ -23,7 +23,7 @@ Field       | Optionality | Type     | Description
 #### Request
 
 ```text
-POST https://hub.example.com/7jaa86kgdudewiaq0wtu HTTP/1.1
+POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/json
