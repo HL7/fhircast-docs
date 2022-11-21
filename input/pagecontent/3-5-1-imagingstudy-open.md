@@ -12,7 +12,7 @@ User opened record of imaging study. The newly open study is the current imaging
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient currently in context. (Note that there may be cases in which the imagingstudy.subject references a different patient, or even other resource, from the patient in context).
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they are required by the FHIR specification. Note, in DSTU2 and STU3, the top-level `accession` element SHALL be included if present. 
+`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource in context. Note that in addition to the request identifier and accession elements, the DICOM uid and FHIR patient reference are included because they are required by the FHIR specification. In DSTU2 and STU3, the top-level accession element SHALL be included if present. In R4 and later, the accession number SHALL be included as an identifier if present. 
 
 ### Examples
   
