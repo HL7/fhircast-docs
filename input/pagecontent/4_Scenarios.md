@@ -1,6 +1,6 @@
-This chapter contains a set of typical deployment scenarios:
+This chapter contains informative discussion on various FHIRcast scenarios:
 
-[4.1 App launch scenarios and session discovery](4-1-launch-scenarios.html) |
+[4.1 Application launch scenarios and session discovery](4-1-launch-scenarios.html) |
 [4.2 Synchronization considerations](4-2-syncconsiderations.html) |
 [4.3 Security considerations](4-3-security-considerations.html) |
 [4.4 Multi-tab considerations](4-4-multitab-considerations.html) |

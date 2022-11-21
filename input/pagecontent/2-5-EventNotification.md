@@ -1,4 +1,4 @@
-The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the `websocket` channel.
+The Hub SHALL notify Subscribers of workflow-related events to which the Subscriber is subscribed. The notification is a JSON object communicated over the `WebSocket` channel.
 
 ### Event Notification Request
 
@@ -51,28 +51,28 @@ The timestamp SHOULD be used by subscribers to establish message affinity (messa
 
 ### Event Notification Response
 
-The subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the subscriber SHALL respond with any of the response codes indicated below:
-HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the subscriber SHALL respond with an HTTP error status code.
+The Subscriber SHALL respond to the event notification with an appropriate HTTP status code. In the case of a successful notification, the Subscriber SHALL respond with any of the response codes indicated below:
+HTTP 200 (OK) or 202 (Accepted) response code to indicate a success; otherwise, the Subscriber SHALL respond with an HTTP error status code.
 
 {:.grid}
 Code  |          | Description
 ----- | -------- | ---
-200   | OK       | The subscriber is able to implement the context change.
-202   | Accepted | The subscriber has successfully received the event notification, but has not yet taken action. If it decides to refuse the event, it will send a [`syncerror`](3-2-1-syncerror.html) event. Clients are RECOMMENDED to do so within 10 seconds after receiving the context event.
-500   | Server Error | There is an issue in the client preventing it from processing the event. The hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was not delivered.
-409   | Conflict | The client refuses to follow the context change. The hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was refused.
+200   | OK       | The Subscriber is able to implement the context change.
+202   | Accepted | The Subscriber has successfully received the event notification, but has not yet taken action. If the Subscriber decides to refuse the event, it will send a [`syncerror`](3-2-1-syncerror.html) event. Subscribers are RECOMMENDED to do so within 10 seconds after receiving the context event.
+500   | Server Error | There is an issue in the Subscriber preventing it from processing the event. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was not delivered.
+409   | Conflict | The Subscriber refuses to follow the context change. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was refused.
 
 The Hub MAY use these statuses to track synchronization state.
 
 #### Event Notification Response Example
 
-The `id` of the event notification and the HTTP status code is communicated from the client to Hub through the existing WebSocket channel, wrapped in a JSON object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
+The `id` of the event notification and the HTTP status code is communicated from the Subscriber to Hub through the existing WebSocket channel, wrapped in a JSON object. Since the WebSocket channel does not have a synchronous request/response, this `id` is necessary for the Hub to correlate the response to the correct notification.
 
 {:.grid}
 Field    | Optionality | Type     | Description
 -------- | ----------- | -------- | ---
 `id`     | Required    | *string* | Event identifier from the event notification to which this response corresponds.
-`status` | Required    | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the subscribing app. Any 2xx code indicates success, any other code indicates failure.
+`status` | Required    | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the Subscriber. Any 2xx code indicates success, any other code indicates failure.
 
 ```text
 {
@@ -90,49 +90,49 @@ Field    | Optionality | Type     | Description
 
 ### Event Notification Errors
 
-If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHALL communicate the error to the Hub in one of two ways.
+If the Subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the Subscriber SHALL communicate the error to the Hub in one of two ways.
 
 * Responding to the event notification with an HTTP error status code as described in [Event Notification Response](#event-notification-response).
-* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error or refusing the change, send a [`syncerror`](3-2-1-syncerror.html) event to the Hub. If the application cannot determine whether it will follow context within 10 seconds after reception of the event it SHOULD send a [`syncerror`](3-2-1-syncerror.html) event.
+* Responding to the event notification with an HTTP 202 (Accepted) as described above, then, once experiencing the error or refusing the change, send a [`syncerror`](3-2-1-syncerror.html) event to the Hub. If the Subscriber cannot determine whether it will follow context within 10 seconds after reception of the event it SHOULD send a [`syncerror`](3-2-1-syncerror.html) event.
 
-If the Hub receives an error notification from a subscriber, it SHALL generate a [`syncerror`](3-2-1-syncerror.html) event to the other subscribers of that topic. [`syncerror`](3-2-1-syncerror.html) events are like other events in that they need to be subscribed to in order for an app to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource.
+If the Hub receives an error notification from a Subscriber, it SHALL generate a [`syncerror`](3-2-1-syncerror.html) event to the other Subscribers of that topic. [`syncerror`](3-2-1-syncerror.html) events are like other events in that they need to be subscribed to in order for a Subscriber to receive the notifications and they have the same structure as other events, the context being a single FHIR `OperationOutcome` resource.
 
 The figure below illustrates the Event Notification Error Sequence.
 
 <figure>
   {% include EventNotificationErrorSequence.svg %}
-  <figcaption><b>Figure: Event Notification Error Sequencee</b></figcaption>
+  <figcaption><b>Figure: Event Notification Error Sequence</b></figcaption>
 </figure>
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
 
 ### Hub Generated `syncerror` Events
 
-In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by one application to other subscribed applications, the Hub MAY generate and communicate [`syncerror`](3-2-1-syncerror.html) events to applications under the following conditions -- 
+In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by one Subscriber to other Subscribers, the Hub MAY generate and communicate [`syncerror`](3-2-1-syncerror.html) events to Subscribers under the following conditions: 
 
-1. A subscribed application's WebSocket connection is closed with any Connection Close Reason other than 1000 (normal closure) or 1001 (going away) (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6) and [WebSocket Status Codes](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4))
+1. A Subscriber's WebSocket connection is closed with any Connection Close Reason other than 1000 (normal closure) or 1001 (going away) (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6) and [WebSocket Status Codes](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4))
 
-2. And, the subscribed application, does not respond to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
+2. A Subscriber does not respond to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
 
 > Implementer input is solicited on the amount and specificity of time, in the above.
 
-[`syncerror`](3-2-1-syncerror.html) events are distributed only to applications which have subscribed to `syncerror`s.
+[`syncerror`](3-2-1-syncerror.html) events are distributed only to Subscribers which have subscribed to `syncerror` events.
 
-Upon communicating a `syncerror` resulting from an unresponsive app, the Hub SHALL unsubscribe the application.
+Upon communicating a `syncerror` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber.
 
 The Hub SHALL NOT generate [`syncerror`](3-2-1-syncerror.html) events in the following situations:
 
-1. If a client fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event (because occasional missed heartbearts are expected and are not a context synchronization failure).
-2. The application closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
+1. A Subscriber fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event (because occasional missed heartbeats are expected and are not a context synchronization failure).
+2. A Subscriber closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
 
-During a normal shutdown of an application, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive app.
+During a normal shutdown of a Subscriber, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive Subscriber.
 
 > <u>Implementer feedback is solicited on Hub Generated `syncerror` Events particularly on the following topics:</u>
 >
-> * after the first time a Hub has distributed a [`syncerror`](3-2-1-syncerror.html) indicating that an application is not responsive, should the nonresponsive application be automatically unsubscribed (removed from the Hub's list of applications subscribed to the topic)?  This would avoid [`syncerror`](3-2-1-syncerror.html) events being sent after subsequent operations; however, it may conflict with the approach of [`syncerror`](3-2-1-syncerror.html) events generated by the Hub only being distributed to subscribers of the event which triggered the [`syncerror`](3-2-1-syncerror.html) event to be generated.
->* should [`syncerror`](3-2-1-syncerror.html) events generated by the Hub be distributed only to subscribers of the event which triggered the [`syncerror`](3-2-1-syncerror.html) event to be generated?  However, this could conflict automatically unsubscribe a non-responsive application after the initial [`syncerror`](3-2-1-syncerror.html) is generated and distributed.
->* should all FHIRcast requests trigger  [`syncerror`](3-2-1-syncerror.html) events to be generated by the Hub for an unresponsive application or only when a context change is requested ([FHIR Resource]-open or [FHIR Resource]-close)?
+> * after the first time a Hub has distributed a [`syncerror`](3-2-1-syncerror.html) indicating that a Subscriber is not responsive, should the nonresponsive Subscriber be automatically unsubscribed (removed from the Hub's list of Subscribers of the topic)?  This would avoid [`syncerror`](3-2-1-syncerror.html) events being sent after subsequent operations; however, it may conflict with the approach of [`syncerror`](3-2-1-syncerror.html) events generated by the Hub only being distributed to Subscribers of the event which triggered the [`syncerror`](3-2-1-syncerror.html) event to be generated.
+>* should [`syncerror`](3-2-1-syncerror.html) events generated by the Hub be distributed only to Subscribers of the event which triggered the [`syncerror`](3-2-1-syncerror.html) event to be generated?  However, this could conflict with automatically unsubscribing a non-responsive Subscriber after the initial [`syncerror`](3-2-1-syncerror.html) is generated and distributed.
+>* should all FHIRcast requests trigger  [`syncerror`](3-2-1-syncerror.html) events to be generated by the Hub for an unresponsive Subscriber or only when a context change is requested ([FHIR Resource]-open or [FHIR Resource]-close)?
 
 ### Hub Generated `open` Events
 
-If a Hub grants subscriptions to different sets of `hub.events` to different applications for the same session, the Hub is responsible for generation of implied open events. When distributing a received event, a hub SHALL ensure open events for the referenced resource types of the received event are also sent to subscribers. Hubs SHOULD NOT generate and send duplicative events.
+If a Hub grants subscriptions to different sets of `hub.events` to different Subscribers for the same session, the Hub is responsible for generation of implied open events. When distributing a received event, a Hub SHALL ensure open events for the referenced resource types of the received event are also sent to Subscribers. Hubs SHOULD NOT generate and send duplicative events.
