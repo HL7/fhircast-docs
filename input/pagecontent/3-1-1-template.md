@@ -15,7 +15,7 @@ Define context values that are provided when this event occurs, and indicate whe
 {:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`example` | REQUIRED | `FHIRresource/{id}?_elements=identifer` | Describe the context value
+`example` | REQUIRED | `FHIRresource/{id}?_elements=identifier` | Describe the context value
 `encounter` | OPTIONAL | `Encounter/{id}` | Describe the context value
 
 ### Examples
