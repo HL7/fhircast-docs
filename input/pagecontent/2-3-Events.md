@@ -97,18 +97,6 @@ This event category contains events required to maintain a FHIRcast session. The
 | [`syncerror`](3-2-1-syncerror.html) | indicates refusal to follow context or inability to deliver an event
 | [`heartbeat`](3-2-2-heartbeat.html) | for monitoring the connection to the hub
 
-#### Content events
-
-Content sharing events use the suffix `update`. The format of selection event names is:
-
-```ebnf
-ContextChangeEventName ::= ( FHIRresource ) '-' ( 'update' )
-```
-
-{% include img.html img="ContentEventName.png" caption="Figure: Content Event-name specification" %}
-
-The `FHIRresource` indicates the anchor context in which content is being shared. The `context` element in an update event contains at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
-
 #### Selection events
 
 Selection events use the suffix `select`. The format of selection event names is:

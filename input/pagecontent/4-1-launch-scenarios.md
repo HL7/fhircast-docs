@@ -3,7 +3,8 @@
 This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
 <p></p><p></p>
 
-A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, Subscribers and driving applications (also Subscribers to the topic) which are engaged in the shared session. The `hub.topic` must be known by an application for it to subscribe to the session. Typically, the Hub defines the `hub.topic`.
+A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, subscribing and driving applications (i.e. Subscribers) which are engaged in the shared session. The `hub.topic` must be known by an application for it to subscribe to the session. Typically, the Hub defines the `hub.topic`.
+
 
 The [HL7 SMART on FHIR app launch specification](http://www.hl7.org/fhir/smart-app-launch) enables the launched, synchronizing application to discover the `hub.topic`, because the SMART OAuth 2.0 server provides it during the OAuth 2.0 handshake as a SMART launch parameter. Use of SMART requires either that a synchronizing application supports the SMART on FHIR specification and specifically either be launched from the driving app or use the Hub's authorization server's login page.
 
