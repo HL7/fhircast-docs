@@ -25,7 +25,7 @@ pages:
     2-1-SessionDiscovery.md:
       title: Session Discovery
     2-2-FhircastScopes.md:
-      title: FHIRcast Scopes
+      title: OAuth 2.0 Authorization Scopes
     2-3-Events.md:
       title: Event Format
     2-4-Subscribing.md:
