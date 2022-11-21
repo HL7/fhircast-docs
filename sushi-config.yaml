@@ -123,7 +123,7 @@ menu:
   Specification: 
     Introduction: 2_Specification.html
     Session Discovery: 2-1-SessionDiscovery.html
-    FHIRcast Scopes: 2-2-FhircastScopes.html
+    OAuth 2.0 Authorization Scopes: 2-2-FhircastScopes.html
     Event Format: 2-3-Events.html
     Subscribing to Events: 2-4-Subscribing.html
     Event Notification: 2-5-EventNotification.html
