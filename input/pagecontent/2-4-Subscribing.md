@@ -61,7 +61,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 HTTP/1.1 202 Accepted
 
 {   
- "hub.channel.endpoint": wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de
+ "hub.channel.endpoint": "wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de"
 }
 ```
 
