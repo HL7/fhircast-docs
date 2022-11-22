@@ -20,7 +20,7 @@ Field                  | Optionality | Type     | Description
 `hub.channel.type`     | Required    | *string* | The Subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode`             | Required    | *string* | The literal string `subscribe` or `unsubscribe`, depending on the goal of the request.
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from. 
-`hub.events`           | Conditional | *string* | Required for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
+`hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe. SHALL be included for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
 `subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
@@ -61,7 +61,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 HTTP/1.1 202 Accepted
 
 {   
- "hub.channel.endpoint": wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de
+ "hub.channel.endpoint": "wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de"
 }
 ```
 
