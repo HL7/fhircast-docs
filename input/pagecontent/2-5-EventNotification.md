@@ -109,7 +109,7 @@ In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by o
 
 > Implementer input is solicited on the amount and specificity of time, in the above.
 
-[`syncerror`](3-2-1-syncerror.html) events are distributed only to Subscribers which have subscribed to `syncerror` events.
+ As with all FHIRcast events, [`syncerror`](3-2-1-syncerror.html) events are distributed only to Subscribers which have subscribed to them.
 
 Upon communicating a `syncerror` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber.
 
