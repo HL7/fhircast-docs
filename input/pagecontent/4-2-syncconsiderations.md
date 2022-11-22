@@ -82,7 +82,6 @@ However, as noted in above scenarios, there may be risk associated with the end 
 
 There are in some cases good reasons for a Subscriber not to follow the subscribed context and this section will outline some of the recommended approaches.
 
-
 #### Blocking action on Subscriber preventing context synchronization
 
 Many applications go into edit mode or start a modal dialog that locks the system from changing context without user intervention. Examples can be when modifying texts, reports, annotating images or performing administrative tasks. The application may then decline to follow the context of the topic to which the Subscriber is subscribed to prevent loss of end user data.
@@ -113,7 +112,7 @@ This error scenario is the Hub losing contact with a Subscriber. This may be due
 {:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription).  |
+| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manualy using [Get Current Context](2-9-GetCurrentContext.html).  |
 | Hub | Subscriber failed to respond to an event | Update all Subscribers with a syncerror event using information from the subscriber.name field from the original subscription of the Subscriber which failed to respond to an event |
 
 #### Race condition during launch
@@ -136,7 +135,7 @@ The Subscriber's subscription has expired causing it no longer receive event. Th
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription). 
+| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manualy using [Get Current Context](2-9-GetCurrentContext.html). 
 | Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation.|
 
 #### Race condition between context changes
