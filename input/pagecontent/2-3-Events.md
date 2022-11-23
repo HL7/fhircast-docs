@@ -119,4 +119,14 @@ ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 
 {% include img.html img="ContentSharingEventName.png" caption="Figure: Selection Event-name specification" %}
 
-The `FHIRresource` indicates the anchor context in which content is being shared. The `context` element in an update event contains at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
+The `FHIRresource` indicates the anchor context in which content is being shared. 
+
+The `context` element in an update event contains at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
+
+The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
+
+FHIR resources are used to carry the information being shared. These resources are entries in the Bundle resource inside the updates key. Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an Observation resource usually contains all information regarding that observation.
+
+However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute must be appropriately populated.
+
+If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.

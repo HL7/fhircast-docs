@@ -8,6 +8,7 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
+<artifact id="StructureDefinition/fhircast-content-update-bundle" key="StructureDefinition-fhircast-content-update-bundle" name="FHIRcast Content Update Bundle"/>
 <artifact id="StructureDefinition/fhircast-observation" key="StructureDefinition-fhircast-observation" name="FHIRcast Observation"/>
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
