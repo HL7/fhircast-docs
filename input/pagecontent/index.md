@@ -6,7 +6,7 @@ FHIRcast isn't limited to radiology use-cases. Modeled after the common event no
 
 FHIRcast builds on the [CCOW](https://www.hl7.org/implement/standards/product_brief.cfm?product_id=1) abstract model to specify an http-based and simple context synchronization specification that doesn't require a separate context manager. FHIRcast is intended to be both less sophisticated, and more implementer-friendly than CCOW and therefore is not a one-to-one replacement of CCOW, although it solves many of the same problems.
 
-Adopting the WebSub terminology, FHIRcast describes an app as a Subscriber synchronizing with a Hub (which may be an EHR or other system).  Any user-facing application can synchronize with FHIRcast. While less common, bidirectional communication between multiple applications is also possible.
+Adopting the WebSub terminology, FHIRcast describes an application  as a Subscriber synchronizing with a Hub (which may be an EHR or other system).  Any user-facing application can synchronize with FHIRcast. While less common, bidirectional communication between multiple applications is also possible.
 
 #### Why?
 
@@ -25,7 +25,7 @@ By convention a driving application is the application which opens a context.  T
 Note that:
 
 * Event notifications are thin json wrappers around FHIR resources.
-* The app can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure.
+* An application can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure.
 * The [Event Catalog](3_Events.html) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
 ### Get involved

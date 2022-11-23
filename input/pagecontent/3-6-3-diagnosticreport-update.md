@@ -2,7 +2,7 @@
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
- The `DiagnosticReport-update` event is used by clients to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when an application desires a to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
+ The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires a to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
 
 The updates include:
 
@@ -33,7 +33,7 @@ Request Method | Operation
 
 ##### DiagnosticReport-update Request Example
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context` holds the `id` and `versionId` of the diagnostic report as required in all  `DiagnosticReport-update` events.  The `Bundle` holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
+The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticsReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
 
 ```json
 {
@@ -124,7 +124,7 @@ The following example shows adding an imaging study to the existing diagnostic r
 
 ##### DiagnosticReport-update Event Example
 
-The HUB SHALL distribute a corresponding event to all applications currently subscribed to the topic. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that an application is currently in sync with the latest context prior to applying the new changes.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by an application, it is recommended that the application issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and its `context.versionId`).
+The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that a Subscriber is currently in sync with the latest context prior to applying the new updates.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, it is recommended that the Subscriber issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and the current `context.versionId`).
 
 ```json
 {

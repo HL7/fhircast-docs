@@ -1,10 +1,10 @@
-> Implementer feedback is solicited around this topic. 
+> Implementer feedback is solicited on the GetCurrentContext operation 
 
-In some situations, subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call. The Hub responds to this GET request with the most recently communicated open event. 
+In some situations, Subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call. The Hub responds to this GET request with the most recently communicated open event. 
 
 Hubs MAY support returning the current context of a session, as defined below.
 
-### Get current context Request
+### Get Current Context Request
 
 The requester makes an HTTP GET call to the following URL:
 
@@ -12,7 +12,7 @@ GET `base-hub-URL/{topic}`
 
 ### Get Current Context Response
 
-This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the app’s subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
+This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the Subscriber's subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established, the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
 
 {:.grid}
 Field | Optionality | Type | Description

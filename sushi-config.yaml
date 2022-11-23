@@ -25,17 +25,17 @@ pages:
   index.md: 
     title: Introduction
   2_Specification.md:
-    title: FHIRcast specification
+    title: FHIRcast Specification
     2-1-SessionDiscovery.md:
       title: Session Discovery
     2-2-FhircastScopes.md:
-      title: OAuth2 authorization scopes
+      title: OAuth 2.0 Authorization Scopes
     2-3-Events.md:
-      title: Event format
+      title: Event Format
     2-4-Subscribing.md:
-      title: Subscribing and unsubscribing
+      title: Subscribing to Events
     2-5-EventNotification.md:
-      title: Event notification
+      title: Event Notification
     2-6-RequestContextChange.md:
       title: Request Context Change
     2-7-Conformance.md:
@@ -54,64 +54,64 @@ pages:
         title: Hybrid solution
        
   3_Events.md:
-    title: Event library
+    title: Event Library
     3-1-0-eventstructures.md:
       title: FHIRcast Event Definitions
       3-1-1-template.md:
-        title: Event template
+        title: Event Template
       3-1-2-eventmaturitymodel.md:
-        title: Event maturity model
+        title: Event Maturity Model
     3-2-0-infrastructureevents.md:
       title: Infrastructure Events
       3-2-1-syncerror.md:
-        title: Sync error event
+        title: Sync error Event
       3-2-2-heartbeat.md:
-        title: Heartbeat event
+        title: Heartbeat Event
       3-2-3-userlogout.md:
-        title: User logout event
+        title: User logout Event
       3-2-4-userhibernate.md:
-        title: User hibernate event
+        title: User hibernate Event
     3-3-0-patientevents.md:
       title: Patient Events
       3-3-1-patient-open.md:
-        title: Patient open event
+        title: Patient open Event
       3-3-2-patient-close.md:
-        title: Patient close event
+        title: Patient close Event
     3-4-0-encounterevents.md:
       title: Encounter Events
       3-4-1-encounter-open.md:
-        title: Encounter open event
+        title: Encounter open Event
       3-4-2-encounter-close.md:
-        title: Encounter close event
+        title: Encounter close Event
     3-5-0-imagingstudyevents.md:
       title: ImagingStudy Events
       3-5-1-imagingstudy-open.md:
-        title: ImagingStudy open event
+        title: ImagingStudy open Event
       3-5-2-imagingstudy-close.md:
-        title: ImagingStudy close event
+        title: ImagingStudy close Event
     3-6-0-diagnosticreportevents.md:
       title: DiagnosticReport Events
       3-6-1-diagnosticreport-open.md:
-        title: DiagnosticsReport open event
+        title: DiagnosticsReport open Event
       3-6-2-diagnosticreport-close.md:
-        title: DiagnosticReport close event
+        title: DiagnosticReport close Event
       3-6-3-diagnosticreport-update.md:
-        title: DiagnosticsReport update event
+        title: DiagnosticsReport update Event
       3-6-4-diagnosticreport-select.md:
-        title: DiagnosticReport select event
+        title: DiagnosticReport select Event
 
   4_Scenarios.md:
     title: Scenarios
     4-1-launch-scenarios.md:
-      title: App launch scenarios and session discovery
+      title: Application Launch Scenarios and Session Discovery
     4-2-syncconsiderations.md:
-      title: Synchronization considerations
+      title: Synchronization Considerations
     4-3-security-considerations.md:
-      title: Security considerations
+      title: Security Considerations
     4-4-multitab-considerations.md:
-      title: Multi-tab considerations
+      title: Multi-tab Considerations
     4-5-multi-anchor-considerations.md:
-      title: Multi-anchor considerations
+      title: Multi-anchor Considerations
     4-6-content-sharing.md:
       title: Content Sharing
 
@@ -119,10 +119,10 @@ pages:
     title: Glossary
 
   6_change-log.md:
-    title: Change log
+    title: Change Log
 
   7_design-notes.md:
-    title: Design notes
+    title: Design Notes
 
   
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
@@ -134,10 +134,10 @@ menu:
   Specification: 
     Introduction: 2_Specification.html
     Session Discovery: 2-1-SessionDiscovery.html
-    OAuth2 authorization scopes: 2-2-FhircastScopes.html
-    Event format: 2-3-Events.html
-    Subscribing and unsubscribing: 2-4-Subscribing.html
-    Event notification: 2-5-EventNotification.html
+    OAuth 2.0 Authorization Scopes: 2-2-FhircastScopes.html
+    Event Format: 2-3-Events.html
+    Subscribing to Events: 2-4-Subscribing.html
+    Event Notification: 2-5-EventNotification.html
     Request Context Change: 2-6-RequestContextChange.html
     Conformance: 2-7-Conformance.html
     Extensions: 2-8-Extensions.html
@@ -146,8 +146,8 @@ menu:
   Events: 
     Introduction: 3_Events.html
     FHIRcast Event Definitions: 3-1-0-eventstructures.html
-    Event template: 3-1-1-template.html
-    Event maturity model: 3-1-2-eventmaturitymodel.html
+    Event Template: 3-1-1-template.html
+    Event Maturity Model: 3-1-2-eventmaturitymodel.html
     Infrastructure Events: 3-2-0-infrastructureevents.html
     Patient Events: 3-3-0-patientevents.html
     Encounter Events: 3-4-0-encounterevents.html
@@ -155,11 +155,11 @@ menu:
     DiagnosticReport Events: 3-6-0-diagnosticreportevents.html
   Scenarios: 
     Introduction: 4_Scenarios.html
-    App launch scenarios and session discovery: 4-1-launch-scenarios.html
-    Synchronization considerations: 4-2-syncconsiderations.html 
-    Security considerations: 4-3-security-considerations.html
-    Multi-tab considerations: 4-4-multitab-considerations.html
-    Multi-anchor considerations: 4-5-multi-anchor-considerations.html
+    Application Launch Scenarios and Session Discovery: 4-1-launch-scenarios.html
+    Synchronization Considerations: 4-2-syncconsiderations.html 
+    Security Considerations: 4-3-security-considerations.html
+    Multi-tab Considerations: 4-4-multitab-considerations.html
+    Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
     Content Sharing: 4-6-content-sharing.html
   Glossary: 5_glossary.html
   Artifacts: artifacts.html

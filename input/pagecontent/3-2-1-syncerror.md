@@ -4,17 +4,17 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A synchronization error has been detected and this is indicated to subscribed clients. 
+A synchronization error has been detected and this is indicated to Subscribers. 
 
 Unlike most of FHIRcast events, `syncerror` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
 
-A `syncerror` is sent by a subscribed application when:
-1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, and later the application decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `warning`
+A `syncerror` is sent by a Subscriber when:
+1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, and later the Subscriber decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `warning`
 
 A `syncerror` is broadcast by the Hub when one of the following conditions occur:
-1. A subscriber encounters an error when following a context, returning a server error (50X) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
-2. A subscriber decides not to follow a context, returning a server conflict (409) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
-3. The Hub detects a connection issue with a subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-events)) - the `severity` of the `operationoutcome` resource shall be `information`
+1. A Subscriber encounters an error when following a context, returning a server error (50X) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
+2. A Subscriber decides not to follow a context, returning a server conflict (409) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)) - the `severity` of the `operationoutcome` resource in the `syncerror` SHALL be `information`
+3. The Hub detects a connection issue with a Subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-events)) - the `severity` of the `operationoutcome` resource shall be `information`
 
 ### Context
 
@@ -32,7 +32,7 @@ Content of the OperationOutcome resource SHALL be at least one `issue` with the 
 * `issue[0].details.coding` SHALL contain at least three elements
   * `issue[0].details.coding[0]` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid"
   * `issue[0].details.coding[1]` SHALL contain the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" 
-  * `issue[0].details.coding[2]` SHALL contain the optional `subscriber.name` attribute of the original subscription of the relevant subscriber with a `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber"; the `code` attribute MAY be an empty string if no `subscriber.name` of the relevant subscriber was provided in the original subscription
+  * `issue[0].details.coding[2]` SHALL contain the optional `subscriber.name` attribute of the original subscription of the relevant Subscriber with a `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber"; the `code` attribute MAY be an empty string if no `subscriber.name` of the relevant Subscriber was provided in the original subscription
   * additional `coding` elements MAY be included with different `system` values to provide extra information about the `syncerror`
 * `issue[0].diagnostics` attribute SHALL contain a human readable explanation on the source and reason for the error.
 

@@ -1,4 +1,4 @@
-> Implementator feedback is requested for the need to support heartbeats for websockets.
+> Implementer feedback is requested for the need to support heartbeats for WebSockets.
 
 
 ### Event-name: Heartbeat event

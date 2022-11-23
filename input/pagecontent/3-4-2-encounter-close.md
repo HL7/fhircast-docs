@@ -1,6 +1,6 @@
 ### Event-name: Encounter-close
 
-eventMaturity | [0 - Draft](3-1-2-eventmaturitymodel.html)
+eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
@@ -52,7 +52,7 @@ Key | Optionality | FHIR operation to generate context | Description
                     "value": "344384384"
                   }
                 ],
-                "patient": {
+                "subject": {
                   "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
                 }
               }
