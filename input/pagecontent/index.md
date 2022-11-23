@@ -28,6 +28,10 @@ Note that:
 * An application can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure.
 * The [Event Catalog](3_Events.html) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
+### Relation to FHIR Subscriptions
+
+TBD
+
 ### Get involved
 
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
