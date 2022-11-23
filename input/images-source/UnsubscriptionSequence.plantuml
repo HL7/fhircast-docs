@@ -14,6 +14,6 @@ note right of Hub
     and closes the websocket (if any).
 end note
 
-Hub --> Subscriber++: WS: denial
+Hub --> Subscriber++: WSS: denial
 
 @enduml

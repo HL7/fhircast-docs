@@ -1,6 +1,6 @@
 @startuml
 
-title Successfull Websocket subscription flow diagram
+title Successful Websocket subscription flow diagram
 
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
@@ -8,15 +8,13 @@ participant "FHIRcast\nHub" as Hub
 Subscriber -> Hub++: POST Suscribe
 Subscriber <-- Hub--: 202 Accepted [<wss URL>]
 Subscriber -> Hub: connect to <wss URL>>
-Subscriber <-- Hub: WSS: conformation
+Subscriber <-- Hub: WSS: confirmation
 
 note right of Hub
-    App Subscribes
-    to Hub. Hub creates a websocket
-    and confirms subscription once 
-    app connects.
+    App Subscribes to Hub. 
+    Hub creates a websocket
+    and sends confirmation to 
+    subscription once app connects.
 end note
-
-Hub --> Subscriber++: WS: denial
 
 @enduml

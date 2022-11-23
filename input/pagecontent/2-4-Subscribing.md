@@ -118,14 +118,7 @@ Field        | Optionality | Type     | Description
 `hub.events` | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied.
 `hub.reason` | Optional    | *string* | The Hub may include a reason. A subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
-##### Subscription Denial Sequence
-
-<figure>
-  {% include DeniedSubscriptionSequence.svg %}
-  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
-</figure>
-
-##### `WebSocket` Subscription Denial Example
+#### `WebSocket` Subscription Denial Example
 
 ```json
 {
@@ -135,6 +128,13 @@ Field        | Optionality | Type     | Description
    "hub.reason": "session unexpectedly stopped"
 }
 ```
+
+#### Subscription Denial Sequence
+
+<figure>
+  {% include DeniedSubscriptionSequence.svg %}
+  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
+</figure>
 
 ### Unsubscribe
 
