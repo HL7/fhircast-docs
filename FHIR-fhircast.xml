@@ -27,7 +27,7 @@
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
 <page key="content-sharing" name="Content Sharing"/>
-<page key="2-10-2-ContentSharingFHIRcastMessaging" name="Content Sharing using FHIRcast messaging"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="Content Sharing using FHIRcast messaging"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
 <page key="3-6-2-diagnosticreport-close" name="DiagnosticReport close Event"/>
@@ -54,7 +54,7 @@
 <page deprecated="true" key="eventnotification" name="Event notification"/>
 <page deprecated="true" key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
-<page key="2-10-1-ContentSharingFHIR" name="FHIR based Content Sharing"/>
+<page key="2-10-2-ContentSharingFHIR" name="FHIR based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>

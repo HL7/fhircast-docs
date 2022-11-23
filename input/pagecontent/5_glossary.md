@@ -1,6 +1,7 @@
+
 {:.grid}
 Term | Description
---- | ---
+---- | ---
 session | an abstract concept representing a shared workspace, such as a user's login session across multiple applications or a shared view of one application distributed to multiple users - a session results from a user logging into an application and can encompass one or more workflows
 topic | an identifier of a session
 Subscriber | an application which subscribes to and requests or receives session events

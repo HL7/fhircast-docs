@@ -46,10 +46,10 @@ pages:
       title: Get Current Context
     2-10-ContentSharing.md:
       title: Content Sharing
-      2-10-1-ContentSharingFHIR.md:
-        title: FHIR based Content Sharing
-      2-10-2-ContentSharingFHIRcastMessaging.md:
+      2-10-1-ContentSharingFHIRcastMessaging.md:
         title: Content Sharing using FHIRcast messaging
+      2-10-2-ContentSharingFHIR.md:
+        title: FHIR based Content Sharing
       2-10-3-ContentSharingHybrid.md:
         title: Hybrid solution
        
