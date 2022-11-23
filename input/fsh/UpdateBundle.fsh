@@ -10,7 +10,7 @@ Description: """
     id of the created resource.
 """
 * type MS
-* type = #batch
+* type = #transaction
 * link 0..0
 * entry MS
 * entry ^slicing.discriminator.type = #value

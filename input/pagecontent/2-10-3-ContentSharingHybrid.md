@@ -10,7 +10,7 @@ The figure below illustrates this approach.
 
 The FHIR server and FHIRcast Hub are linked.
 
-The FHIRcast Hub SHALL send `-update` events to Subscribers of such events when a resource in the Container of the Anchor Resource of one of its active Topic changes in the FHIR server.
+The FHIRcast Hub SHALL send `-update` events to Subscribers of such events when a resource in the [Container](5_glossary.html) of the Anchor Resource of one of its active Topic changes in the FHIR server.
 
 The FHIR server SHALL be updated based on the transaction information in a `-update` event.
 
