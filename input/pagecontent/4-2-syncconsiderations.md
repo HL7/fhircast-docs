@@ -6,7 +6,7 @@ FHIRcast describes a mechanism for synchronizing distinct applications. Sometime
 
 ### Scenarios
 
-Depending upon the expectations of the user and the error handling of the applications in use, this scenario is potentially risky. Identified below are four distinct synchronization scenarios, ranging from lowest level of expected synchronization to highest. Each scenario suggests a level of risk resulting from potential context synchronization failure, based upon the user's ability to distinguish between disparate applications. Implementers must assess and determine the appropriate response to potential synchronization failure given their application's workflows and users.
+Depending upon the expectations of the user and the error handling of the applications in use, this scenario is potentially risky. Identified below are several distinct synchronization scenarios, ranging from lowest level of expected synchronization to highest. Each scenario suggests a level of risk resulting from potential context synchronization failure, based upon the user's ability to distinguish between disparate applications. Implementers must assess and determine the appropriate response to potential synchronization failure given their application's workflows and users.
 
 Also note that synchronization failure is a worst-case scenario and should rarely occur in production.
 
