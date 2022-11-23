@@ -19,6 +19,6 @@ note right of Hub
     confirmation.
 end note
 
-Subscriber <-- Hub: WSS: denial
+Hub --> Subscriber++: WSS: denial
 
 @enduml

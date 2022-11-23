@@ -17,4 +17,6 @@ note right of Hub
     subscription once app connects.
 end note
 
+Hub --> Subscriber++: denial
+
 @enduml
