@@ -30,7 +30,9 @@ Note that:
 
 ### Relation to FHIR Subscriptions
 
-TBD
+FHIR subscriptions should be used to receive notifications on changes in content in the FHIR server.
+
+FHIRcast is focussed on providing notifications when key elements in the context change. I.e. when the current Patient, Encounter, ImagingStudy,... is changed.
 
 ### Get involved
 
