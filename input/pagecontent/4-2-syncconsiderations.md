@@ -136,7 +136,8 @@ The Subscriber's subscription has expired causing it no longer receive event. Th
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manualy using [Get Current Context](2-9-GetCurrentContext.html). 
+| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually using [Get Current Context](2-9-GetCurrentContext.html). 
+
 | Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation.|
 
 #### Race condition between context changes
