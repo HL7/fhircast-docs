@@ -1,5 +1,5 @@
 <img src="Info_Simple_bw.svg.png" width="50" height="50"> 
-This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
+This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html).
 <p></p><p></p>
 
 FHIRcast enables the synchronization of healthcare applications user interfaces in real-time through the exchange of a workflow event to a small number of disparate applications. The notification message which describes the workflow event is a simple json wrapper around one or more FHIR resources. These FHIR resources can contain Protected Health Information (PHI).
@@ -30,7 +30,6 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 * [OAuth 2.0 Threat Model and Security Considerations](https://tools.ietf.org/html/rfc6819)
 
 ### WebSocket Security Considerations
-
 
 Subscribers SHOULD only use and Hub's SHOULD only accept connections made over the secure _wss://_ WebSocket protocol and not the unsecured _ws://_ WebSocket protocol.
 
