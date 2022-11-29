@@ -1,6 +1,6 @@
 @startuml
 
-title Websocket subscription denial flow diagram
+title WebSocket subscription denial flow diagram
 
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
@@ -8,7 +8,12 @@ participant "FHIRcast\nHub" as Hub
 Subscriber -> Hub++: POST Suscribe
 Subscriber <-- Hub--: 202 Accepted [<wss URL>]
 Subscriber -> Hub: connect to <wss URL>>
-Subscriber <-- Hub: WSS: confirmation?
+alt with confirmation
+Subscriber <-- Hub: WSS: confirmation
+Hub --> Subscriber++: WSS: denial
+else without confirmation
+Hub --> Subscriber++: WSS: denial
+end
 
 note right of Hub
     App Subscribes to Hub. Hub 
@@ -18,7 +23,5 @@ note right of Hub
     connection, even after initial 
     confirmation.
 end note
-
-Hub --> Subscriber++: WSS: denial
 
 @enduml
