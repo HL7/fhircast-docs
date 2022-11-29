@@ -1,16 +1,14 @@
 ### Event-name: DiagnosticReport-open
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by an application and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
-
-When a `DiagnosticReport-open` event is received by an application, the application should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
+A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by a Subscriber and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribed applications MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a client will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the versionId can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a Subscriber will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the `context.versionId` can be safely ignored.
 
 ### Context
 
@@ -101,7 +99,7 @@ The following example shows a report being opened that contains a single primary
 
 #### DiagnosticReport-open Event Example
 
-The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by subscribers to make subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by Subscribers to make subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.
 
 ```json
 {

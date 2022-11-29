@@ -4,7 +4,7 @@ This page contains guidance to implementers and is not part of the [normative-tr
 
 ### Considerations for application with simultaneous contexts
 
-Just as a modern web browser supports multiple pages loaded, but only a single in active use at a given time, some healthcare applications support multiple, distinct patient charts loaded even though  only a single chart is interacted with at a given time. Other applications in healthcare may only support a single patient (or study or ...) context being loaded in the application at a given time. It's important to be able to synchronize the context between two applications supporting these different behaviors. For convenience, we refer to these two types of application behavior as "multi-tab" and "single tab".
+Just as a modern Web browser supports multiple pages loaded, but only a single in active use at a given time, some healthcare applications support multiple, distinct patient charts loaded even though only a single chart is interacted with at a given time. Other applications in healthcare may only support a single patient (or study or ...) context being loaded in the application at a given time. It's important to be able to synchronize the context between two Subscribers supporting these different behaviors. For convenience, we refer to these two types of application behavior as "multi-tab" and "single tab".
 
 ### Single and Multiple Tab Applications
 
@@ -14,13 +14,13 @@ Let's start with a simple case.
 
 #### Opening and Closing a Patient
 
-The diagrams below show two applications without any context, followed by a `patient-open` event communicated to the other app resulting in same patient being opened in the receiving app. When the patient is closed, a `patient-close` event is triggered leading to the patient being closed in the other app as well.
+The diagrams below show two applications without any context, followed by a `patient-open` event communicated to the other application resulting in same patient being opened in the receiving application. When the patient is closed, a `patient-close` event is triggered leading to the patient being closed in the other application as well.
 
 {% include img.html img="PatientOpenAndClose.png" caption="Figure: Simple patient open and close example" %}
 
 #### Opening Multiple Patients
 
-As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `patient-open` works as expected by synchronizing the two apps for Patient 1. When the multi-tab app opens a second patient (without closing the first) the single-tab app follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab app, the single-tab app can still stay in sync with the current context.
+As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
@@ -31,7 +31,7 @@ As illustrated below, context synchronization is maintained between multiple and
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another app has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
+Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
 
 > note
 > Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `patient-open` (or `imagingstudy-open` or ...) with a patient (or study or ...).
@@ -74,4 +74,4 @@ Late joining  - event stating the current selected patient.
 
 ##### Risk
 
-Order of patients can be different between different application. (Late app joining, temporarily out of sync).
+Order of patients can be different between different applications. (late application joining, temporarily out of sync).

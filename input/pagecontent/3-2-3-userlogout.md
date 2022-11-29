@@ -4,7 +4,7 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User's session has ended, perhaps by exiting the application through a logout, session time-out or other reason. 
+User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. 
 
 Unlike most of FHIRcast events, `userlogout` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
 
