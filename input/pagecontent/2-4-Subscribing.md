@@ -77,6 +77,8 @@ Field               | Optionality | Type | Description
 `hub.events`        | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. Note that the granted events may be the same as, a subset, or a superset of those requested.
 `hub.lease_seconds` | Required    | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the Subscriber. If provided to the Subscriber, the Hub SHALL unsubscribe the Subscriber once `lease_seconds` has expired, close the WebSocket connection, and MAY send a subscription denial. If the Subscriber wishes to continue the subscription it MAY resubscribe.
 
+Once the subscription is confirmed, the application is subscribed. 
+
 #### Subscription Confirmation Example
 
 ```json
