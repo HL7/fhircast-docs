@@ -17,6 +17,6 @@ note right of Hub
     subscription once app connects.
 end note
 
-Hub --> Subscriber++: denial
+Hub --> Subscriber++: WSS: denial
 
 @enduml
