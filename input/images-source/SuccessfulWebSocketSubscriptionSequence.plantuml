@@ -1,6 +1,6 @@
 @startuml
 
-title Successful Websocket subscription flow diagram
+title Successful WebSocket subscription flow diagram
 
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
@@ -12,7 +12,7 @@ Subscriber <-- Hub: WSS: confirmation
 
 note right of Hub
     App Subscribes to Hub. 
-    Hub creates a websocket
+    Hub creates a WebSocket
     and sends confirmation to 
     subscription once app connects.
 end note
