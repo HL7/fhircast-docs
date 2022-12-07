@@ -20,7 +20,7 @@ Field                  | Optionality | Type     | Description
 `hub.channel.type`     | Required    | *string* | The Subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode`             | Required    | *string* | The literal string `subscribe` or `unsubscribe`, depending on the goal of the request.
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from. 
-`hub.events`           | Conditional | *string* | Required for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Comma-separated list of event types from the Event Catalog for which the Subscriber wants to subscribe. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
+`hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe. SHALL be included for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
 `subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
@@ -61,7 +61,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 HTTP/1.1 202 Accepted
 
 {   
- "hub.channel.endpoint": wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de
+ "hub.channel.endpoint": "wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de"
 }
 ```
 
@@ -76,6 +76,8 @@ Field               | Optionality | Type | Description
 `hub.topic`         | Required    | *string* | The session topic given in the corresponding subscription request.
 `hub.events`        | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request. Note that the granted events may be the same as, a subset, or a superset of those requested.
 `hub.lease_seconds` | Required    | *number* | The Hub-determined number of seconds that the subscription will stay active before expiring, measured from the time the verification request was made from the Hub to the Subscriber. If provided to the Subscriber, the Hub SHALL unsubscribe the Subscriber once `lease_seconds` has expired, close the WebSocket connection, and MAY send a subscription denial. If the Subscriber wishes to continue the subscription it MAY resubscribe.
+
+Once the subscription is confirmed, the application is subscribed. 
 
 #### Subscription Confirmation Example
 
@@ -100,9 +102,9 @@ Field               | Optionality | Type | Description
 > NOTE
  > Implementer feedback on this optional feature is required.
 
-Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
+Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event per anchor type for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
 
- Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event triggered notification, as specified in [Event Notification](2-5-EventNotification.html). Note that the `timestamp` in the event notification is the time at which the event occurred and not the time at which the notification is generated.
+Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event triggered notification, as specified in [Event Notification](2-5-EventNotification.html). Note that the `timestamp` in the event notification is the time at which the event occurred and not the time at which the notification is generated.
   
 ### Subscription Denial
 

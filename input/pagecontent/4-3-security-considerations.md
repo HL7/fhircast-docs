@@ -31,7 +31,6 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 
 ### WebSocket Security Considerations
 
-
 Subscribers SHOULD only use and Hub's SHOULD only accept connections made over the secure _wss://_ WebSocket protocol and not the unsecured _ws://_ WebSocket protocol.
 
 The WebSocket standard defines an `Origin` header, sent from the client to the server and intended to contain the url of the client. Subscribers using WebSockets may be running in a Web browser, in which case the Web browser enforces origin reporting to the Hub, or native applications in which the origin reported to the Hub can not be trusted. Therefore, a Hub exposing a WebSocket connection MUST not rely upon the origin sent by the Subscriber.

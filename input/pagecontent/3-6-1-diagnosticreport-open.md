@@ -1,12 +1,10 @@
 ### Event-name: DiagnosticReport-open
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
 A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by a Subscriber and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
-
-When a `DiagnosticReport-open` event is received by a Subscriber, the Subscriber should respond as is appropriate for its clinical use.  For example, an image reading application may respond to a `DiagnosticReport-open` event posted by a reporting application by opening any imaging study(ies) specified in the context. A reporting application may want to respond to a `DiagnosticReport-open` event posted by an image reading application by creating a new or opening an existing report.
 
 #### Content Sharing Support
 

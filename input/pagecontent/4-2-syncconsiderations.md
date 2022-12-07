@@ -1,12 +1,12 @@
 <img src="Info_Simple_bw.svg.png" width="50" height="50"> 
-This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
+This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html); however, implementers are strongly encouraged to read and understand its content towards successful synchronization.
 <p></p><p></p>
 
 FHIRcast describes a mechanism for synchronizing distinct applications. Sometimes things go wrong, and applications fail to synchronize or become out of sync. For example, the user within the EHR opens a new patient's record, but a Subscriber fails to process the update and continues displaying the initial patient.
 
 ### Scenarios
 
-Depending upon the expectations of the user and the error handling of the applications in use, this scenario is potentially risky. Identified below are four distinct synchronization scenarios, ranging from lowest level of expected synchronization to highest. Each scenario suggests a level of risk resulting from potential context synchronization failure, based upon the user's ability to distinguish between disparate applications. Implementers must assess and determine the appropriate response to potential synchronization failure given their application's workflows and users. 
+Depending upon the expectations of the user and the error handling of the applications in use, this scenario is potentially risky. Identified below are several distinct synchronization scenarios, ranging from lowest level of expected synchronization to highest. Each scenario suggests a level of risk resulting from potential context synchronization failure, based upon the user's ability to distinguish between disparate applications. Implementers must assess and determine the appropriate response to potential synchronization failure given their application's workflows and users.
 
 Also note that synchronization failure is a worst-case scenario and should rarely occur in production.
 
@@ -90,7 +90,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscriber | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
-| Subscriber | Unable to change context | Respond with a http status code of 409 conflict|
+| Subscriber | Unable to change context | Respond with a http status code of 409 conflict. |
 | Subscriber | Ask user whether context can be changed, user refuses. | The Subscriber responds to the initial event with a 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
 | Subscriber | Ask user whether context can be changed, user does not react in time. | The Subscriber responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Context change is refused, stating the source and reason for change. |
 | Hub | One of the Subscribers cannot follow context | Update all Subscribers with a syncerror event |
@@ -112,8 +112,9 @@ This error scenario is the Hub losing contact with a Subscriber. This may be due
 {:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manualy using [Get Current Context](2-9-GetCurrentContext.html).  |
-| Hub | Subscriber failed to respond to an event | Update all Subscribers with a syncerror event using information from the subscriber.name field from the original subscription of the Subscriber which failed to respond to an event |
+| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually  using [Get Current Context](2-9-GetCurrentContext.html).  |
+
+| Hub | Subscriber failed to respond to an event | Update all Subscribers with a syncerror event using information from the `subscriber.name` field from the original subscription of the Subscriber which failed to respond to an event |
 
 #### Race condition during launch
 
@@ -135,7 +136,8 @@ The Subscriber's subscription has expired causing it no longer receive event. Th
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manualy using [Get Current Context](2-9-GetCurrentContext.html). 
+| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually using [Get Current Context](2-9-GetCurrentContext.html). 
+
 | Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation.|
 
 #### Race condition between context changes
@@ -176,7 +178,7 @@ A Subscriber that initiates a context change and receives a `syncerror` related 
 
 #### Subscriber that follow context change
 
-A Subscriber that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `syncerror`, it shall assume sync is restored unless a new `syncerror` is received.
+A Subscriber that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `syncerror`, it assumes sync is restored unless a new `syncerror` is received.
 
 #### Subscriber that lose the connection to the Hub
 
@@ -184,7 +186,7 @@ Subscriber that lose the connection to the Hub should resubscribe to the topic. 
 
 #### Hubs
 
-A Hub that sends a `syncerror` event (e.g. after it is not able to deliver an event) MAY resend this event regularly until the sync has been reestablished or a newer event has been received.
+A Hub that sends a `syncerror` event (e.g. after it is not able to deliver an event) may resend this event regularly until the sync has been reestablished or a newer event has been received.
 
 ### Open topics
 
