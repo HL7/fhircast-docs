@@ -27,7 +27,6 @@
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
 <page key="content-sharing" name="Content Sharing"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="Content Sharing using FHIRcast messaging"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
 <page key="3-6-2-diagnosticreport-close" name="DiagnosticReport close Event"/>
@@ -58,6 +57,7 @@
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast-event based content sharing"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
 <page key="3-2-2-heartbeat" name="Heartbeat Event"/>
