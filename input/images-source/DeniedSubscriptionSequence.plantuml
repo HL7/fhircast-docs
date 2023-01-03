@@ -5,7 +5,10 @@ title WebSocket subscription denial flow diagram
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
 
-Subscriber -> Hub++: POST Suscribe
+Subscriber -> Hub++: POST Subscribe
+Subscriber <-- Hub--: 4xx (Client error)
+alt with asynchronous denial
+Subscriber -> Hub++: POST Subscribe
 Subscriber <-- Hub--: 202 Accepted [<wss URL>]
 Subscriber -> Hub: connect to <wss URL>>
 alt with confirmation
