@@ -2,7 +2,7 @@ The Hub SHALL notify Subscribers of workflow-related events to which the Subscri
 
 ### Event Notification Request
 
-The HTTP request notification interaction include the following fields:
+The WebSocket request notification interaction include the following fields:
 
 {:.grid}
 Field       | Optionality | Type | Description
