@@ -97,6 +97,20 @@ This event category contains events required to maintain a FHIRcast session. The
 | [`syncerror`](3-2-1-syncerror.html) | indicates refusal to follow context or inability to deliver an event
 | [`heartbeat`](3-2-2-heartbeat.html) | for monitoring the connection to the hub
 
+#### Update events
+
+Update events use the suffix `update`. The format of selection event names is:
+
+```ebnf
+UpdateEventName ::= ( FHIRresource  ) '-' ( 'update' )
+```
+
+{% include img.html img="UpdateEventName.png" caption="Figure: Update Event-name specification" %}
+
+An `update` event provides a mechanism to share content in the context of the current anchor context (see [`anchor context`](5_glossary.html)).  A Subscriber shares content related to the anchor context by providing FHIR resources in a Bundle contained in the `updates` key of an `update` event.  See [`Content Sharing`](2-10-ContentSharing.html) for a comprehensive description of `update` events.
+
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).  For an example see [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html).
+
 #### Selection events
 
 Selection events use the suffix `select`. The format of selection event names is:
@@ -109,4 +123,4 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 
 A `select` event indicates that one or more FHIR resources are visible, in focus, or otherwise "selected" in the specified anchor context.  The `FHIRresource` in the event name indicates the type of the anchor context of the selection.  The `context` element in a select event contains two fields, one with the key associated with `FHIRresource` holding the anchor context resource and one named `select` indicating the resources that are selected.  An empty `select` array indicates that no resources are selected.  Items in the `select` array are selected, previously selected resources are no longer selected (i.e., an implicit unselect). 
 
-For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).  For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
