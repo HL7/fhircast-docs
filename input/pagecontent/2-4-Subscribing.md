@@ -172,7 +172,8 @@ Content-Type: application/x-www-form-urlencoded
 
 hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065
 ```
-#### Unscubscribe Response Example
+#### Unsubscribe Response Example
+
 
 ```json
 {   
