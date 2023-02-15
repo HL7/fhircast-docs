@@ -39,25 +39,27 @@ Key | Optionality | FHIR operation to generate context | Description
                     "display": "Medical Record Number"
                   }
                 ]
-              }
-            },
-            {
-              "key": "encounter",
-              "resource": {
-                "resourceType": "Encounter",
-                "id": "90235y2347t7nwer7gw7rnhgf",
-                "identifier": [
-                  {
-                    "system": "28255",
-                    "value": "344384384"
-                  }
-                ],
-                "subject": {
-                  "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-                }
-              }
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345"
             }
           ]
+        }
+      },
+      {
+        "key": "encounter",
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "90235y2347t7nwer7gw7rnhgf",
+          "identifier": [
+            {
+              "system": "28255",
+              "value": "344384384"
+            }
+          ],
+          "subject": {
+            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+          }
         }
       }
     ]

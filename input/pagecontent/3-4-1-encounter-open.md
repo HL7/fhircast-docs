@@ -19,8 +19,8 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ```json
 {
-  "timestamp": "2018-01-08T01:37:05.14",
-  "id": "q9v3jubddqt63n1",
+  "timestamp": "2018-01-08T01:35:25.33",
+  "id": "q9v3jubd43i4ufhff",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "encounter-open",
@@ -40,25 +40,27 @@ Key | Optionality | FHIR operation to generate context | Description
                     "display": "Medical Record Number"
                   }
                 ]
-              }
-            },
-            {
-              "key": "encounter",
-              "resource": {
-                "resourceType": "Encounter",
-                "id": "90235y2347t7nwer7gw7rnhgf",
-                "identifier": [
-                  {
-                    "system": "28255",
-                    "value": "344384384"
-                  }
-                ],
-                "subject": {
-                  "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-                }
-              }
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345"
             }
           ]
+        }
+      },
+      {
+        "key": "encounter",
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "90235y2347t7nwer7gw7rnhgf",
+          "identifier": [
+            {
+              "system": "28255",
+              "value": "344384384"
+            }
+          ],
+          "subject": {
+            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+          }
         }
       }
     ]
