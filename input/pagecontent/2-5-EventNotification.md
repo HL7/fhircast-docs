@@ -53,7 +53,6 @@ Code  |          | Description
 202   | Accepted | The Subscriber has successfully received the event notification, but has not yet taken action. If the Subscriber decides to refuse the event, it will send a [`syncerror`](3-2-1-syncerror.html) event. Subscribers are RECOMMENDED to do so within 10 seconds after receiving the context event.
 409   | Conflict | The Subscriber refuses to follow the context change. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was refused.
 4xx   | Other Client Error | For Subscriber errors other than a 409; Subscribers can return other appropriate 4xx HTTP statuses. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was refused.
-
 500   | Server Error | There is an issue in the Subscriber preventing it from processing the event. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was not delivered.
 5xx   | Other Server Error | If the Subscriber is able to more specifically identify the server error preventing it from processing the event, it can send a 5xx status other than 500. The Hub SHALL send a [`syncerror`](3-2-1-syncerror.html) indicating the event was not delivered.
 
