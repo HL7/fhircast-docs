@@ -47,7 +47,7 @@ pages:
     2-10-ContentSharing.md:
       title: Content Sharing
       2-10-1-ContentSharingFHIRcastMessaging.md:
-        title: FHIRcast-event based content sharing
+        title: FHIRcast event-based content sharing
       2-10-2-ContentSharingFHIR.md:
         title: FHIR based Content Sharing
       2-10-3-ContentSharingHybrid.md:

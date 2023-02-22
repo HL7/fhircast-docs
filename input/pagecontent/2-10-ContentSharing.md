@@ -3,7 +3,7 @@ Beyond sharing context, Subscribers subscribed to a topic require to share and u
 
 Content exchange within a FHIRcast session can be supported in three different ways. Each is discussed in the following subsections:
 
-[2-10-1 FHIRcast messaging based content sharing](2-10-1-ContentSharingFHIRcastMessaging.html) |
+[2-10-1 FHIRcast event-based content sharing](2-10-1-ContentSharingFHIRcastMessaging.html) |
 [2-10-2 FHIR server based content sharing](2-10-2-ContentSharingFHIR.html) |
 [2-10-3 Hybrid approach supporting both FHIR server and FHIRcast messaging.](2-10-3-ContentSharingHybrid.html) |
 
