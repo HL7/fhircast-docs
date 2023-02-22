@@ -21,7 +21,7 @@ Description: """
 * entry contains put 0..* MS and post 0..0 and get 0..0 and delete 0..*
 * entry[put]
   * fullUrl MS
-  * fullUrl 1..1
+  * fullUrl 0..1
   * resource 1..1
   * search 0..0
   * request 1..1
