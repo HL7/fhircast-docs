@@ -111,7 +111,9 @@ The `FHIRresource` indicates the context of the selection. The `context` element
 
 This allows communication of different select sets for the different anchor-types.
 
-#### Content events
+For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
+
+#### Content sharing events
 
 Content sharing events use the suffix `update`. The format of selection event names is:
 
