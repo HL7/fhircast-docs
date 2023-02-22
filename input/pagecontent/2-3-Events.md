@@ -125,7 +125,7 @@ ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 
 The `FHIRresource` indicates the anchor context in which content is being shared. 
 
-The `context` element in an update event contains at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
+The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
 
 The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
 
