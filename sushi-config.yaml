@@ -50,8 +50,6 @@ pages:
         title: FHIRcast event-based content sharing
       2-10-2-ContentSharingFHIR.md:
         title: FHIR based Content Sharing
-      2-10-3-ContentSharingHybrid.md:
-        title: Hybrid solution
        
   3_Events.md:
     title: Event Library
@@ -112,8 +110,10 @@ pages:
       title: Multi-tab Considerations
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor Considerations
-    4-6-content-sharing.md:
-      title: Content Sharing
+    4-6-fhircast-event-content-sharing.md:
+      title: FHIRcast event-based content sharing example
+    4-7-hybrid-content-sharing.md:
+      title: Hybrid Content Sharing
 
   5_glossary.md:
     title: Glossary

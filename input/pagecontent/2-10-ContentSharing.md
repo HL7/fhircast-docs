@@ -1,11 +1,10 @@
 Beyond sharing context, Subscribers subscribed to a topic require to share and update content. This section indicates the different mechanisms in FHIRcast that support content exchange. Content is exchanged using FHIR resources associated with the most recently opened context which serves as the anchor context of the exchanged information (see [Anchor Context](5_glossary.html) and [Container](5_glossary.html)).
 
 
-Content exchange within a FHIRcast session can be supported in three different ways. Each is discussed in the following subsections:
+Content exchange within a FHIRcast session can be supported in different ways. Each is discussed in the following subsections:
 
 [2-10-1 FHIRcast event-based content sharing](2-10-1-ContentSharingFHIRcastMessaging.html) |
 [2-10-2 FHIR server based content sharing](2-10-2-ContentSharingFHIR.html) |
-[2-10-3 Hybrid approach supporting both FHIR server and FHIRcast messaging.](2-10-3-ContentSharingHybrid.html) |
 
 **FHIRcast-event based content sharing should be used:**
 
@@ -19,7 +18,3 @@ Content exchange within a FHIRcast session can be supported in three different w
 * when all data (versions) needs to be persisted, for example to be robust against crashes.
 * when the application is launched using [SMART on FHIR](https://hl7.org/fhir/smart-app-launch/index.html) and the EHR and  application support context synchronization
 
-**The hybrid solution should be used:**
-
-* in deployments where applications dependent on both approaches need to cooperate.
-* when multiple aspects of both options are required.
