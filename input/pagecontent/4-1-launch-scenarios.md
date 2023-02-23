@@ -74,7 +74,7 @@ In this scenario, the user authorizes the application to synchronize to its sess
 
 #### Dynamic Registration for Native apps: Following SMART launch, parent application registers dynamic application which participates in FHIRcast session
 
-> Implementer feedback is solicited.
+{% include questionnote.html text='Implementer feedback is solicited.' %}
 
 OAuth 2.0 dynamic registration for native applications is an appropriate technology for issuing distinct credentials and application identity to an instance of an application. FHIRcast does not specify how the `hub.topic` and `hub.url` should be communicated to a dynamic application if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native application implementer in the absence of other guidance. 
 
