@@ -13,10 +13,10 @@ FHIR resources are used to convey the structured information being exchanged in 
 Support of content sharing by a Hub is optional.  If supporting content sharing, a FHIRcast Hub MUST fulfill additional responsibilities:
 
 1. Assign and maintain an anchor context's `context.versionId` when processing a `[FHIR resource]-open` request - the `context.versionId` does not need to follow any convention but must unique in the scope of a topic  
-2. Reject `[FHIR resource]-update` and `[FHIR resource]-select` requests if the version does not match the current `context.versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
+2. Reject `[FHIR resource]-update` request if the version does not match the current `context.versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
 3. Assign and maintain a new `context.versionId` for the anchor context's content and provide the new `context.versionId` along with the `context.priorVersionId` in the event corresponding to the validated update request
 4. Process each `[FHIR resource]-update` request in an atomic fashion and maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Current Context`](2-9-GetCurrentContext.html) request
-5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the anchor context since the Hub has no responsibility to persist the content
+5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the current anchor context (i.e., the context being closed by this request) since the Hub has no responsibility to persist the content
 6. Forward a `[FHIR resource]-select` event to all Subscribers 
 
 A Hub is not responsible for structurally validating FHIR resources provided in the update Bundle.  A Hub SHALL be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource); however, a Hub is not responsible for additional structural checking.  If the Hub does reject an update request (for any reason), it SHALL reject the entire request - it SHALL NOT accept some changes specified in the Bundle and reject others.
