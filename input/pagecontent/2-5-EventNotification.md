@@ -1,8 +1,8 @@
 The Hub SHALL notify Subscribers of workflow-related events to which the Subscriber is subscribed. The notification is a JSON object communicated over the `WebSocket` channel.
 
-### Event Notification Request
+### Event Notification
 
-The HTTP request notification interaction include the following fields:
+The event notification interaction include the following fields:
 
 {:.grid}
 Field       | Optionality | Type | Description
