@@ -8,3 +8,21 @@ All changes to the FHIRcast specification are tracked in the [specification's HL
 * Additional, required information on `syncerror` OperationOutcome (namely communication of the error'd event's id and event name). 
 * Websocket WSS URL communicated in HTTP body, instead of `Content-Location` HTTP header.
 * Subscribers should differentiate between immediately applied context changes and mere successfully received notifications with HTTP code responses of 200 and 202, respectively.
+
+### FHIR Publication Details
+
+#### Intellectual Property Statements
+
+{% include ip-statements.xhtml %}
+
+#### Cross Version Analysis
+
+{% include cross-version-analysis.xhtml %}
+
+#### Package Dependencies
+
+{% include dependency-table.xhtml %}
+
+#### Global Profile Definitions
+
+{% include globals-table.xhtml %}
