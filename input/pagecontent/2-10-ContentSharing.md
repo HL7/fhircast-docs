@@ -17,4 +17,3 @@ Content exchange within a FHIRcast session can be supported in different ways. E
 * when you already use a common FHIR server
 * when all data (versions) needs to be persisted, for example to be robust against crashes.
 * when the application is launched using [SMART on FHIR](https://hl7.org/fhir/smart-app-launch/index.html) and the EHR and  application support context synchronization
-
