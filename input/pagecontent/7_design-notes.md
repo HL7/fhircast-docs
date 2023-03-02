@@ -10,9 +10,4 @@ Similarly, the conformance statement related to websocket support was retained.
 
 ### Content sharing approach
 
-Two base use cases for content-exchange were emerged from the discussions: one with and without a FHIR server present.
-
-When the Subscriber is launched using SMART on FHIR, a FHIR server is available that can and should be used for content exchange. Some Radiology spcecific uses of FHIRcast do not support a FHIR server. In these situations a distributed content exchange mechanism based on FHIRcast messages is required.
-
-As both deployments were judged to be valid, the specification supports both options. To ensure compatibility of deployments, the specification also supports hybrid solutions where Subscribers of both types can exchange content.
-Similarly, the conformance statement related to WebSocket support was retained.
+Two base use cases for content-exchange were identified during use case analysis. One employs a transactional, event-based exchange mechanism while the second uses content sharing content persisted in a FHIR server. It is also possible to use both methods concurrently. A detailed description of these approaches is found in the content sharing section of the specification.
