@@ -13,7 +13,7 @@ Description: """
 * entry 0..*
   * link 0..0
   * fullUrl MS
-  * fullUrl 1..1
+  * fullUrl 0..1
   * resource MS
   * resource 0..1
   * search 0..0
