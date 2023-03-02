@@ -119,7 +119,7 @@ Content sharing events use the suffix `update`. The format of selection event na
 ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 ```
 
-{% include img.html img="ContentSharingEventName.png" caption="Figure: Selection Event-name specification" %}
+{% include img.html img="ContentSharingEventName.png" caption="Figure: Content sharing event-name specification" %}
 
 The `FHIRresource` indicates the anchor context in which content is being shared. 
 
