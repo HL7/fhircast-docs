@@ -9,7 +9,6 @@ Term | Description
 **Context** | a FHIR resource associated with a session which indicates a subject on which applications should synchronize as appropriate to their functionality
 **Current Context** | the context associated with a session that is active at a given time
 **Hub** | handles subscription requests, session change requests, and distributes events to Subscribers
-**Session Event** | a user initiated workflow event, communicated to clients, containing the current context
 **Session Event** | a user initiated workflow event, communicated to Subscribers, containing the current context or shared content
 **Subscriber** | an application which subscribes to and requests or receives session events
 **Topic** | an identifier of a session
