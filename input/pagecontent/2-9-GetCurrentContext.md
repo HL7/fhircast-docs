@@ -1,4 +1,4 @@
-> Implementer feedback is solicited on the GetCurrentContext operation 
+{% include infonote.html text='Implementer feedback is solicited on the GetCurrentContext operation.' %}
 
 In some situations, Subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call. The Hub responds to this GET request with the most recently communicated open event. 
 
