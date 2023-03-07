@@ -1,5 +1,4 @@
-> Implementer feedback is requested for the need to support heartbeats for WebSockets.
-
+{% include questionnote.html text='Implementer feedback is requested for the need to support heartbeats for WebSockets.' %}
 
 ### Event-name: Heartbeat event
 

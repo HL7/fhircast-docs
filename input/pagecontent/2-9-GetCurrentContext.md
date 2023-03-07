@@ -1,4 +1,4 @@
-> Implementer feedback is solicited on the GetCurrentContext operation 
+{% include infonote.html text='Implementer feedback is solicited on the GetCurrentContext operation.' %}
 
 In some situations, Subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call. The Hub responds to this GET request with the most recently communicated open event. 
 
@@ -30,7 +30,7 @@ If a Hub supports content sharing, the Hub returns the current content in a `con
 {:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 --- | --- | --- | ---
-`content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context or a `Bundle` resource with no entries if no content is associated with the current context.
+`content` | REQUIRED if content sharing is supported | not applicable | Current content of the anchor context or a `Bundle` resource with no entries if no content is associated with the current context. The `Bundle` resource SHALL conform to the [FHIRcast get current content Bundle](StructureDefinition-fhircast-get-current-content-bundle.html) profile.
 
 ### Examples
 

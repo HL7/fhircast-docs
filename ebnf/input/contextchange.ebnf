@@ -1,1 +1,1 @@
-ContextEventName ::= ( fhir-resource ) '-' ( 'open' | 'close' )
+ContextEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )

@@ -1,7 +1,4 @@
-
-<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
-This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html). 
-<p></p><p></p>
+{% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track</a>.' %}
 
 A FHIRcast Hub uses a unique `hub.topic` session id to identify a single session across the Hub, subscribing and driving applications (i.e. Subscribers) which are engaged in the shared session. The `hub.topic` must be known by an application for it to subscribe to the session. Typically, the Hub defines the `hub.topic`.
 
@@ -77,7 +74,7 @@ In this scenario, the user authorizes the application to synchronize to its sess
 
 #### Dynamic Registration for Native apps: Following SMART launch, parent application registers dynamic application which participates in FHIRcast session
 
-> Implementer feedback is solicited.
+{% include questionnote.html text='Implementer feedback is solicited.' %}
 
 OAuth 2.0 dynamic registration for native applications is an appropriate technology for issuing distinct credentials and application identity to an instance of an application. FHIRcast does not specify how the `hub.topic` and `hub.url` should be communicated to a dynamic application if and when its parent performed the SMART app launch. Generally, this will be the responsibility of the native application implementer in the absence of other guidance. 
 

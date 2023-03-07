@@ -1,6 +1,5 @@
-<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
-This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html).
-<p></p><p></p>
+{% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track.</a>' %}
+
 
 ### Example of Content Sharing in an Anchor Context
 
