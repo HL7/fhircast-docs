@@ -5,18 +5,33 @@ title Successful WebSocket subscription flow diagram
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
 
+' group Successful Workflow
+' else Reject Subscribe Request
+' end
+
+autonumber
+
 Subscriber -> Hub++: POST Suscribe
-Subscriber <-- Hub--: 202 Accepted [<wss URL>]
+Subscriber <-- Hub: 202 Accepted [<wss URL>]
 Subscriber -> Hub: connect to <wss URL>>
 Subscriber <-- Hub: WSS: confirmation
 
-note right of Hub
-    App Subscribes to Hub. 
-    Hub creates a WebSocket
-    and sends confirmation to 
-    subscription once app connects.
-end note
+group Optional (Recommended)
+else Hub sends existing open context events
+Subscriber <- Hub: <resource>-open
+...
+end
 
-Hub --> Subscriber++: WSS: denial
+Subscriber <-> Hub: Events...
+...
+
+' note right of Hub
+'     App Subscribes to Hub. 
+'     Hub creates a WebSocket
+'     and sends confirmation to 
+'     subscription once app connects.
+' end note
+
+' Hub --> Subscriber--: WSS: denial
 
 @enduml

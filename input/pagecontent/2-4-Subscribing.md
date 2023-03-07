@@ -95,6 +95,13 @@ Field               | Optionality | Type | Description
   <figcaption><b>Figure: Successful WebSocket Subscription Sequence</b></figcaption>
 </figure>
 
+1. Subscriber sends subscription request via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends the confirmation message over the WebSocket connection
+1. (Optional) Hub sends any existing open-context events (e.g., `patient-open`)
+1. Either Hub or Subscriber send events as they occur
+
 ### Current context notification upon successful subscription
 
 > NOTE
@@ -136,6 +143,18 @@ Field        | Optionality | Type     | Description
   <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
 </figure>
 
+1. Subscriber requests a subscription via HTTP/S POST
+1. Hub refuses the Subscribe request via HTTP response
+1. Subscriber requests a subscription via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends a denial message over the WebSocket connection and closes the connection
+1. Subscriber sends subscription request via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends the confirmation message over the WebSocket connection
+1. The Hub MAY send a denial message at any time and close the connection
+
 ### Unsubscribe
 
 Once a Subscriber no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even while subscriptions notifications use WebSockets. Unsubscribes will destroy the WebSocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
@@ -167,3 +186,9 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
   {% include UnsubscriptionSequence.svg %}
   <figcaption><b>Figure: Unsubscription sequence</b></figcaption>
 </figure>
+
+1. A successful connection is established (see [Subscription Confirmation Example](#subscription-confirmation-example))
+1. Events are sent by the Hub and/or Subscriber
+1. The Subscriber sends an Unsubscribe request via HTTP/S POST
+1. Hub accepts the Unsubscribe request and responds with the endpoint URL
+1. Hub sends a denial message over the WebSocket connection and closes the connection
