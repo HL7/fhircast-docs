@@ -97,6 +97,13 @@ Once the subscription is confirmed, the application is subscribed.
   <figcaption><b>Figure: Successful WebSocket Subscription Sequence</b></figcaption>
 </figure>
 
+1. Subscriber sends subscription request via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends the confirmation message over the WebSocket connection
+1. (Optional) Hub sends any existing open-context events (e.g., `patient-open`)
+1. Either Hub or Subscriber send events as they occur
+
 ### Current context notification upon successful subscription
 
 > NOTE
@@ -120,14 +127,7 @@ Field        | Optionality | Type     | Description
 `hub.events` | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied.
 `hub.reason` | Optional    | *string* | The Hub may include a reason. A subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
-##### Subscription Denial Sequence
-
-<figure>
-  {% include DeniedSubscriptionSequence.svg %}
-  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
-</figure>
-
-##### `WebSocket` Subscription Denial Example
+#### `WebSocket` Subscription Denial Example
 
 ```json
 {
@@ -137,6 +137,25 @@ Field        | Optionality | Type     | Description
    "hub.reason": "session unexpectedly stopped"
 }
 ```
+
+#### Subscription Denial Sequence
+
+<figure>
+  {% include DeniedSubscriptionSequence.svg %}
+  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
+</figure>
+
+1. Subscriber requests a subscription via HTTP/S POST
+1. Hub refuses the Subscribe request via HTTP response
+1. Subscriber requests a subscription via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends a denial message over the WebSocket connection and closes the connection
+1. Subscriber sends subscription request via HTTP/S POST
+1. Hub accepts the Subscribe request and responds with the endpoint URL
+1. Subscriber connects to the endpoint URL via WebSockets
+1. Hub sends the confirmation message over the WebSocket connection
+1. The Hub MAY send a denial message at any time and close the connection
 
 ### Unsubscribe
 
@@ -169,3 +188,9 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
   {% include UnsubscriptionSequence.svg %}
   <figcaption><b>Figure: Unsubscription sequence</b></figcaption>
 </figure>
+
+1. A successful connection is established (see [Subscription Confirmation Example](#subscription-confirmation-example))
+1. Events are sent by the Hub and/or Subscriber
+1. The Subscriber sends an Unsubscribe request via HTTP/S POST
+1. Hub accepts the Unsubscribe request and responds with the endpoint URL
+1. Hub sends a denial message over the WebSocket connection and closes the connection

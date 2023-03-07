@@ -1,24 +1,47 @@
 @startuml
 
-title Websocket subscription denial
+skinparam NoteTextAlignment left
+skinparam Padding 2
+skinparam ParticipantPadding 40
+skinparam LifelineStrategy solid
+
+title WebSocket subscription denial flow diagram
 
 participant "App\n(Subscriber)" as Subscriber
 participant "FHIRcast\nHub" as Hub
 
-Subscriber -> Hub++: POST Suscribe
-Subscriber <-- Hub--: 202 Accepted [<wss URL>]
-Subscriber -> Hub: connect to <wss URL>>
-Subscriber <-- Hub: WS: conformation
+autonumber
 
-note right of Hub
-    App Subscribes
-    to Hub. Hub denies
-    Subscription. This denial
-    may occur at any time once
-    the App has established wss
-    connection.
-end note
+group Denial Workflows
+else Reject Subscribe Request
+  Subscriber -> Hub++: POST Subscribe
+  Subscriber <-- Hub--: 4xx (Client error)
+  |||
 
-Hub --> Subscriber++: WS: denial
+else Reject Before Confirmation
+  Subscriber -> Hub++: POST Subscribe
+  Subscriber <-- Hub: 202 Accepted [<wss URL>]
+  Subscriber -> Hub: connect to <wss URL>>
+  Subscriber <-- Hub--: WSS: denial
+  |||
+
+else Reject After Confirmation
+  Subscriber -> Hub++: POST Subscribe
+  Subscriber <-- Hub: 202 Accepted [<wss URL>]
+  Subscriber -> Hub: connect to <wss URL>>
+  Subscriber <-- Hub: WSS: confirmation
+  ...
+  Subscriber <-- Hub--: WSS: denial
+  |||
+end
+
+' note right of Subscriber
+'     App Subscribes to Hub. Hub 
+'     denies Subscription. This denial
+'     may occur at any time once
+'     the App has established wss
+'     connection, even after initial 
+'     confirmation.
+' end note
 
 @enduml
