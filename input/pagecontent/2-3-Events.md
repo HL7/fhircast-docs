@@ -109,7 +109,7 @@ The `FHIRresource` indicates the context of the selection. The `context` element
 
 This allows communication of different select sets for the different anchor-types.
 
-For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
 
 #### Content sharing events
 
@@ -121,16 +121,9 @@ ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 
 {% include img.html img="ContentSharingEventName.png" caption="Figure: Content sharing event-name specification" %}
 
+An `update` event provides a mechanism to share content in the context of the current anchor context (see [`anchor context`](5_glossary.html)).  A Subscriber shares content related to the anchor context by providing FHIR resources in a Bundle contained in the `updates` key of an `update` event.  See [`Content Sharing`](2-10-ContentSharing.html) for a comprehensive description of `update` events.
 The `FHIRresource` indicates the anchor context in which content is being shared. 
 
-The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
-
-The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
-
-FHIR resources are used to carry the information being shared. These resources are entries in the Bundle resource inside the updates key. Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an Observation resource usually contains all information regarding that observation.
-
-However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute must be appropriately populated.
-
-If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
+The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.  The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html).
