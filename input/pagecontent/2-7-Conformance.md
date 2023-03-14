@@ -1,5 +1,5 @@
-
 The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on the FHIR CapabilityStatement resource as described below. 
+
 
 ### Wellknown endpoint
 
@@ -76,3 +76,10 @@ Extension | Cardinality | Type | Description
     ...
 }
 ```
+### FHIR Resource Structures
+FHIRcast defines profiles for various FHIR resource structures used in the specification, see [`summary of artifacts`](artifacts.html).
+
+#### Must Support
+In the context of FHIRcast, must support (MS) on any data element SHALL be interpreted to mean FHIR’s MustSupport. Generally, implementations are expected to:
+* if known and possible, populate supported data elements as part of the event notifications as specified by the FHIRcast profiles.
+* interpret missing, supported data elements within resource instances as data not present in the sending systems (or for which the requestor is unauthorized).
