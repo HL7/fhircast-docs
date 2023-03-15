@@ -1,3 +1,4 @@
+
 {:.grid}
 Term | Description
 ---- | ---
