@@ -1,8 +1,6 @@
 ### Revision History
 All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
 
-The normative portion of this implementation guide is contained in Sections [2](2_Specification.html), [3](3_Events.html), and [8](artifacts.html); while other portions of the specification are informative and are labeled as such. 
-
 #### 20200715 Significant changes as part of the STU2 publication included: 
 
 * Introduction of WebSockets as the preferred communication mechanism over webhooks.
