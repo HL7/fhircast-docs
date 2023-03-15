@@ -29,7 +29,7 @@ Note that:
 * The [Event Catalog](3_Events.html) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
 ### Reading the Specification
-Much of this implementation guide is descriptive in how Subscribers and the FHIRcast Hub interact in various scenarios.  The normative portion of this implementation guide is contained in Sections [2](2_Specification.html), [3](3_Events.html), and [8](artifacts.html).  Other portions of the specification are informative and are labeled as such. 
+Much of this implementation guide is descriptive in how Subscribers and the FHIRcast Hub interact in various scenarios.  The normative portion of this implementation guide is contained in Sections [2: Specification](2_Specification.html), [3: Event Library](3_Events.html), [5 Glossary](5_glossary.html) and [8 Artifacts](artifacts.html).  Other portions of the specification are informative and are labeled as such.
 
 ### Relation to FHIR Subscriptions
 FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed).  Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
