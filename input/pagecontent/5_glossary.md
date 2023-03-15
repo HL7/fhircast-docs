@@ -1,5 +1,3 @@
-{% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track</a>.' %}
-
 {:.grid}
 Term | Description
 ---- | ---
