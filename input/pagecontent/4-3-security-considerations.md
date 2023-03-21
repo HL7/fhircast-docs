@@ -30,13 +30,13 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 
 ### Access to non-authorized content
 
-FHIRcast events can contain a variety of content. Context-change events containt resources that update the current context, selection events indicate resources that are currently selected and content-exchange events contain resources that are updated by one of the applications connected to the session.
+Access to non-authorized content is a critical issue in healthcare data exchange, as it can lead to privacy breaches and unauthorized use of sensitive information. In the FHIRcast event-based communication model, various types of content can be shared among applications that are connected to a session, such as updates to the current context, selected resources, and exchanged resources.
 
-The FHIRcast specification checks the authorization to receive and send events when a Subscriber subscribes. This ensures that all applications can only receive events that relate to resources they are allowed to access. It is the responsibility of the authorization server to ensure valid set of authorizations are provided. So an application that is allowed to receive Encounter resources should also be allowed to access the Patient resource of the Encounter.
+To ensure that only authorized applications can access and share content, the FHIRcast specification includes a mechanism for checking authorization when a Subscriber subscribes to a session. This mechanism ensures that each application can only receive events related to resources that it is authorized to access. The responsibility of providing a valid set of authorizations lies with the authorization server, which should allow an application that can receive Encounter resources to also access the Patient resource of the encounter.
 
-Typically all applications subscribed to a FHIRcast session are controlled by the same user. These applications can only access content the user is allowed to access. This makes it very difficult to share content the user is not allowed to access. These applications can also create new content, also content of resource types the user would not be allowed to retrieve from the FHIR store. Within the context of FHIRcast this is seen as acceptible behaviour.
+As all applications subscribed to a FHIRcast session are typically controlled by the same user, they can only access content that the user is authorized to access. This makes it challenging to share content that the user is not allowed to access. However, these applications can create new content, even for resource types that the user cannot retrieve from the FHIR store. Such behavior is acceptable within the context of FHIRcast.
 
-This allows FHIRcast to work under the assumption that applications can only access and share content the user is allowed to access. So, FHIRcast hubs are not required to enforce access restrictions on FHIR resources included in events. 
+Therefore, FHIRcast hubs do not need to enforce access restrictions on FHIR resources included in events.
 
 ### WebSocket Security Considerations
 
