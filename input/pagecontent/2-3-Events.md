@@ -62,7 +62,7 @@ All fields available within an event's context SHALL be defined in a table where
 
 A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-imagingstudy-open.html) event occurs, the notification sent to a subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
+Hubs SHOULD use the [_elements](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 Many events refer to a resource the event relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
@@ -76,7 +76,9 @@ The FHIRcast specification supports many different events. These events are defi
 
 #### Context-change events
 
-FHIRcast context-change events that describe context changes SHALL conform to the following extensible syntax. Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related event names is:
+FHIRcast context-change events change the current [context](5_glossary.html) of a topic. The current context of a topic is defined as the set of resources that define what the user is currently working on. It can be represented as a single resource (e.g. Patient) or as a set (e.g. Patient, Encounter, ImagingStudy and DiagnosticReport). For each resource type, the context can hold one resource. Context-change events signal changes in this set. 
+
+Context-change events SHALL conform to the following extensible syntax. Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related event names is:
 
 ```ebnf
 ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
@@ -85,6 +87,11 @@ ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 {% include img.html img="ContextEventName.png" caption="Figure: Context Event-name specification" %}
 
 Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
+
+
+An `<FHIRresource>-open` event signals that the resource in the event now is the anchor-resource for that resource type in the current context.
+
+An `<FHIRresource>-close` event signals that the resource in the event should be removed from the current context. 
 
 In the case the resource refers to other FHIR resources that represent there own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
 

@@ -63,11 +63,9 @@ pages:
       title: Infrastructure Events
       3-2-1-syncerror.md:
         title: Sync error Event
-      3-2-2-heartbeat.md:
-        title: Heartbeat Event
-      3-2-3-userlogout.md:
+      3-2-2-userlogout.md:
         title: User logout Event
-      3-2-4-userhibernate.md:
+      3-2-3-userhibernate.md:
         title: User hibernate Event
     3-3-0-patientevents.md:
       title: Patient Events
