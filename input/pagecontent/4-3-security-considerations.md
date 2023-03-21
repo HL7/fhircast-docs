@@ -28,6 +28,10 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 * [Argonaut Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
 * [OAuth 2.0 Threat Model and Security Considerations](https://tools.ietf.org/html/rfc6819)
 
+### Including non-authorized content
+
+Authorization to receive and send events is checked upon subscription. FHIRcast hubs are not required to enforce access restrictions on FHIR resources included in events. FHIRcast assumes that applications can only access and share content the user is allowed to access.
+
 ### WebSocket Security Considerations
 
 It is recommended that Subscribers use and Hubs should only accept connections made over the secure _wss://_ WebSocket protocol and not the unsecured _ws://_ WebSocket protocol.
