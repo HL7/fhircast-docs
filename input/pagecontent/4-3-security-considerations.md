@@ -28,9 +28,15 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 * [Argonaut Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
 * [OAuth 2.0 Threat Model and Security Considerations](https://tools.ietf.org/html/rfc6819)
 
-### Including non-authorized content
+### Access to non-authorized content
 
-Authorization to receive and send events is checked upon subscription. FHIRcast hubs are not required to enforce access restrictions on FHIR resources included in events. FHIRcast assumes that applications can only access and share content the user is allowed to access.
+FHIRcast events can contain a variety of content. Context-change events containt resources that update the current context, selection events indicate resources that are currently selected and content-exchange events contain resources that are updated by one of the applications connected to the session.
+
+The FHIRcast specification checks the authorization to receive and send events when a Subscriber subscribes. This ensures that all applications can only receive events that relate to resources they are allowed to access. It is the responsibility of the authorization server to ensure valid set of authorizations are provided. So an application that is allowed to receive Encounter resources should also be allowed to access the Patient resource of the Encounter.
+
+Typically all applications subscribed to a FHIRcast session are controlled by the same user. These applications can only access content the user is allowed to access. This makes it very difficult to share content the user is not allowed to access. These applications can also create new content, also content of resource types the user would not be allowed to retrieve from the FHIR store. Within the context of FHIRcast this is seen as acceptible behaviour.
+
+This allows FHIRcast to work under the assumption that applications can only access and share content the user is allowed to access. So, FHIRcast hubs are not required to enforce access restrictions on FHIR resources included in events. 
 
 ### WebSocket Security Considerations
 
