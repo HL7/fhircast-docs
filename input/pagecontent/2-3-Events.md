@@ -93,7 +93,6 @@ FHIRcast supports all events that follow this format. The most common events def
 This event category contains events required to maintain a FHIRcast session. The main events in this category are:
 
 | [`syncerror`](3-2-1-syncerror.html) | indicates refusal to follow context or inability to deliver an event
-| [`heartbeat`](3-2-2-heartbeat.html) | for monitoring the connection to the hub
 
 #### Selection events
 

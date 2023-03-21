@@ -8,9 +8,8 @@ The sections in this chapter are:
 
 | **3.2 Infrastructure Events** |
 | [3.2.1 Sync error event](3-2-1-syncerror.html) |
-| [3.2.2 Heartbeat event](3-2-2-heartbeat.html) |
-| [3.2.3 User logout event](3-2-3-userlogout.html) |
-| [3.2.4 User hibernate event](3-2-4-userhibernate.html) |
+| [3.2.2 User logout event](3-2-3-userlogout.html) |
+| [3.2.3 User hibernate event](3-2-4-userhibernate.html) |
 
 | **3.3 Patient Events** |
 | [3.3.1 Patient open event](3-3-1-patient-open.html) |

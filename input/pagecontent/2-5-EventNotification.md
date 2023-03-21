@@ -114,10 +114,9 @@ In addition to distributing [`syncerror`](3-2-1-syncerror.html) events sent by o
 
 Upon communicating a `syncerror` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber.
 
-The Hub SHALL NOT generate [`syncerror`](3-2-1-syncerror.html) events in the following situations:
+The Hub SHALL NOT generate [`syncerror`](3-2-1-syncerror.html) events in the following situation:
 
-1. A Subscriber fails to respond to a [`heartbeat`](3-2-2-heartbeat.html) event (because occasional missed heartbeats are expected and are not a context synchronization failure).
-2. A Subscriber closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
+1. A Subscriber closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
 
 During a normal shutdown of a Subscriber, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive Subscriber.
 
