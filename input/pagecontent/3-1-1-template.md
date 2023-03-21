@@ -10,7 +10,18 @@ Describe when this event occurs in a workflow. Describe how the context fields r
 
 ### Context
 
-Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource.
+Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource using a table as presented below.
+
+{:.grid}
+Key | Optionality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`<key-name>` | REQUIRED or OPTIONAL | `<element-expression>` | Description of the context value.
+
+where:
+* `<key-name>` refers to the name of the key to used in the event context
+* `<element-expression>` refers to a FHIR query, optionally including an `_element` expression that can be used to limit the size of the event.
+
+An example context definition is:
 
 {:.grid}
 Key | Optionality | FHIR operation to generate context | Description
@@ -19,6 +30,8 @@ Key | Optionality | FHIR operation to generate context | Description
 `encounter` | OPTIONAL | `Encounter/{id}` | Describe the context value
 
 ### Examples
+
+Include an example message in json.
 
 ```json
 {
