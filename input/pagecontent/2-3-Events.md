@@ -2,7 +2,7 @@ FHIRcast describes a workflow event subscription and notification scheme with th
 
 New events are proposed in a prescribed format using the [event template](3-1-1-template.html) by submitting a [pull request](https://github.com/fhircast/docs/tree/master). FHIRcast events are versioned, and mature according to the [event maturity model](3-1-2-eventmaturitymodel.html).
 
-FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL not require receiving a previous or future event.
+FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL NOT require receiving a previous or future event.
 
 ### Event Definition Format
 
