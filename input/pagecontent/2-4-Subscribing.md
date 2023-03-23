@@ -106,8 +106,7 @@ Once the subscription is confirmed, the application is subscribed.
 
 ### Current context notification upon successful subscription
 
-> NOTE
- > Implementer feedback on this optional feature is required.
+{% include questionnote.html text='Implementer feedback on this optional feature is required.' %}
 
 Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event per anchor type for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
 
