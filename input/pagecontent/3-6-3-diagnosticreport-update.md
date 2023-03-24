@@ -23,6 +23,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
 
+{:.grid}
 Request Method | Operation
 --- | ---
 `POST` | Add a new resource
