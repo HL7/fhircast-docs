@@ -45,7 +45,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 |=======|=============|
 | `*`   | All events  |
 | `*-*` | All events  |
-| `Patient-*` | All events that use the `Patient` fhir-resource |
+| `Patient-*` | All events that use the `Patient` FHIR resource |
 | `*-update` | All update events |
 | `*-select` | All select events |
 
