@@ -1,0 +1,28 @@
+@startuml
+    actor Clinician
+    participant "EHR App\n(Subscriber)" as EHR
+    participant "Reporting\nApplication\n(Subscriber)" as RepApp
+    participant Hub
+    participant "Image Reading\nApplication\n(Subscriber)" as App1
+    
+    Clinician -> EHR: 1: Open a Patient\nSummary
+    EHR -> Hub: 2: Patient-open
+    Hub -> Hub: 3: Store Context\nand Generate\nVersionId
+    Hub -\ RepApp: 4a: Patient-open with VersionId
+    note over RepApp: 5: React and store VersionId
+    Hub -\ App1: 4b: Patient-open with VersionId
+    note over App1: 6: ignore
+    Hub -\ EHR: 4c: Patient-open with VersionId
+    note over EHR: 7: Store VersionId
+
+    Clinician -> RepApp: 8: create report
+    RepApp-> Hub: 9: DiagnosticReport-open
+    note over Hub: 10: Store Context\nand generate\nVersionId
+    Hub -> RepApp: 11a: DiagnosticReport\nwith VersionId
+    note over RepApp: 12: store VersionID
+    Hub -> App1: 11b: DiagnosticReport\nwith VersionId
+    note over App1: 13: react and store VersionID
+    Hub -> EHR: 11c: DiagnosticReport\nwith VersionId
+    note over EHR: 14: ignore
+@enduml
+

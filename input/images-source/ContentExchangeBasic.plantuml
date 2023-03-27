@@ -1,0 +1,42 @@
+@startuml
+autonumber
+
+actor Clinician
+participant "App1\n(Subscriber)" as App1
+participant Hub
+participant "App2\n(Subscriber)" as App2
+
+=== Open diagnostic report ===
+
+Clinician -> App1: Open Report
+activate App1
+App1 -> Hub++: DiagnosticReport-open
+Hub -> Hub: Store Context and Generate VersionId
+App1 <-- Hub--: 202 Accepted
+deactivate App1
+
+Hub -\ App1: DiagnosticReport-open\nwith VersionId
+Hub -\ App2: DiagnosticReport-open\nwith VersionId
+
+=== Make Observation ===
+
+Clinician -> App2: Make Observation
+activate App2
+App2 -> Hub++: DiagnosticReport-open with\nVersionId and Observation
+Hub -> Hub: Update Content and\ngenerate new VersionId
+App2 <-- Hub--: 202 Accepted
+deactivate App2
+Hub -\ App1: DiagnosticReport-open\nwith Observation, VersionId\nand priorVersionId
+Hub -\ App2: DiagnosticReport-open\nwith Observation, VersionId\nand priorVersionId
+
+=== Close Report ===
+Clinician -> App2: Close report
+activate App2
+App2 -> Hub++: DiagnosticReport-close
+App2 <-- Hub--: 202 Accepted
+deactivate App2
+Hub -\ App1: DiagnosticReport-close
+Hub -\ App2: DiagnosticReport-close
+Hub -> Hub: Purge Context including Content
+
+@enduml
