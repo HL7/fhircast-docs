@@ -15,7 +15,7 @@ Structured information may be added, changed, or removed quite frequently during
 
 <figure>
   {% include ContentExchangeBasic.svg %}
-  <figcaption><b>Figure: Opening a Diagnostic Report Context</b></figcaption>
+  <figcaption><b>Figure: Basics of content sharing</b></figcaption><p></p>
 </figure>
 
 #### Example Use Case
@@ -30,7 +30,7 @@ Using a reporting application, a clinical user creates a report by choosing an i
 
 <figure>
   {% include ContentExchangeOpenReport.svg %}
-  <figcaption><b>Figure: Create a Measurement</b></figcaption>
+  <figcaption><b>Figure: Opening a Diagnosticreport Context</b></figcaption><p></p>
 </figure>
 
 The clinical user takes a measurement using the imaging reading application (message 1 in the below sequence diagram) which then shares this measurement by making a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request to the Hub (message 2). The Hub validates that the `context.versionId` provided in the request is correct, updates its content, generates a new `context.versionId` (message 3). If the `context.versionId` provided in the request is not correct the Hub rejects the request (response to message 2). The Hub then distributes `DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events which contain the newly generated `context.versionId` and the `priorVersionId` to all subscribed applications (messages 4a, 4b, and 4c). The reporting application receives the measurement through a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) event from the Hub and adds this information to the report if the `context.versionId` it currently holds matches the `context.priorVersionId` provided in the event (message 7). If the `context.priorVersionId` does not match the `context.versionId` of the content known to the reporting application, it may resynchronize its content by requesting the current context from the Hub (message 8).
@@ -39,14 +39,14 @@ As the clinical user continues the reporting process they select a measurement o
 
 <figure>
   {% include ContentExchangeShareContent.svg %}
-  <figcaption><b>Figure: Newly Subscribed Application Contributes Content</b></figcaption>
+  <figcaption><b>Figure: Create a Measurement</b></figcaption><p></p>
 </figure>
 
 At some point the image reading application (automatically or through user interaction) may determine that an advanced quantification application should be used and launches this application including the appropriate FHIRcast topic (messages 1 and 2 in the below sequence diagram).  The advanced quantification application then subscribes to the topic and requests the current context including any already exchanged structured information by making a [`GET Context`](2-9-GetCurrentContext.html) request to the Hub which returns the current context including existing content in the response (messages 3 and 4).  The user interacts with the advanced quantification application which then adds content to the anchor context (messages 6 through 13).
 
 <figure>
   {% include ContentExchangeAdvancedQuantification.svg %}
-  <figcaption><b>Figure: Basics of Content Sharing</b></figcaption>
+  <figcaption><b>Figure: Newly Subscribed Application Contributes Content</b></figcaption><p></p>
 </figure>
 
 Finally the clinical user closes the report in the reporting application. The reporting application makes a [`DiagnosticReport-close`](3-6-2-diagnosticreport-close.html) request. Upon receipt of the [`DiagnosticReport-close`](3-6-2-diagnosticreport-close.html) event both the imaging reading application and advanced quantification application close all relevant image studies.

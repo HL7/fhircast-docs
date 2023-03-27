@@ -80,6 +80,7 @@ Field    | Optionality | Type     | Description
 <figure>
   {% include EventNotificationSequence.svg %}
   <figcaption><b>Figure: Event Notification Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 ### Event Notification Errors
@@ -96,6 +97,7 @@ The figure below illustrates the Event Notification Error Sequence.
 <figure>
   {% include EventNotificationErrorSequence.svg %}
   <figcaption><b>Figure: Event Notification Error Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).

@@ -5,6 +5,7 @@ Once a requested context change is accepted, the Hub SHALL broadcast the context
 <figure>
   {% include EventNotificationSequence.svg %}
   <figcaption><b>Figure: Event Notification Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 ### Request Context Change body

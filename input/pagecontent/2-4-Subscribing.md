@@ -95,6 +95,7 @@ Once the subscription is confirmed, the application is subscribed.
 <figure>
   {% include SuccessfulWebSocketSubscriptionSequence.svg %}
   <figcaption><b>Figure: Successful WebSocket Subscription Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. Subscriber sends subscription request via HTTP/S POST
@@ -142,6 +143,7 @@ Field        | Optionality | Type     | Description
 <figure>
   {% include DeniedSubscriptionSequence.svg %}
   <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. Subscriber requests a subscription via HTTP/S POST
@@ -186,6 +188,7 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
  <figure>
   {% include UnsubscriptionSequence.svg %}
   <figcaption><b>Figure: Unsubscription sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. A successful connection is established (see [Subscription Confirmation Example](#subscription-confirmation-example))
