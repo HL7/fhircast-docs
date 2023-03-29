@@ -7,7 +7,10 @@ Description: """
     communicated in FHIRcast `-update` messages. The bundle can only contain
     requests of type PUT and DELETE.  
     POST is not allowed as the content sharing mechanism cannot indicate the 
-    id of the created resource.
+    id of a resource created by a POST method.  Since the creator of the resource
+    does wish to have control over the id of a resource it has created, as per the FHIR
+    RESTful API it should use the update (i.e., PUT) interaction instead of the
+    create (i.e., POST) interaction.
 """
 * type MS
 * type = #transaction
@@ -30,8 +33,8 @@ Description: """
   * response 0..0
 * entry[delete]
   * fullUrl MS
-  * fullUrl 1..1
-  * resource 0..0
+  * fullUrl 0..1
+  * resource 1..1
   * search 0..0
   * request 1..1
     * method = #DELETE
