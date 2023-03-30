@@ -18,7 +18,7 @@ To create a subscription, the subscribing application SHALL perform an HTTP POST
 Field                  | Optionality | Type     | Description
 ---------------------- | ----------- | -------- | ------------
 `hub.channel.type`     | Required    | *string* | The Subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
-`hub.mode`             | Required    | *string* | The literal string `subscribe`, depending on the goal of the request.
+`hub.mode`             | Required    | *string* | The literal string `subscribe`.
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to. 
 `hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe. SHALL be included for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
