@@ -1,44 +1,58 @@
 @startuml
+skinparam shadowing false
+skinparam lifelineStrategy nosolid
+hide footbox
 
 actor Clinician
 participant "App1\n(Subscriber)" as App1
 participant Hub
 participant "App2\n(Subscriber)" as App2
 
-== Open diagnostic report ==
-
 Clinician -> App1: Open Report
+group FHIRcast: Open Report
 activate App1
-App1 -> Hub++: DiagnosticReport-open
-Hub -> Hub: Store Context and Generate VersionId
+App1 -> Hub: DiagnosticReport-open
+activate Hub
+Hub -> Hub++--: Store Context and Generate versionId
 App1 <-- Hub: 202 Accepted
+|||
 deactivate App1
-
-Hub -\ App1: DiagnosticReport-open\nwith VersionId
-Hub -\ App2: DiagnosticReport-open\nwith VersionId
+Hub -\ App1: DiagnosticReport-open
+note right App1: with versionId
+Hub -\ App2: DiagnosticReport-open
+note left App2: with versionId
 deactivate Hub
-
-== Make Observation ==
-
+end
+...
 Clinician -> App2: Make Observation
+group FHIRcast: Make Observation
 activate App2
-App2 -> Hub++: DiagnosticReport-open with\nVersionId and Observation
-Hub -> Hub: Update Content and\ngenerate new VersionId
+App2 -> Hub: DiagnosticReport-update
+activate Hub
+note right Hub: with versionId and Observation
+Hub -> Hub++--: Update Content and Generate New versionId
 App2 <-- Hub: 202 Accepted
 deactivate App2
-Hub -\ App1: DiagnosticReport-open\nwith Observation, VersionId\nand priorVersionId
-Hub -\ App2: DiagnosticReport-open\nwith Observation, VersionId\nand priorVersionId
+|||
+Hub -\ App1: DiagnosticReport-update
+note right App1: with Observation, versionId,\nand priorVersionId
+Hub -\ App2: DiagnosticReport-update
+note left App2: with Observation, versionId,\nand priorVersionId
 deactivate Hub
-
-== Close Report ==
+end
+...
 Clinician -> App2: Close report
+group FHIRcast: Close Report
 activate App2
-App2 -> Hub++: DiagnosticReport-close
+App2 -> Hub: DiagnosticReport-close
+activate Hub
 App2 <-- Hub: 202 Accepted
 deactivate App2
+|||
 Hub -\ App1: DiagnosticReport-close
 Hub -\ App2: DiagnosticReport-close
-Hub -> Hub: Purge Context including Content
+Hub -> Hub++--: Purge Context including Content
+end
 deactivate Hub
 
 @enduml

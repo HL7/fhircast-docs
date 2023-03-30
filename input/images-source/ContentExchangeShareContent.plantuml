@@ -1,38 +1,67 @@
 @startuml
-    actor Clinician
-    participant "EHR App\n(Subscriber)" as EHR
-    participant "Reporting\nApplication\n(Subscriber)" as RepApp
-    participant Hub
-    participant "Image Reading\nApplication\n(Subscriber)" as App1
-    
-    Clinician -> App1: 1: make measurement
-    App1 -> Hub++: 2: DiagnosticReport-update\nwith VersionId
+skinparam shadowing false
+skinparam lifelineStrategy nosolid
+hide footbox
 
-    group Validate Update Request
-    else versionId incorrect
-        Hub --> App1:2: Reject DiagnosticReport-update
-    else VersionId correct
-        note over Hub: 3: Update Content \nand generate new VersionId
-        Hub -\ EHR: 4a: DiagnosticReport-update with VersionId\nand priorVersionId
-        note over EHR: 5: ignore
-        Hub -\ App1: 4b: DiagnosticReport-update with VersionId\nand priorVersionId
-        note over App1: 6: store VersionId
-        Hub -\ RepApp: 4c:DiagnosticReport-update with VersionId\nand priorVersionId
-        group Validate Current Version
-        else priorVersion Correct
-            note over RepApp: 7: update Content and\nstore VersionId
-        else priorVersion Incorrect
-            RepApp -> Hub: 8: Get Current Context
-        end
-    end
+actor Clinician
+participant "EHR App\n(Subscriber)" as EHR
+participant "Reporting\nApplication\n(Subscriber)" as RepApp
+participant Hub
+participant "Image Reading\nApplication\n(Subscriber)" as App1
 
-    Clinician -> RepApp: 9: Select a Measurement
-    RepApp -> Hub: 10: DiagnosticReport-select
-    Hub -\ EHR: 11a: DiagnosticReport-select
-        note over EHR: 12: ignore
-    Hub -\ App1: 11b: DiagnosticReport-select
-    note over App1: 13: Adjust UI
-    Hub -\ RepApp: 11c: DiagnosticReport-select
+Clinician -> App1: 1: make measurement
+App1 -> Hub++: 2: DiagnosticReport-update
+note right Hub: with versionId
 
+group FHIRcast: Add Measurement
+|||
+group Validate Update Request
+else versionId incorrect
+Hub --> App1:2: Reject DiagnosticReport-update
+else VersionId correct
+Hub -> Hub++--: 3: Update Content \nand Generate New versionId
+Hub -\ EHR: 4a: DiagnosticReport-update
+activate EHR
+note right EHR: with versionId and priorVersionId
+EHR -> EHR++--: 5: Ignore
+Hub -\ App1: 4b: DiagnosticReport-update
+deactivate EHR
+note left App1: with versionId and priorVersionId
+activate App1
+App1 -> App1++--: 6: Store versionId
+Hub -\ RepApp: 4c:DiagnosticReport-update
+deactivate App1
+note right RepApp: with versionId and priorVersionId
+activate RepApp
+group Validate Current Version
+else priorVersion Correct
+RepApp -> RepApp++--: 7: Update Content and\nStore versionId
+else priorVersion Incorrect
+RepApp -> Hub: 8a: Get Current Context
+deactivate Hub
+RepApp -> RepApp++--: 8b: Update Content and\nStore versionId
+end
+deactivate RepApp
+|||
+end
+end
+|||
+Clinician -> RepApp: 9: Select a Measurement
+group FHIRcast: Select Measurement
+RepApp -> Hub: 10: DiagnosticReport-select
+activate Hub
+Hub -\ EHR: 11a: DiagnosticReport-select
+activate EHR
+EHR -> EHR++--: 12: Ignore
+Hub -\ App1: 11b: DiagnosticReport-select
+deactivate EHR
+activate App1
+App1 -> App1++--: Adjust UI
+Hub -\ RepApp: 11c: DiagnosticReport-select
+deactivate App1
+activate RepApp
+deactivate Hub
+RepApp -> RepApp++--: Store versionId
+end
+deactivate RepApp
 @enduml
-
