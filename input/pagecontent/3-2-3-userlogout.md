@@ -10,6 +10,8 @@ Unlike most of FHIRcast events, `userlogout` is a statically named event and the
 
 Implementers are encouraged to consider if and when their application should logout the user upon receiving an userLogout event, and if so, how to preserve application state.
 
+If a Subscriber decides that it will not logout it SHOULD send a [syncerror](3-2-1-syncerror.html) with appropriate details indicating why the subscriber chose not to log out the current user. 
+
 ### Context
 
 The context is empty.
