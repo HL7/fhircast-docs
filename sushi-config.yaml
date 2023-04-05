@@ -36,7 +36,7 @@ pages:
       title: Subscribing to Events
     2-5-EventNotification.md:
       title: Event Notification
-    2-6-RequestContextChange.md:
+    2-6-RequestEventNotification.md:
       title: Request Event Notification
     2-7-Conformance.md:
       title: Conformance
@@ -138,7 +138,7 @@ menu:
     Event Format: 2-3-Events.html
     Subscribing to Events: 2-4-Subscribing.html
     Event Notification: 2-5-EventNotification.html
-    Request Event Notification: 2-6-RequestContextChange.html
+    Request Event Notification: 2-6-RequestEventNotification.html
     Conformance: 2-7-Conformance.html
     Extensions: 2-8-Extensions.html
     Get Current Context: 2-9-GetCurrentContext.html

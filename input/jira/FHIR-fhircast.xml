@@ -55,7 +55,7 @@
 <page key="3-3-0-patientevents" name="Patient Events"/>
 <page key="3-3-2-patient-close" name="Patient close event"/>
 <page key="3-3-1-patient-open" name="Patient open event"/>
-<page key="2-6-RequestContextChange" name="Request Context Change"/>
+<page key="2-6-RequestEventNotification" name="Request Context Change"/>
 <page key="4_Scenarios" name="Scenarios"/>
 <page key="4-3-security-considerations" name="Security considerations"/>
 <page key="2-1-SessionDiscovery" name="Session Discovery"/>

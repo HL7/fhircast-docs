@@ -82,7 +82,7 @@
 <page key="3-3-1-patient-open" name="Patient open Event"/>
 <page deprecated="true" key="patient-open" name="Patient open event"/>
 <page deprecated="true" key="RequestContextChange" name="Request Context Change"/>
-<page key="2-6-RequestContextChange" name="Request Event Notification"/>
+<page key="2-6-RequestEventNotification" name="Request Event Notification"/>
 <page key="Scenarios" name="Scenarios"/>
 <page key="4-3-security-considerations" name="Security Considerations"/>
 <page deprecated="true" key="security-considerations" name="Security considerations"/>
