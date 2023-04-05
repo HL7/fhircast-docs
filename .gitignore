@@ -17,3 +17,5 @@ template/
 output/
 updateWebsite.sh
 nginx.conf
+
+**/.index.json
