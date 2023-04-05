@@ -19,6 +19,7 @@ Field       | Optionality | Type     | Description
 `event`     | Required    | *object* | A JSON object describing the event as defined in [Event Definition](2-3-Events.html).
 
 A Subscriber that initiates a context change and receives a `syncerror` related to a context change event it sent, SHOULD resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
+
 ### Request Context Change example
 
 #### Request
