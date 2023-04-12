@@ -57,7 +57,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 
 #### Subscription Response Example
 
-```text
+```json
 HTTP/1.1 202 Accepted
 
 {   

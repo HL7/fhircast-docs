@@ -68,7 +68,7 @@ Field    | Optionality | Type     | Description
 `id`     | Required    | *string* | Event identifier from the event notification to which this response corresponds.
 `status` | Required    | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the Subscriber. Any 2xx code indicates success, any other code indicates failure.
 
-```text
+```json
 {
   "id": "q9v3jubddqt63n1",
   "status": "200"
