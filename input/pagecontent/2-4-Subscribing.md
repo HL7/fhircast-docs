@@ -2,11 +2,11 @@ Subscribing and unsubscribing to a topic is how applications establish their con
 
 Subscribing consists of different exchanges:
 
-[Subscription Request](#subscription-request) | Subscriber requests a subscription at the `hub.url` URL
-[Subscription Response](#subscription-confirmation) | The Hub confirms that the subscription was requested by the Subscriber
-[Subscription Confirmation](#subscription-confirmation) | The subscribing application confirms the subscription
-[Subscription Denial](#subscription-denial) | The Hub indicates that the subscription has ended
-[Unsubscribing](#unsubscribe) | Subscriber indicates that it wants to unsubscribe
+[Subscription Request](#subscription-request) | Subscriber requests a subscription at the `hub.url` URL.
+[Subscription Response](#subscription-confirmation) | The Hub confirms that the subscription was requested by the Subscriber.
+[Subscription Confirmation](#subscription-confirmation) | The subscribing application confirms the subscription.
+[Subscription Denial](#subscription-denial) | The Hub indicates that the subscription has ended.
+[Unsubscribing](#unsubscribe) | Subscriber indicates that it wants to unsubscribe.
 
 Any content returned from subscription requests SHALL be returned as `application/json`.
 
@@ -18,8 +18,8 @@ To create a subscription, the subscribing application SHALL perform an HTTP POST
 Field                  | Optionality | Type     | Description
 ---------------------- | ----------- | -------- | ------------
 `hub.channel.type`     | Required    | *string* | The Subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
-`hub.mode`             | Required    | *string* | The literal string `subscribe` or `unsubscribe`, depending on the goal of the request.
-`hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from. 
+`hub.mode`             | Required    | *string* | The literal string `subscribe`.
+`hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to. 
 `hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe. SHALL be included for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
@@ -31,8 +31,8 @@ Hubs SHALL allow subscribers to re-request subscriptions that are already activa
 
 The application that creates the subscription MAY NOT be the same system as the server connecting to the WSS URL (e.g., a federated authorization model could exist between these two systems). However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the Subscriber and the system receiving notifications.
 
-> NOTE
-> The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.
+{% include infonote.html text='The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.' %}
+
 
 #### Initial Subscription Request Example
 
@@ -57,7 +57,7 @@ If a Hub refuses the request or finds any errors in the subscription request, an
 
 #### Subscription Response Example
 
-```text
+```json
 HTTP/1.1 202 Accepted
 
 {   
@@ -95,6 +95,7 @@ Once the subscription is confirmed, the application is subscribed.
 <figure>
   {% include SuccessfulWebSocketSubscriptionSequence.svg %}
   <figcaption><b>Figure: Successful WebSocket Subscription Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. Subscriber sends subscription request via HTTP/S POST
@@ -106,8 +107,7 @@ Once the subscription is confirmed, the application is subscribed.
 
 ### Current context notification upon successful subscription
 
-> NOTE
- > Implementer feedback on this optional feature is required.
+{% include questionnote.html text='Implementer feedback on this optional feature is required.' %}
 
 Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHOULD follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event per anchor type for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs that implement this feature, SHALL NOT send a Subscriber events to which it is not subscribed.
 
@@ -143,6 +143,7 @@ Field        | Optionality | Type     | Description
 <figure>
   {% include DeniedSubscriptionSequence.svg %}
   <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. Subscriber requests a subscription via HTTP/S POST
@@ -187,6 +188,7 @@ hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee
  <figure>
   {% include UnsubscriptionSequence.svg %}
   <figcaption><b>Figure: Unsubscription sequence</b></figcaption>
+  <p></p>
 </figure>
 
 1. A successful connection is established (see [Subscription Confirmation Example](#subscription-confirmation-example))

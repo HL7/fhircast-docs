@@ -22,10 +22,8 @@
 <page deprecated="true" key="launch-scenarios" name="App launch scenarios and session discovery"/>
 <page key="4-1-launch-scenarios" name="Application Launch Scenarios and Session Discovery"/>
 <page key="artifacts" name="Artifacts Summary"/>
-<page key="6_change-log" name="Change Log"/>
 <page deprecated="true" key="change-log" name="Change log"/>
 <page key="conformance" name="Conformance"/>
-<page key="content-sharing" name="Content Sharing"/>
 <page key="content-sharing" name="Content Sharing"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
@@ -56,13 +54,14 @@
 <page key="2-10-2-ContentSharingFHIR" name="FHIR based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
+<page key="4-6-fhircast-event-content-sharing" name="FHIRcast event based content sharing example"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast event-based content sharing"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast-event based content sharing"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
 <page key="3-2-2-heartbeat" name="Heartbeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
-<page key="2-10-3-ContentSharingHybrid" name="Hybrid solution"/>
+<page key="4-7-hybrid-content-sharing" name="Hybrid Content Sharing"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
 <page key="3-5-2-imagingstudy-close" name="ImagingStudy close Event"/>
 <page deprecated="true" key="imagingstudy-close" name="ImagingStudy close event"/>
@@ -87,6 +86,7 @@
 <page key="4-3-security-considerations" name="Security Considerations"/>
 <page deprecated="true" key="security-considerations" name="Security considerations"/>
 <page key="session-discovery" name="Session Discovery"/>
+<page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
 <page key="3-2-1-syncerror" name="Sync error Event"/>

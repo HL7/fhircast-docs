@@ -2,7 +2,7 @@ FHIRcast describes a workflow event subscription and notification scheme with th
 
 New events are proposed in a prescribed format using the [event template](3-1-1-template.html) by submitting a [pull request](https://github.com/fhircast/docs/tree/master). FHIRcast events are versioned, and mature according to the [event maturity model](3-1-2-eventmaturitymodel.html).
 
-FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL not require receiving a previous or future event.
+FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL NOT require receiving a previous or future event.
 
 ### Event Definition Format
 
@@ -45,7 +45,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 |=======|=============|
 | `*`   | All events  |
 | `*-*` | All events  |
-| `Patient-*` | All events that use the `Patient` fhir-resource |
+| `Patient-*` | All events that use the `Patient` FHIR resource |
 | `*-update` | All update events |
 | `*-select` | All select events |
 
@@ -84,7 +84,7 @@ ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 
 Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
-In the case the resource refers to other FHIR resources that represent there own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
+In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).
 

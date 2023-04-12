@@ -68,7 +68,7 @@ Field    | Optionality | Type     | Description
 `id`     | Required    | *string* | Event identifier from the event notification to which this response corresponds.
 `status` | Required    | *numeric HTTP status code* | Numeric HTTP response code to indicate success or failure of the event notification within the Subscriber. Any 2xx code indicates success, any other code indicates failure.
 
-```text
+```json
 {
   "id": "q9v3jubddqt63n1",
   "status": "200"
@@ -80,6 +80,7 @@ Field    | Optionality | Type     | Description
 <figure>
   {% include EventNotificationSequence.svg %}
   <figcaption><b>Figure: Event Notification Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 ### Event Notification Errors
@@ -96,6 +97,7 @@ The figure below illustrates the Event Notification Error Sequence.
 <figure>
   {% include EventNotificationErrorSequence.svg %}
   <figcaption><b>Figure: Event Notification Error Sequence</b></figcaption>
+  <p></p>
 </figure>
 
 More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).

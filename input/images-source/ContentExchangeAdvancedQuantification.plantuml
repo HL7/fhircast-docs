@@ -1,0 +1,55 @@
+@startuml
+skinparam shadowing false
+skinparam lifelineStrategy nosolid
+hide footbox
+
+actor Clinician
+participant "EHR App\n(Subscriber)" as EHR
+participant "Reporting\nApplication\n(Subscriber)" as RepApp
+participant Hub
+participant "Image Reading\nApplication\n(Subscriber)" as App1
+participant "Advanced\nQuantification\nApplication\n(Subscriber)" as App2
+
+Clinician -> App1: 1: Open Advanced Quantification Application
+activate App1
+group Add New Subscriber to Existing Content Sharing Session
+|||
+App1 -> App2++: 2: Open with FHIRcast Topic
+deactivate App1
+App2 -> Hub: 3: Subscribe to Topic
+activate Hub
+|||
+App2 -> Hub: 4: Get Current Context (includes existing content if any)
+deactivate Hub
+App2 -> App2++--: 5: Adjust to Context\n and Store versionId
+end
+deactivate App2
+...
+Clinician -> App2: 6: Generate Finding
+activate App2
+group New Subscriber Adds Finding
+App2 -\ Hub++: 7: DiagnosticReport-update
+note right Hub: with versionId
+Hub -> Hub++--: 8: Update Content and Generate New versionId
+Hub -\ EHR: 9a DiagnosticReport-update
+note right EHR: with versionId and priorVersionId
+activate EHR
+EHR -> EHR++--: 10: Ignore
+Hub -\ App1: 9b DiagnosticReport-update
+deactivate EHR
+activate App1
+note left App1: with versionId and priorVersionId
+App1 -> App1++--: 11: Update Content\n and Store versionId
+Hub -\ RepApp: 9c DiagnosticReport-update
+deactivate App1
+activate RepApp
+note right RepApp: with versionId\nand priorVersionId
+RepApp -> RepApp++--: 11: Update Content\n and Store versionId
+Hub -\ App2: 9d DiagnosticReport-update
+deactivate RepApp
+deactivate Hub
+note left App2: with versionId and priorVersionId
+App2 -> App2++--: 13 Store versionId
+end
+
+@enduml
