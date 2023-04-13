@@ -20,8 +20,8 @@ This section provides guidance as to which resource attributes should be present
 #### Encounter resource
 
 {:.grid}
-Attribute | Card. | Comments
------ | -------- | ---- | ---- 
+Attribute | Cardinality | Comments
+----- | -------- | -------- 
 `id` | 1..1 | A logical id of the resource must be provided.  It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When an [Encounter close event](3-4-2-encounter-close.html) for this encounter is requested, the Subscriber requesting the encounter be closed SHALL use the same `id` as provided in the `Encounter` open event.
 `identifier` | 1..* | At least one `identifier` of the `Encounter` SHALL be provided in an `Encounter` open request.  The Subscriber making the open request should not assume that all Subscribers will be able to resolve the resource `id` or access a FHIR server where the resource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will likely be able to identify the `Encounter` to be opened.
 `status` | 0..1 | While a FHIR conformant `Encounter` would contain a `status` value, since a `status` value is not required to establish an `Encounter` context, `status` is not required to be present.
@@ -30,8 +30,8 @@ Attribute | Card. | Comments
 #### Patient resource
 
 {:.grid}
-Attribute | Card. | Comments
------ | -------- | ---- | ---- 
+Attribute | Cardinality | Comments
+----- | -------- | --------
 `id` | 1..1 | A logical id of the resource must be provided.  It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  This `id` SHALL be the `id` used in the `subject` attribute reference in the associated `Encounter` resource.
 `identifier` | 1..* | At least one `identifier` of the `Patient` SHALL be provided in an `Encounter` open request.  The Subscriber making the open request should not assume that all Subscribers will be able to resolve the resource `id` or access a FHIR server where the resource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will likely be able to identify the `Patient` associated with the `Encounter` to be opened.
 `name` | 0..1 | It is considered best practice to provide a value for the `name` attribute so that Subscribers may perform identity verification according to their requirements. 
