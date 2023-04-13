@@ -15,9 +15,10 @@ Key | Cardinality | FHIR operation to generate context | Description
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 ### Attribute guidance
-This section provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued.  Other attributes of a resource (or extensions) may be present in the provided resource; however, attributes not called out in the below tables are not required by the FHIRcast standard.
+This section provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an `Encounter` open request.  Other attributes of each resource (or resource extensions) may be present in the provided resources; however, attributes not called out in the below tables are not required by the FHIRcast standard.
 
 #### Encounter resource
+
 {:.grid}
 Attribute | Card. | Comments
 ----- | -------- | ---- | ---- 
@@ -27,6 +28,7 @@ Attribute | Card. | Comments
 `subject` | 1..1 | SHALL be valued with a reference to the `Patient` resource which is present in the `Encounter` open event.
 
 #### Patient resource
+
 {:.grid}
 Attribute | Card. | Comments
 ----- | -------- | ---- | ---- 
