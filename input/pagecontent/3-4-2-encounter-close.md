@@ -11,8 +11,28 @@ User closed patient's medical record encounter context. A previously open and in
 {:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource previously in context.
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter was previously in context.
+`encounter` | REQUIRED | `Encounter/{id}` | FHIR Encounter resource previously in context.
+`patient` | REQUIRED | `Patient/{id}?` | FHIR Patient resource describing the patient whose encounter was previously in context.
+
+### Attribute guidance
+This section provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an `Encounter` close request.  Other attributes of each resource (or resource extensions) may be present in the provided resources; however, attributes not called out in the below tables are not required by the FHIRcast standard.
+
+#### Encounter resource
+
+{:.grid}
+Attribute | Card. | Comments
+----- | -------- | ---- | ---- 
+`id` | 1..1 | The logical id of the `Encounter` resource which was provided in the corresponding [Encounter open event](3-4-1-encounter-open.html).
+`identifier` | 0..* | The Subscriber making the close request may provide one or more of the `indentifier` values for the `Encounter` which was provided in the corresponding [Encounter open event](3-4-1-encounter-open.html).  The inclusion of `identifier` values enables Subscribers to perform identity verification according to their requirements.
+`subject` | 1..1 | SHALL be valued with a reference to the `Patient` resource which was present in the `Encounter` open event.
+
+#### Patient resource
+
+{:.grid}
+Attribute | Card. | Comments
+----- | -------- | ---- | ---- 
+`id` | 1..1 |  The logical id of the `Patient` resource which was provided in the corresponding [Encounter open event](3-4-1-encounter-open.html).
+`identifier` | 0..* | The Subscriber making the close request may provide one or more of the `indentifier` values for the `Patient` which was provided in the corresponding [Encounter open event](3-4-1-encounter-open.html).  The inclusion of `identifier` values enables Subscribers to perform identity verification according to their requirements.
 
 ### Examples
 
