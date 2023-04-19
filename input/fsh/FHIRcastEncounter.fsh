@@ -12,3 +12,4 @@ Usage: #example
 Description: "Example of an encounter which could be used in an encounter-open event"
 * id = "8cc652ba-770e-4ae1-b688-6e8e7c737438"
 * status = http://terminology.hl7.org/fhir/ValueSet/encounter-status#unknown
+* class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
