@@ -1,6 +1,6 @@
 ### Event-name: `Encounter-open`
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
@@ -9,10 +9,17 @@ User opened patient's medical record in the context of a single encounter. Only 
 ### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
+Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
+`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
+
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:
+
+* [Encounter for Open Events](StructureDefinition-fhircast-encounter-open.html)
+* [Patient for Open Events](StructureDefinition-fhircast-patient-open.html)
+
+Other attributes of the Encounter and Patient resources (or resource extensions)  may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
 ### Examples
 
@@ -44,7 +51,9 @@ Key | Optionality | FHIR operation to generate context | Description
               "system" : "urn:oid:1.2.36.146.595.217.0.1",
               "value" : "12345"
             }
-          ]
+          ],
+          "gender": "",
+          "birthDate": ""
         }
       },
       {
@@ -58,9 +67,14 @@ Key | Optionality | FHIR operation to generate context | Description
               "value": "344384384"
             }
           ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+          "status" : "unknown",
+          "class" : {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "AMB"
+            },
+            "subject": {
+              "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+            }
         }
       }
     ]
