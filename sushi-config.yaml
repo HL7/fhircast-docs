@@ -165,11 +165,3 @@ menu:
   Glossary: 5_glossary.html
   Artifacts: artifacts.html
 
-resources:
-  Binary/my-patient-open-example:
-    extension: 
-     - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
-       valueCode: application/fhir+json
-    name: Example of patient-open
-    exampleCanonical: http://example.org/StructureDefinition/MyLM
-    
