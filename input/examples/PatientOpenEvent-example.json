@@ -1,0 +1,14 @@
+{
+    "resourceType":"PatientOpenEvent",
+    "id":"my-patient-open-example",
+    "hubtopic": "asdjqaksljdkasjdlkas",
+    "hubevent": "patient-open",
+    "context": [{
+        "key":"patient",
+        "resource":{
+            "id":"alsdoasjdalks",
+            "identifier":[]
+        }
+
+    }] 
+}

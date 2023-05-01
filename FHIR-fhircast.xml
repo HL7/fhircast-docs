@@ -11,11 +11,15 @@
 <artifact id="StructureDefinition/fhircast-content-update-bundle" key="StructureDefinition-fhircast-content-update-bundle" name="FHIRcast Content Update Bundle"/>
 <artifact id="StructureDefinition/fhircast-get-current-content-bundle" key="StructureDefinition-fhircast-get-current-content-bundle" name="FHIRcast Get Current Content Bundle"/>
 <artifact id="StructureDefinition/fhircast-observation" key="StructureDefinition-fhircast-observation" name="FHIRcast Observation"/>
+<artifact id="StructureDefinition/fhircast-event" key="StructureDefinition-fhircast-event" name="FHIRcast base event definition"/>
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="SubscriptionTopic/FhirCastContainerResourceTopic" key="SubscriptionTopic-FhirCastContainerResourceTopic" name="FhirCastContainerResourceTopic"/>
 <artifact id="SubscriptionTopic/FhirCastContainerTopicTopic" key="SubscriptionTopic-FhirCastContainerTopicTopic" name="FhirCastContainerTopicTopic"/>
+<artifact id="StructureDefinition/fhircast-contextchange-event" key="StructureDefinition-fhircast-contextchange-event" name="FhircastContextChangeEvent"/>
+<artifact id="StructureDefinition/patient-open" key="StructureDefinition-patient-open" name="Patient-open"/>
+<artifact id="StructureDefinition/PatientContextEventPatient" key="StructureDefinition-PatientContextEventPatient" name="PatientContextEventPatient"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
