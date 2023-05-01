@@ -38,9 +38,22 @@ Parent:  Patient
 Profile: PatientOpenEvent
 Parent: FhircastContextChangeEvent
 Id: patient-open
-Title: "Patient-open"
+Title: "patient-open"
 Description: "User opened patient’s medical record. The indicated patient is the current patient in context."
 * obeys fhircast-1
+* hubevent = "patient-open"
+* context 1..1 MS
+* context
+  * key = "patient"
+  * resource only PatientContextEventPatient
+
+Profile: PatientCloseEvent
+Parent: FhircastContextChangeEvent
+Id: patient-close
+Title: "patient-close"
+Description: "User close patient’s medical record. The indicated patient is the current patient in context."
+* obeys fhircast-2
+* hubevent = "patient-close"
 * context 1..1 MS
 * context
   * key = "patient"

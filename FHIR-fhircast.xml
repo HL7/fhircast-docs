@@ -18,8 +18,9 @@
 <artifact id="SubscriptionTopic/FhirCastContainerResourceTopic" key="SubscriptionTopic-FhirCastContainerResourceTopic" name="FhirCastContainerResourceTopic"/>
 <artifact id="SubscriptionTopic/FhirCastContainerTopicTopic" key="SubscriptionTopic-FhirCastContainerTopicTopic" name="FhirCastContainerTopicTopic"/>
 <artifact id="StructureDefinition/fhircast-contextchange-event" key="StructureDefinition-fhircast-contextchange-event" name="FhircastContextChangeEvent"/>
-<artifact id="StructureDefinition/patient-open" key="StructureDefinition-patient-open" name="Patient-open"/>
 <artifact id="StructureDefinition/PatientContextEventPatient" key="StructureDefinition-PatientContextEventPatient" name="PatientContextEventPatient"/>
+<artifact id="StructureDefinition/patient-close" key="StructureDefinition-patient-close" name="patient-close"/>
+<artifact id="StructureDefinition/patient-open" key="StructureDefinition-patient-open" name="patient-open"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
