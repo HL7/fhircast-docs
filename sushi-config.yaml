@@ -62,41 +62,41 @@ pages:
     3-2-0-infrastructureevents.md:
       title: Infrastructure Events
       3-2-1-syncerror.md:
-        title: Sync error Event
+        title: syncerror Event
       3-2-2-heartbeat.md:
-        title: Heartbeat Event
+        title: heartbeat Event
       3-2-3-userlogout.md:
-        title: User logout Event
+        title: userlogout Event
       3-2-4-userhibernate.md:
-        title: User hibernate Event
+        title: userhibernate Event
     3-3-0-patientevents.md:
       title: Patient Events
       3-3-1-patient-open.md:
-        title: Patient open Event
+        title: patient-open Event
       3-3-2-patient-close.md:
-        title: Patient close Event
+        title: patient-close Event
     3-4-0-encounterevents.md:
       title: Encounter Events
       3-4-1-encounter-open.md:
-        title: Encounter open Event
+        title: encounter-open Event
       3-4-2-encounter-close.md:
-        title: Encounter close Event
+        title: encounter-close Event
     3-5-0-imagingstudyevents.md:
       title: ImagingStudy Events
       3-5-1-imagingstudy-open.md:
-        title: ImagingStudy open Event
+        title: imagingstudy-open Event
       3-5-2-imagingstudy-close.md:
-        title: ImagingStudy close Event
+        title: imagingstudy-close Event
     3-6-0-diagnosticreportevents.md:
       title: DiagnosticReport Events
       3-6-1-diagnosticreport-open.md:
-        title: DiagnosticsReport open Event
+        title: diagnosticsreport-open Event
       3-6-2-diagnosticreport-close.md:
-        title: DiagnosticReport close Event
+        title: diagnosticreport-close Event
       3-6-3-diagnosticreport-update.md:
-        title: DiagnosticsReport update Event
+        title: diagnosticsreport-update Event
       3-6-4-diagnosticreport-select.md:
-        title: DiagnosticReport select Event
+        title: diagnosticreport-select Event
 
   4_Scenarios.md:
     title: Scenarios
