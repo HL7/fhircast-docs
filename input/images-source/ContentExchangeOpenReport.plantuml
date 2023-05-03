@@ -12,21 +12,21 @@ participant "Image Reading\nApplication\n(Subscriber)" as App1
 Clinician -> EHR: 1: Open a Patient\nSummary
 group FHIRcast: Open Patient
 activate EHR
-EHR -> Hub: 2: Patient-open
+EHR -> Hub: 2: patient-open
 activate Hub
 deactivate EHR
 Hub -> Hub++--: 3: Store Context and Generate\nversionId
-Hub -\ RepApp: 4a: Patient-open
+Hub -\ RepApp: 4a: patient-open
 note right RepApp: with versionId
 activate RepApp
 RepApp -> RepApp++--: 5: React and store\nversionId
 activate App1
-Hub -\ App1: 4b: Patient-open
+Hub -\ App1: 4b: patient-open
 note left App1: with versionId
 deactivate RepApp
 App1 -> App1++--: 6: ignore
 activate EHR
-Hub -\ EHR: 4c: Patient-open
+Hub -\ EHR: 4c: patient-open
 note right EHR: with versionId
 deactivate Hub
 deactivate App1
@@ -38,20 +38,20 @@ deactivate EHR
 Clinician -> RepApp: 8: create report
 group FHIRcast: Open Report
 activate RepApp
-RepApp-> Hub: 9: DiagnosticReport-open
+RepApp-> Hub: 9: diagnosticreport-open
 activate Hub
 deactivate RepApp
 Hub -> Hub++--: 10: Store Context and generate\nversionId
-Hub -\ RepApp: 11a: DiagnosticReport-open
+Hub -\ RepApp: 11a: diagnosticreport-open
 note right RepApp: with versionId
 activate RepApp
 RepApp -> RepApp++--: 12: store versionID
-Hub -\ App1: 11b: DiagnosticReport-open
+Hub -\ App1: 11b: diagnosticreport-open
 note left App1: with versionId
 deactivate RepApp
 activate App1
 App1 -> App1++--: 13: react and\nstore versionID
-Hub -\ EHR: 11c: DiagnosticReport-open
+Hub -\ EHR: 11c: diagnosticreport-open
 note right EHR: with versionId
 deactivate App1
 activate EHR
