@@ -43,7 +43,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 | **Event** | **Description** |
 |=======|=============|
 | `*`   | All events  |
-| `*-*` | All events with a FHIRcast defined postfix.  |
+| `*-*` | All events with a FHIRcast defined postfix |
 | `patient-*` | All events that use the `Patient` FHIR resource |
 | `*-update` | All update events |
 | `*-select` | All select events |
