@@ -1,6 +1,6 @@
 ### Event-name: Patient-close
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
