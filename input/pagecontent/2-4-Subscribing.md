@@ -20,14 +20,14 @@ Field                  | Optionality | Type     | Description
 `hub.channel.type`     | Required    | *string* | The Subscriber SHALL specify the channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode`             | Required    | *string* | The literal string `subscribe`.
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to. 
-`hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe. SHALL be included for `subscribe` requests, SHALL NOT be present for `unsubscribe` requests. Partial unsubscribe requests are not supported and SHALL result in a full unsubscribe.
+`hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
 `subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
-Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific (`hub.topic`, `hub.callback`) combination or (`hub.topic`, `hub.channel.endpoint` url) combination. For example, a Subscriber MAY modify its subscription by sending a subscription request (`hub.mode=subscribe`) with a different `hub.events` value with the same topic and callback/endpoint url, in which case the Hub SHALL replace the subscription’s previous `hub.events` with the newly provided list of events.
+Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific (`hub.topic`, `hub.channel.endpoint` url) combination. For example, a Subscriber MAY modify its subscription by sending a subscription request (`hub.mode=subscribe`) with a different `hub.events` value with the same topic and endpoint url, in which case the Hub SHALL replace the subscription’s previous `hub.events` with the newly provided list of events.
 
 The application that creates the subscription MAY NOT be the same system as the server connecting to the WSS URL (e.g., a federated authorization model could exist between these two systems). However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the Subscriber and the system receiving notifications.
 
@@ -50,7 +50,7 @@ hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-
 ### Subscription Response
 
 Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response. This indicates that the request was received and will now be verified by the Hub.
-
+https://github.com/HL7/fhircast-docs/tree/blockVote4
 The HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable. 
 
 If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies, for example, a Hub may require that all applications subscribe to the same set of events.
