@@ -82,7 +82,7 @@ ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 
 {% include img.html img="ContextEventName.png" caption="Figure: Context Event-name specification" %}
 
-Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
+Context change events SHALL include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
 In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
