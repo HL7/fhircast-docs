@@ -67,7 +67,7 @@ HTTP/1.1 202 Accepted
 
 ### Subscription Confirmation
 
-To confirm a subscription request, upon the Subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation. This confirmation includes the following elements:
+To confirm a subscription request, upon the subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation over the websocket channel. This confirmation includes the following elements:
 
 {:.grid}
 Field               | Optionality | Type | Description
