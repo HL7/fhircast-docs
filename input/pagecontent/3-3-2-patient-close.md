@@ -1,4 +1,4 @@
-### Event-name: Patient-close
+### Event-name: patient-close
 
 eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
 

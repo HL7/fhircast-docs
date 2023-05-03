@@ -32,7 +32,7 @@ Location: https://ehr/authorize?
             client_id=app-client-id&
             redirect_uri=https%3A%2F%2Fapp%2Fafter-auth&
             launch=xyz123&
-            scope=fhircast%2FImagingStudy-open.read+launch+patient%2FObservation.read+patient%2FPatient.read+openid+profile&
+            scope=fhircast%2Fimagingstudy-open.read+launch+patient%2FObservation.read+patient%2FPatient.read+openid+profile&
             state=98wrghuwuogerg97&
             aud=https://ehr/fhir
 ```
@@ -60,7 +60,7 @@ Two different launch scenarios are supported. For each launch scenario, the appl
 
 #### EHR Launch: User SSO's into app from EHR
 
-The simplest launch scenario is the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence), in which the subscribing application is launched from an EHR authenticated session. The application requests both the `launch` and desired FHIRcast scopes (for example, `fhircast/ImagingStudy-open.read`) and receives information about the user and session as part of the launch. The application subsequently subscribes to the launching user's session.
+The simplest launch scenario is the [SMART on FHIR EHR launch](http://www.hl7.org/fhir/smart-app-launch/#ehr-launch-sequence), in which the subscribing application is launched from an EHR authenticated session. The application requests both the `launch` and desired FHIRcast scopes (for example, `fhircast/imagingstudy-open.read`) and receives information about the user and session as part of the launch. The application subsequently subscribes to the launching user's session.
 
 In this scenario, the EHR authorizes the application to synchronize. The EHR provides a session topic as a SMART launch parameter which belongs to the EHR's current user.
 

@@ -1,4 +1,4 @@
-### Event-name: ImagingStudy-close
+### Event-name: imagingstudy-close
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 

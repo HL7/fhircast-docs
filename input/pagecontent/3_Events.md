@@ -25,7 +25,7 @@ The sections in this chapter are:
 | [3.5.2 ImagingStudy close event](3-5-2-imagingstudy-close.html) |
 
 | **3.6 DiagnosticReport Events** |
-| [3.6.1 DiagnosticReport-open Event](3-6-1-diagnosticreport-open.html) |
-| [3.6.2 DiagnosticReport-close Event](3-6-2-diagnosticreport-close.html) |
-| [3.6.3 DiagnosticReport-update Event](3-6-3-diagnosticreport-update.html) |
-| [3.6.4 DiagnosticReport-select Event](3-6-4-diagnosticreport-select.html) |
+| [3.6.1 DiagnosticReport open Event](3-6-1-diagnosticreport-open.html) |
+| [3.6.2 DiagnosticReport close Event](3-6-2-diagnosticreport-close.html) |
+| [3.6.3 DiagnosticReport update Event](3-6-3-diagnosticreport-update.html) |
+| [3.6.4 DiagnosticReport select Event](3-6-4-diagnosticreport-select.html) |

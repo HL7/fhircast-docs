@@ -1,8 +1,8 @@
-### Event-name: DiagnosticReport-update
+### Event-name: diagnosticreport-update
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
- The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires a to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
+ The `diagnosticreport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `diagnosticreport-update` request will be posted to the Hub when a Subscriber desires a to add, change, or remove exchanged information in the anchor context.  For a `diagnosticreport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `diagnosticreport-open`.  One or more update requests MAY occur while the anchor context is open.
 
 The updates include:
 
@@ -32,9 +32,9 @@ Request Method | Operation
 
 #### Examples
 
-##### DiagnosticReport-update Request Example
+##### diagnosticreport-update Request Example
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticsReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
+The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `diagnosticreport-open` or `diagnosticreport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `diagnosticreport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
 
 ```json
 {
@@ -42,7 +42,7 @@ The following example shows adding an imaging study to the existing diagnostic r
   "id": "0d4c7776",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "DiagnosticReport-update",
+    "hub.event": "diagnosticreport-update",
     "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
       {
@@ -123,7 +123,7 @@ The following example shows adding an imaging study to the existing diagnostic r
 }
 ```
 
-##### DiagnosticReport-update Event Example
+##### diagnosticreport-update Event Example
 
 The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that a Subscriber is currently in sync with the latest context prior to applying the new updates.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, it is recommended that the Subscriber issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and the current `context.versionId`).
 
@@ -133,7 +133,7 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
   "id": "0d4c7776",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "DiagnosticReport-update",
+    "hub.event": "diagnosticreport-update",
     "context.versionId": "efcac43a-ed38-49e4-8d79-73f78290292a",
     "context.priorVersionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [

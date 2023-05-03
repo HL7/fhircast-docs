@@ -1,4 +1,4 @@
-### Event name: `Patient-open`
+### Event name: `patient-open`
 
 eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
 

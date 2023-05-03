@@ -1,4 +1,4 @@
-### Event-name: `Encounter-open`
+### Event-name: `encounter-open`
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 

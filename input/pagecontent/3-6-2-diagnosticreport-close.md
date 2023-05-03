@@ -1,10 +1,10 @@
-### Event-name: DiagnosticReport-close
+### Event-name: diagnosticreport-close
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A `DiagnosticReport-close` event is posted to the Hub when a Subscriber desires to close the active anchor context centered workflow.  After the event is distributed to all Subscribers, it is expected that the Hub will remove any content associated with the anchor context from its memory.
+A `diagnosticreport-close` event is posted to the Hub when a Subscriber desires to close the active anchor context centered workflow.  After the event is distributed to all Subscribers, it is expected that the Hub will remove any content associated with the anchor context from its memory.
 
 
 ### Context
@@ -16,7 +16,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Examples
 
-#### DiagnosticReport-close Example
+#### diagnosticreport-close Example
 
 This example closes a DiagnosticReport anchor context.
 
@@ -26,7 +26,7 @@ This example closes a DiagnosticReport anchor context.
   "id": "4441881",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "DiagnosticReport-close",
+    "hub.event": "diagnosticreport-close",
     "context": [
       {
         "key": "Report",

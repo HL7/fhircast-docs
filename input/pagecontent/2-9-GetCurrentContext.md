@@ -12,7 +12,7 @@ GET `base-hub-URL/{topic}`
 
 ### Get Current Context Response
 
-This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the Subscriber's subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`Patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established, the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
+This method returns an object containing the current context of a topic; where the current context is the most recent *-open event for which no *-close event has occurred, according to the Subscriber's subscription.  The current context is made up of one or more "top-level" contextual resources and the type of the anchor context SHALL be in the `context.type` field.  For example, if the current context was established using a [`patient-open`](3-3-1-patient-open.html) request the returned object will contain `context.type: "Patient"`.  If the current context was created by a [`diagnosticreport-open`](3-6-1-diagnosticreport-open.html) request the returned object will contain `context.type: "DiagnosticReport"`.  If there is no context currently established, the `context.type` SHALL contain an empty string and the `context` SHALL be an empty array.
 
 {:.grid}
 Field | Optionality | Type | Description
@@ -36,7 +36,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 #### Get Context Response Example
 
-The following example shows a response to the get context request when the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request.  The response contains version "023fe970-a6d9-442f-a499-dfb71f1edba6" of the anchor context's content which contains a single `Observation` resource. 
+The following example shows a response to the get context request when the current context was created by a [`diagnosticreport-open`](3-6-1-diagnosticreport-open.html) request.  The response contains version "023fe970-a6d9-442f-a499-dfb71f1edba6" of the anchor context's content which contains a single `Observation` resource. 
 
 ```json
 {
