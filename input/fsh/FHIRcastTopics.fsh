@@ -1,6 +1,6 @@
 Instance: FhirCastContainerTopicTopic
 InstanceOf: SubscriptionTopic
-* url = "http://fhircast.hl7.org/container-update/topic"
+* url = "http://hl7.org/fhir/uv/fhircast/SubscriptionTopic/container-update-topic"
 * title = "Subscribe to container changes in a topic"
 * description = """
   Requests a topic and an anchor-type to be set.   
@@ -19,7 +19,7 @@ InstanceOf: SubscriptionTopic
 
 Instance: FhirCastContainerResourceTopic
 InstanceOf: SubscriptionTopic
-* url = "http://fhircast.hl7.org/container-update/resource"
+* url = "http://hl7.org/fhir/uv/fhircast/SubscriptionTopic/container-update-resource"
 * title = "Subscribe to container changes of an resource"
 * description = """
   Requests an anchor-type and anchor-id to be set.   
