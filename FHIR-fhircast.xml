@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
-<version code="current" url="http://hl7.org/fhir/uv/fhircast"/>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast/build" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
+<version code="current" url="http://hl7.org/fhir/uv/fhircast/build"/>
 <version code="2.1.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
 <version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
 <version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
@@ -27,18 +27,12 @@
 <page key="content-sharing" name="Content Sharing"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
-<page key="3-6-2-diagnosticreport-close" name="DiagnosticReport close Event"/>
 <page deprecated="true" key="diagnosticreport-close" name="DiagnosticReport close event"/>
-<page key="3-6-4-diagnosticreport-select" name="DiagnosticReport select Event"/>
 <page deprecated="true" key="diagnosticreport-select" name="DiagnosticReport select event"/>
-<page key="3-6-1-diagnosticreport-open" name="DiagnosticsReport open Event"/>
 <page deprecated="true" key="diagnosticreport-open" name="DiagnosticsReport open event"/>
-<page key="3-6-3-diagnosticreport-update" name="DiagnosticsReport update Event"/>
 <page deprecated="true" key="diagnosticreport-update" name="DiagnosticsReport update event"/>
 <page key="encounterevents" name="Encounter Events"/>
-<page key="3-4-2-encounter-close" name="Encounter close Event"/>
 <page deprecated="true" key="encounter-close" name="Encounter close event"/>
-<page key="3-4-1-encounter-open" name="Encounter open Event"/>
 <page deprecated="true" key="encounter-open" name="Encounter open event"/>
 <page key="2-3-Events" name="Event Format"/>
 <page key="3_Events" name="Event Library"/>
@@ -59,13 +53,10 @@
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
-<page key="3-2-2-heartbeat" name="Heartbeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
 <page key="4-7-hybrid-content-sharing" name="Hybrid Content Sharing"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
-<page key="3-5-2-imagingstudy-close" name="ImagingStudy close Event"/>
 <page deprecated="true" key="imagingstudy-close" name="ImagingStudy close event"/>
-<page key="3-5-1-imagingstudy-open" name="ImagingStudy open Event"/>
 <page deprecated="true" key="imagingstudy-open" name="ImagingStudy open event"/>
 <page key="infrastructureevents" name="Infrastructure Events"/>
 <page key="introduction" name="Introduction"/>
@@ -77,9 +68,7 @@
 <page deprecated="true" key="fhircast-oauth2-scopes" name="OAuth2 authorization scopes"/>
 <page deprecated="true" key="open-issues" name="Open Issues"/>
 <page key="patientevents" name="Patient Events"/>
-<page key="3-3-2-patient-close" name="Patient close Event"/>
 <page deprecated="true" key="patient-close" name="Patient close event"/>
-<page key="3-3-1-patient-open" name="Patient open Event"/>
 <page deprecated="true" key="patient-open" name="Patient open event"/>
 <page key="RequestContextChange" name="Request Context Change"/>
 <page key="Scenarios" name="Scenarios"/>
@@ -89,13 +78,24 @@
 <page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
-<page key="3-2-1-syncerror" name="Sync error Event"/>
 <page deprecated="true" key="syncerror" name="Sync error event"/>
 <page key="4-2-syncconsiderations" name="Synchronization Considerations"/>
 <page deprecated="true" key="synchronization-considerations" name="Synchronization considerations"/>
 <page key="table-of-contents" name="Table of Contents"/>
-<page key="3-2-4-userhibernate" name="User hibernate Event"/>
 <page deprecated="true" key="userhibernate" name="User hibernate event"/>
-<page key="3-2-3-userlogout" name="User logout Event"/>
 <page deprecated="true" key="userlogout" name="User logout event"/>
+<page key="3-6-2-diagnosticreport-close" name="diagnosticreport-close Event"/>
+<page key="3-6-4-diagnosticreport-select" name="diagnosticreport-select Event"/>
+<page key="3-6-1-diagnosticreport-open" name="diagnosticsreport-open Event"/>
+<page key="3-6-3-diagnosticreport-update" name="diagnosticsreport-update Event"/>
+<page key="3-4-2-encounter-close" name="encounter-close Event"/>
+<page key="3-4-1-encounter-open" name="encounter-open Event"/>
+<page key="3-2-2-heartbeat" name="heartbeat Event"/>
+<page key="3-5-2-imagingstudy-close" name="imagingstudy-close Event"/>
+<page key="3-5-1-imagingstudy-open" name="imagingstudy-open Event"/>
+<page key="3-3-2-patient-close" name="patient-close Event"/>
+<page key="3-3-1-patient-open" name="patient-open Event"/>
+<page key="3-2-1-syncerror" name="syncerror Event"/>
+<page key="3-2-4-userhibernate" name="userhibernate Event"/>
+<page key="3-2-3-userlogout" name="userlogout Event"/>
 </specification>
