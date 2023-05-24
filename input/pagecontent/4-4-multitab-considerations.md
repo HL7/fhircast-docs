@@ -23,6 +23,19 @@ As illustrated below, context synchronization is maintained between multiple and
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
+### Considerations with the [Get Current Context](2-9-GetCurrentContext.html) Operation
+
+Multiple contexts may be present in the Hub; however, only one of these contexts is the current context.  Specifically, the context for which the last `-open` event has occurred is the current context.  This is the context which is returned by the Hub when a Subscriber calls the [Get Current Context](2-9-GetCurrentContext.html) operation. In the above example, Patient 1 and Patient 2 contexts exist simultaneously; however, Patient 2 was last opened therefore is the current context.  If, as in the above example, the Patient 2 context is closed there exists no current context (see the specification in [Get Current Context](2-9-GetCurrentContext.html)).  It is the responsibility of some Subscriber to make an `-open` request for Patient 1 in order for Patient 1 to become the current context.  The FHIRcast specification indicates that there is no current context without an `-open` event; hence, in the absence of an `-open` event after a `-close` occurs the behavior expected of applications is not defined.
+
+### Considerations on Maintaining Multiple Contexts
+
+The specification deliberatively prescribes maintaining contexts for which an `-open` event has occurred but no `-close` event.  The rationale for this approach is driven by:
+
+*  Applications may expend considerable network and compute resources to display information indicated by an open context.  Retrieving this information upon each `-open` that would occur if the user frequently switches tabs as in the above examples, would require the application incur that expense on each tab switch.  By explicitly stating that a context which was opened but which has not been closed is considered to remain present in the Hub, applications so choosing can reflect this behavior in their business logic and UI.  When a `-close` event occurs, applications should reflect this state as is appropriate to the application's requirements.  In the above example, when Patient 2 is closed applications chose to remove the tab related to Patient 2.  If both Patient 1 and Patient 2 `-open` events have occurred (in that order), a subsequent Patient 1 open would not cause applications to remove the Patient 2 tab rather indicate that Patient 1 is now the current context.
+*  When applications are participating in a content sharing session, maintaining multiple open contexts means that Hubs and participating applications retain the content state of open contexts.  Content state is released only upon a `-close` of the anchor context in which the content sharing is taking place.
+
+Recall that the multi-tab example, is only one scenario in which the multiple contexts approach is valid.  Another scenario would be if a user has opened multiple imaging studies and is frequently changing between the studies which were opened.  The network and compute resource consumption for opening and reopening imaging studies is significant and may be avoided with the multiple context approach.  Note also that applications may decide to support only a single context, in which case they would imply a close in their application upon receiving an `-open` event.  A subsequent `-open` event for the context which they implicitly closed would require that application to retrieve the necessary resources related to this context.
+
 ### Recommendations
 
 * When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `patient-open`) does not indicate a synchronization error.
