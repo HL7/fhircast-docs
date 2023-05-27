@@ -11,7 +11,7 @@ User closed patient's medical record encounter context. A previously open and in
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource previously in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource describing the encounter previously in context.
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter was previously in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter close request:

@@ -9,10 +9,15 @@ User closed patient's medical record. A previously open and in context patient c
 ### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
+Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart was previously in context.
-~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource previously in context in the now closed patient's chart.~~ DEPRECATED in favor of dedicated `encounter-close` event.
+`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter was previously in context.
+
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a Patient close request:
+
+* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
+
+Other attributes of the Patient resource (or resource extensions)  may be present in the provided resources; however, attributes not called out in the profile are not required by the FHIRcast standard.
 
 ### Examples
 
@@ -22,13 +27,13 @@ Key | Optionality | FHIR operation to generate context | Description
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "patient-close",
+    "hub.event": "Patient-close",
     "context": [
       {
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
           "identifier": [
             {
               "type": {

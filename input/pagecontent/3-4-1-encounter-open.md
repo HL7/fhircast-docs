@@ -11,7 +11,7 @@ User opened patient's medical record in the context of a single encounter. Only 
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource describing the encounter currently in context.
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:
@@ -19,7 +19,7 @@ The following profiles provide guidance as to which resource attributes should b
 * [Encounter for Open Events](StructureDefinition-fhircast-encounter-open.html)
 * [Patient for Open Events](StructureDefinition-fhircast-patient-open.html)
 
-Other attributes of the Encounter and Patient resources (or resource extensions)  may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
+Other attributes of the Encounter and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
 ### Examples
 

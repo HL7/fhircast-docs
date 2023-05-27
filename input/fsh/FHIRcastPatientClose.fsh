@@ -7,7 +7,7 @@ Description: "Provides guidance as to which Patient attributes should be present
 * id ^short = "A logical id of the resource must be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. The provided `id` SHALL be the same Patient id which was provided in the [FHIR resource]-open event (see also
+A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event (see also
 [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
 """
 * identifier 0..* MS
@@ -18,16 +18,15 @@ At least one `identifier` of the Patient SHOULD be provided in a [FHIR resource]
 which was provided in the corresponding [FHIR resource]-open event enables Subscribers to perform identity verification according to their requirements.
 """
 
-/*
 Instance: FHIRcastPatientClose-Example
 InstanceOf: FHIRcastPatientClose
 Usage: #example
-Description: "Example of a patient which could be used in a [FHIR resource]-close event"
-* id = "503824b8-fe8c-4227-b061-7181ba6c3926"
+Description: "Example of a patient which could be used in a [FHIR resource]-close event. Note that due to limitation of tools used to publishing the specification the below
+resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
+* id = "503824b8-fe8c-4227-b061-7181ba6c3926-close"
 * identifier[0].use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier[=].type = http://terminology.hl7.org/fhir/ValueSet/identifier-type#MR
 * identifier[=].system = "urn:oid:2.16.840.1.113883.19.5"
 * identifier[=].value = "4438001"
 * identifier[=].assigner.reference = "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc"
 * identifier[=].assigner.display = "My Healthcare Provider"
-*/

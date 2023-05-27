@@ -21,16 +21,15 @@ which was provided in the corresponding [FHIR resource]-open event enables Subsc
 * subject ^definition = 
 "SHALL be valued with a reference to the Patient resource which is present in the [FHIR resource]-close event."
 
-/*
 Instance: FHIRcastEncounterClose-Example
 InstanceOf: FHIRcastEncounterClose
 Usage: #example
-Description: "Example of an encounter which could be used in a [FHIR resource]-close event"
-* id = "8cc652ba-770e-4ae1-b688-6e8e7c737438"
+Description: "Example of an encounter which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
+resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
+* id = "8cc652ba-770e-4ae1-b688-6e8e7c737438-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/encounter-status#unknown
 * class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "r2r22345"
 * identifier.system = "http://myhealthcare.com/visits"
 * subject = Reference(FHIRcastPatientClose-Example)
-*/
