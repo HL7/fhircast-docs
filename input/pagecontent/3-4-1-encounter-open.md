@@ -30,37 +30,41 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
   "id": "q9v3jubd43i4ufhff",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "encounter-open",
+    "hub.event": "Encounter-open",
     "context": [
       {
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
-            {
-              "type": {
-                "coding": [
-                  {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "value": "MR",
-                    "display": "Medical Record Number"
-                  }
-                ]
-              },
-              "system" : "urn:oid:1.2.36.146.595.217.0.1",
-              "value" : "12345"
-            }
-          ],
-          "gender": "",
-          "birthDate": ""
+          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
+          "identifier" : [{
+            "use" : "usual",
+            "type" : {
+              "coding" : [{
+                "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code" : "MR"
+              }]
+            },
+            "system" : "urn:oid:1.2.36.146.595.217.0.1",
+            "value" : "12345",
+            "assigner" : {
+              "display" : "Acme Healthcare"
+              }
+          }],
+          "name" : [{
+            "use": "official",
+            "family": "Umbrage",
+            "given": "Lola"
+            }],
+          "gender" : "female",
+          "birthDate" : "1945-11-14"
         }
       },
       {
         "key": "encounter",
         "resource": {
           "resourceType": "Encounter",
-          "id": "90235y2347t7nwer7gw7rnhgf",
+          "id": "9d253ea5-34a5-4c36-90ef-d5234cee88af",
           "identifier": [
             {
               "system": "28255",
@@ -73,7 +77,7 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
             "code" : "AMB"
             },
             "subject": {
-              "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
+              "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
             }
         }
       }

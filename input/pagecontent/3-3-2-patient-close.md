@@ -17,7 +17,7 @@ The following profiles provide guidance as to which resource attributes should b
 
 * [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
 
-Other attributes of the Patient resource (or resource extensions)  may be present in the provided resources; however, attributes not called out in the profile are not required by the FHIRcast standard.
+Other attributes of the Patient resource (or resource extensions)  may be present in the provided resource; however, attributes not called out in the profile are not required by the FHIRcast standard.
 
 ### Examples
 
@@ -34,19 +34,20 @@ Other attributes of the Patient resource (or resource extensions)  may be presen
         "resource": {
           "resourceType": "Patient",
           "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
-          "identifier": [
-            {
-              "type": {
-                "coding": [
-                  {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "value": "MR",
-                    "display": "Medical Record Number"
-                  }
-                ]
+          "identifier" : [{
+            "use" : "usual",
+            "type" : {
+              "coding" : [{
+                "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code" : "MR"
+              }]
+            },
+            "system" : "urn:oid:1.2.36.146.595.217.0.1",
+            "value" : "12345",
+            "assigner" : {
+              "display" : "Acme Healthcare"
               }
-            }
-          ]
+          }]
         }
       }
     ]

@@ -25,19 +25,21 @@ resource may be stored; hence, the provided `identifier` (or identifiers) SHOULD
 likely be able to identify the Patient.
 """
 * name 0..1 MS
-* name ^short = "Current official name of the patient"
+* name ^short = "Optional name of the patient for identity verification"
 * name ^definition =
 """
 It is considered best practice to provide a value for the `name` attribute so that Subscribers may perform identity verification
 according to their requirements.
 """
 * gender 0..1 MS
+* gender ^short = "Optional gender of the patient for identity verification"
 * gender ^definition =
 """
 It is considered best practice to provide a value for the `gender` attribute if it is available so that Subscribers may perform
 identity verification according to their requirements.
 """
 * birthDate 0..1 MS
+* ^short = "Optional birth date of the patient for identity verification"
 * birthDate ^definition =
 """
 The Subscriber making the open request SHOULD provide a value for the `birthDate` attribute if it is available so that

@@ -21,8 +21,8 @@ which was provided in the corresponding [FHIR resource]-open event enables Subsc
 Instance: FHIRcastPatientClose-Example
 InstanceOf: FHIRcastPatientClose
 Usage: #example
-Description: "Example of a patient which could be used in a [FHIR resource]-close event. Note that due to limitation of tools used to publishing the specification the below
-resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
+Description: "Example of a patient which could be used in a [FHIR resource]-close event. Note that due to limitation of tools used to publishing the specification, the below
+resource `id` is appended with '-close'.  The specification requires that the resource `id` in the [FHIR resource]-close be identical to the resource `id` provided in the corresponding [FHIR resource]-open"
 * id = "503824b8-fe8c-4227-b061-7181ba6c3926-close"
 * identifier[0].use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier[=].type = http://terminology.hl7.org/fhir/ValueSet/identifier-type#MR
