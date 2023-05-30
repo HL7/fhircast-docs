@@ -50,7 +50,7 @@ resource `id` is appended with '-close'.  The specification requires that the re
 * status = http://terminology.hl7.org/fhir/ValueSet/imagingstudy-status#unknown
 * identifier[0].system = "urn:dicom:uid"
 * identifier[=].value = "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
-* subject = Reference(FHIRcastPatientOpen-Example)
+* subject = Reference(FHIRcastPatientClose-Example)
 * basedOn[0].type = "ServiceRequest"
 * basedOn[=].identifier.type.coding.system = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
 * basedOn[=].identifier.system = "urn:oid:2.16.840.1.113883.19.5"

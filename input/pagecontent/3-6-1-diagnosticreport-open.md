@@ -6,18 +6,19 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by a Subscriber and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
 
+### Context
+
+{:.grid}
+Key | Cardinality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier,subject` | FHIR DiagnosticReport resource describing the report now in context.
+`study` | 0..* | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource(s) describing the image study (or image studies) which are the subject of the report now in context.  For non-imaging related uses of FHIRcast, there may be no image study related to the report.  In radiology or other image related uses of FHIRcast, at least one imaging study would be the subject of a report and included in the event's context.  
+`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose report is currently in context. This Patient SHALL be the subject referenced by the DiagnosticReport and an ImagingStudy present in the context. 
+
 #### Content Sharing Support
 
 If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a Subscriber will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the `context.versionId` can be safely ignored.
 
-### Context
-
-{:.grid}
-Key | Optionality | FHIR operation to generate context | Description
---- | --- | --- | ---
-`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Diagnostic report being opened
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
 
 ### Examples
 
@@ -180,3 +181,5 @@ The event distributed by the Hub includes a context version in the `context.vers
 | Version | Description
 | ------- | ----
 | 0.1 | Initial draft
+| 1.0 | Initial Release
+| 2.0 | Reference context resource profiles and update example to be compliant with the profiles

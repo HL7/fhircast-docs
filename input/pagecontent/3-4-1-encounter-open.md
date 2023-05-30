@@ -4,14 +4,14 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened patient's medical record in the context of a single encounter. Only a single patient and encounter are now currently in context.
+User opened patient's medical record in the context of a single encounter. Only a single patient and encounter are now in context.
 
 ### Context
 
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier,subject` | FHIR Encounter resource describing the encounter currently in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier,subject` | FHIR Encounter resource describing the encounter now in context.
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:

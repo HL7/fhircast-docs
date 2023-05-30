@@ -20,7 +20,7 @@ the same Encounter `id` which was provided in the [FHIR resource]-open event (se
 """
 At least one `identifier` of the Encounter SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open
 request should not assume that all Subscribers will be able to resolve the resource id or access a FHIR server where the
-resource may be stored; hence, the provided `identifier` (or identifiers) SHOULD be a value by which all Subscribers will
+resource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will
 likely be able to identify the Encounter.
 """
 * subject 1..1
