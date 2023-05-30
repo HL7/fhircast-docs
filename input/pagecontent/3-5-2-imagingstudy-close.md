@@ -6,15 +6,23 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 User closed an imaging study.
 
-User closed patient's medical record. A previously open and in context study is no longer open nor in context. When the ImagingStudy refers to a Patient and this patient is the current patient in context, this patient SHALL be indicated in the event
+A previously open and in context image study is no longer open nor in context. When the ImagingStudy refers to a Patient this patient SHALL be indicated in the event.
 
 ### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
------ | -------- | ---- | ----
-`patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource previously in context. In FHIR DSTU2, STU3 `accession` SHALL also be provided if present.
+Key | Cardinality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`study` | 1..1 | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource describing the image study previously in context that is being closed.
+`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the image study being closed.
+
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy close request:
+
+* [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
+* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
+
+Other attributes of the ImagingStudy and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profile are not required by the FHIRcast standard.
+
 
 ### Examples
 

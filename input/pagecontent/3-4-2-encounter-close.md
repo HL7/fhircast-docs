@@ -4,22 +4,22 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User closed patient's medical record encounter context. A previously open and in context patient encounter is no longer open nor in context. 
+User closed a patient's medical record encounter context. A previously open and in context patient encounter is no longer open nor in context. 
 
 ### Context
 
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource describing the encounter previously in context.
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter was previously in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource describing the encounter previously in context that is being closed.
+`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the encounter being closed.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter close request:
 
 * [Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)
 * [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
 
-Other attributes of the Encounter and Patient resources (or resource extensions)  may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
+Other attributes of the Encounter and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
 ### Examples
 

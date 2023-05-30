@@ -39,7 +39,7 @@ It is considered best practice to provide a value for the `gender` attribute if 
 identity verification according to their requirements.
 """
 * birthDate 0..1 MS
-* ^short = "Optional birth date of the patient for identity verification"
+* birthDate ^short = "Optional birth date of the patient for identity verification"
 * birthDate ^definition =
 """
 The Subscriber making the open request SHOULD provide a value for the `birthDate` attribute if it is available so that
