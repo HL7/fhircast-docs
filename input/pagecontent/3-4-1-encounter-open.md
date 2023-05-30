@@ -4,14 +4,14 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened patient's medical record in the context of a single encounter. Only a single patient and encounter is currently in context.
+User opened patient's medical record in the context of a single encounter. Only a single patient and encounter are now currently in context.
 
 ### Context
 
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource describing the encounter currently in context.
+`encounter` | 1..1 | `Encounter/{id}?_elements=identifier,subject` | FHIR Encounter resource describing the encounter currently in context.
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:
@@ -37,25 +37,31 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
         "resource": {
           "resourceType": "Patient",
           "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
-          "identifier" : [{
-            "use" : "usual",
-            "type" : {
-              "coding" : [{
-                "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
-                "code" : "MR"
-              }]
-            },
-            "system" : "urn:oid:1.2.36.146.595.217.0.1",
-            "value" : "12345",
-            "assigner" : {
-              "display" : "Acme Healthcare"
+          "identifier" : [
+            {
+              "use" : "usual",
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR"
+                  }
+                ]
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345",
+              "assigner" : {
+                "display" : "Acme Healthcare"
               }
-          }],
-          "name" : [{
-            "use": "official",
-            "family": "Umbrage",
-            "given": "Lola"
-            }],
+            }
+          ],
+          "name" : [
+            {
+              "use": "official",
+              "family": "Umbrage",
+              "given": "Lola"
+            }
+          ],
           "gender" : "female",
           "birthDate" : "1945-11-14"
         }
@@ -75,10 +81,10 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
           "class" : {
             "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
             "code" : "AMB"
-            },
-            "subject": {
-              "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
-            }
+          },
+          "subject": {
+            "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
+          }
         }
       }
     ]
@@ -86,10 +92,10 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 }
 ```
 
-
 ### Change Log
 
 {:.grid}
 | Version | Description
 | ---- | ----
 | 1.0 | Initial Release
+| 2.0 | Reference context resource profiles and update example to be compliant with the profiles

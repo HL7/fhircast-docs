@@ -36,38 +36,49 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
         "resource": {
           "resourceType": "Patient",
           "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
-          "identifier" : [{
-            "use" : "usual",
-            "type" : {
-              "coding" : [{
-                "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
-                "code" : "MR"
-              }]
-            },
-            "system" : "urn:oid:1.2.36.146.595.217.0.1",
-            "value" : "12345",
-            "assigner" : {
-              "display" : "Acme Healthcare"
+          "identifier" : [
+            {
+              "use" : "usual",
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR"
+                  }
+                ]
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345",
+              "assigner" : {
+                "display" : "Acme Healthcare"
               }
-          }],
-          "name" : [{
-            "use": "official",
-            "family": "Umbrage",
-            "given": "Lola"
-            }]
+            }
+          ],
+          "name" : [
+            {
+              "use": "official",
+              "family": "Umbrage",
+              "given": "Lola"
+            }
+          ]
         }
       },
       {
         "key": "encounter",
         "resource": {
           "resourceType": "Encounter",
-          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
+          "id": "9d253ea5-34a5-4c36-90ef-d5234cee88af",
           "identifier": [
             {
               "system": "28255",
               "value": "344384384"
             }
           ],
+          "status" : "unknown",
+          "class" : {
+            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code" : "AMB"
+          },
           "subject": {
             "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
           }
@@ -84,3 +95,4 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 | Version | Description
 | ---- | ----
 | 1.0 | Initial Release
+| 2.0 | Reference context resource profiles and update example to be compliant with the profiles

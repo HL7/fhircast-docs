@@ -4,9 +4,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User closed an imaging study.
-
-A previously open and in context image study is no longer open nor in context. When the ImagingStudy refers to a Patient this patient SHALL be indicated in the event.
+User closed an imaging study. A previously open and in context image study is no longer open nor in context. When the ImagingStudy refers to a Patient this patient SHALL be indicated in the event.
 
 ### Context
 
@@ -32,41 +30,76 @@ Other attributes of the ImagingStudy and Patient resources (or resource extensio
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "imagingstudy-close",
+    "hub.event": "ImagingStudy-close",
     "context": [
       {
-        "key": "patient",
+        "key": "study",
         "resource": {
-          "resourceType": "Patient",
-          "status": "available",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "resourceType": "ImagingStudy",
+          "id": "28940c5b-925b-47f7-b89a-1fc3da6055c7",
           "identifier": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
+              "system": "urn:dicom:uid",
+              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
+            }
+          ],
+          "status": "unknown",
+          "subject": {
+            "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
+          },
+          "basedOn" : [
             {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
+              "type" : "ServiceRequest",
+              "identifier" : {
+                "type" : {
+                  "coding" : [
+                    {
+                      "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                      "code" : "ACSN"
+                    }
+                  ]
+                },
+                "system" : "urn:oid:2.16.840.1.113883.19.5",
+                "value" : "GH339884",
+                "assigner" : {
+                  "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                  "display" : "My Healthcare Provider"
+                }
+              }
             }
           ]
         }
       },
       {
-        "key": "study",
+        "key": "patient",
         "resource": {
-          "resourceType": "ImagingStudy",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "status": "available",
-          "identifier": [
+          "resourceType": "Patient",
+          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
+          "identifier" : [
             {
-              "system": "7678",
-              "value": "185444"
+              "use" : "usual",
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR"
+                  }
+                ]
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345",
+              "assigner" : {
+                "display" : "Acme Healthcare"
+              }
             }
           ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+          "name" : [
+            {
+              "use": "official",
+              "family": "Umbrage",
+              "given": "Lola"
+            }
+          ]
         }
       }
     ]
@@ -79,4 +112,5 @@ Other attributes of the ImagingStudy and Patient resources (or resource extensio
 {:.grid}
 | Version | Description
 | ------- | ----
-| 1.0  | Initial Release
+| 1.0 | Initial Release
+| 2.0 | Reference context resource profiles and update example to be compliant with the profiles

@@ -68,7 +68,7 @@ Description: "Example of an imaging study which could be used in a [FHIR resourc
 * identifier[=].value = "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
 * subject = Reference(FHIRcastPatientOpen-Example)
 * basedOn[0].type = "ServiceRequest"
-* basedOn[=].identifier.type.coding.system = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
+* basedOn[=].identifier.type.coding = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
 * basedOn[=].identifier.system = "urn:oid:2.16.840.1.113883.19.5"
 * basedOn[=].identifier.value = "GH339884"
 * basedOn[=].identifier.assigner.reference = "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc"
