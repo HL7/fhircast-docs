@@ -11,10 +11,10 @@ associated with an image study.  Imaging systems such as a PACS viewer, advanced
 by its DICOM Study Instance UID, which in DICOM is identified with a (0020,000D) tag.  Likewise information systems often identify an image study through
 the accession number of the order which triggered the image procedure to be performed.
 
-The Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is stored
+The Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is provided
 in the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.
 
-The accession number SHALL be included as a business identifier if it is known.  In FHIR, the accession number is stored in the ImagingStudy's `basedOn` array as a
+The accession number SHALL be included as a business identifier if it is known.  In FHIR, the accession number is provided in the ImagingStudy's `basedOn` array as a
 reference using a ServiceRequest reference type and the “ACSN” identifier type.
 
 For a more detailed explanation of these business identifiers, see the [implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/imagingstudy.html).
@@ -40,15 +40,15 @@ The Study Instance UID SHALL be included as a business identifier if it is known
 in the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.
 """
 * status 1..1
-* status ^short = "Status of the ImagingStudy, note this may be not be known and hence have a value of `unknown`; however, is included since it is required by the  FHIRcast "
+* status ^short = "Status of the ImagingStudy, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
 * subject 1..1 MS
-* subject ^short = "Reference to the Patient resource associated with the ImagingStudy"
+* subject ^short = "Reference to the Patient resource associated with the ImagingStudy (see detailed description if the image study's subject is not a patient)"
 * subject ^definition =
 """
 A reference to the FHIR Patient resource describing the patient whose imaging study is currently in context.  A patient SHALL be present if there is a patient associated with the study.
 Note there are rare cases in which the ImagingStudy.subject references a resource which is not a patient; for example a calibration study.  A reference to the related non-Patient subject of the study SHALL
-be present in the ImagingStuudy resource as it is required by the FHIR specification but is not required to be present in the [FHIR resource]-open event - for example,
-a reference to a Device resource (if no specific FHIR resource is available a simple display value is allowed).
+be present in the ImagingStudy resource as it is required by the FHIR specification but is not required to be present in the [FHIR resource]-open event's context.  For example,
+a reference to a Device resource could be provided as the subject (if no specific Device FHIR resource is available a simple display value is allowed in the reference).
 """
 * basedOn 0..1
 * basedOn ^short = "At least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request (see detailed description)."
