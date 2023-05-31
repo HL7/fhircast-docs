@@ -17,7 +17,7 @@ Key | Cardinality | FHIR operation to generate context | Description
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy open request:
 
-* [DiagnosticReport for Open Events](StructureDefinition-fhircast-diagnotic-report-open.html)
+* [DiagnosticReport for Open Events](StructureDefinition-fhircast-diagnostic-report-open.html)
 * [ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)
 * [Patient for Open Events](StructureDefinition-fhircast-patient-open.html)
 

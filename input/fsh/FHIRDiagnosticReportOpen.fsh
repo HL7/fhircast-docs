@@ -12,8 +12,7 @@ Typically the report is associated with an order from the information system.  I
 array as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.
 
 In radiology or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case
-the Study Instance UID of this image study (or Study Instance UIDs of multiple image studies) SHALL be included as a business identifier if it (they) are known.
-Study Instance UID(s) are provided in the `basedOn` array as a reference to an ImagingStudy using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.
+the reference to the ImagingStudy (or ImagingStudy's) in the event's context SHALL be included as a business identifier if it (they) are known.
 """
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."
@@ -34,7 +33,7 @@ in the `identifier` array using the Identifier system of `urn:dicom:uid` and pre
 """
 * status 1..1
 * status ^short = "Status of the DiagnosticReport, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
-* status ^ definition = 
+* status ^definition = 
 """
 While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example,
 a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html)
@@ -52,9 +51,12 @@ A reference to the FHIR Patient resource describing the patient whose report is 
 """
 The accession number of the order which directly or in directly triggered the report to be created SHALL be included as a business identifier if it is known.  The accession number is
 stored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.
-
+"""
+* study ^short = "Imaging study (or studies) which are the subject of this report"
+* study ^definition =
+"""
 If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case
-a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the basedOn array if known.
+a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the `study` array if known.
 """
 
 Instance: FHIRcastDiagnosticReportOpen-Example
@@ -64,10 +66,11 @@ Description: "Example of an imaging study which could be used in a [FHIR resourc
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
 * subject = Reference(FHIRcastPatientOpen-Example)
+* code = http://loinc.org#19005-8
 * basedOn[0].type = "ServiceRequest"
 * basedOn[=].identifier.type.coding = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
 * basedOn[=].identifier.system = "urn:oid:2.16.840.1.113883.19.5"
 * basedOn[=].identifier.value = "GH339884"
 * basedOn[=].identifier.assigner.reference = "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc"
 * basedOn[=].identifier.assigner.display = "My Healthcare Provider"
-* basedOn[+].reference = Reference(FHIRcastImagingStudyOpen-Example)
+* study = Reference(FHIRcastImagingStudyOpen-Example)
