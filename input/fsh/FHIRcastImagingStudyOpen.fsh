@@ -41,7 +41,8 @@ in the `identifier` array using the Identifier system of `urn:dicom:uid` and pre
 """
 * status 1..1
 * status ^short = "Status of the ImagingStudy, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
-* subject 1..1 MS
+* subject 1..1
+* subject only Reference(FHIRcastPatientOpen)
 * subject ^short = "Reference to the Patient resource associated with the ImagingStudy (see detailed description if the image study's subject is not a patient)"
 * subject ^definition =
 """

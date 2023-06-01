@@ -39,7 +39,7 @@ The following example shows a report being opened that contains a single primary
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
   "event": {
-    "hub.topic": "DrXRay",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-open",
     "context": [
       {
@@ -48,25 +48,41 @@ The following example shows a report being opened that contains a single primary
           "resourceType": "DiagnosticReport",
           "id": "40012366",
           "status": "unknown",
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          },
-          "imagingStudy": [
+          "basedOn" : [
             {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
+              "type" : "ServiceRequest",
+              "identifier" : {
+                "type" : {
+                  "coding" : [
+                    {
+                      "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                      "code" : "ACSN"
+                    }
+                  ]
+                },
+                "system" : "urn:oid:2.16.840.1.113883.19.5",
+                "value" : "GH339884",
+                "assigner" : {
+                  "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                  "display" : "My Healthcare Provider"
+                }
+              }
             }
-          ]
-        }
-      },
-      {
-        "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
+          ],
+          "code" : {
+            "coding" : [
+              {
+                "system" : "http://loinc.org",
+                "code" : "19005-8"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
+          },
+          "study": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
+              "reference": "ImagingStudy/28940c5b-925b-47f7-b89a-1fc3da6055c7"
             }
           ]
         }
@@ -75,30 +91,72 @@ The following example shows a report being opened that contains a single primary
         "key": "study",
         "resource": {
           "resourceType": "ImagingStudy",
-          "description": "CHEST XRAY",
-          "started": "2010-01-30T23:00:00.000Z",
-          "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
+          "id": "28940c5b-925b-47f7-b89a-1fc3da6055c7",
           "identifier": [
-            {
-              "type": {
-                "coding": [
-                  {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code": "ACSN"
-                  }
-                ]
-              },
-              "value": "342123458"
-            },
             {
               "system": "urn:dicom:uid",
               "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
             }
           ],
+          "status": "unknown",
           "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+            "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
+          },
+          "basedOn" : [
+            {
+              "type" : "ServiceRequest",
+              "identifier" : {
+                "type" : {
+                  "coding" : [
+                    {
+                      "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                      "code" : "ACSN"
+                    }
+                  ]
+                },
+                "system" : "urn:oid:2.16.840.1.113883.19.5",
+                "value" : "GH339884",
+                "assigner" : {
+                  "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                  "display" : "My Healthcare Provider"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
+          "identifier" : [
+            {
+              "use" : "usual",
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR"
+                  }
+                ]
+              },
+              "system" : "urn:oid:1.2.36.146.595.217.0.1",
+              "value" : "12345",
+              "assigner" : {
+                "display" : "Acme Healthcare"
+              }
+            }
+          ],
+          "name" : [
+            {
+              "use": "official",
+              "family": "Umbrage",
+              "given": "Lola"
+            }
+          ],
+          "gender" : "female",
+          "birthDate" : "1945-11-14"
         }
       }
     ]
@@ -115,70 +173,11 @@ The event distributed by the Hub includes a context version in the `context.vers
   "timestamp": "2020-09-07T14:58:45.988Z",
   "id": "0d4c9998",
   "event": {
-    "hub.topic": "DrXRay",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-open",
     "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
-      {
-        "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "40012366",
-          "status": "unknown",
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          },
-          "imagingStudy": [
-            {
-              "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
-            }
-          ]
-        }
-      },
-      {
-        "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
-          "identifier": [
-            {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            }
-          ]
-        }
-      },
-      {
-        "key": "study",
-        "resource": {
-          "resourceType": "ImagingStudy",
-          "description": "CHEST XRAY",
-          "started": "2010-01-30T23:00:00.000Z",
-          "status": "available",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "identifier": [
-            {
-              "type": {
-                "coding": [
-                  {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code": "ACSN"
-                  }
-                ]
-              },
-              "value": "342123458"
-            },
-            {
-              "system": "urn:dicom:uid",
-              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
-            }
-          ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
-        }
-      }
-    ]
+      ... as above ...
   }
 }
 ```

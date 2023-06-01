@@ -24,7 +24,7 @@ which was provided in the corresponding [FHIR resource]-open event enables Subsc
 Instance: FHIRcastEncounterClose-Example
 InstanceOf: FHIRcastEncounterClose
 Usage: #example
-Description: "Example of an encounter which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
+Description: "Example of an Encounter which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
 resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
 * id = "8cc652ba-770e-4ae1-b688-6e8e7c737438-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/encounter-status#unknown

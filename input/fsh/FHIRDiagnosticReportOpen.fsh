@@ -9,10 +9,10 @@ Provides guidance as to which DiagnosticReport attributes should be present and 
 At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request.
 
 Typically the report is associated with an order from the information system.  In this case the accession number of the order is provided in the DiagnosticReport's `basedOn`
-array as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.
+array attribute as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.
 
 In radiology or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case
-the reference to the ImagingStudy (or ImagingStudy's) in the event's context SHALL be included as a business identifier if it (they) are known.
+the reference to the ImagingStudy (or ImagingStudy's) in the event's context SHALL be included in the `study` array attribute.
 """
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."
@@ -39,7 +39,8 @@ While initially the `status` of the report may begin as `unknown` or `preliminar
 a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html)
 event prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  
 """
-* subject 1..1 MS
+* subject 1..1
+* subject only Reference(FHIRcastPatientOpen)
 * subject ^short = "Reference to the Patient resource associated with the DiagnosticReport"
 * subject ^definition =
 """
