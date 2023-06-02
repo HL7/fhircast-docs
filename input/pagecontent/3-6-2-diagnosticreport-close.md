@@ -7,6 +7,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 User closed a report. A previously open and in context report is no longer open nor in context.
 
 ### Context
+
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
@@ -30,10 +31,6 @@ If a Hub supports content sharing, after it distributes the `DiagnosticReport-cl
 ### Examples
 
 #### DiagnosticReport-close Example
-
-This example closes a DiagnosticReport context.
-
-```json
 
 ```json
 {
