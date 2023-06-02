@@ -7,8 +7,8 @@ Description: "Provides guidance as to which Encounter attributes should be prese
 * id ^short = "A logical id of the resource must be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. The provided `id` SHALL be the same Encounter id which was provided in the [FHIR resource]-open event (see also
-[FHIRcast Encounter for Open Events](StructureDefinition-fhircast-encounter-open.html)).
+A logical id of the resource must be provided. The provided `id` SHALL be the same Encounter id which was provided in the corresponding [FHIR resource]-open event
+(see also [FHIRcast Encounter for Open Events](StructureDefinition-fhircast-encounter-open.html)).
 """
 * identifier 0..* MS
 * identifier ^short = "At least one identifier of the Encounter SHOULD be provided in an [FHIR resource]-close request."
@@ -28,7 +28,6 @@ Description: "Example of an Encounter which could be used in a [FHIR resource]-c
 resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
 * id = "8cc652ba-770e-4ae1-b688-6e8e7c737438-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/encounter-status#unknown
-* class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "r2r22345"
 * identifier.system = "http://myhealthcare.com/visits"
