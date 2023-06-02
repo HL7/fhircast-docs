@@ -168,3 +168,5 @@ If a Hub supports content sharing, after it distributes the `DiagnosticReport-cl
 | Version | Description
 | ------- | ----
 | 0.1 | Initial draft
+| 0.5 | Connectathon trials and initial fielded solutions based on draft STU3
+| 1.0 | Reference context resource profiles and update example to be compliant with the profiles
