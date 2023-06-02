@@ -11,10 +11,11 @@ A logical id of the resource must be provided. The provided `id` SHALL be the sa
 (see also [FHIRcast Encounter for Open Events](StructureDefinition-fhircast-encounter-open.html)).
 """
 * identifier 0..* MS
-* identifier ^short = "At least one identifier of the Encounter SHOULD be provided in an [FHIR resource]-close request."
+* identifier ^short = "At least one identifier of the Encounter SHOULD be provided in a [FHIR resource]-close request."
 * identifier ^definition = 
 "At least one `identifier` of the Encounter SHOULD be provided in a [FHIR resource]-close request. Providing one or more of the `indentifier` values for the Encounter
 which was provided in the corresponding [FHIR resource]-open event enables Subscribers to perform identity verification according to their requirements."
+* status ^short = "Status of the Encounter, note this may not be known and hence have a value of `unknown`; however, `status` is included since it is required by FHIR"
 * subject 1..1
 * subject only Reference(FHIRcastPatientClose)
 * subject ^short = "Reference to the patient associated with the encounter"
@@ -25,7 +26,8 @@ Instance: FHIRcastEncounterClose-Example
 InstanceOf: FHIRcastEncounterClose
 Usage: #example
 Description: "Example of an Encounter which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
-resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open"
+resource `id` is appended with '-close'.  The specification requires that the resource `id` in the -close be identical to the resource `id` provided in the corresponding -open;
+hence in the real world the '-close' suffix would not be present."
 * id = "8cc652ba-770e-4ae1-b688-6e8e7c737438-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/encounter-status#unknown
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official

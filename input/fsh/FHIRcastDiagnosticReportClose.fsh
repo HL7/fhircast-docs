@@ -28,11 +28,11 @@ InstanceOf: FHIRcastDiagnosticReportClose
 Usage: #example
 Description: "Example of a DiagnosticReport which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
 resource `id` is appended with '-close'.  The specification requires that the resource `id` in the [FHIR resource]-close be identical to the resource `id` provided in the corresponding
-[FHIR resource]-open"
+[FHIR resource]-open; hence in the real world the '-close' suffix would not be present."
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
 * subject = Reference(FHIRcastPatientOpen-Example)
-* code = http://loinc.org#19005-8
+* code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "GH339884.RPT.0001"
 * identifier.system = "http://myhealthcare.com/reporting-system"

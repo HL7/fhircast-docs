@@ -40,16 +40,16 @@ The Study Instance UID SHALL be included as a business identifier if it is known
 in the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.
 """
 * status 1..1
-* status ^short = "Status of the ImagingStudy, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
+* status ^short = "Status of the ImagingStudy, note this may not be known and hence have a value of `unknown`; however, `status` is included since it is required by FHIR"
 * subject 1..1
-* subject only Reference(FHIRcastPatientOpen)
+* subject only Reference(FHIRcastPatientOpen or Device or Group)
 * subject ^short = "Reference to the Patient resource associated with the ImagingStudy (see detailed description if the image study's subject is not a patient)"
 * subject ^definition =
 """
 A reference to the FHIR Patient resource describing the patient whose imaging study is currently in context.  A patient SHALL be present if there is a patient associated with the study.
 Note there are rare cases in which the ImagingStudy.subject references a resource which is not a patient; for example a calibration study.  A reference to the related non-Patient subject of the study SHALL
 be present in the ImagingStudy resource as it is required by the FHIR specification but is not required to be present in the [FHIR resource]-open event's context.  For example,
-a reference to a Device resource could be provided as the subject (if no specific Device FHIR resource is available a simple display value is allowed in the reference).
+a reference to a Device resource could be provided as the subject (note, if no FHIR Device FHIR resource instance is available it is allowed to provide only a `display` value in the `reference`).
 """
 * basedOn 0..1
 * basedOn ^short = "At least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request (see detailed description)."

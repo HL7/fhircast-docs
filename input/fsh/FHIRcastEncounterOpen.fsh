@@ -15,7 +15,7 @@ the same Encounter `id` which was provided in the [FHIR resource]-open event (se
 [FHIRcast Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)).
 """
 * identifier 1..*
-* identifier ^short = "At least one identifier of the Encounter SHALL be provided in an [FHIR resource]-open request."
+* identifier ^short = "At least one identifier of the Encounter SHALL be provided in a [FHIR resource]-open request."
 * identifier ^definition = 
 """
 At least one `identifier` of the Encounter SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open
@@ -23,6 +23,8 @@ request should not assume that all Subscribers will be able to resolve the resou
 resource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will
 likely be able to identify the Encounter.
 """
+* status 1..1
+* status ^short = "Status of the Encounter, note this may not be known and hence have a value of `unknown`; however, `status` is included since it is required by FHIR"
 * subject 1..1
 * subject only Reference(FHIRcastPatientOpen)
 * subject ^short = "Reference to the patient associated with the encounter"

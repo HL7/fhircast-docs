@@ -16,7 +16,7 @@ the same Patient `id` which was provided in the [FHIR resource]-open event (see 
 in the `subject` attribute's Patient reference in all resources containing a `subject` attribute in a given [FHIR resource]-open event.
 """
 * identifier 1..*
-* identifier ^short = "At least one identifier of the Patient SHALL be provided in an [FHIR resource]-open request."
+* identifier ^short = "At least one identifier of the Patient SHALL be provided in a [FHIR resource]-open request."
 * identifier ^definition = 
 """
 At least one `identifier` of the Patient SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open

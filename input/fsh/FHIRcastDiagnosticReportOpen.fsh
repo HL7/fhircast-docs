@@ -67,7 +67,7 @@ Description: "Example of an imaging study which could be used in a [FHIR resourc
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
 * subject = Reference(FHIRcastPatientOpen-Example)
-* code = http://loinc.org#19005-8
+* code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * basedOn[0].type = "ServiceRequest"
 * basedOn[=].identifier.type.coding = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
 * basedOn[=].identifier.system = "urn:oid:2.16.840.1.113883.19.5"

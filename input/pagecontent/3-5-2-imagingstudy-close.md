@@ -12,22 +12,22 @@ User closed an imaging study. A previously open and in context image study is no
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `study` | 1..1 | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource describing the image study previously in context that is being closed.
-`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the image study being closed.
+`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the image study being closed.   Patient SHALL be present if there is a patient associated with the study.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy close request:
 
 * [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
 * [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
 
-Other attributes of the ImagingStudy and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profile are not required by the FHIRcast standard.
+Other attributes of the ImagingStudy and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
 
 ### Examples
 
 ```json
 {
-  "timestamp": "2018-01-08T01:37:05.14",
-  "id": "q9v3jubddqt63n1",
+  "timestamp": "2023-04-01T011:03:04.08",
+  "id": "bccaeba4-494a-459b-adf3-be0cf29dd2a0",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "ImagingStudy-close",
@@ -36,16 +36,16 @@ Other attributes of the ImagingStudy and Patient resources (or resource extensio
         "key": "study",
         "resource": {
           "resourceType": "ImagingStudy",
-          "id": "28940c5b-925b-47f7-b89a-1fc3da6055c7",
+          "id": "e25c1d31-20a2-41f8-8d85-fe2fdeac74fd",
           "identifier": [
             {
-              "system": "urn:dicom:uid",
-              "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
+              "system" : "urn:dicom:uid",
+              "value" : "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
             }
           ],
           "status": "unknown",
           "subject": {
-            "reference": "Patient/9adc8698-33a4-4f50-897b-4873b64a38c1"
+            "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
           },
           "basedOn" : [
             {
@@ -74,10 +74,10 @@ Other attributes of the ImagingStudy and Patient resources (or resource extensio
         "key": "patient",
         "resource": {
           "resourceType": "Patient",
-          "id": "9adc8698-33a4-4f50-897b-4873b64a38c1",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926",
           "identifier" : [
             {
-              "use" : "usual",
+              "use" : "official",
               "type" : {
                 "coding" : [
                   {
@@ -86,18 +86,12 @@ Other attributes of the ImagingStudy and Patient resources (or resource extensio
                   }
                 ]
               },
-              "system" : "urn:oid:1.2.36.146.595.217.0.1",
-              "value" : "12345",
-              "assigner" : {
-                "display" : "Acme Healthcare"
+              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "value": "4438001",
+              "assigner": {
+                "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                "display": "My Healthcare Provider"
               }
-            }
-          ],
-          "name" : [
-            {
-              "use": "official",
-              "family": "Umbrage",
-              "given": "Lola"
             }
           ]
         }

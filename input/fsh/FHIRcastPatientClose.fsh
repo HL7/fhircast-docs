@@ -11,7 +11,7 @@ A logical id of the resource must be provided. The provided `id` SHALL be the sa
 (see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
 """
 * identifier 0..* MS
-* identifier ^short = "At least one identifier of the Patient SHOULD be provided in an [FHIR resource]-close request."
+* identifier ^short = "At least one identifier of the Patient SHOULD be provided in a [FHIR resource]-close request."
 * identifier ^definition = 
 """
 At least one `identifier` of the Patient SHOULD be provided in a [FHIR resource]-close request. Providing one or more of the `indentifier` values for the Patient
