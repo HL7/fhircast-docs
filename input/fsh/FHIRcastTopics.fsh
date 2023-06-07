@@ -1,5 +1,6 @@
 Instance: FhirCastContainerTopicTopic
 InstanceOf: SubscriptionTopic
+* id =  "container-update-topic"
 * url = "http://hl7.org/fhir/uv/fhircast/SubscriptionTopic/container-update-topic"
 * title = "Subscribe to container changes in a topic"
 * description = """
@@ -11,14 +12,17 @@ InstanceOf: SubscriptionTopic
 * canFilterBy[+]
   * description = "filters to events for a specific topic"
   * filterParameter = "topic"
-  * modifier = #eq
+  * modifier = #exact
+  // * modifier = #eq
 * canFilterBy[+]
   * description = "filters to events for a specific anchor type"
   * filterParameter = "anchor-type"
-  * modifier = #eq
+  * modifier = #exact
+  // * modifier = #eq
 
 Instance: FhirCastContainerResourceTopic
 InstanceOf: SubscriptionTopic
+* id = "container-update-resource"
 * url = "http://hl7.org/fhir/uv/fhircast/SubscriptionTopic/container-update-resource"
 * title = "Subscribe to container changes of an resource"
 * description = """
@@ -30,11 +34,13 @@ InstanceOf: SubscriptionTopic
 * canFilterBy[+]
   * description = "filters to events for a specific anchor type"
   * filterParameter = "anchor-type"
-  * modifier = #eq
+// * modifier = #eq
+  * modifier = #exact
 * canFilterBy[+]
   * description = "filters to events for a specific anchor (type and id))"
   * filterParameter = "anchor-id"
-  * modifier = #eq
+// * modifier = #eq
+  * modifier = #exact
 
 // Instance: FhirCastContainerResourceTopic
 // InstanceOf: SubscriptionTopic
