@@ -1,4 +1,4 @@
-### Event-name: userhibernate
+### Event-name: UserHibernate.html
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
@@ -6,7 +6,7 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 User temporarily suspended their session. The user's session will eventually resume.
  
-Unlike most of FHIRcast events, `userhibernate` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
+Unlike most of FHIRcast events, `UserHibernate.html` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
 
 ### Context
 

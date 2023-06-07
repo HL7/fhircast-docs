@@ -10,26 +10,26 @@ participant Hub
 participant "Image Reading\nApplication\n(Subscriber)" as App1
 
 Clinician -> App1: 1: make measurement
-App1 -> Hub++: 2: diagnosticreport-update
+App1 -> Hub++: 2: DiagnosticReport-update
 note right Hub: with versionId
 
 group FHIRcast: Add Measurement
 |||
 group Validate Update Request
 else versionId incorrect
-Hub --> App1:2: Reject diagnosticreport-update
+Hub --> App1:2: Reject DiagnosticReport-update
 else VersionId correct
 Hub -> Hub++--: 3: Update Content \nand Generate New versionId
-Hub -\ EHR: 4a: diagnosticreport-update
+Hub -\ EHR: 4a: DiagnosticReport-update
 activate EHR
 note right EHR: with versionId and priorVersionId
 EHR -> EHR++--: 5: Ignore
-Hub -\ App1: 4b: diagnosticreport-update
+Hub -\ App1: 4b: DiagnosticReport-update
 deactivate EHR
 note left App1: with versionId and priorVersionId
 activate App1
 App1 -> App1++--: 6: Store versionId
-Hub -\ RepApp: 4c:diagnosticreport-update
+Hub -\ RepApp: 4c:DiagnosticReport-update
 deactivate App1
 note right RepApp: with versionId and priorVersionId
 activate RepApp
@@ -48,16 +48,16 @@ end
 |||
 Clinician -> RepApp: 9: Select a Measurement
 group FHIRcast: Select Measurement
-RepApp -> Hub: 10: diagnosticreport-select
+RepApp -> Hub: 10: DiagnosticReport-select
 activate Hub
-Hub -\ EHR: 11a: diagnosticreport-select
+Hub -\ EHR: 11a: DiagnosticReport-select
 activate EHR
 EHR -> EHR++--: 12: Ignore
-Hub -\ App1: 11b: diagnosticreport-select
+Hub -\ App1: 11b: DiagnosticReport-select
 deactivate EHR
 activate App1
 App1 -> App1++--: Adjust UI
-Hub -\ RepApp: 11c: diagnosticreport-select
+Hub -\ RepApp: 11c: DiagnosticReport-select
 deactivate App1
 activate RepApp
 deactivate Hub

@@ -36,7 +36,7 @@ note over Hub
     user or with an implementation specific response.
 end note
 
-Hub -> Subscriber1: Event notification [syncerror]
-Hub -> Controller: Event notification [syncerror]
-Hub -> Subscriber2: Event notification [syncerror]
+Hub -> Subscriber1: Event notification [SyncError]
+Hub -> Controller: Event notification [SyncError]
+Hub -> Subscriber2: Event notification [SyncError]
 @enduml

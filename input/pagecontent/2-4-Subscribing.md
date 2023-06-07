@@ -23,13 +23,13 @@ Field                  | Optionality | Type     | Description
 `hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
-`subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `syncerror` notifications when an event is refused or cannot be delivered.
+`subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `SyncError` notifications when an event is refused or cannot be delivered.
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
 Hubs SHALL allow subscribers to re-request subscriptions that are already activated. Each subsequent and verified request to a Hub to subscribe or unsubscribe SHALL override the previous subscription state for a specific (`hub.topic`, `hub.channel.endpoint` url) combination. For example, a Subscriber MAY modify its subscription by sending a subscription request (`hub.mode=subscribe`) with a different `hub.events` value with the same topic and endpoint url, in which case the Hub SHALL replace the subscription’s previous `hub.events` with the newly provided list of events.
 
-Hubs SHOULD be case insensitive for event-names.
+Hubs and Subscribers SHALL be case insensitive for event-names.
 
 The application that creates the subscription MAY NOT be the same system as the server connecting to the WSS URL (e.g., a federated authorization model could exist between these two systems). However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the Subscriber and the system receiving notifications.
 
@@ -38,7 +38,7 @@ The application that creates the subscription MAY NOT be the same system as the 
 
 #### Initial Subscription Request Example
 
-In this example, the subscribing application creates an initial subscription and asks to be notified of the `patient-open` and `patient-close` events.
+In this example, the subscribing application creates an initial subscription and asks to be notified of the `Patient-open` and `Patient-close` events.
 
 ```text
 POST https://hub.example.com HTTP/1.1
@@ -46,7 +46,7 @@ Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
-hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=patient-open,patient-close
+hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=Patient-open,Patient-close
 ```
 
 ### Subscription Response
@@ -87,7 +87,7 @@ Once the subscription is confirmed, the application is subscribed.
 {
   "hub.mode": "subscribe",
   "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-  "hub.events": "patient-open,patient-close",
+  "hub.events": "Patient-open,Patient-close",
   "hub.lease_seconds": 7200
 }
 ```
@@ -104,7 +104,7 @@ Once the subscription is confirmed, the application is subscribed.
 1. Hub accepts the Subscribe request and responds with the endpoint URL
 1. Subscriber connects to the endpoint URL via WebSockets
 1. Hub sends the confirmation message over the WebSocket connection
-1. (Optional) Hub sends any existing open-context events (e.g., `patient-open`)
+1. (Optional) Hub sends any existing open-context events (e.g., `Patient-open`)
 1. Either Hub or Subscriber send events as they occur
 
 ### Current context notification upon successful subscription
@@ -135,7 +135,7 @@ Field        | Optionality | Type     | Description
 {
    "hub.mode": "denied",
    "hub.topic": "fba7b1e2-53e9-40aa-883a-2af57ab4e2c",
-   "hub.events": "patient-open,patient-close",
+   "hub.events": "Patient-open,Patient-close",
    "hub.reason": "session unexpectedly stopped"
 }
 ```

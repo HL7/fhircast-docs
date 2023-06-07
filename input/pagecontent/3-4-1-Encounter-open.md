@@ -1,28 +1,29 @@
-### Event-name: encounter-close
+### Event-name: `Encounter-open`
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User closed patient's medical record encounter context. A previously open and in context patient encounter is no longer open nor in context. 
+User opened patient's medical record in the context of a single encounter. Only a single patient and encounter is currently in context.
 
 ### Context
 
 {:.grid}
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource previously in context.
-`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter was previously in context.
+`encounter` | REQUIRED | `Encounter/{id}?_elements=identifier	` | FHIR Encounter resource in context.
+`patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is currently in context.
 
 ### Examples
 
+
 ```json
 {
-  "timestamp": "2018-01-08T01:37:05.14",
-  "id": "q9v3jubddqt63n1",
+  "timestamp": "2018-01-08T01:35:25.33",
+  "id": "q9v3jubd43i4ufhff",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "encounter-close",
+    "hub.event": "Encounter-open",
     "context": [
       {
         "key": "patient",
@@ -66,6 +67,7 @@ Key | Optionality | FHIR operation to generate context | Description
   }
 }
 ```
+
 
 ### Change Log
 

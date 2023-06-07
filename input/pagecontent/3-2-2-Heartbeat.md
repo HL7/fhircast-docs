@@ -1,4 +1,4 @@
-{% include questionnote.html text='Implementer feedback is requested for the need to support heartbeats for WebSockets.' %}
+{% include questionnote.html text='Implementer feedback is requested for the need to support Heartbeat.htmls for WebSockets.' %}
 
 ### Event-name: Heartbeat event
 
@@ -6,11 +6,11 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-The heartbeat event is sent regularly by the Hub to indicate that a connection should remain open.  This event SHALL be sent at least every 10 second, or an order of magnitude lower than the subscription time-out.
+The Heartbeat.html event is sent regularly by the Hub to indicate that a connection should remain open.  This event SHALL be sent at least every 10 second, or an order of magnitude lower than the subscription time-out.
 
 ### Context
 
-The context of the heartbeat event described in the table below.
+The context of the Heartbeat.html event described in the table below.
 
 {:.grid}
 | Key | Optionality | # | type | Description
@@ -21,7 +21,7 @@ The `period` field indicates the repeat interval. If an event is not received wi
 
 ### Example
 
-An example heartbeat event is indicated below.
+An example Heartbeat.html event is indicated below.
 
 ````json
 {
@@ -34,7 +34,7 @@ An example heartbeat event is indicated below.
       }
     ],
     "hub.topic":"Topic1",
-    "hub.event":"heartbeat"
+    "hub.event":"Heartbeat.html"
   }
 }
 ````

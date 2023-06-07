@@ -1,14 +1,14 @@
-### Event-name: diagnosticreport-open
+### Event-name: DiagnosticReport-open
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A `diagnosticreport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by a Subscriber and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
+A `DiagnosticReport-open` request is posted to the Hub when a new or existing DiagnosticReport is opened by a Subscriber and established as the anchor context of a topic. The `context` field MUST contain at least one `Patient` resource and the anchor context resource.
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `diagnosticreport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`diagnosticreport-update`](3-6-3-diagnosticreport-update.html) requests.  If a Subscriber will neither make a [`diagnosticreport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`diagnosticreport-update`](3-6-3-diagnosticreport-update.html) events, the `context.versionId` can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber will neither make a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events, the `context.versionId` can be safely ignored.
 
 ### Context
 
@@ -21,7 +21,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 ### Examples
 
-#### diagnosticreport-open Example Request
+#### DiagnosticReport-open Example Request
 
 The following example shows a report being opened that contains a single primary study.  Note that the diagnostic report's `imagingStudy` and `subject` attributes have references to the imaging study and patient which are also in the open request.
 
@@ -31,7 +31,7 @@ The following example shows a report being opened that contains a single primary
   "id": "0d4c9998",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "diagnosticreport-open",
+    "hub.event": "DiagnosticReport-open",
     "context": [
       {
         "key": "report",
@@ -97,9 +97,9 @@ The following example shows a report being opened that contains a single primary
 }
 ```
 
-#### diagnosticreport-open Event Example
+#### DiagnosticReport-open Event Example
 
-The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by Subscribers to make subsequent [`diagnosticreport-update`](3-6-3-diagnosticreport-update.html) requests.
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by Subscribers to make subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.
 
 ```json
 {
@@ -107,7 +107,7 @@ The event distributed by the Hub includes a context version in the `context.vers
   "id": "0d4c9998",
   "event": {
     "hub.topic": "DrXRay",
-    "hub.event": "diagnosticreport-open",
+    "hub.event": "DiagnosticReport-open",
     "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
       {
