@@ -23,7 +23,7 @@ Field                  | Optionality | Type     | Description
 `hub.events`           | Conditional | *string* | A comma-separated list of event types for which the Subscriber wants to subscribe.
 `hub.lease_seconds`    | Optional    | *number* | Number of seconds for which the Subscriber would like to have the subscription active, given as a positive decimal integer. Hubs MAY choose to respect this value or not, depending on their own policies, and MAY set a default value if the Subscriber omits the parameter. If using OAuth 2.0, the Hub SHALL limit the subscription lease seconds to be less than or equal to the access token's expiration.
 `hub.channel.endpoint` | Conditional | *string* | The WSS URL identifying an existing WebSocket subscription.
-`subscriber.name`      | Optional    | *string* | An optional description of the subscriber that will be used in `SyncError` notifications when an event is refused or cannot be delivered.
+`subscriber.name`      | Optional    | *string* | An optional description of the Subscriber that will be used in `SyncError` notifications when an event is refused or cannot be delivered.
 
 If OAuth 2.0 authentication is used, this POST request SHALL contain the Bearer access token in the HTTP Authorization header.
 
@@ -69,7 +69,7 @@ HTTP/1.1 202 Accepted
 
 ### Subscription Confirmation
 
-To confirm a subscription request, upon the subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation over the websocket channel. This confirmation includes the following elements:
+To confirm a subscription request, upon the Subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation over the WebSocketchannel. This confirmation includes the following elements:
 
 {:.grid}
 Field               | Optionality | Type | Description
@@ -169,9 +169,9 @@ To unsubscribe, the Subscriber SHALL perform an HTTP POST to the Hub's base URL 
 {:.grid}
 Field                  | Optionality | Type     | Description
 ---------------------- | ----------- | -------- | -----------
-`hub.channel.type`     | Required    | *string* | The (un)subscriber SHALL specify a channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
+`hub.channel.type`     | Required    | *string* | The (un)Subscriber SHALL specify a channel type of `websocket`. Subscription requests without this field SHOULD be rejected by the Hub.
 `hub.mode`             | Required    | *string* | The literal string `unsubscribe`.
-`hub.topic`            | Required    | *string* | The identifier of the session that the subscriber wishes to subscribe to or unsubscribe from.
+`hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from.
 `hub.channel.endpoint` | Required    | *string* | The WSS URL identifying an existing WebSocket subscription.
 
 #### Unsubscribe Request Example

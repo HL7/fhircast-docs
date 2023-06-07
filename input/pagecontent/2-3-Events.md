@@ -17,7 +17,7 @@ Field | Optionality | Type | Description
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
+The notification's `hub.event` and `context` fields inform the Subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 The Subscriber requesting a context change SHALL ensure consistency of the FHIR resources in the `context` array.  For example, the Hub will not check that the Patient resource in an Encounter-open `context` array is in fact the patient associated with the encounter in the real world.
 
@@ -39,7 +39,7 @@ Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Cam
 
 Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
-When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the subscriber subscribes to any event. The table below shows some typical examples.
+When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the Subscriber subscribes to any event. The table below shows some typical examples.
 
 {:.grid}
 | **Event** | **Description** |
@@ -61,13 +61,13 @@ All fields available within an event's context SHALL be defined in a table where
 - **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
-A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
+A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
 Many events refer to a resource the event relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
 The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
 
-The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
 ### Event types
 
