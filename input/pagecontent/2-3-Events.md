@@ -56,7 +56,7 @@ Describes the set of contextual data associated with this event. Only data logic
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
 - **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field.
-- **Optionality**: A string value of either `Required`, `Optional` or `Conditional`
+- **Cardinality**: Indicates the optionality and maximum resources instances allowed in an event's context 
 - **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
