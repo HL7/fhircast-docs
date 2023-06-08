@@ -12,13 +12,11 @@ InstanceOf: SubscriptionTopic
 * canFilterBy[+]
   * description = "filters to events for a specific topic"
   * filterParameter = "topic"
-  * modifier = #exact
-  // * modifier = #eq
+  * modifier = #eq
 * canFilterBy[+]
   * description = "filters to events for a specific anchor type"
   * filterParameter = "anchor-type"
-  * modifier = #exact
-  // * modifier = #eq
+  * modifier = #eq
 
 Instance: FhirCastContainerResourceTopic
 InstanceOf: SubscriptionTopic
@@ -34,13 +32,11 @@ InstanceOf: SubscriptionTopic
 * canFilterBy[+]
   * description = "filters to events for a specific anchor type"
   * filterParameter = "anchor-type"
-// * modifier = #eq
-  * modifier = #exact
+  * modifier = #eq
 * canFilterBy[+]
   * description = "filters to events for a specific anchor (type and id))"
   * filterParameter = "anchor-id"
-// * modifier = #eq
-  * modifier = #exact
+  * modifier = #eq
 
 // Instance: FhirCastContainerResourceTopic
 // InstanceOf: SubscriptionTopic
