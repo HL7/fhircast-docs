@@ -6,7 +6,7 @@ Originally, FHIRcast supported a `webhook` channel (URL callbacks). As part of F
 
 The field `hub.channel.type` was used to indicate the channel type to use for event notification. This field has been retained in order to support backward compatibility as well as facilitate potentially adding new channels in the future.
 
-Similarly, the conformance statement related to websocket support was retained.
+Similarly, the conformance statement related to WebSocketsupport was retained.
 
 ### Content sharing approach
 

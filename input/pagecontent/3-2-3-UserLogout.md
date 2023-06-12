@@ -1,4 +1,4 @@
-### Event-name: userlogout
+### Event-name: UserLogout.html
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
@@ -6,11 +6,11 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. 
 
-Unlike most of FHIRcast events, `userlogout` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
+Unlike most of FHIRcast events, `UserLogout.html` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
 
 Implementers are encouraged to consider if and when their application should logout the user upon receiving an userLogout event, and if so, how to preserve application state.
 
-If a Subscriber decides that it will not logout the current user it SHOULD send a [syncerror](3-2-1-syncerror.html) with appropriate details indicating why the Subscriber chose not to logout the current user. 
+If a Subscriber decides that it will not logout the current user it SHOULD send a [SyncError](3-2-1-SyncError.html) with appropriate details indicating why the Subscriber chose not to logout the current user. 
 
 ### Context
 

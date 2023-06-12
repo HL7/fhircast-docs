@@ -16,7 +16,6 @@ This method returns an object containing the current context of a topic; where t
 
 If an established context is closed without another being opened, the Hub SHALL return an empty context (which as specified above is indicated by returning an empty string for the `context.type` and an empty array in `context`).  See [Multi-tab Considerations](4-4-multitab-considerations.html) for additional discussion on multiple context scenarios.
 
-
 {:.grid}
 Field | Optionality | Type | Description
 ----- | --- | --- | ---
@@ -39,7 +38,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 #### Get Context Response Example
 
-The following example shows a response to the get context request when the current context was created by a [`DiagnosticReport-open`](3-6-1-diagnosticreport-open.html) request.  The response contains version "023fe970-a6d9-442f-a499-dfb71f1edba6" of the anchor context's content which contains a single `Observation` resource. 
+The following example shows a response to the get context request when the current context was created by a [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) request.  The response contains version "023fe970-a6d9-442f-a499-dfb71f1edba6" of the anchor context's content which contains a single `Observation` resource. 
 
 ```json
 {

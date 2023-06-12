@@ -13,13 +13,13 @@ Let's start with a simple case.
 
 #### Opening and Closing a Patient
 
-The diagrams below show two applications without any context, followed by a `patient-open` event communicated to the other application resulting in same patient being opened in the receiving application. When the patient is closed, a `patient-close` event is triggered leading to the patient being closed in the other application as well.
+The diagrams below show two applications without any context, followed by a `Patient-open` event communicated to the other application resulting in same patient being opened in the receiving application. When the patient is closed, a `Patient-close` event is triggered leading to the patient being closed in the other application as well.
 
 {% include img.html img="PatientOpenAndClose.png" caption="Figure: Simple patient open and close example" %}
 
 #### Opening Multiple Patients
 
-As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
+As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `Patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
@@ -38,7 +38,7 @@ Recall that the multi-tab example is only one scenario in which the multiple con
 
 ### Recommendations
 
-* When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `patient-open`) does not indicate a synchronization error.
+* When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `Patient-open`) does not indicate a synchronization error.
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
 
 ### Launching A Context-Less Tab
@@ -46,9 +46,9 @@ Recall that the multi-tab example is only one scenario in which the multiple con
 Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
 
 > note
-> Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `patient-open` (or `imagingstudy-open` or ...) with a patient (or study or ...).
+> Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `Patient-open` (or `ImagingStudy-open` or ...) with a patient (or study or ...).
 
-Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `userlogout`).
+Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `UserLogout.html`).
 
 #### home-open
 
