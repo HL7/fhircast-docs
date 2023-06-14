@@ -29,10 +29,10 @@ Content of the OperationOutcome resource SHALL be at least one `issue` with the 
 * `issue[0].severity` as per the above workflow section
 * `issue[0].code` of `processing`
 * `issue[0].details` SHALL be present
-* `issue[0].details.coding` SHALL contain at least three elements
-  * `issue[0].details.coding[0]` SHALL contain the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid"
-  * `issue[0].details.coding[1]` SHALL contain the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" 
-  * `issue[0].details.coding[2]` SHALL contain the optional `subscriber.name` attribute of the original subscription of the relevant Subscriber with a `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber"; the `code` attribute MAY be an empty string if no `subscriber.name` of the relevant Subscriber was provided in the original subscription
+* `issue[0].details.coding` SHALL contain at least three codings, differentiated by their system:
+  * `issue[0].details.coding` SHALL contain a coding with the id of the event that this error is related to as a `code` with the `system` value of "https://fhircast.hl7.org/events/syncerror/eventid"
+  * `issue[0].details.coding` SHALL contain a coding with the name of the relevant event with a `system` value of "https://fhircast.hl7.org/events/syncerror/eventname" 
+  * `issue[0].details.coding` SHALL contain a coding with the optional `subscriber.name` attribute of the original subscription of the relevant Subscriber with a `system` value of "https://fhircast.hl7.org/events/syncerror/subscriber"; the `code` attribute MAY be an empty string if no `subscriber.name` of the relevant Subscriber was provided in the original subscription
   * additional `coding` elements MAY be included with different `system` values to provide extra information about the `syncerror`
 * `issue[0].diagnostics` attribute SHALL contain a human readable explanation on the source and reason for the error.
 
