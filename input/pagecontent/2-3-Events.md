@@ -106,7 +106,8 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 
 {% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
 
-The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One field with the name of the fhir-resource holding the anchor resource, and one or more fields named select indicating the resources that is selected.
+The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One field with the name of the FHIR resource which is the anchor context, and one field named `select` which is an array indicating the resources that are selected. If no resource is selected, `select` is an empty array.
+
 
 This allows communication of different select sets for the different anchor-types.
 
