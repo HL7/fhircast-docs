@@ -1,6 +1,6 @@
 ### Event name: `Patient-open`
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
@@ -12,7 +12,7 @@ User opened patient's medical record. The indicated patient is the current patie
 Key | Optionality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose chart is currently in context.
-~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource in context in the newly opened patient's chart.~~ DEPRECATED in favor of a dedicated `encounter-open` event. 
+~~`encounter`~~ | ~~REQUIRED, if exists~~ | ~~`Encounter/{id}?_elements=identifier`~~ | ~~FHIR Encounter resource in context in the newly opened patient's chart.~~ DEPRECATED in favor of a dedicated `Encounter-open` event. 
 
 ### Examples
 
@@ -22,7 +22,7 @@ Key | Optionality | FHIR operation to generate context | Description
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "patient-open",
+    "hub.event": "Patient-open",
     "context": [
       {
         "key": "patient",
@@ -55,5 +55,5 @@ Key | Optionality | FHIR operation to generate context | Description
 | Version | Description
 | ---- | ----
 | 1.0 | Initial Release
-| 1.1 | Deprecate encounter element in favor of dedicated `encounter-open` event.
+| 1.1 | Deprecate encounter element in favor of dedicated `Encounter-open` event.
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
-<version code="current" url="http://hl7.org/fhir/uv/fhircast"/>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast/build" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
+<version code="current" url="http://hl7.org/fhir/uv/fhircast/build"/>
 <version code="2.1.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
 <version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
 <version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
@@ -14,34 +14,32 @@
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
-<artifact id="SubscriptionTopic/FhirCastContainerResourceTopic" key="SubscriptionTopic-FhirCastContainerResourceTopic" name="FhirCastContainerResourceTopic"/>
-<artifact id="SubscriptionTopic/FhirCastContainerTopicTopic" key="SubscriptionTopic-FhirCastContainerTopicTopic" name="FhirCastContainerTopicTopic"/>
+<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="FhirCastContainerResourceTopic"/>
+<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="FhirCastContainerTopicTopic"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
 <page deprecated="true" key="launch-scenarios" name="App launch scenarios and session discovery"/>
 <page key="4-1-launch-scenarios" name="Application Launch Scenarios and Session Discovery"/>
 <page key="artifacts" name="Artifacts Summary"/>
-<page key="6_change-log" name="Change Log"/>
 <page deprecated="true" key="change-log" name="Change log"/>
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
-<page key="content-sharing" name="Content Sharing"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
-<page key="3-6-2-diagnosticreport-close" name="DiagnosticReport close Event"/>
 <page deprecated="true" key="diagnosticreport-close" name="DiagnosticReport close event"/>
-<page key="3-6-4-diagnosticreport-select" name="DiagnosticReport select Event"/>
 <page deprecated="true" key="diagnosticreport-select" name="DiagnosticReport select event"/>
-<page key="3-6-1-diagnosticreport-open" name="DiagnosticsReport open Event"/>
+<page key="3-6-2-DiagnosticReport-close" name="DiagnosticReport-close Event"/>
+<page key="3-6-1-DiagnosticReport-open" name="DiagnosticReport-open Event"/>
+<page key="3-6-4-DiagnosticReport-select" name="DiagnosticReport-select Event"/>
+<page key="3-6-3-DiagnosticReport-update" name="DiagnosticReport-update Event"/>
 <page deprecated="true" key="diagnosticreport-open" name="DiagnosticsReport open event"/>
-<page key="3-6-3-diagnosticreport-update" name="DiagnosticsReport update Event"/>
 <page deprecated="true" key="diagnosticreport-update" name="DiagnosticsReport update event"/>
 <page key="encounterevents" name="Encounter Events"/>
-<page key="3-4-2-encounter-close" name="Encounter close Event"/>
 <page deprecated="true" key="encounter-close" name="Encounter close event"/>
-<page key="3-4-1-encounter-open" name="Encounter open Event"/>
 <page deprecated="true" key="encounter-open" name="Encounter open event"/>
+<page key="3-4-2-Encounter-close" name="Encounter-close Event"/>
+<page key="3-4-1-Encounter-open" name="Encounter-open Event"/>
 <page key="2-3-Events" name="Event Format"/>
 <page key="3_Events" name="Event Library"/>
 <page key="3-1-2-eventmaturitymodel" name="Event Maturity Model"/>
@@ -56,18 +54,19 @@
 <page key="2-10-2-ContentSharingFHIR" name="FHIR based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
+<page key="4-6-fhircast-event-content-sharing" name="FHIRcast event based content sharing example"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast event-based content sharing"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast-event based content sharing"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
-<page key="3-2-2-heartbeat" name="Heartbeat Event"/>
+<page key="3-2-2-Heartbeat" name="HeartBeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
-<page key="2-10-3-ContentSharingHybrid" name="Hybrid solution"/>
+<page key="4-7-hybrid-content-sharing" name="Hybrid Content Sharing"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
-<page key="3-5-2-imagingstudy-close" name="ImagingStudy close Event"/>
 <page deprecated="true" key="imagingstudy-close" name="ImagingStudy close event"/>
-<page key="3-5-1-imagingstudy-open" name="ImagingStudy open Event"/>
 <page deprecated="true" key="imagingstudy-open" name="ImagingStudy open event"/>
+<page key="3-5-2-ImagingStudy-close" name="ImagingStudy-close Event"/>
+<page key="3-5-1-ImagingStudy-open" name="ImagingStudy-open Event"/>
 <page key="infrastructureevents" name="Infrastructure Events"/>
 <page key="introduction" name="Introduction"/>
 <page key="4-5-multi-anchor-considerations" name="Multi-anchor Considerations"/>
@@ -78,24 +77,25 @@
 <page deprecated="true" key="fhircast-oauth2-scopes" name="OAuth2 authorization scopes"/>
 <page deprecated="true" key="open-issues" name="Open Issues"/>
 <page key="patientevents" name="Patient Events"/>
-<page key="3-3-2-patient-close" name="Patient close Event"/>
 <page deprecated="true" key="patient-close" name="Patient close event"/>
-<page key="3-3-1-patient-open" name="Patient open Event"/>
 <page deprecated="true" key="patient-open" name="Patient open event"/>
+<page key="3-3-2-Patient-close" name="Patient-close Event"/>
+<page key="3-3-1-Patient-open" name="Patient-open Event"/>
 <page key="RequestContextChange" name="Request Context Change"/>
 <page key="Scenarios" name="Scenarios"/>
 <page key="4-3-security-considerations" name="Security Considerations"/>
 <page deprecated="true" key="security-considerations" name="Security considerations"/>
 <page key="session-discovery" name="Session Discovery"/>
+<page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
-<page key="3-2-1-syncerror" name="Sync error Event"/>
 <page deprecated="true" key="syncerror" name="Sync error event"/>
+<page key="3-2-1-SyncError" name="SyncError Event"/>
 <page key="4-2-syncconsiderations" name="Synchronization Considerations"/>
 <page deprecated="true" key="synchronization-considerations" name="Synchronization considerations"/>
 <page key="table-of-contents" name="Table of Contents"/>
-<page key="3-2-4-userhibernate" name="User hibernate Event"/>
 <page deprecated="true" key="userhibernate" name="User hibernate event"/>
-<page key="3-2-3-userlogout" name="User logout Event"/>
 <page deprecated="true" key="userlogout" name="User logout event"/>
+<page key="3-2-3-UserLogout" name="UserLogout Event"/>
+<page key="3-2-4-UserHibernate" name="userhibernate Event"/>
 </specification>

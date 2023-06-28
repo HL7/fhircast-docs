@@ -2,7 +2,7 @@ FHIRcast describes a workflow event subscription and notification scheme with th
 
 New events are proposed in a prescribed format using the [event template](3-1-1-template.html) by submitting a [pull request](https://github.com/fhircast/docs/tree/master). FHIRcast events are versioned, and mature according to the [event maturity model](3-1-2-eventmaturitymodel.html).
 
-FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL not require receiving a previous or future event.
+FHIRcast context events do not communicate previous contexts. For a given event, open and close events are complete replacements of previous communicated context change events, not "deltas". Understanding a context change event SHALL NOT require receiving a previous or future event.
 
 ### Event Definition Format
 
@@ -17,7 +17,9 @@ Field | Optionality | Type | Description
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
 
-The notification's `hub.event` and `context` fields inform the subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. 
+The notification's `hub.event` and `context` fields inform the Subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describes the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
+
+The Subscriber requesting a context change SHALL ensure consistency of the FHIR resources in the `context` array.  For example, the Hub will not check that the Patient resource in an Encounter-open `context` array is in fact the patient associated with the encounter in the real world.
 
 ### Event name
 
@@ -33,17 +35,18 @@ EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select
 
 The `FHIRresource` indicates the focus of the event; the `suffix` defines the type of event.
 
-Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
+Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Camel](https://en.wikipedia.org/wiki/Camel_case) case.
 
-When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the subscriber subscribes to any event. The table below shows some typical examples.
+Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
+When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the Subscriber subscribes to any event. The table below shows some typical examples.
 
 {:.grid}
 | **Event** | **Description** |
 |=======|=============|
 | `*`   | All events  |
-| `*-*` | All events  |
-| `Patient-*` | All events that use the `Patient` fhir-resource |
+| `*-*` | All events with a FHIRcast defined postfix |
+| `Patient-*` | All events that use the `Patient` FHIR resource |
 | `*-update` | All update events |
 | `*-select` | All select events |
 
@@ -55,18 +58,18 @@ The Subscriber requesting a context change SHALL ensure consistency of the FHIR 
 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
-- **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field.
+- **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field. The key name SHALL be lower case and implementations SHALL treat them as case-sensitive.
 - **Optionality**: A string value of either `Required`, `Optional` or `Conditional`
 - **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
-A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-imagingstudy-open.html) event occurs, the notification sent to a subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
+A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
 Hubs SHOULD use the [_elements](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
 Many events refer to a resource the event relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
-The Hub SHALL only return FHIR resources that the subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
 ### Event types
 
@@ -84,7 +87,7 @@ ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 
 {% include img.html img="ContextEventName.png" caption="Figure: Context Event-name specification" %}
 
-Context change events will include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
+Context change events SHALL include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
 An `<FHIRresource>-open` event signals that the resource in the event now is the anchor-resource for that resource type in the current context.
 
@@ -92,7 +95,9 @@ An `<FHIRresource>-close` event signals that the resource in the event should be
 
 The key used for indicating a context change event's anchor FHIR resource SHALL be the lower-case resourceType of the resource as defined in the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html) of the resource. The [patient-open](3-3-1-patient-open.html) event uses the `patient` key to signal the new Patient in context, the [encounter-open](3-3-1-patient-open.html) event uses the `encounter` key to indicate the new Encounter in anchor resource. Note that due to legacy reasons, some events in the [event catalog](3_Events.html) deviate from this pattern, `study` is used instead of `imagingstudy` for [imagingstudy events](3-5-0-imagingstudyevents.html) and `report` is used instead of `diagnosticreport` for [diagnosticreport events](3-6-0-diagnosticreportevents.html)).
 
-In the case in which other events are deriveable from the event in design, additional anchor FHIR resources can be included in the event. The keys to refer to these anchor FHIR resources SHALL be named as they are named in the deriveable event. E.g. the [`Encounter-open`](3-4-1-encounter-open.html) event also signals to the patient that is the subject of the Encounter using the `patient` key. What additional anchor-resources to include in an context-change event is defined in the corresponding event definition in the [event catalog](3_Events.html).
+In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-Encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
+
+The keys to refer to these anchor FHIR resources SHALL be named as they are named in the deriveable event. E.g. the [`Encounter-open`](3-4-1-encounter-open.html) event also signals to the patient that is the subject of the Encounter using the `patient` key. What additional anchor-resources to include in an context-change event is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 An context-change event SHOULD NOT refer to non-anchor resources (resource that are not to be included in the context). In the case this is absolutely required, the key of these resources SHALL be named any arbitrary string which is not a value from the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html).
 
@@ -114,11 +119,12 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 
 {% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
 
-The `FHIRresource` indicates the context of the selection. The `context` element in a select event typically contains two fields. One with the name of the `FHIRresource` holding the anchor resource and one or more named `select` indicating the resources that are selected.
+The `FHIRresource` indicates the context of the selection. The `context` element in a select event contains two fields. One field with the name of the FHIR resource which is the anchor context, and one field named `select` which is an array indicating the resources that are selected. If no resource is selected, `select` is an empty array.
+
 
 This allows communication of different select sets for the different anchor-types.
 
-For an example see [`DiagnosticReport-select`](3-6-4-diagnosticreport-select.html).
+For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
 
 #### Content sharing events
 
@@ -142,4 +148,4 @@ However, in some cases the information of a resource may best be conveyed by ref
 
 If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
 
-FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html).
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html).

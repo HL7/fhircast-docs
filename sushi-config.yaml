@@ -9,14 +9,14 @@ title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
-fhirVersion: 4.3.0
+fhirVersion: 4.3.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0
 version-comparison:
    - 2.0.0
    - 2.1.0-ballot
 apply-version: 'true'
 copyrightYear: 2017+
-releaseLabel: CI Build
+releaseLabel: CI Build  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 publisher:
   name: HL7 International - Infrastructure and Messaging
   url: http://hl7.org/Special/committees/inm
@@ -69,32 +69,32 @@ pages:
         title: User hibernate Event
     3-3-0-patientevents.md:
       title: Patient Events
-      3-3-1-patient-open.md:
-        title: Patient open Event
-      3-3-2-patient-close.md:
-        title: Patient close Event
+      3-3-1-Patient-open.md:
+        title: Patient-open Event
+      3-3-2-Patient-close.md:
+        title: Patient-close Event
     3-4-0-encounterevents.md:
       title: Encounter Events
-      3-4-1-encounter-open.md:
-        title: Encounter open Event
-      3-4-2-encounter-close.md:
-        title: Encounter close Event
+      3-4-1-Encounter-open.md:
+        title: Encounter-open Event
+      3-4-2-Encounter-close.md:
+        title: Encounter-close Event
     3-5-0-imagingstudyevents.md:
       title: ImagingStudy Events
-      3-5-1-imagingstudy-open.md:
-        title: ImagingStudy open Event
-      3-5-2-imagingstudy-close.md:
-        title: ImagingStudy close Event
+      3-5-1-ImagingStudy-open.md:
+        title: ImagingStudy-open Event
+      3-5-2-ImagingStudy-close.md:
+        title: ImagingStudy-close Event
     3-6-0-diagnosticreportevents.md:
       title: DiagnosticReport Events
-      3-6-1-diagnosticreport-open.md:
-        title: DiagnosticsReport open Event
-      3-6-2-diagnosticreport-close.md:
-        title: DiagnosticReport close Event
-      3-6-3-diagnosticreport-update.md:
-        title: DiagnosticsReport update Event
-      3-6-4-diagnosticreport-select.md:
-        title: DiagnosticReport select Event
+      3-6-1-DiagnosticReport-open.md:
+        title: DiagnosticReport-open Event
+      3-6-2-DiagnosticReport-close.md:
+        title: DiagnosticReport-close Event
+      3-6-3-DiagnosticReport-update.md:
+        title: DiagnosticReport-update Event
+      3-6-4-DiagnosticReport-select.md:
+        title: DiagnosticReport-select Event
 
   4_Scenarios.md:
     title: Scenarios
@@ -122,7 +122,6 @@ pages:
   7_design-notes.md:
     title: Design Notes
 
-  
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯

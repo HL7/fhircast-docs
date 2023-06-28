@@ -12,6 +12,7 @@ The figure below illustrates this approach.
 <figure>
   {% include ContentExchangeHybrid.svg %}
   <figcaption><b>Figure: FHIRcast deployment supporting -update and FHIR based content exchange</b></figcaption>
+  <p></p>
 </figure>
 
 The FHIR server and FHIRcast Hub are linked.

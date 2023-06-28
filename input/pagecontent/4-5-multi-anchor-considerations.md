@@ -6,16 +6,16 @@
 Some healthcare applications know about apples, some oranges. When the orange application doesn't understand what the apple application is saying: the Hub should help translate.
 
 ### Applications understand each other
-For many context synchronization scenarios, all participating applications are subscribed to and understand all of the events used in the session. For example all of the applications in a session understand [`patient-open`](3-3-1-patient-open.html) and [`patient-close`](3-3-2-patient-close.html) events and those are the only events used in the session.
+For many context synchronization scenarios, all participating applications are subscribed to and understand all of the events used in the session. For example all of the applications in a session understand [`Patient-open`](3-3-1-Patient-open.html) and [`Patient-close`](3-3-2-Patient-close.html) events and those are the only events used in the session.
 
 ### Applications don't understand each other
-However, it may make sense to synchronize applications that don't subscribe to and understand the same FHIRcast events. For example, some specialized healthcare applications deal exclusively with billing charges or imaging studies and don't have the concept of a patient outside of a charge or study. A PACS may not send or even understand a [`patient-open`](3-3-1-patient-open.html), only [`imagingstudy-open`](3-5-1-imagingstudy-open.html). Similarly, a generalized healthcare application may understand [`patient-open`](3-3-1-patient-open.html) events, but not more specialized events, such as [`diagnosticreport-open`](3-6-1-diagnosticreport-open.html) events. 
+However, it may make sense to synchronize applications that don't subscribe to and understand the same FHIRcast events. For example, some specialized healthcare applications deal exclusively with billing charges or imaging studies and don't have the concept of a patient outside of a charge or study. A PACS may not send or even understand a [`Patient-open`](3-3-1-Patient-open.html), only [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html). Similarly, a generalized healthcare application may understand [`Patient-open`](3-3-1-Patient-open.html) events, but not more specialized events, such as [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) events. 
 
 ### Implied events
 
 FHIRcast event definitions specify the related FHIR resources that are contextully relevent to the event. An *-open event implies additional open events, one for each of the resource types referenced in the context. 
 
-For example, an [`encounter-open`](3-4-1-encounter-open.html) implies a [`patient-open`](3-3-1-patient-open.html), because the `encounter-open`'s context includes not just an encounter resource, but also a patient resource. Similarly, [`diagnosticreport-open`](3-6-1-diagnosticreport-open.html) implies [`patient-open`](3-3-1-patient-open.html) and possibly an [`imagingstudy-open`](3-5-1-imagingstudy-open.html) (if an ImagingStudy is supplied in the [`diagnosticreport-open`](3-6-1-diagnosticreport-open.html) event).
+For example, an [`Encounter-open`](3-4-1-Encounter-open.html) implies a [`Patient-open`](3-3-1-Patient-open.html), because the `Encounter-open`'s context includes not just an encounter resource, but also a patient resource. Similarly, [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) implies [`Patient-open`](3-3-1-Patient-open.html) and possibly an [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) (if an ImagingStudy is supplied in the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event).
 
 ### Hub derives open events
 

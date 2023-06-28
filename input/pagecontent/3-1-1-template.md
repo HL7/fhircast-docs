@@ -39,7 +39,7 @@ Include an example message in json.
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "patient-open",
+    "hub.event": "Patient-open",
     "context": [
       {
         "key": "key-from-above",

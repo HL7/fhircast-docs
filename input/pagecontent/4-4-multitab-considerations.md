@@ -13,19 +13,32 @@ Let's start with a simple case.
 
 #### Opening and Closing a Patient
 
-The diagrams below show two applications without any context, followed by a `patient-open` event communicated to the other application resulting in same patient being opened in the receiving application. When the patient is closed, a `patient-close` event is triggered leading to the patient being closed in the other application as well.
+The diagrams below show two applications without any context, followed by a `Patient-open` event communicated to the other application resulting in same patient being opened in the receiving application. When the patient is closed, a `Patient-close` event is triggered leading to the patient being closed in the other application as well.
 
 {% include img.html img="PatientOpenAndClose.png" caption="Figure: Simple patient open and close example" %}
 
 #### Opening Multiple Patients
 
-As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
+As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `Patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
+### Considerations with the [Get Current Context](2-9-GetCurrentContext.html) Operation
+
+Multiple contexts may be present in the Hub; however, only one of these contexts is the current context.  Specifically, the context for which the last `-open` event has occurred is the current context.  This is the context returned by the Hub when a Subscriber calls the [Get Current Context](2-9-GetCurrentContext.html) operation. In the above example, Patient 1 and Patient 2 contexts exist simultaneously; however, Patient 2 was last opened therefore is the current context.  If, as in the above example, the Patient 2 context is closed there exists no current context (see the specification in [Get Current Context](2-9-GetCurrentContext.html)).  It is the responsibility of some Subscriber to make an `-open` request for Patient 1 in order for Patient 1 to become the current context.  The FHIRcast specification indicates that there is no current context without an `-open` event; hence, in the absence of an `-open` event after a `-close` occurs, the behavior expected of applications is not defined.
+
+### Considerations on Maintaining Multiple Contexts
+
+The specification deliberatively prescribes maintaining contexts for which an `-open` event has occurred but no `-close` event.  The rationale for this approach is driven by:
+
+*  Applications may expend considerable network and compute resources to display information indicated by an open context.  Retrieving this information upon each `-open` that would occur if the user frequently switches tabs (as in the above examples) would require the application incur that expense on each tab switch.  By explicitly stating that a context which was opened but which has not been closed is considered to remain present in the Hub, applications so choosing can reflect this behavior in their business logic and UI.  When a `-close` event occurs, applications should reflect this state as is appropriate to the application's requirements.  In the above example, when Patient 2 is closed applications chose to remove the tab related to Patient 2.  If both Patient 1 and Patient 2 `-open` events have occurred (in that order), a subsequent Patient 1 open would not cause applications to remove the Patient 2 tab rather indicate that Patient 1 is now the current context.
+*  When applications are participating in a content sharing session, maintaining multiple open contexts means that Hubs and participating applications retain the content state of open contexts.  Content state is released only upon a `-close` of the anchor context in which the content sharing is taking place.  This avoids substantial application overhead and coordination.
+
+Recall that the multi-tab example is only one scenario in which the multiple contexts approach is valid.  Another scenario would be if a user has opened multiple imaging studies and is frequently changing between the studies which were opened.  The network and compute resource consumption for opening and reopening imaging studies is significant and may be avoided with the multiple context approach.  Applications may decide to support only a single context, in which case they would imply a close __in their application__ upon receiving an `-open` event.  A subsequent `-open` event for the context which they implicitly closed would require that application to retrieve the necessary resources related to this context.
+
 ### Recommendations
 
-* When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `patient-open`) does not indicate a synchronization error.
+* When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `Patient-open`) does not indicate a synchronization error.
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
 
 ### Launching A Context-Less Tab
@@ -33,9 +46,9 @@ As illustrated below, context synchronization is maintained between multiple and
 Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
 
 > note
-> Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `patient-open` (or `imagingstudy-open` or ...) with a patient (or study or ...).
+> Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `Patient-open` (or `ImagingStudy-open` or ...) with a patient (or study or ...).
 
-Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `userlogout`).
+Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `UserLogout.html`).
 
 #### home-open
 

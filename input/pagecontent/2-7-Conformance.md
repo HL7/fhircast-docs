@@ -1,7 +1,7 @@
 The FHIRcast specification can be described as a set of capabilities and any specific FHIRcast Hub may implement a subset of these capabilities. A FHIRcast Hub declares support for FHIRcast and specific capabilities by exposing an extension on the FHIR CapabilityStatement resource as described below. 
 
 
-### Wellknown endpoint
+### Wellknown Endpoint
 
 To support various architectures, including multiple decentralized FHIRcast hubs, the Hub exposes a `.well-known` endpoint containing additional information about the capabilities of that Hub. A Hub's supported events, version, and other capabilities can be exposed as a Well-Known Uniform Resource Identifiers (URIs) ([RFC5785](https://tools.ietf.org/html/rfc5785)) JSON document.
 
@@ -14,7 +14,7 @@ Field              | Optionality | Type  | Description
 ------------------ | ----------- | ----- | ---
 `eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true`, indicating support for websockets.
-`fhircastVersion`  | Optional | string | `STU1` or `STU2` or `STU3` indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
+`fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
 `getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 
 A field of `webhookSupport` SHALL be ignored.
@@ -37,7 +37,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "eventsSupported": ["patient-open", "patient-close", "syncerror", "com.example.researchstudy-transmogrify"],
+  "eventsSupported": ["Patient-open", "Patient-close", "SyncError", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
   "fhircastVersion": "STU3"
 }
