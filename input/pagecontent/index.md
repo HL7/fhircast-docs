@@ -28,14 +28,17 @@ Note that:
 * An application can request context changes by sending an event notification to the Hub's `hub.topic` session identifier. The HTTP response status indicates success or failure.
 * The [Event Catalog](3_Events.html) documents the workflow events that can be communicated in FHIRcast. Each event will always carry the same type of FHIR resources.
 
+### Reading the Specification
+Much of this implementation guide is descriptive in how Subscribers and the FHIRcast Hub interact in various scenarios.  The normative portion of this implementation guide is contained in Sections [2: Specification](2_Specification.html), [3: Event Library](3_Events.html), [5: Glossary](5_glossary.html), and [8: Artifacts](artifacts.html).  Other portions of the specification are informative and are labeled as such.
+
 ### Relation to FHIR Subscriptions
+FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed).  Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
 
-FHIR subscriptions should be used to receive notifications on changes in content in the FHIR server.
-
-FHIRcast is focussed on providing notifications when key elements in the context change. I.e. when the current Patient, Encounter, ImagingStudy,... is changed.
+* FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow
+* FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios
+* FHIRcast is designed around short-lived sessions - Subscriptions are intended to be long-lived resources
 
 ### Get involved
-
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
 * [Log issues](https://jira.hl7.org/secure/CreateIssue.jspa), [submit a PR!](https://github.com/fhircast/docs)
 * [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)

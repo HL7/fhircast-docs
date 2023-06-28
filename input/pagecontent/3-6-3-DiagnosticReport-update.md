@@ -23,6 +23,7 @@ Key | Optionality | FHIR operation to generate context | Description
 
 Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
 
+{:.grid}
 Request Method | Operation
 --- | ---
 `POST` | Add a new resource
@@ -33,7 +34,7 @@ Request Method | Operation
 
 ##### DiagnosticReport-update Request Example
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticsReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
+The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
 
 ```json
 {

@@ -5,7 +5,7 @@ All changes to the FHIRcast specification are tracked in the [specification's HL
 
 * Introduction of WebSockets as the preferred communication mechanism over webhooks.
 * Creation of a FHIR CapabilityStatement extension to support Hub capability discovery. 
-* Additional, required information on `syncerror` OperationOutcome (namely communication of the error'd event's id and event name). 
+* Additional, required information on `SyncError` OperationOutcome (namely communication of the error'd event's id and event name). 
 * Websocket WSS URL communicated in HTTP body, instead of `Content-Location` HTTP header.
 * Subscribers should differentiate between immediately applied context changes and mere successfully received notifications with HTTP code responses of 200 and 202, respectively.
 

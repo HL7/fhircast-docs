@@ -8,7 +8,7 @@ A `DiagnosticReport-open` request is posted to the Hub when a new or existing Di
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.  If a Subscriber will neither make a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) events, the `context.versionId` can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the anchor context.  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber will neither make a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) request or respond to [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events, the `context.versionId` can be safely ignored.
 
 ### Context
 
@@ -99,7 +99,7 @@ The following example shows a report being opened that contains a single primary
 
 #### DiagnosticReport-open Event Example
 
-The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by Subscribers to make subsequent [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html) requests.
+The event distributed by the Hub includes a context version in the `context.versionId` event attribute which will be used by Subscribers to make subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.
 
 ```json
 {

@@ -3,6 +3,7 @@ In this approach, a FHIR server is used to synchronized content between differen
 <figure>
   {% include ContentExchangeFHIR.svg %}
   <figcaption><b>Figure: FHIRcast deployment supporting FHIR based content exchange</b></figcaption>
+  <p></p>
 </figure>
 
 Each Subscriber uses FHIRcast to exchange context. The common FHIR server is used to align on content using the [RESTful API](https://build.fhir.org/http) defined by FHIR. Typically this is the server used in a [SMART on FHIR launch](4-1-launch-scenarios.html).
