@@ -1,0 +1,52 @@
+{% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track.</a>' %}
+
+
+### Example of Content Sharing in an Anchor Context
+
+An example of content sharing is provided for a use case where a `DiagnosticReport` is the anchor context (see [`anchor context`](5_glossary.html)).  However, the pattern of the example holds when other FHIR resource types are the anchor context.
+
+#### Diagnostic Report Content Sharing Basics
+
+When reporting applications integrate with PACS and/or RIS applications, a radiologist's (or other clinician's) workflow is centered on the final deliverable, a diagnostic report. In radiology, the imaging study (exam) is an integral resource with the report referencing one or more imaging studies. Structured data, many times represented by a FHIR `Observation` resource, may also be captured as part of a report.  In addition to basic context synchronization, a diagnostic report centered workflow builds upon the basic FHIRcast operations to support near real-time exchange of structured information between applications participating in a diagnostic report context.  Also, the `DiagnosticReport` resource contains certain attributes (such as report status), that are useful to PACS/RIS applications.  Participating applications may include clients such as reporting applications, PACS, EHRs, workflow orchestrators, and interactive AI applications.
+
+Exchanged content need not have an independent existence. For the purposes of a working session in FHIRcast, they are all "contained" in one resource (the `DiagnosticReport` anchor context). For example, a radiologist may use the PACS viewer to create a measurement. The PACS application sends this measurement as an `Observation` to other Subscribers (through interactions with a FHIRcast Hub) for consideration. If the radiologist determines the measurement is useful in another application (and accurate), it may then become an `Observation` to be included in the diagnostic report. Only when that diagnostic report becomes an official signed document would that `Observation` possibly be maintained with an independent existence. Until that time, FHIR domain resources serve as a convenient means to transfer data within a FHIRcast context.
+
+Structured information may be added, changed, or removed quite frequently during the lifetime of a context. Exchanged information is transitory and it is not required that the information exchanged during the collaboration is persisted. However, as required by their use cases, each participating application may choose to persist information in their own structures which may or may not be expressed as a FHIR resource. Even if stored in the form of a FHIR resource, the resource may or may not be stored in a system which provides access to the information through a FHIR server and associated FHIR operations (i.e., it may be persisted only in storage specific to a given application).
+
+<figure>
+  {% include ContentExchangeBasic.svg %}
+  <figcaption><b>Figure: Basics of content sharing</b></figcaption><p></p>
+</figure>
+
+#### Example Use Case
+
+A frequent scenario which illustrates a diagnostic report centered workflow involves an EHR, an image reading application, a reporting application, and an advanced quantification application.  The EHR, image reading application, and reporting application are authenticated and subscribed to the same topic using a FHIRcast Hub with the EHR establishing a patient context, see messages 1 through 7 in the below sequence diagram.
+
+In an EHR a clinical users opens a patient with the EHR sending a [`Patient-open`](3-3-1-Patient-open.html) request to the Hub (messages 1 and 2).  The Hub notes the context and if it supports content sharing assigns a version to the context then distributes the [`Patient-open`](3-3-1-Patient-open.html) events (messages 3 and 4a, 4b, and 4c). The reporting application reacts to the patient context in some manner such as displaying available reports and imaging studies associated with the patient while storing the version of the patient context in case content is shared in this anchor context (message 5).  The imaging application is not interested in patient contexts so it ignores the event entirely (message 6) while the EHR identifies the Patient-open event as one it triggered and stores the version of the context provided by the Hub in case it would like to contribute content in this context (message 7).
+
+Next the clinical user decides to create diagnostic report using the reporting application, see messages 8 through 14 in the below sequence diagram.
+
+Using a reporting application, a clinical user creates a report by choosing an imaging study as the primary subject of the report (message 8).  The reporting application creates a report and then opens a diagnostic report context by posting a [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) request to the Hub (message 9). The Hub notes the context, assigns a version to the context and then distributes a [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event with the generated `context.versionId` to subscribed applications (messages 10, 11a, 11b, and 11c). On receiving the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event from the Hub, an EHR decides not to react to this event noticing that the patient context has not changed (message 14). The image reading application responds to the event by opening the imaging study referenced in the diagnostic report anchor context (message 13) while the reporting application identifies the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event as one it triggered and stores the version of the context provided by the Hub (message 12).
+
+<figure>
+  {% include ContentExchangeOpenReport.svg %}
+  <figcaption><b>Figure: Opening a Diagnosticreport Context</b></figcaption><p></p>
+</figure>
+
+The clinical user takes a measurement using the imaging reading application (message 1 in the below sequence diagram) which then shares this measurement by making a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) request to the Hub (message 2). The Hub validates that the `context.versionId` provided in the request is correct, updates its content, generates a new `context.versionId` (message 3). If the `context.versionId` provided in the request is not correct the Hub rejects the request (response to message 2). The Hub then distributes `DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events which contain the newly generated `context.versionId` and the `priorVersionId` to all subscribed applications (messages 4a, 4b, and 4c). The reporting application receives the measurement through a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event from the Hub and adds this information to the report if the `context.versionId` it currently holds matches the `context.priorVersionId` provided in the event (message 7). If the `context.priorVersionId` does not match the `context.versionId` of the content known to the reporting application, it may resynchronize its content by requesting the current context from the Hub (message 8).
+
+As the clinical user continues the reporting process they select a measurement or other structured information in the reporting application, the reporting application may note this selection by posting a [`DiagnosticReport-select`]( 3-6-4-DiagnosticReport-select.html) request to the Hub. Upon receiving the [`DiagnosticReport-select`]( 3-6-4-DiagnosticReport-select.html) event the image reading application may navigate to the image on which this measurement was acquired.
+
+<figure>
+  {% include ContentExchangeShareContent.svg %}
+  <figcaption><b>Figure: Create a Measurement</b></figcaption><p></p>
+</figure>
+
+At some point the image reading application (automatically or through user interaction) may determine that an advanced quantification application should be used and launches this application including the appropriate FHIRcast topic (messages 1 and 2 in the below sequence diagram).  The advanced quantification application then subscribes to the topic and requests the current context including any already exchanged structured information by making a [`GET Context`](2-9-GetCurrentContext.html) request to the Hub which returns the current context including existing content in the response (messages 3 and 4).  The user interacts with the advanced quantification application which then adds content to the anchor context (messages 6 through 13).
+
+<figure>
+  {% include ContentExchangeAdvancedQuantification.svg %}
+  <figcaption><b>Figure: Newly Subscribed Application Contributes Content</b></figcaption><p></p>
+</figure>
+
+Finally the clinical user closes the report in the reporting application. The reporting application makes a [`DiagnosticReport-close`](3-6-2-DiagnosticReport-close.html) request. Upon receipt of the [`DiagnosticReport-close`](3-6-2-DiagnosticReport-close.html) event both the imaging reading application and advanced quantification application close all relevant image studies.

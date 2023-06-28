@@ -1,0 +1,63 @@
+@startuml
+skinparam shadowing false
+skinparam lifelineStrategy nosolid
+hide footbox
+
+actor Clinician
+participant "EHR App\n(Subscriber)" as EHR
+participant "Reporting\nApplication\n(Subscriber)" as RepApp
+participant Hub
+participant "Image Reading\nApplication\n(Subscriber)" as App1
+
+Clinician -> EHR: 1: Open a Patient\nSummary
+group FHIRcast: Open Patient
+activate EHR
+EHR -> Hub: 2: Patient-open
+activate Hub
+deactivate EHR
+Hub -> Hub++--: 3: Store Context and Generate\nversionId
+Hub -\ RepApp: 4a: Patient-open
+note right RepApp: with versionId
+activate RepApp
+RepApp -> RepApp++--: 5: React and store\nversionId
+activate App1
+Hub -\ App1: 4b: Patient-open
+note left App1: with versionId
+deactivate RepApp
+App1 -> App1++--: 6: ignore
+activate EHR
+Hub -\ EHR: 4c: Patient-open
+note right EHR: with versionId
+deactivate Hub
+deactivate App1
+EHR -> EHR++--: 7: Store versionId
+end
+deactivate EHR
+...
+
+Clinician -> RepApp: 8: create report
+group FHIRcast: Open Report
+activate RepApp
+RepApp-> Hub: 9: DiagnosticReport-open
+activate Hub
+deactivate RepApp
+Hub -> Hub++--: 10: Store Context and generate\nversionId
+Hub -\ RepApp: 11a: DiagnosticReport-open
+note right RepApp: with versionId
+activate RepApp
+RepApp -> RepApp++--: 12: store versionID
+Hub -\ App1: 11b: DiagnosticReport-open
+note left App1: with versionId
+deactivate RepApp
+activate App1
+App1 -> App1++--: 13: react and\nstore versionID
+Hub -\ EHR: 11c: DiagnosticReport-open
+note right EHR: with versionId
+deactivate App1
+activate EHR
+deactivate Hub
+EHR -> EHR++--: 14: ignore
+end
+deactivate EHR
+
+@enduml

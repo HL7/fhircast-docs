@@ -1,6 +1,4 @@
-<img src="Info_Simple_bw.svg.png" width="50" height="50"> 
-This page contains guidance to implementers and is not part of the [normative-track](2_Specification.html); however, implementers are strongly encouraged to read and understand its content towards successful synchronization.
-<p></p><p></p>
+{% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track</a>; however, implementers are strongly encouraged to read and understand its content towards successful synchronization.' %}
 
 FHIRcast describes a mechanism for synchronizing distinct applications. Sometimes things go wrong, and applications fail to synchronize or become out of sync. For example, the user within the EHR opens a new patient's record, but a Subscriber fails to process the update and continues displaying the initial patient.
 
@@ -91,9 +89,9 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 |--|--|--|
 | Subscriber | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
 | Subscriber | Unable to change context | Respond with a http status code of 409 conflict. |
-| Subscriber | Ask user whether context can be changed, user refuses. | The Subscriber responds to the initial event with a 202 Accepted and sends a `syncerror` when the context change is refused, stating the source and reason for change. |
-| Subscriber | Ask user whether context can be changed, user does not react in time. | The Subscriber responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `syncerror`. Context change is refused, stating the source and reason for change. |
-| Hub | One of the Subscribers cannot follow context | Update all Subscribers with a syncerror event |
+| Subscriber | Ask user whether context can be changed, user refuses. | The Subscriber responds to the initial event with a 202 Accepted and sends a `SyncError` when the context change is refused, stating the source and reason for change. |
+| Subscriber | Ask user whether context can be changed, user does not react in time. | The Subscriber responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `SyncError`. Context change is refused, stating the source and reason for change. |
+| Hub | One of the Subscribers cannot follow context | Update all Subscribers with a SyncError event |
 
 #### Failure of Subscriber preventing context synchronization
 
@@ -103,31 +101,31 @@ Although not intended, applications do fail. In this case the event is received 
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscriber | Internal error state prevents processing of the event. | If possible, present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 50X. |
-| Hub | One of the Subscribers cannot follow context | Update all Subscribers with syncerror event using information from the subscriber.name field from the original subscription of the Subscriber which failed to follow the context change. |
+| Hub | One of the Subscribers cannot follow context | Update all Subscribers with SyncError event using information from the subscriber.name field from the original subscription of the Subscriber which failed to follow the context change. |
 
 #### Connection is lost
 
-This error scenario is the Hub losing contact with a Subscriber. This may be due to a Subscriber crash or a network failure. In these cases, the Subscriber would not be aware of the fact that the context has changed or that the context change events are not received.  To mitigate this situation, Subscribers are recommended to register for `heartbeat` events.
+This error scenario is the Hub losing contact with a Subscriber. This may be due to a Subscriber crash or a network failure. In these cases, the Subscriber would not be aware of the fact that the context has changed or that the context change events are not received.  To mitigate this situation, Subscribers are recommended to register for `Heartbeat.html` events.
 
 {:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscribing Client | No event received from Hub within the heartbeat time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually  using [Get Current Context](2-9-GetCurrentContext.html).  |
+| Subscribing Client | No event received from Hub within the Heartbeat.html time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually  using [Get Current Context](2-9-GetCurrentContext.html).  |
 
-| Hub | Subscriber failed to respond to an event | Update all Subscribers with a syncerror event using information from the `subscriber.name` field from the original subscription of the Subscriber which failed to respond to an event |
+| Hub | Subscriber failed to respond to an event | Update all Subscribers with a SyncError event using information from the `subscriber.name` field from the original subscription of the Subscriber which failed to respond to an event |
 
 #### Race condition during launch
 
 Once an application is launched with initial context, for example, the currently in context patient, the application must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it is technically possible for context to change, such that the newly launched application joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. This error situation is mitigated by the Hub sending the last relevant event(s) when a Subscriber (re)subscribes.
 
-#### `syncerror` event received from Hub
+#### `SyncError` event received from Hub
 
 In the scenarios where the Hub is aware of a synchronization error, it is advisable for the Hub to signal this to all Subscribers to minimize any patient risk associated with having one or more Subscribers out of sync.
 
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | syncerror event received from Hub | Present end user with clear indication that contextual synchronization is lost |
+| Subscriber | SyncError event received from Hub | Present end user with clear indication that contextual synchronization is lost |
 
 #### Subscription has expired
 
@@ -162,7 +160,7 @@ Negligible risk. User does not expect synchronization.
 2. User hibernates application A, then takes action in application B.
 Negligible risk. User does not expect synchronization.
 3. Application A automatically hibernates without user action, user takes action in application B.
-Application A should consider reacting to events when hibernated; perhaps with a syncerror.
+Application A should consider reacting to events when hibernated; perhaps with a SyncError.
 4. User logs out of application A, walks away from workstation, application B remains open and unsecured.
 Negligible risk. Per typical application security best practices, applications should automatically secure following a period of un-use. Following an automatic secure, user remains logged into application B. 
 5. User hibernates application A, walks away from workstation, application B remains open and unsecured.
@@ -174,11 +172,11 @@ The situations in which a sync error can occur are indicated in the previous sec
 
 #### Subscribers that initiate a context change
 
-A Subscriber that initiates a context change and receives a `syncerror` related to a context change event it sent, SHOULD resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
+A Subscriber that initiates a context change and receives a `SyncError` related to a context change event it sent, SHOULD resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
 
 #### Subscriber that follow context change
 
-A Subscriber that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `syncerror`, it assumes sync is restored unless a new `syncerror` is received.
+A Subscriber that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `SyncError`, it assumes sync is restored unless a new `SyncError` is received.
 
 #### Subscriber that lose the connection to the Hub
 
@@ -186,10 +184,10 @@ Subscriber that lose the connection to the Hub should resubscribe to the topic. 
 
 #### Hubs
 
-A Hub that sends a `syncerror` event (e.g. after it is not able to deliver an event) may resend this event regularly until the sync has been reestablished or a newer event has been received.
+A Hub that sends a `SyncError` event (e.g. after it is not able to deliver an event) may resend this event regularly until the sync has been reestablished or a newer event has been received.
 
 ### Open topics
 
-* Should a Subscriber get all syncerror's or only those related to events to which it subscribed?
-* Does a Hub send an `syncerror` for each Subscriber that cannot be reached or refused, or is the Hub allowed to combine them in one.
-* When the Hub/Subscriber resends an context change event, is the `heartbeat` still needed?
+* Should a Subscriber get all SyncError's or only those related to events to which it subscribed?
+* Does a Hub send an `SyncError` for each Subscriber that cannot be reached or refused, or is the Hub allowed to combine them in one.
+* When the Hub/Subscriber resends an context change event, is the `Heartbeat.html` still needed?

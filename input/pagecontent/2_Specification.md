@@ -20,6 +20,7 @@ FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/f
 <figure>
   {% include FHIRcastOverviewForAbstract.svg %}
   <figcaption><b>Figure: FHIRcast Overview</b></figcaption>
+  <p></p>
 </figure>
 
 

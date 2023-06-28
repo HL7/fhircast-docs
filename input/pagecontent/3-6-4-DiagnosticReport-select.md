@@ -30,7 +30,6 @@ The following example shows the selection of a single Observation resource in an
   "event": {
     "hub.topic": "DrXRay",
     "hub.event": "DiagnosticReport-select",
-    "context.versionId": "f2f90ff4-a218-47cb-afa5-b987e1154b3b",
     "context": [
       {
         "key": "report",
@@ -41,11 +40,12 @@ The following example shows the selection of a single Observation resource in an
       },
       {
         "key": "select",
-        "resource": {
-          "resourceType": "Observation",
-          "id": "a67tbi5891trw123u6f9134"
-        }
-        
+        "resource": [
+          {
+            "resourceType": "Observation",
+            "id": "a67tbi5891trw123u6f9134"
+          }
+        ]
       }
     ]
   }
