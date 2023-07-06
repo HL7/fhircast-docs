@@ -1,7 +1,9 @@
 
 FHIRcast also defines content exchange between clients subscribed to the same topic using FHIRcast messages.  Content is exchanged using FHIR resources contained in the most recently opened context which serves as the anchor context of exchanged information (see [`anchor context`](5_glossary.html)).
 
-FHIR resources are used to carry the information being shared. These resources are entries in the `Bundle` resource inside the `updates` key. Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all information regarding that observation.
+FHIR resources are used to carry the information being shared. These resources are entries in the `Bundle` resource inside the `updates` key. One and only one `Bundle` SHALL be present in a `[FHIR resource]-update` request. No resource SHALL appear multiple times in the update `Bundle`.
+
+Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all information regarding that observation.
 
 However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute must be appropriately populated.
 
