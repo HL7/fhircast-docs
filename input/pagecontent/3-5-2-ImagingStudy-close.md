@@ -4,61 +4,96 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User closed an imaging study.
-
-User closed patient's medical record. A previously open and in context study is no longer open nor in context. When the ImagingStudy refers to a Patient and this patient is the current patient in context, this patient SHALL be indicated in the event
+User closed an imaging study. A previously open and in context image study is no longer open nor in context. When the ImagingStudy refers to a Patient this patient SHALL be indicated in the event.
 
 ### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
------ | -------- | ---- | ----
-`patient` | RECOMMENDED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the study currently in context.
-`study` | REQUIRED | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource previously in context. In FHIR DSTU2, STU3 `accession` SHALL also be provided if present.
+Key | Cardinality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`study` | 1..1 | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource describing the image study previously in context that is being closed.
+`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the image study being closed.   Patient SHALL be present if there is a patient associated with the study.
+
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy close request:
+
+* [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
+* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
+
+Other attributes of the ImagingStudy and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
+
 
 ### Examples
 
 ```json
 {
-  "timestamp": "2018-01-08T01:37:05.14",
-  "id": "q9v3jubddqt63n1",
+  "timestamp": "2023-04-01T011:03:04.08",
+  "id": "bccaeba4-494a-459b-adf3-be0cf29dd2a0",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "ImagingStudy-close",
     "context": [
       {
-        "key": "patient",
+        "key": "study",
         "resource": {
-          "resourceType": "Patient",
-          "status": "available",
-          "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
+          "resourceType": "ImagingStudy",
+          "id": "e25c1d31-20a2-41f8-8d85-fe2fdeac74fd",
           "identifier": [
             {
-              "system": "urn:oid:1.2.840.114350",
-              "value": "185444"
-            },
+              "system" : "urn:dicom:uid",
+              "value" : "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
+            }
+          ],
+          "status": "unknown",
+          "subject": {
+            "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
+          },
+          "basedOn" : [
             {
-              "system": "urn:oid:1.2.840.114350.1.13.861.1.7.5.737384.27000",
-              "value": "2667"
+              "type" : "ServiceRequest",
+              "identifier" : {
+                "type" : {
+                  "coding" : [
+                    {
+                      "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                      "code" : "ACSN"
+                    }
+                  ]
+                },
+                "system" : "urn:oid:2.16.840.1.113883.19.5",
+                "value" : "GH339884",
+                "assigner" : {
+                  "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                  "display" : "My Healthcare Provider"
+                }
+              }
             }
           ]
         }
       },
       {
-        "key": "study",
+        "key": "patient",
         "resource": {
-          "resourceType": "ImagingStudy",
-          "id": "8i7tbu6fby5ftfbku6fniuf",
-          "status": "available",
-          "identifier": [
+          "resourceType": "Patient",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926",
+          "identifier" : [
             {
-              "system": "7678",
-              "value": "185444"
+              "use" : "official",
+              "type" : {
+                "coding" : [
+                  {
+                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code" : "MR"
+                  }
+                ]
+              },
+              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "value": "4438001",
+              "assigner": {
+                "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                "display": "My Healthcare Provider"
+              }
             }
-          ],
-          "subject": {
-            "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
-          }
+          ]
         }
       }
     ]
@@ -71,4 +106,5 @@ Key | Optionality | FHIR operation to generate context | Description
 {:.grid}
 | Version | Description
 | ------- | ----
-| 1.0  | Initial Release
+| 1.0 | Initial Release
+| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
