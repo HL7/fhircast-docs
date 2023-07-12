@@ -36,6 +36,12 @@ The specification deliberatively prescribes maintaining contexts for which an `-
 
 Recall that the multi-tab example is only one scenario in which the multiple contexts approach is valid.  Another scenario would be if a user has opened multiple imaging studies and is frequently changing between the studies which were opened.  The network and compute resource consumption for opening and reopening imaging studies is significant and may be avoided with the multiple context approach.  Applications may decide to support only a single context, in which case they would imply a close __in their application__ upon receiving an `-open` event.  A subsequent `-open` event for the context which they implicitly closed would require that application to retrieve the necessary resources related to this context.
 
+### Considerations on Applications Issuing `-close` Events
+
+Upon closing of an application or the user choosing to close a subject, the application with which the user is interacting has the choice to send or not send a `-close` event for the current context.  Typically making this decision is appropriate when an application knows it is being driven by another application; for example, when another application is providing some type of worklist functionality.
+
+Often an application knowing that it is being driven by an external actor removes the ability for users to close a subject; for example, an imaging application could assume that an external actor is responsible for the closing of subjects and remove the UI element(s) enabling a user to close the current image study.  However, an application may choose to retain this capability.  When the capability to close subjects is retained, the application could decide to not send a `-close` event if it considers this close to be local to itself.  If an application decides not to send a `-close` event, to ensure a consistent context for the user, the application should not establish a new local context without receiving or sending an `-open` event.
+
 ### Recommendations
 
 * When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `Patient-open`) does not indicate a synchronization error.
