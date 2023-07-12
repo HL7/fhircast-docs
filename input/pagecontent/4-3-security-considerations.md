@@ -32,11 +32,7 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 
 Access to non-authorized content is a critical issue in healthcare data exchange, as it can lead to privacy breaches and unauthorized use of sensitive information. In the FHIRcast event-based communication model, various types of content can be shared among applications that are connected to a session, such as updates to the current context, selected resources, and exchanged resources.
 
-To ensure that only authorized applications can access and share content, the FHIRcast specification includes a mechanism for checking authorization when a Subscriber subscribes to a session. This mechanism ensures that each application can only receive events related to resources that it is authorized to access. The responsibility of providing a valid set of authorizations lies with the authorization server, which should allow an application that can receive Encounter resources to also access the Patient resource of the encounter.
-
-As all applications subscribed to a FHIRcast session are typically controlled by the same user, they can only access content that the user is authorized to access. This makes it challenging to share content that the user is not allowed to access. However, these applications can create new content, even for resource types that the user cannot retrieve from the FHIR store. Such behavior is acceptable within the context of FHIRcast.
-
-Therefore, FHIRcast hubs do not need to enforce access restrictions on FHIR resources included in events.
+To ensure that only authorized applications can access and share content, the FHIRcast specification includes a mechanism for checking authorization when a Subscriber subscribes to a session. This mechanism ensures that each application can only receive events that it is granted authorization to access. The responsibility of providing a valid set of authorizations lies with the authorization server.
 
 ### WebSocket Security Considerations
 
