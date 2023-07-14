@@ -1,0 +1,39 @@
+{
+  "resourceType": "ImagingStudy",
+  "id": "r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-imaging-study-close"
+    ]
+  },
+  "status": "unknown",
+  "identifier": [
+    {
+      "system": "urn:dicom:uid",
+      "value": "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/r4b-503824b8-fe8c-4227-b061-7181ba6c3926-close"
+  },
+  "basedOn": [
+    {
+      "type": "ServiceRequest",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "ACSN"
+            }
+          ]
+        },
+        "system": "urn:oid:2.16.840.1.113883.19.5",
+        "value": "GH339884",
+        "assigner": {
+          "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+          "display": "My Healthcare Provider"
+        }
+      }
+    }
+  ]
+}

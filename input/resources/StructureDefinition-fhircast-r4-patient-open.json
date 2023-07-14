@@ -1,0 +1,83 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4-patient-open",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-patient-open",
+  "version": "3.0.0",
+  "name": "FHIRcastR4PatientOpen",
+  "title": "FHIRcast R4 Patient for Open Events",
+  "status": "active",
+  "description": "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "loinc",
+      "uri": "http://loinc.org",
+      "name": "LOINC code for the element"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.id",
+        "path": "Patient.id",
+        "short": "A logical id of the resource SHALL be provided.",
+        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.\nIf the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate\nthe `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).\nWhen a [FHIR resource]-close event including this patient is requested, the Subscriber requesting the context be closed SHALL use\nthe same Patient `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast Patient for Close Events](StructureDefinition-fhircast-patient-close.html)). Additionally, this `id` SHALL be the `id` used\nin the `subject` attribute's Patient reference in all resources containing a `subject` attribute in a given [FHIR resource]-open event.",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "short": "At least one identifier of the Patient SHALL be provided in a [FHIR resource]-open request.",
+        "definition": "At least one `identifier` of the Patient SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open\nrequest should not assume that all Subscribers will be able to resolve the resource `id` or access a FHIR server where the\nresource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will\nlikely be able to identify the Patient (e.g., a patient's MRN or MPI identifier).",
+        "min": 1
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "short": "Name of the patient which may be used for identity verification",
+        "definition": "The Subscriber making the open request SHOULD provide a value for the `name` attribute, if it is available, so that Subscribers may perform\nidentity verification according to their requirements.",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "short": "Gender of the patient which may be used for identity verification",
+        "definition": "The Subscriber making the open request SHOULD provide a value for the `gender` attribute, if it is available, so that Subscribers may perform\nidentity verification according to their requirements.",
+        "mustSupport": true
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "short": "Birth date of the patient which may be used for identity verification",
+        "definition": "The Subscriber making the open request SHOULD provide a value for the `birthDate` attribute, if it is available, so that Subscribers may perform\nidentity verification according to their requirements",
+        "mustSupport": true
+      }
+    ]
+  }
+}

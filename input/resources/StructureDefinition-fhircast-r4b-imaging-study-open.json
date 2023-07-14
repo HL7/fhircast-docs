@@ -1,0 +1,88 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4b-imaging-study-open",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-imaging-study-open",
+  "version": "3.0.0",
+  "name": "FHIRcastR4bImagingStudyOpen",
+  "title": "FHIRcast R4b ImagingStudy for Open Events",
+  "status": "active",
+  "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.\n\nAt least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request.  Two business identifiers are typically\nassociated with an image study.  Imaging systems such as a PACS viewer, advanced visualization workstation, etc. typically identify an image study\nby its DICOM Study Instance UID, which in DICOM is identified with a (0020,000D) tag.  Likewise information systems often identify an image study through\nthe accession number of the order which triggered the image procedure to be performed.\n\nThe Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is provided\nin the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.\n\nThe accession number SHALL be included as a business identifier if it is known.  In FHIR, the accession number is provided in the ImagingStudy's `basedOn` array as a\nreference using a ServiceRequest reference type and the “ACSN” identifier type.\n\nFor a more detailed explanation of these business identifiers, see the [implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/imagingstudy.html).\nIdeally both the accession number and Study Instance UID are available and present in an ImagingStudy.  The presence of both business identifiers ensures that\nall Subscribers will be able to be able to identify the appropriate ImagingStudy.",
+  "fhirVersion": "5.0.0",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "dicom",
+      "uri": "http://nema.org/dicom",
+      "name": "DICOM Tag Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "ImagingStudy",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ImagingStudy.id",
+        "path": "ImagingStudy.id",
+        "short": "A logical id of the resource must be provided.",
+        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.\nIf the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate\nthe `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).\nWhen a [FHIR resource]-close event including this image study is requested, the Subscriber requesting the context be closed SHALL use\nthe same ImagingStudy `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)).",
+        "min": 1
+      },
+      {
+        "id": "ImagingStudy.identifier",
+        "path": "ImagingStudy.identifier",
+        "short": "At least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request (see detailed description).",
+        "definition": "The Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is stored\nin the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`."
+      },
+      {
+        "id": "ImagingStudy.status",
+        "path": "ImagingStudy.status",
+        "short": "Status of the ImagingStudy, note this may not be known and hence have a value of `unknown`; however, `status` is included since it is required by FHIR"
+      },
+      {
+        "id": "ImagingStudy.subject",
+        "path": "ImagingStudy.subject",
+        "short": "Reference to the Patient resource associated with the ImagingStudy (see detailed description if the image study's subject is not a patient)",
+        "definition": "A reference to the FHIR Patient resource describing the patient whose imaging study is currently in context.  A patient SHALL be present if there is a patient associated with the study.\nNote there are rare cases in which the ImagingStudy.subject references a resource which is not a patient; for example a calibration study.  A reference to the related non-Patient subject of the study SHALL\nbe present in the ImagingStudy resource as it is required by the FHIR specification but is not required to be present in the [FHIR resource]-open event's context.  For example,\na reference to a Device resource could be provided as the subject (note, if no FHIR Device FHIR resource instance is available it is allowed to provide only a `display` value in the `reference`).",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-open",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ImagingStudy.basedOn",
+        "path": "ImagingStudy.basedOn",
+        "short": "At least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request (see detailed description).",
+        "definition": "The accession number of the order which triggered the image procedure to be performed SHALL be included as a business identifier if it is known.  The accession number is\nstored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.  The ServiceRequest SHALL be the only entry in the `basedOn` array.",
+        "max": "1"
+      }
+    ]
+  }
+}

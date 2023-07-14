@@ -1,0 +1,74 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4-configuration-extensions",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-configuration-extensions",
+  "version": "3.0.0",
+  "name": "FHIRcastR4ConfigurationExtension",
+  "title": "R4 FHIRcast configuration extension",
+  "status": "active",
+  "description": "Extension in CapabilityStatement stating the location of the FHIRcast hub to be used with this FHIR server.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Element"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "R4 FHIRcast configuration extension",
+        "definition": "Extension in CapabilityStatement stating the location of the FHIRcast hub to be used with this FHIR server."
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "min": 1
+      },
+      {
+        "id": "Extension.extension.extension",
+        "path": "Extension.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.extension.url",
+        "path": "Extension.extension.url",
+        "patternUri": "hub.url",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "url"
+          }
+        ]
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-configuration-extensions"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

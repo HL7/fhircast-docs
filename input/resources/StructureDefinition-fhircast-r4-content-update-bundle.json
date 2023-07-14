@@ -1,0 +1,159 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4-content-update-bundle",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-content-update-bundle",
+  "version": "3.0.0",
+  "name": "FhirCastR4ContentUpdateBundle",
+  "title": "FHIRcast Content Update Bundle",
+  "status": "active",
+  "description": "Defines the structure of a Bundle that carries content updates that are\ncommunicated in FHIRcast `-update` messages. The bundle can only contain\nrequests of type PUT and DELETE.  \nPOST is not allowed as the content sharing mechanism cannot indicate the \nid of the created resource.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "patternCode": "transaction",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.link",
+        "path": "Bundle.link",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "request.method"
+            }
+          ],
+          "rules": "open",
+          "ordered": false,
+          "description": "Slice defining each method"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:put",
+        "path": "Bundle.entry",
+        "sliceName": "put",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:put.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:put.resource",
+        "path": "Bundle.entry.resource",
+        "min": 1
+      },
+      {
+        "id": "Bundle.entry:put.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:put.request",
+        "path": "Bundle.entry.request",
+        "min": 1
+      },
+      {
+        "id": "Bundle.entry:put.request.method",
+        "path": "Bundle.entry.request.method",
+        "patternCode": "PUT"
+      },
+      {
+        "id": "Bundle.entry:put.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:post",
+        "path": "Bundle.entry",
+        "sliceName": "post",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:get",
+        "path": "Bundle.entry",
+        "sliceName": "get",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:delete",
+        "path": "Bundle.entry",
+        "sliceName": "delete",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "Bundle.entry:delete.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:delete.resource",
+        "path": "Bundle.entry.resource",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:delete.search",
+        "path": "Bundle.entry.search",
+        "max": "0"
+      },
+      {
+        "id": "Bundle.entry:delete.request",
+        "path": "Bundle.entry.request",
+        "min": 1
+      },
+      {
+        "id": "Bundle.entry:delete.request.method",
+        "path": "Bundle.entry.request.method",
+        "patternCode": "DELETE"
+      },
+      {
+        "id": "Bundle.entry:delete.response",
+        "path": "Bundle.entry.response",
+        "max": "0"
+      }
+    ]
+  }
+}

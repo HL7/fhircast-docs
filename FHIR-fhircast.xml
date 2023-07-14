@@ -8,30 +8,72 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
-<artifact id="StructureDefinition/fhircast-content-update-bundle" key="StructureDefinition-fhircast-content-update-bundle" name="FHIRcast Content Update Bundle"/>
-<artifact id="StructureDefinition/fhircast-diagnostic-report-open" key="StructureDefinition-fhircast-diagnostic-report-open" name="FHIRcast Diagnostic Report for Open Events"/>
-<artifact id="StructureDefinition/fhircast-diagnostic-report-close" key="StructureDefinition-fhircast-diagnostic-report-close" name="FHIRcast DiagnosticReport for Close Events"/>
-<artifact id="StructureDefinition/fhircast-encounter-close" key="StructureDefinition-fhircast-encounter-close" name="FHIRcast Encounter for Close Events"/>
-<artifact id="StructureDefinition/fhircast-encounter-open" key="StructureDefinition-fhircast-encounter-open" name="FHIRcast Encounter for Open Events"/>
-<artifact id="StructureDefinition/fhircast-get-current-content-bundle" key="StructureDefinition-fhircast-get-current-content-bundle" name="FHIRcast Get Current Content Bundle"/>
-<artifact id="StructureDefinition/fhircast-imaging-study-close" key="StructureDefinition-fhircast-imaging-study-close" name="FHIRcast ImagingStudy for Close Events"/>
-<artifact id="StructureDefinition/fhircast-imaging-study-open" key="StructureDefinition-fhircast-imaging-study-open" name="FHIRcast ImagingStudy for Open Events"/>
-<artifact id="StructureDefinition/fhircast-observation" key="StructureDefinition-fhircast-observation" name="FHIRcast Observation"/>
-<artifact id="StructureDefinition/fhircast-patient-close" key="StructureDefinition-fhircast-patient-close" name="FHIRcast Patient for Close Events"/>
-<artifact id="StructureDefinition/fhircast-patient-open" key="StructureDefinition-fhircast-patient-open" name="FHIRcast Patient for Open Events"/>
-<artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
-<artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
-<artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
-<artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
-<artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="FHIRcastEncounterClose-Example"/>
-<artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
-<artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="FHIRcastImagingStudyClose-Example"/>
-<artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="FHIRcastImagingStudyOpen-Example"/>
-<artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
-<artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
-<artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
-<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="FhirCastContainerResourceTopic"/>
-<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="FhirCastContainerTopicTopic"/>
+<artifact id="StructureDefinition/fhircast-r4-content-update-bundle" key="StructureDefinition-fhircast-r4-content-update-bundle" name="FHIRcast Content Update Bundle"/>
+<artifact id="StructureDefinition/fhircast-r4b-content-update-bundle" key="StructureDefinition-fhircast-r4b-content-update-bundle" name="FHIRcast Content Update Bundle"/>
+<artifact id="StructureDefinition/fhircast-r5-content-update-bundle" key="StructureDefinition-fhircast-r5-content-update-bundle" name="FHIRcast Content Update Bundle"/>
+<artifact deprecated="true" id="StructureDefinition/fhircast-observation" key="StructureDefinition-fhircast-observation" name="FHIRcast Observation"/>
+<artifact id="StructureDefinition/fhircast-r4-diagnostic-report-close" key="StructureDefinition-fhircast-r4-diagnostic-report-close" name="FHIRcast R4 DiagnosticReport for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4-get-current-content-bundle" key="StructureDefinition-fhircast-r4-get-current-content-bundle" name="FHIRcast R4 Get Current Content Bundle"/>
+<artifact id="StructureDefinition/fhircast-r4-imaging-study-close" key="StructureDefinition-fhircast-r4-imaging-study-close" name="FHIRcast R4 ImagingStudy for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4-imaging-study-open" key="StructureDefinition-fhircast-r4-imaging-study-open" name="FHIRcast R4 ImagingStudy for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r4-observation" key="StructureDefinition-fhircast-r4-observation" name="FHIRcast R4 Observation"/>
+<artifact id="StructureDefinition/fhircast-r4-patient-close" key="StructureDefinition-fhircast-r4-patient-close" name="FHIRcast R4 Patient for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4-patient-open" key="StructureDefinition-fhircast-r4-patient-open" name="FHIRcast R4 Patient for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r4-diagnostic-report-open" key="StructureDefinition-fhircast-r4-diagnostic-report-open" name="FHIRcast R4b Diagnostic Report for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r4b-diagnostic-report-close" key="StructureDefinition-fhircast-r4b-diagnostic-report-close" name="FHIRcast R4b DiagnosticReport for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4-encounter-close" key="StructureDefinition-fhircast-r4-encounter-close" name="FHIRcast R4b Encounter for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4-encounter-open" key="StructureDefinition-fhircast-r4-encounter-open" name="FHIRcast R4b Encounter for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r4b-get-current-content-bundle" key="StructureDefinition-fhircast-r4b-get-current-content-bundle" name="FHIRcast R4b Get Current Content Bundle"/>
+<artifact id="StructureDefinition/fhircast-r4b-imaging-study-close" key="StructureDefinition-fhircast-r4b-imaging-study-close" name="FHIRcast R4b ImagingStudy for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4b-imaging-study-open" key="StructureDefinition-fhircast-r4b-imaging-study-open" name="FHIRcast R4b ImagingStudy for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r4b-observation" key="StructureDefinition-fhircast-r4b-observation" name="FHIRcast R4b Observation"/>
+<artifact id="StructureDefinition/fhircast-r4b-patient-close" key="StructureDefinition-fhircast-r4b-patient-close" name="FHIRcast R4b Patient for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r4b-patient-open" key="StructureDefinition-fhircast-r4b-patient-open" name="FHIRcast R4b Patient for Open Events"/>
+<artifact deprecated="true" id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
+<artifact deprecated="true" id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
+<artifact deprecated="true" id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
+<artifact id="StructureDefinition/fhircast-r4-capabilitystatement" key="StructureDefinition-fhircast-r4-capabilitystatement" name="FHIRcastR4bCapabilityStatement"/>
+<artifact id="StructureDefinition/fhircast-r5-diagnostic-report-open" key="StructureDefinition-fhircast-r5-diagnostic-report-open" name="FHIRcastR5 Diagnostic Report for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r5-diagnostic-report-close" key="StructureDefinition-fhircast-r5-diagnostic-report-close" name="FHIRcastR5 DiagnosticReport for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r5-encounter-close" key="StructureDefinition-fhircast-r5-encounter-close" name="FHIRcastR5 Encounter for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r5-encounter-open" key="StructureDefinition-fhircast-r5-encounter-open" name="FHIRcastR5 Encounter for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r5-get-current-content-bundle" key="StructureDefinition-fhircast-r5-get-current-content-bundle" name="FHIRcastR5 Get Current Content Bundle"/>
+<artifact id="StructureDefinition/fhircast-r5-imaging-study-close" key="StructureDefinition-fhircast-r5-imaging-study-close" name="FHIRcastR5 ImagingStudy for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r5-imaging-study-open" key="StructureDefinition-fhircast-r5-imaging-study-open" name="FHIRcastR5 ImagingStudy for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r5-observation" key="StructureDefinition-fhircast-r5-observation" name="FHIRcastR5 Observation"/>
+<artifact id="StructureDefinition/fhircast-r5-patient-close" key="StructureDefinition-fhircast-r5-patient-close" name="FHIRcastR5 Patient for Close Events"/>
+<artifact id="StructureDefinition/fhircast-r5-patient-open" key="StructureDefinition-fhircast-r5-patient-open" name="FHIRcastR5 Patient for Open Events"/>
+<artifact id="StructureDefinition/fhircast-r5-capabilitystatement" key="StructureDefinition-fhircast-r5-capabilitystatement" name="FHIRcastR5CapabilityStatement"/>
+<artifact id="StructureDefinition/fhircast-r4-configuration-extensions" key="StructureDefinition-fhircast-r4-configuration-extensions" name="R4 FHIRcast configuration extension"/>
+<artifact id="StructureDefinition/fhircast-r4b-configuration-extensions" key="StructureDefinition-fhircast-r4b-configuration-extensions" name="R4b FHIRcast configuration extension"/>
+<artifact id="StructureDefinition/fhircast-r5-configuration-extensions" key="StructureDefinition-fhircast-r5-configuration-extensions" name="R5 FHIRcast configuration extension"/>
+<artifact id="DiagnosticReport/r4-2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-r4-2402d3bd-e988-414b-b7f2-4322e86c9327" name="r4-2402d3bd-e988-414b-b7f2-4322e86c9327"/>
+<artifact id="DiagnosticReport/r4-2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-r4-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="r4-2402d3bd-e988-414b-b7f2-4322e86c9327-close"/>
+<artifact id="Observation/r4-435098234" key="Observation-r4-435098234" name="r4-435098234"/>
+<artifact id="Patient/r4-503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-r4-503824b8-fe8c-4227-b061-7181ba6c3926" name="r4-503824b8-fe8c-4227-b061-7181ba6c3926"/>
+<artifact id="Patient/r4-503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-r4-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="r4-503824b8-fe8c-4227-b061-7181ba6c3926-close"/>
+<artifact id="Encounter/r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4" key="Encounter-r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4" name="r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4"/>
+<artifact id="Encounter/r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4-close" key="Encounter-r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4-close" name="r4-8cc652ba-770e-4ae1-b688-6e8e7c737438-r4-close"/>
+<artifact id="ImagingStudy/r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"/>
+<artifact id="ImagingStudy/r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close"/>
+<artifact id="DiagnosticReport/r4b-2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-r4b-2402d3bd-e988-414b-b7f2-4322e86c9327" name="r4b-2402d3bd-e988-414b-b7f2-4322e86c9327"/>
+<artifact id="DiagnosticReport/r4b-2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-r4b-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="r4b-2402d3bd-e988-414b-b7f2-4322e86c9327-close"/>
+<artifact id="Observation/r4b-435098234" key="Observation-r4b-435098234" name="r4b-435098234"/>
+<artifact id="Patient/r4b-503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-r4b-503824b8-fe8c-4227-b061-7181ba6c3926" name="r4b-503824b8-fe8c-4227-b061-7181ba6c3926"/>
+<artifact id="Patient/r4b-503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-r4b-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="r4b-503824b8-fe8c-4227-b061-7181ba6c3926-close"/>
+<artifact id="Encounter/r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438"/>
+<artifact id="Encounter/r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438-close"/>
+<artifact id="ImagingStudy/r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"/>
+<artifact id="ImagingStudy/r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="r4b-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close"/>
+<artifact id="DiagnosticReport/r5-2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-r5-2402d3bd-e988-414b-b7f2-4322e86c9327" name="r5-2402d3bd-e988-414b-b7f2-4322e86c9327"/>
+<artifact id="DiagnosticReport/r5-2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-r5-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="r5-2402d3bd-e988-414b-b7f2-4322e86c9327-close"/>
+<artifact id="Observation/r5-435098234" key="Observation-r5-435098234" name="r5-435098234"/>
+<artifact id="Patient/r5-503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-r5-503824b8-fe8c-4227-b061-7181ba6c3926" name="r5-503824b8-fe8c-4227-b061-7181ba6c3926"/>
+<artifact id="Patient/r5-503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-r5-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="r5-503824b8-fe8c-4227-b061-7181ba6c3926-close"/>
+<artifact id="Encounter/r5-8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-r5-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="r5-8cc652ba-770e-4ae1-b688-6e8e7c737438"/>
+<artifact id="Encounter/r5-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-r5-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="r5-8cc652ba-770e-4ae1-b688-6e8e7c737438-close"/>
+<artifact id="ImagingStudy/r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"/>
+<artifact id="ImagingStudy/r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="r5-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>

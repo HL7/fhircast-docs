@@ -1,0 +1,88 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r5-imaging-study-close",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-imaging-study-close",
+  "version": "3.0.0",
+  "name": "FHIRcastR5ImagingStudyClose",
+  "title": "FHIRcastR5 ImagingStudy for Close Events",
+  "status": "active",
+  "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.\n\nIt is recommended that the image study business identifiers provided in the corresponding [FHIR resource]-open event are provided in the [FHIR resource]-close event.  Providing\nthese business identifiers enables Subscribers to perform identity verification according to their requirements.  See [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)\nfor details on the business identifiers of an ImagingStudy.",
+  "fhirVersion": "5.0.0",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "dicom",
+      "uri": "http://nema.org/dicom",
+      "name": "DICOM Tag Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 V2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "ImagingStudy",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ImagingStudy.id",
+        "path": "ImagingStudy.id",
+        "short": "A logical id of the resource must be provided.",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)).",
+        "min": 1
+      },
+      {
+        "id": "ImagingStudy.identifier",
+        "path": "ImagingStudy.identifier",
+        "short": "At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-close request (see detailed description).",
+        "definition": "The Study Instance UID SHOULD be included as a business identifier if it is known.  If a Study Instance UID was provided in the corresponding\n[FHIR resource]-open event, then the same Study Instance UID SHOULD be provided in the corresponding [FHIR resource]-close event."
+      },
+      {
+        "id": "ImagingStudy.status",
+        "path": "ImagingStudy.status",
+        "short": "Status of the ImagingStudy, note this may be not be known and hence have a value of `unknown`; however, `status` is included since it is required by the  FHIRcast "
+      },
+      {
+        "id": "ImagingStudy.subject",
+        "path": "ImagingStudy.subject",
+        "short": "Reference to the Patient resource associated with the ImagingStudy (see detailed description if the image study's subject is not a patient)",
+        "definition": "A reference to the FHIR Patient resource describing the patient associated with the imaging study being closed.  Note there are rare cases in which the ImagingStudy subject references a resource\nwhich is not a patient.  Regardless, the subject reference present in the corresponding [FHIR resource]-open event SHALL be provided in the [FHIR resource]-close event.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-patient-close",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ImagingStudy.basedOn",
+        "path": "ImagingStudy.basedOn",
+        "short": "At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-open request (see detailed description).",
+        "definition": "The accession number of the order which triggered the image procedure to be performed SHOULD be included as a business identifier if it is known.  If an accession number was provided\nin the corresponding [FHIR resource]-open event, then the same accession number SHOULD be provided in the corresponding [FHIR resource]-close event.",
+        "max": "1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4-diagnostic-report-close",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-diagnostic-report-close",
+  "version": "3.0.0",
+  "name": "FHIRcastR4DiagnosticReportClose",
+  "title": "FHIRcast R4 DiagnosticReport for Close Events",
+  "status": "active",
+  "description": "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.id",
+        "path": "DiagnosticReport.id",
+        "short": "A logical id of the resource must be provided.",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same DiagnosticReport id which was provided in the [FHIR resource]-open event (see also\n[FHIRcast DiagnosticReport for Open Events](StructureDefinition-fhircast-diagnostic-report-open.html)).",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "short": "At least one identifier of the DiagnosticReport SHOULD be provided in an [FHIR resource]-close request.",
+        "definition": "At least one `identifier` of the DiagnosticReport SHOULD be provided in a [FHIR resource]-close request. This could be a business identifier provided in the DiagnosticReport-open event\nor provided subsequently in a [DiagnosticReport-update](3-6-3-diagnosticreport-update.html) event",
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "short": "Reference to the patient associated with the report",
+        "definition": "SHALL be valued with a reference to the Patient resource which is present in the [FHIR resource]-close event.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-patient-close"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

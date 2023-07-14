@@ -1,0 +1,20 @@
+{
+  "resourceType": "Encounter",
+  "id": "r5-8cc652ba-770e-4ae1-b688-6e8e7c737438-close",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-encounter-close"
+    ]
+  },
+  "status": "unknown",
+  "identifier": [
+    {
+      "use": "official",
+      "value": "r2r22345",
+      "system": "http://myhealthcare.com/visits"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/r5-503824b8-fe8c-4227-b061-7181ba6c3926-close"
+  }
+}

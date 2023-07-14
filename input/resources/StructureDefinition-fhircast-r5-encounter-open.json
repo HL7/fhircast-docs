@@ -1,0 +1,76 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r5-encounter-open",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-encounter-open",
+  "version": "3.0.0",
+  "name": "FHIRcastR5EncounterOpen",
+  "title": "FHIRcastR5 Encounter for Open Events",
+  "status": "active",
+  "description": "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.",
+  "fhirVersion": "5.0.0",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 V2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Encounter",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Encounter",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Encounter.id",
+        "path": "Encounter.id",
+        "short": "A logical id of the resource must be provided.",
+        "definition": "A logical id of the resource must be provided. It may be the `id` associated with the resource as persisted in a FHIR server.\nIf the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate\nthe `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)). When\na [FHIR resource]-close event including this encounter is requested, the Subscriber requesting the context be closed SHALL use\nthe same Encounter `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)).",
+        "min": 1
+      },
+      {
+        "id": "Encounter.identifier",
+        "path": "Encounter.identifier",
+        "short": "At least one identifier of the Encounter SHALL be provided in a [FHIR resource]-open request.",
+        "definition": "At least one `identifier` of the Encounter SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open\nrequest should not assume that all Subscribers will be able to resolve the resource id or access a FHIR server where the\nresource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will\nlikely be able to identify the Encounter.",
+        "min": 1
+      },
+      {
+        "id": "Encounter.status",
+        "path": "Encounter.status",
+        "short": "Status of the Encounter, note this may not be known and hence have a value of `unknown`; however, `status` is included since it is required by FHIR"
+      },
+      {
+        "id": "Encounter.subject",
+        "path": "Encounter.subject",
+        "short": "Reference to the patient associated with the encounter",
+        "definition": "SHALL be valued with a reference to the Patient resource which is present in the [FHIR resource]-open event.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-patient-open"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

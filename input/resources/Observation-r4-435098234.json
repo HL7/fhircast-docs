@@ -1,0 +1,37 @@
+{
+  "resourceType": "Observation",
+  "id": "r4-435098234",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-observation"
+    ]
+  },
+  "derivedFrom": [
+    {
+      "identifier": {
+        "system": "urn:dicom:uid",
+        "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
+      }
+    }
+  ],
+  "status": "preliminary",
+  "code": {
+    "coding": [
+      {
+        "code": "45651-7",
+        "system": "http://loinc.org",
+        "display": "Pathological bone fracture [Minimum Data Set]"
+      }
+    ]
+  },
+  "issued": "2020-09-07T15:02:03.651Z",
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "code": "LA33-6",
+        "system": "http://loinc.org",
+        "display": "Yes"
+      }
+    ]
+  }
+}

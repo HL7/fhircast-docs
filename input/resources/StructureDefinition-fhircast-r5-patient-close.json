@@ -1,0 +1,66 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r5-patient-close",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-patient-close",
+  "version": "3.0.0",
+  "name": "FHIRcastR5PatientClose",
+  "title": "FHIRcastR5 Patient for Close Events",
+  "status": "active",
+  "description": "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.",
+  "fhirVersion": "5.0.0",
+  "mapping": [
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "interface",
+      "uri": "http://hl7.org/fhir/interface",
+      "name": "Interface Pattern"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 V2 Mapping"
+    },
+    {
+      "identity": "loinc",
+      "uri": "http://loinc.org",
+      "name": "LOINC code for the element"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.id",
+        "path": "Patient.id",
+        "short": "A logical id of the resource SHALL be provided.",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event\n(see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).",
+        "min": 1
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "short": "At least one identifier of the Patient SHOULD be provided in a [FHIR resource]-close request.",
+        "definition": "At least one `identifier` of the Patient SHOULD be provided in a [FHIR resource]-close request. Providing one or more of the `indentifier` values for the Patient\nwhich was provided in the corresponding [FHIR resource]-open event enables Subscribers to perform identity verification according to their requirements.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

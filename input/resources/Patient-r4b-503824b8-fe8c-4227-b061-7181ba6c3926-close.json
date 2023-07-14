@@ -1,0 +1,28 @@
+{
+  "resourceType": "Patient",
+  "id": "r4b-503824b8-fe8c-4227-b061-7181ba6c3926-close",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-close"
+    ]
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "type": {
+        "coding": [
+          {
+            "code": "MR",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+          }
+        ]
+      },
+      "system": "urn:oid:2.16.840.1.113883.19.5",
+      "value": "4438001",
+      "assigner": {
+        "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+        "display": "My Healthcare Provider"
+      }
+    }
+  ]
+}

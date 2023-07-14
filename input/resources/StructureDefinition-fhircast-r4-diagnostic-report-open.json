@@ -1,0 +1,89 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "fhircast-r4-diagnostic-report-open",
+  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-diagnostic-report-open",
+  "version": "3.0.0",
+  "name": "FHIRcastR4bDiagnosticReportOpen",
+  "title": "FHIRcast R4b Diagnostic Report for Open Events",
+  "status": "active",
+  "description": "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.\n\nAt least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request.\n\nTypically the report is associated with an order from the information system.  In this case the accession number of the order is provided in the DiagnosticReport's `basedOn`\narray attribute as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.\n\nIn radiology or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case\nthe reference to the ImagingStudy (or ImagingStudy's) in the event's context SHALL be included in the `study` array attribute.",
+  "fhirVersion": "5.0.0",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.id",
+        "path": "DiagnosticReport.id",
+        "short": "A logical id of the resource must be provided.",
+        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the\nSubscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique\n(e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this report is requested, the Subscriber\nrequesting the context be closed SHALL use the same DiagnosticReport `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)).",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "short": "A business identifier of the DiagnosticReport may be provided as part of the [FHIR resource]-open request (see detailed description).",
+        "definition": "The Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is stored\nin the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`."
+      },
+      {
+        "id": "DiagnosticReport.basedOn",
+        "path": "DiagnosticReport.basedOn",
+        "short": "At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request (see detailed description).",
+        "definition": "The accession number of the order which directly or in directly triggered the report to be created SHALL be included as a business identifier if it is known.  The accession number is\nstored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.status",
+        "path": "DiagnosticReport.status",
+        "short": "Status of the DiagnosticReport, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR",
+        "definition": "While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example,\na reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html)\nevent prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  "
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "short": "Reference to the Patient resource associated with the DiagnosticReport",
+        "definition": "A reference to the FHIR Patient resource describing the patient whose report is currently in context SHALL be present.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-open"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.imagingStudy",
+        "path": "DiagnosticReport.imagingStudy",
+        "short": "Imaging study (or studies) which are the subject of this report",
+        "definition": "If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case\na reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the `study` array if known."
+      }
+    ]
+  }
+}
