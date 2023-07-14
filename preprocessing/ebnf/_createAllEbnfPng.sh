@@ -5,4 +5,4 @@ rm -f diagram/*.png
 find input/ -name *.ebnf -exec ./_createEbnfPng.sh {} \;
 
 # copy to input/images
-cp diagram/*.png ../input/images/
+cp diagram/*.png ../../input/images/
