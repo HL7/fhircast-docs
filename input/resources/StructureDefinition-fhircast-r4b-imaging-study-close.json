@@ -5,7 +5,7 @@
   "name": "FHIRcastR4bImagingStudyClose",
   "title": "R4b FHIRcast ImagingStudy for Close Events",
   "status": "draft",
-  "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.\n\nIt is recommended that the image study business identifiers provided in the corresponding [FHIR resource]-open event are provided in the [FHIR resource]-close event.  Providing\nthese business identifiers enables Subscribers to perform identity verification according to their requirements.  See [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)\nfor details on the business identifiers of an ImagingStudy.",
+  "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.\n\nIt is recommended that the image study business identifiers provided in the corresponding [FHIR resource]-open event are provided in the [FHIR resource]-close event.  Providing\nthese business identifiers enables Subscribers to perform identity verification according to their requirements.  See [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-r4b-imaging-study-open.html)\nfor details on the business identifiers of an ImagingStudy.",
   "fhirVersion": "4.3.0",
   "mapping": [
     {
@@ -45,7 +45,7 @@
         "id": "ImagingStudy.id",
         "path": "ImagingStudy.id",
         "short": "A logical id of the resource must be provided.",
-        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)).",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-r4b-imaging-study-open.html)).",
         "min": 1
       },
       {

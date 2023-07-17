@@ -40,7 +40,7 @@
         "id": "DiagnosticReport.id",
         "path": "DiagnosticReport.id",
         "short": "A logical id of the resource must be provided.",
-        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same DiagnosticReport id which was provided in the [FHIR resource]-open event (see also\n[FHIRcast DiagnosticReport for Open Events](StructureDefinition-fhircast-diagnostic-report-open.html)).",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same DiagnosticReport id which was provided in the [FHIR resource]-open event (see also\n[FHIRcast DiagnosticReport for Open Events](StructureDefinition-fhircast-r4-diagnostic-report-open.html)).",
         "min": 1
       },
       {

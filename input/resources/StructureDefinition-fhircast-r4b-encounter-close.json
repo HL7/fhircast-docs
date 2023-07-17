@@ -1,12 +1,12 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "fhircast-r5-encounter-close",
-  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-encounter-close",
-  "name": "FHIRcastR5EncounterClose",
-  "title": "R5 FHIRcast Encounter for Close Events",
+  "id": "fhircast-r4b-encounter-close",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-encounter-close",
+  "name": "FHIRcastR4bEncounterClose",
+  "title": "R4b FHIRcast Encounter for Close Events",
   "status": "draft",
   "description": "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.",
-  "fhirVersion": "5.0.0",
+  "fhirVersion": "4.3.0",
   "mapping": [
     {
       "identity": "workflow",
@@ -14,19 +14,19 @@
       "name": "Workflow Pattern"
     },
     {
-      "identity": "w5",
-      "uri": "http://hl7.org/fhir/fivews",
-      "name": "FiveWs Pattern Mapping"
-    },
-    {
       "identity": "rim",
       "uri": "http://hl7.org/v3",
       "name": "RIM Mapping"
     },
     {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
       "identity": "v2",
       "uri": "http://hl7.org/v2",
-      "name": "HL7 V2 Mapping"
+      "name": "HL7 v2 Mapping"
     }
   ],
   "kind": "resource",
@@ -40,7 +40,7 @@
         "id": "Encounter.id",
         "path": "Encounter.id",
         "short": "A logical id of the resource must be provided.",
-        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same Encounter id which was provided in the corresponding [FHIR resource]-open event\n(see also [FHIRcast Encounter for Open Events](StructureDefinition-fhircast-r5-encounter-open.html)).",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same Encounter id which was provided in the corresponding [FHIR resource]-open event\n(see also [FHIRcast Encounter for Open Events](StructureDefinition-fhircast-r4b-encounter-open.html)).",
         "min": 1
       },
       {
@@ -65,7 +65,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-patient-close"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-patient-close"
             ]
           }
         ]

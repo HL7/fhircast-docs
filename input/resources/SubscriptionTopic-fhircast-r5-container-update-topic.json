@@ -1,7 +1,7 @@
 {
   "resourceType": "SubscriptionTopic",
   "id": "fhircast-r5-container-update-topic",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4b/SubscriptionTopic/container-update-topic",
+  "url": "http://hl7.org/fhir/uv/fhircast/r5/SubscriptionTopic/container-update-topic",
   "title": "R5 Subscribe to container changes in a topic",
   "description": "Requests a topic and an anchor-type to be set.   \nSends updates when content in the Container of the anchor of a type \nanchor-type for the specified topic changes.",
   "status": "active",

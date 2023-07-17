@@ -45,7 +45,7 @@
         "id": "ImagingStudy.id",
         "path": "ImagingStudy.id",
         "short": "A logical id of the resource must be provided.",
-        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.\nIf the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate\nthe `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).\nWhen a [FHIR resource]-close event including this image study is requested, the Subscriber requesting the context be closed SHALL use\nthe same ImagingStudy `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)).",
+        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.\nIf the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate\nthe `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).\nWhen a [FHIR resource]-close event including this image study is requested, the Subscriber requesting the context be closed SHALL use\nthe same ImagingStudy `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast ImagingStudy for Close Events](StructureDefinition-fhircast-r4b-imaging-study-close.html)).",
         "min": 1
       },
       {

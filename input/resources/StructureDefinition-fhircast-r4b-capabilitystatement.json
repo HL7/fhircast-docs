@@ -1,11 +1,11 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "fhircast-r4-capabilitystatement",
-  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-capabilitystatement",
-  "name": "FHIRcastR4CapabilityStatement",
-  "title": "R4 CapabilityStatment stating support for FHIRcast.",
+  "id": "fhircast-r4b-capabilitystatement",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-capabilitystatement",
+  "name": "FHIRcastR4bCapabilityStatement",
+  "title": "R4b CapabilityStatment stating support for FHIRcast.",
   "status": "draft",
-  "fhirVersion": "4.0.1",
+  "fhirVersion": "4.3.0",
   "mapping": [
     {
       "identity": "rim",
@@ -13,14 +13,14 @@
       "name": "RIM Mapping"
     },
     {
-      "identity": "workflow",
-      "uri": "http://hl7.org/fhir/workflow",
-      "name": "Workflow Pattern"
-    },
-    {
       "identity": "w5",
       "uri": "http://hl7.org/fhir/fivews",
       "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
     },
     {
       "identity": "objimpl",
@@ -97,7 +97,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-configuration-extensions"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-configuration-extensions"
             ]
           }
         ],

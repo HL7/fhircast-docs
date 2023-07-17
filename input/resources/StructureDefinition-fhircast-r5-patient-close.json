@@ -50,7 +50,7 @@
         "id": "Patient.id",
         "path": "Patient.id",
         "short": "A logical id of the resource SHALL be provided.",
-        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event\n(see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).",
+        "definition": "A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event\n(see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-r5-patient-open.html)).",
         "min": 1
       },
       {

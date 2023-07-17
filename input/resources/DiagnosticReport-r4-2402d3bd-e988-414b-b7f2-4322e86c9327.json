@@ -42,7 +42,7 @@
   ],
   "imagingStudy": [
     {
-      "reference": "FHIRcastImagingStudyOpen-Example"
+      "reference": "ImagingStudy/r4-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"
     }
   ]
 }

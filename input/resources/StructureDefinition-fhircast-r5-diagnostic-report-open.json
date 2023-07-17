@@ -40,7 +40,7 @@
         "id": "DiagnosticReport.id",
         "path": "DiagnosticReport.id",
         "short": "A logical id of the resource must be provided.",
-        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the\nSubscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique\n(e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this report is requested, the Subscriber\nrequesting the context be closed SHALL use the same DiagnosticReport `id` which was provided in the [FHIR resource]-open event (see also\n[FHIRcast DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)).",
+        "definition": "A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the\nSubscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique\n(e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  ",
         "min": 1
       },
       {
