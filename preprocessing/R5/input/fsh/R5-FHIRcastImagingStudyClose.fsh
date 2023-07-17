@@ -1,7 +1,7 @@
 Profile: FHIRcastR5ImagingStudyClose
 Parent: ImagingStudy
 Id: fhircast-r5-imaging-study-close
-Title: "FHIRcastR5 ImagingStudy for Close Events"
+Title: "R5 FHIRcast ImagingStudy for Close Events"
 Description:
 """
 Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.

@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-configuration-extensions",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-configuration-extensions",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-configuration-extensions",
   "name": "FHIRcastR4ConfigurationExtension",
   "title": "R4 FHIRcast configuration extension",
-  "status": "active",
+  "status": "draft",
   "description": "Extension in CapabilityStatement stating the location of the FHIRcast hub to be used with this FHIR server.",
   "fhirVersion": "4.0.1",
   "mapping": [
@@ -62,7 +61,7 @@
       {
         "id": "Extension.url",
         "path": "Extension.url",
-        "fixedUri": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-configuration-extensions"
+        "fixedUri": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-configuration-extensions"
       },
       {
         "id": "Extension.value[x]",

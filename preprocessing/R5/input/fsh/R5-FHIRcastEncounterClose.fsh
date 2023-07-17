@@ -1,7 +1,7 @@
 Profile: FHIRcastR5EncounterClose
 Parent: Encounter
 Id: fhircast-r5-encounter-close
-Title: "FHIRcastR5 Encounter for Close Events"
+Title: "R5 FHIRcast Encounter for Close Events"
 Description: "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
 * ^fhirVersion = #5.0.0
 * id 1..1 

@@ -1,7 +1,7 @@
 Profile: FHIRcastR4ImagingStudyOpen
 Parent: ImagingStudy
 Id: fhircast-r4-imaging-study-open
-Title: "FHIRcast R4 ImagingStudy for Open Events"
+Title: "R4 FHIRcast ImagingStudy for Open Events"
 Description:
 """
 Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.

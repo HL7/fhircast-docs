@@ -2,7 +2,7 @@
 Profile: FHIRcastR4bCapabilityStatement
 Parent: CapabilityStatement
 Id: fhircast-r4-capabilitystatement
-Description: "R4b CapabilityStatment stating support for FHIRcast."
+Title: "R4b CapabilityStatment stating support for FHIRcast."
 * implementationGuide 1..*
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value

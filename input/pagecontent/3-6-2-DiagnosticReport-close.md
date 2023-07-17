@@ -12,14 +12,18 @@ User closed a report. A previously open and in context report is no longer open 
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
 `report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier,subject` | FHIR DiagnosticReport resource describing the report previously in context that is being closed.
-`study` | 0..* | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource(s) describing any image study that was opened as part of the report context that is being closed.
+`study` | 0..* | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource(s) describing any image study that was opened as part of the report context that is being
+* [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
+* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html) closed.
 `patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the report being closed.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in DiagnosticReport close request:
 
-* [DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)
-* [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
-* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
+FHIR version | Profiles
+------------ | --------
+R4  | [DiagnosticReport for Close Events](StructureDefinition-fhircast-r4-diagnostic-report-close.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r4-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r4-patient-close.html)
+R4b | [DiagnosticReport for Close Events](StructureDefinition-fhircast-r4b-diagnostic-report-close.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r4b-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r4b-patient-close.html)
+R5  | [DiagnosticReport for Close Events](StructureDefinition-fhircast-r5-diagnostic-report-close.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r5-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r5-patient-close.html)
 
 Other attributes of the DiagnosticReport, ImagingStudy, and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 

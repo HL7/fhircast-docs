@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-diagnostic-report-open",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-diagnostic-report-open",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-diagnostic-report-open",
   "name": "FHIRcastR4bDiagnosticReportOpen",
-  "title": "FHIRcast R4b Diagnostic Report for Open Events",
-  "status": "active",
+  "title": "R4b FHIRcast Diagnostic Report for Open Events",
+  "status": "draft",
   "description": "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.\n\nAt least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request.\n\nTypically the report is associated with an order from the information system.  In this case the accession number of the order is provided in the DiagnosticReport's `basedOn`\narray attribute as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.\n\nIn radiology or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case\nthe reference to the ImagingStudy (or ImagingStudy's) in the event's context SHALL be included in the `study` array attribute.",
   "fhirVersion": "5.0.0",
   "mapping": [
@@ -73,7 +72,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-open"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-patient-open"
             ]
           }
         ]

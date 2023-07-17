@@ -3,7 +3,7 @@ Alias: Loinc = http://loinc.org
 Profile: FHIRcastR5Observation
 Parent: Observation
 Id: fhircast-r5-observation
-Title: "FHIRcastR5 Observation"
+Title: "R5 FHIRcast Observation"
 Description: "Defines the minimum set of attributes which an application wanting to share observation content must support"
 * subject 0..0
 * hasMember MS

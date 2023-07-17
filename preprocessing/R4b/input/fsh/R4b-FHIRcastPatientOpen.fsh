@@ -1,7 +1,7 @@
 Profile: FHIRcastR4bPatientOpen
 Parent: Patient
 Id: fhircast-r4b-patient-open
-Title: "FHIRcast R4b Patient for Open Events"
+Title: "R4b FHIRcast Patient for Open Events"
 Description: "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events."
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."

@@ -1,7 +1,7 @@
 Profile: FHIRcastR5GetCurrentContentBundle
 Parent: Bundle
 Id: fhircast-r5-get-current-content-bundle
-Title: "FHIRcastR5 Get Current Content Bundle"
+Title: "R5 FHIRcast Get Current Content Bundle"
 Description: """
     Defines the structure of a Bundle that carries current content state
     resulting from various FHIRcast `-update` messages. 

@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-imaging-study-close",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-imaging-study-close",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-imaging-study-close",
   "name": "FHIRcastR4ImagingStudyClose",
-  "title": "FHIRcast R4 ImagingStudy for Close Events",
-  "status": "active",
+  "title": "R4 FHIRcast ImagingStudy for Close Events",
+  "status": "draft",
   "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.\n\nIt is recommended that the image study business identifiers provided in the corresponding [FHIR resource]-open event are provided in the [FHIR resource]-close event.  Providing\nthese business identifiers enables Subscribers to perform identity verification according to their requirements.  See [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)\nfor details on the business identifiers of an ImagingStudy.",
   "fhirVersion": "4.0.1",
   "mapping": [
@@ -69,7 +68,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-patient-close",
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-patient-close",
               "http://hl7.org/fhir/StructureDefinition/Device",
               "http://hl7.org/fhir/StructureDefinition/Group"
             ]

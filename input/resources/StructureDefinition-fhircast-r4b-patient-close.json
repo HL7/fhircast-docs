@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4b-patient-close",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-close",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-patient-close",
   "name": "FHIRcastR4bPatientClose",
-  "title": "FHIRcast R4b Patient for Close Events",
-  "status": "active",
+  "title": "R4b FHIRcast Patient for Close Events",
+  "status": "draft",
   "description": "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.",
   "fhirVersion": "4.3.0",
   "mapping": [

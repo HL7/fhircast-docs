@@ -1,7 +1,7 @@
 Profile: FHIRcastR4bPatientClose
 Parent: Patient
 Id: fhircast-r4b-patient-close
-Title: "FHIRcast R4b Patient for Close Events"
+Title: "R4b FHIRcast Patient for Close Events"
 Description: "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."

@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4b-imaging-study-open",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-imaging-study-open",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-imaging-study-open",
   "name": "FHIRcastR4bImagingStudyOpen",
-  "title": "FHIRcast R4b ImagingStudy for Open Events",
-  "status": "active",
+  "title": "R4b FHIRcast ImagingStudy for Open Events",
+  "status": "draft",
   "description": "Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.\n\nAt least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request.  Two business identifiers are typically\nassociated with an image study.  Imaging systems such as a PACS viewer, advanced visualization workstation, etc. typically identify an image study\nby its DICOM Study Instance UID, which in DICOM is identified with a (0020,000D) tag.  Likewise information systems often identify an image study through\nthe accession number of the order which triggered the image procedure to be performed.\n\nThe Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is provided\nin the `identifier` array using the Identifier system of `urn:dicom:uid` and prefix the UID value with `urn:oid:`.\n\nThe accession number SHALL be included as a business identifier if it is known.  In FHIR, the accession number is provided in the ImagingStudy's `basedOn` array as a\nreference using a ServiceRequest reference type and the “ACSN” identifier type.\n\nFor a more detailed explanation of these business identifiers, see the [implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/imagingstudy.html).\nIdeally both the accession number and Study Instance UID are available and present in an ImagingStudy.  The presence of both business identifiers ensures that\nall Subscribers will be able to be able to identify the appropriate ImagingStudy.",
   "fhirVersion": "5.0.0",
   "mapping": [
@@ -69,7 +68,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-open",
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-patient-open",
               "http://hl7.org/fhir/StructureDefinition/Device",
               "http://hl7.org/fhir/StructureDefinition/Group"
             ]

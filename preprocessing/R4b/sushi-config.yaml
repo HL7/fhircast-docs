@@ -4,7 +4,7 @@
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 # id: hl7.fhir.uv.fhircast.r4
-canonical: http://hl7.org/fhir/uv/fhircast/r4
+canonical: http://hl7.org/fhir/uv/fhircast
 # name: FHIRcast R4 profiles
 # title: Example Title
 # description: Example Implementation Guide for getting started with SUSHI

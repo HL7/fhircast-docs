@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r5-diagnostic-report-close",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-diagnostic-report-close",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-diagnostic-report-close",
   "name": "FHIRcastR5DiagnosticReportClose",
-  "title": "FHIRcastR5 DiagnosticReport for Close Events",
-  "status": "active",
+  "title": "R5 FHIRcast DiagnosticReport for Close Events",
+  "status": "draft",
   "description": "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.",
   "fhirVersion": "5.0.0",
   "mapping": [
@@ -61,7 +60,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-patient-close"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-patient-close"
             ]
           }
         ]

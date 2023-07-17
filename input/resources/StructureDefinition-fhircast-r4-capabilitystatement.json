@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-capabilitystatement",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-capabilitystatement",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-capabilitystatement",
   "name": "FHIRcastR4bCapabilityStatement",
-  "status": "active",
-  "description": "R4b CapabilityStatment stating support for FHIRcast.",
+  "title": "R4b CapabilityStatment stating support for FHIRcast.",
+  "status": "draft",
   "fhirVersion": "4.3.0",
   "mapping": [
     {
@@ -98,7 +97,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-configuration-extensions"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-configuration-extensions"
             ]
           }
         ],

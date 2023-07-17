@@ -16,8 +16,11 @@ Key | Cardinality | FHIR operation to generate context | Description
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy close request:
 
-* [ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)
-* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
+FHIR version | Profiles
+------------ | --------
+R4  | [ImagingStudy for Open Events](StructureDefinition-fhircast-r4-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r4-patient-close.html)
+R4b | [ImagingStudy for Open Events](StructureDefinition-fhircast-r4b-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r4b-patient-close.html)
+R5  | [ImagingStudy for Open Events](StructureDefinition-fhircast-r5-imaging-study-close.html), [Patient for Open Events](StructureDefinition-fhircast-r5-patient-close.html)
 
 Other attributes of the ImagingStudy and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 

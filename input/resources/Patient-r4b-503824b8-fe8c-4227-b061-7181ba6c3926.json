@@ -3,7 +3,7 @@
   "id": "r4b-503824b8-fe8c-4227-b061-7181ba6c3926",
   "meta": {
     "profile": [
-      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-patient-open"
+      "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-patient-open"
     ]
   },
   "identifier": [

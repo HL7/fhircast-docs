@@ -7,11 +7,10 @@
       "valueUri": "http://hl7.org/fhir/StructureDefinition/CanonicalResource"
     }
   ],
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-capabilitystatement",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-capabilitystatement",
   "name": "FHIRcastR5CapabilityStatement",
-  "status": "active",
-  "description": "R5 CapabilityStatment stating support for FHIRcast.",
+  "title": "R5 CapabilityStatment stating support for FHIRcast.",
+  "status": "draft",
   "fhirVersion": "5.0.0",
   "mapping": [
     {
@@ -99,7 +98,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-configuration-extensions"
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-configuration-extensions"
             ]
           }
         ],

@@ -1,7 +1,7 @@
 Profile: FHIRcastR4bDiagnosticReportOpen
 Parent: DiagnosticReport
 Id: fhircast-r4-diagnostic-report-open
-Title: "FHIRcast R4b Diagnostic Report for Open Events"
+Title: "R4b FHIRcast Diagnostic Report for Open Events"
 Description:
 """
 Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.

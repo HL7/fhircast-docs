@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-content-update-bundle",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-content-update-bundle",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-content-update-bundle",
   "name": "FhirCastR4ContentUpdateBundle",
-  "title": "FHIRcast Content Update Bundle",
-  "status": "active",
+  "title": "R4 FHIRcast Content Update Bundle",
+  "status": "draft",
   "description": "Defines the structure of a Bundle that carries content updates that are\ncommunicated in FHIRcast `-update` messages. The bundle can only contain\nrequests of type PUT and DELETE.  \nPOST is not allowed as the content sharing mechanism cannot indicate the \nid of the created resource.",
   "fhirVersion": "4.0.1",
   "mapping": [

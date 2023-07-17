@@ -1,7 +1,7 @@
 Profile: FHIRcastR5DiagnosticReportClose
 Parent: DiagnosticReport
 Id: fhircast-r5-diagnostic-report-close
-Title: "FHIRcastR5 DiagnosticReport for Close Events"
+Title: "R5 FHIRcast DiagnosticReport for Close Events"
 Description: "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."

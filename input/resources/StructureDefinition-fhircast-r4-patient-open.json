@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r4-patient-open",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-patient-open",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-patient-open",
   "name": "FHIRcastR4PatientOpen",
-  "title": "FHIRcast R4 Patient for Open Events",
-  "status": "active",
+  "title": "R4 FHIRcast Patient for Open Events",
+  "status": "draft",
   "description": "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.",
   "fhirVersion": "4.0.1",
   "mapping": [

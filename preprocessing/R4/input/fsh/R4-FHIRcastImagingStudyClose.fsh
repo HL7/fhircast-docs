@@ -1,7 +1,7 @@
 Profile: FHIRcastR4ImagingStudyClose
 Parent: ImagingStudy
 Id: fhircast-r4-imaging-study-close
-Title: "FHIRcast R4 ImagingStudy for Close Events"
+Title: "R4 FHIRcast ImagingStudy for Close Events"
 Description:
 """
 Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.

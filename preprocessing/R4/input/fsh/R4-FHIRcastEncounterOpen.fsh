@@ -1,7 +1,7 @@
 Profile: FHIRcastR4EncounterOpen
 Parent: Encounter
 Id: fhircast-r4-encounter-open
-Title: "FHIRcast R4 Encounter for Open Events"
+Title: "R4 FHIRcast Encounter for Open Events"
 Description: "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events."
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."

@@ -1,7 +1,7 @@
 Profile: FHIRcastR5DiagnosticReportOpen
 Parent: DiagnosticReport
 Id: fhircast-r5-diagnostic-report-open
-Title: "FHIRcastR5 Diagnostic Report for Open Events"
+Title: "R5 FHIRcast Diagnostic Report for Open Events"
 Description:
 """
 Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.

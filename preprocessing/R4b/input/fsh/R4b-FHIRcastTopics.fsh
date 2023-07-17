@@ -2,7 +2,7 @@ Instance: FHIRcastR4bContainerTopicTopic
 InstanceOf: SubscriptionTopic
 * id =  "fhircast-r4b-container-update-topic"
 * url = "http://hl7.org/fhir/uv/fhircast/r5/SubscriptionTopic/container-update-topic"
-* title = "Subscribe to container changes in a topic"
+* title = "R4b Subscribe to container changes in a topic"
 * description = """
   Requests a topic and an anchor-type to be set.   
   Sends updates when content in the Container of the anchor of a type 
@@ -22,7 +22,7 @@ Instance: FHIRcastR4bContainerResourceTopic
 InstanceOf: SubscriptionTopic
 * id = "r4b-fhircast-r4b-container-update-resource"
 * url = "http://hl7.org/fhir/uv/fhircast/r5/SubscriptionTopic/container-update-resource"
-* title = "Subscribe to container changes of an resource"
+* title = "R4b Subscribe to container changes of an resource"
 * description = """
   Requests an anchor-type and anchor-id to be set.   
   Sends updates when content in the Container of the anchor of a type 

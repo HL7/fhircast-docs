@@ -19,3 +19,7 @@ echo Create R5 profiles
 sushi R4b/
 cp R4b/fsh-generated/resources/* results
 
+echo =====================================
+echo Replace profiles
+rm -Rf ../input/resources/*
+cp results/* ../input/resources

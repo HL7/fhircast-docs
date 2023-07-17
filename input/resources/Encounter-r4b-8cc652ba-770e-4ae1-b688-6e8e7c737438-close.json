@@ -3,7 +3,7 @@
   "id": "r4b-8cc652ba-770e-4ae1-b688-6e8e7c737438-close",
   "meta": {
     "profile": [
-      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4-encounter-close"
+      "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4-encounter-close"
     ]
   },
   "status": "unknown",

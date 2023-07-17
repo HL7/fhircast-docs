@@ -2,7 +2,7 @@
 Profile: FHIRcastR5CapabilityStatement
 Parent: CapabilityStatement
 Id: fhircast-r5-capabilitystatement
-Description: "R5 CapabilityStatment stating support for FHIRcast."
+Title: "R5 CapabilityStatment stating support for FHIRcast."
 * implementationGuide 1..*
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value

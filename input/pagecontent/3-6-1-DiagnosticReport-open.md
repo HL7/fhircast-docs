@@ -19,6 +19,14 @@ Key | Optionality | FHIR operation to generate context | Description
 `patient` | REQUIRED | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the diagnostic report
 `study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Information about the imaging study referenced by the report (if an imaging study is referenced) may be provided
 
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in DiagnosticReport close request:
+
+FHIR version | Profiles
+------------ | --------
+R4  | [DiagnosticReport for Open Events](StructureDefinition-fhircast-r4-diagnostic-report-open.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r4-imaging-study-open.html), [Patient for Open Events](StructureDefinition-fhircast-r4-patient-open.html)
+R4b | [DiagnosticReport for Open Events](StructureDefinition-fhircast-r4b-diagnostic-report-open.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r4b-imaging-study-open.html), [Patient for Open Events](StructureDefinition-fhircast-r4b-patient-open.html)
+R5  | [DiagnosticReport for Open Events](StructureDefinition-fhircast-r5-diagnostic-report-open.html), [ImagingStudy for Open Events](StructureDefinition-fhircast-r5-imaging-study-open.html), [Patient for Open Events](StructureDefinition-fhircast-r5-patient-open.html)
+
 ### Examples
 
 #### DiagnosticReport-open Example Request

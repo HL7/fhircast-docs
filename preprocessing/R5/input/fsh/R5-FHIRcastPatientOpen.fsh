@@ -1,7 +1,7 @@
 Profile: FHIRcastR5PatientOpen
 Parent: Patient
 Id: fhircast-r5-patient-open
-Title: "FHIRcastR5 Patient for Open Events"
+Title: "R5 FHIRcast Patient for Open Events"
 Description: "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events."
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."

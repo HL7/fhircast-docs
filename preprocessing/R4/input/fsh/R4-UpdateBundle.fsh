@@ -1,7 +1,7 @@
 Profile: FhirCastR4ContentUpdateBundle
 Parent: Bundle
 Id: fhircast-r4-content-update-bundle
-Title: "FHIRcast Content Update Bundle"
+Title: "R4 FHIRcast Content Update Bundle"
 Description: """
     Defines the structure of a Bundle that carries content updates that are
     communicated in FHIRcast `-update` messages. The bundle can only contain

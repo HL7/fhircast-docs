@@ -1,11 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "fhircast-r5-get-current-content-bundle",
-  "url": "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r5-get-current-content-bundle",
-  "version": "3.0.0",
+  "url": "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r5-get-current-content-bundle",
   "name": "FHIRcastR5GetCurrentContentBundle",
-  "title": "FHIRcastR5 Get Current Content Bundle",
-  "status": "active",
+  "title": "R5 FHIRcast Get Current Content Bundle",
+  "status": "draft",
   "description": "Defines the structure of a Bundle that carries current content state\nresulting from various FHIRcast `-update` messages. ",
   "fhirVersion": "5.0.0",
   "mapping": [

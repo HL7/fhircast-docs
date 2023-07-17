@@ -3,7 +3,7 @@
   "id": "r4b-435098234",
   "meta": {
     "profile": [
-      "http://hl7.org/fhir/uv/fhircast/r4/StructureDefinition/fhircast-r4b-observation"
+      "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-r4b-observation"
     ]
   },
   "derivedFrom": [
