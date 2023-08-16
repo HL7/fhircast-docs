@@ -11,10 +11,6 @@ status: draft
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.3.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0
-version-comparison:
-   - 2.0.0
-   - 2.1.0-ballot
-apply-version: 'true'
 copyrightYear: 2017+
 releaseLabel: CI Build  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 publisher:
