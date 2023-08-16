@@ -59,6 +59,13 @@ The accession number of the order which directly or in directly triggered the re
 """
 If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the `imagingStudy` array if known.
 """
+* obeys business-identifier
+
+Invariant:   business-identifier
+Description: "identifier array or basedOn array must contain at least one element"
+Expression:  "identifier.exists() or basedOn.exists()"
+Severity:    #error
+XPath:       "f:identifier or f:basedOn"
 
 Instance: FHIRcastDiagnosticReportOpen-Example
 InstanceOf: FHIRcastDiagnosticReportOpen
