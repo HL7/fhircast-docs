@@ -28,7 +28,7 @@ Additionally FHIR R5 includes a `supportingInfo` attribute.  While not yet forma
 """
 A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this report is requested, the Subscriber requesting the context be closed SHALL use the same DiagnosticReport `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)).
 """
-* identifier 0..*
+* identifier 0..* MS
 * identifier ^short = "A business identifier of the DiagnosticReport may be provided as part of the [FHIR resource]-open request (see detailed description)."
 * identifier ^definition = 
 """
@@ -48,12 +48,13 @@ event prior to the DiagnosticReport context being closed by a DiagnosticReport-c
 """
 A reference to the FHIR Patient resource describing the patient whose report is currently in context SHALL be present.
 """
-* basedOn 0..*
+* basedOn 0..* MS
 * basedOn ^short = "At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request (see detailed description)."
 * basedOn ^definition =
 """
 The accession number of the order which directly or in directly triggered the report to be created SHALL be included as a business identifier if it is known.  The accession number is stored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.
 """
+* imagingStudy only Reference(FHIRcastImagingStudyOpen)
 * imagingStudy ^short = "Imaging study (or studies) which are the subject of this report"
 * imagingStudy ^definition =
 """

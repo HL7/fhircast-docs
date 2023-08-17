@@ -15,19 +15,19 @@ A logical id of the resource SHALL be provided. It may be the `id` associated wi
 """
 At least one `identifier` of the Patient SHALL be provided in a [FHIR resource]-open request. The Subscriber making the open request should not assume that all Subscribers will be able to resolve the resource `id` or access a FHIR server where the resource may be stored; hence, the provided `identifier` (or identifiers) should be a value by which all Subscribers will likely be able to identify the Patient (e.g., a patient's MRN or MPI identifier).
 """
-* name 0..1 MS
+* name 0..1
 * name ^short = "Name of the patient which may be used for identity verification"
 * name ^definition =
 """
 The Subscriber making the open request SHOULD provide a value for the `name` attribute, if it is available, so that Subscribers may perform identity verification according to their requirements.
 """
-* gender 0..1 MS
+* gender 0..1
 * gender ^short = "Gender of the patient which may be used for identity verification"
 * gender ^definition =
 """
 The Subscriber making the open request SHOULD provide a value for the `gender` attribute, if it is available, so that Subscribers may perform identity verification according to their requirements.
 """
-* birthDate 0..1 MS
+* birthDate 0..1
 * birthDate ^short = "Birth date of the patient which may be used for identity verification"
 * birthDate ^definition =
 """

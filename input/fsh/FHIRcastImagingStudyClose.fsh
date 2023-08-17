@@ -15,7 +15,7 @@ It is recommended that the image study business identifiers provided in the corr
 A logical id of the resource must be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)).
 """
 
-* identifier 1..*
+* identifier 0..* MS
 * identifier ^short = "At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-close request (see detailed description)."
 * identifier ^definition = 
 """
@@ -25,7 +25,7 @@ The accession number of the order which triggered the image procedure to be perf
 """
 
 // The indentifier sequence below should be used and with 0..* when FHIRcast transitions to FHIR R5 or above since it would be valid to provide only the accession number in the basedOn sequence
-// * identifier 0..*
+// * identifier 0..* MS
 // * identifier ^short = "At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-close request (see detailed description)."
 // * identifier ^definition = 
 // """
@@ -44,7 +44,7 @@ which is not a patient.  Regardless, the subject reference present in the corres
 """
 
 // The basedOn sequence below should be used when FHIRcast transitions to FHIR R5 or above
-// * basedOn 0..1
+// * basedOn 0..1 MS
 // * basedOn ^short = "At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-close request (see detailed description)."
 // * basedOn ^definition =
 // """

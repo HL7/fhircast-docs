@@ -15,16 +15,16 @@ A logical id of the resource must be provided. The provided `id` SHALL be the sa
 """
 At least one `identifier` of the DiagnosticReport SHOULD be provided in a [FHIR resource]-close request. This could be a business identifier provided in the DiagnosticReport-open event or a business identifier provided subsequently in a [DiagnosticReport-update](3-6-3-diagnosticreport-update.html) event.
 """
-* basedOn 0..*
-* basedOn ^short = "At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request (see detailed description)."
+* basedOn 0..* MS
+* basedOn ^short = "At least one business identifier of the DiagnosticReport SHOULD be provided in a [FHIR resource]-open request (see detailed description)."
 * basedOn ^definition =
 """
-The accession number of the order which directly or in directly triggered the report to be created SHALL be included as a business identifier if it is known.  The accession number is stored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.
+The accession number of the order which directly or in directly triggered the report to be created SHOULD be included as a business identifier if it is known.  The accession number is stored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.
 """
 * imagingStudy ^short = "Imaging study (or studies) which are the subject of this report"
 * imagingStudy ^definition =
 """
-If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the `imagingStudy` array if known.
+If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHOULD be present in the `imagingStudy` array if known.
 """
 * subject 1..1
 * subject only Reference(FHIRcastPatientClose)
@@ -40,7 +40,6 @@ resource `id` is appended with '-close'.  The specification requires that the re
 [FHIR resource]-open; hence in the real world the '-close' suffix would not be present."
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#final
-* subject = Reference(FHIRcastPatientOpen-Example)
 * code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "GH339884.RPT.0001"
