@@ -2,7 +2,17 @@ Profile: FHIRcastDiagnosticReportClose
 Parent: DiagnosticReport
 Id: fhircast-diagnostic-report-close
 Title: "FHIRcast DiagnosticReport for Close Events"
-Description: "Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
+Description:
+"""
+Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.
+
+**FHIR R4 versus FHIR R5**
+In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
+
+In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
+
+Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field is considered labeled as must support.
+"""
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."
 * id ^definition =
@@ -35,9 +45,7 @@ If the report is created as part of an imaging scenario, at least one imaging st
 Instance: FHIRcastDiagnosticReportClose-Example
 InstanceOf: FHIRcastDiagnosticReportClose
 Usage: #example
-Description: "Example of a DiagnosticReport which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below
-resource `id` is appended with '-close'.  The specification requires that the resource `id` in the [FHIR resource]-close be identical to the resource `id` provided in the corresponding
-[FHIR resource]-open; hence in the real world the '-close' suffix would not be present."
+Description: "Example of a DiagnosticReport which could be used in a [FHIR resource]-close event.  Note that due to limitation of tools used to publishing the specification the below resource `id` is appended with '-close'.  The specification requires that the resource `id` in the [FHIR resource]-close be identical to the resource `id` provided in the corresponding [FHIR resource]-open; hence in the real world the '-close' suffix would not be present."
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327-close"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#final
 * code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"

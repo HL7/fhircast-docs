@@ -17,10 +17,9 @@ In radiology reports or other image related uses of FHIRcast, at least one imagi
 **FHIR R4 versus FHIR R5**
 In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
 
-Since this version of FHIRcast promotes the use of FHIR R4 resources, the attribute `imagingStudy` SHALL be used when the report references one or more image studies and all examples in the FHIRcast specification use the `imageStudy` attribute.  However, if Subscribers agree to use FHIR R5 resources, the the attribute `study` SHALL be used rather than the `imagingStudy` attribute.  As this is a breaking change, all Subscribers subscribed to a given topic must be aligned on the FHIR version being used.
+In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
 
-Additionally FHIR R5 includes a `supportingInfo` attribute.  While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report.
-
+Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field is considered labeled as must support.
 """
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."
