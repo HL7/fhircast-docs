@@ -28,6 +28,12 @@ FHIRcast builds on SMART by introducing a new [syntax for standard OAuth 2.0 sco
 * [Argonaut Risk Assessment report](http://argonautwiki.hl7.org/images/e/ed/%282015May26%29RiskAssessment_ReportV1.pdf).
 * [OAuth 2.0 Threat Model and Security Considerations](https://tools.ietf.org/html/rfc6819)
 
+### Access to non-authorized content
+
+Access to non-authorized content is a critical issue in healthcare data exchange, as it can lead to privacy breaches and unauthorized use of sensitive information. In the FHIRcast event-based communication model, various types of content can be shared among applications that are connected to a session, such as updates to the current context, selected resources, and exchanged resources.
+
+To ensure that only authorized applications can access and share content, the FHIRcast specification includes a mechanism for checking authorization when a Subscriber subscribes to a session. This mechanism ensures that each application can only receive events that it is granted authorization to access. The responsibility of providing a valid set of authorizations lies with the authorization server.
+
 ### WebSocket Security Considerations
 
 It is recommended that Subscribers use and Hubs should only accept connections made over the secure _wss://_ WebSocket protocol and not the unsecured _ws://_ WebSocket protocol.
