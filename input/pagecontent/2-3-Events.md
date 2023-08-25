@@ -63,8 +63,6 @@ All fields available within an event's context SHALL be defined in a table where
 
 A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-Many events refer to a resource the event relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
-
 The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
@@ -86,6 +84,22 @@ ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
 Context change events SHALL include the resource the context change relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
 
 In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-Encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
+
+FHIRcast defines profiles for FHIR resources used in `*-open` and `*-close` events documented in the [`event catalog`](3_Events.html).  Each resource used to establish context has a profile for when that resource is used in an `*-open` event and a different profile for when that resource is used in a `*-close` event.  The profiles for *-`open` events mandate more attributes than those for `*-close` events since all Subscribers need enough information to identify the appropriate information associated with the context resource(s) in their application enabling them to participate in a common context.
+
+FHIRcast does not mandate that contextual subjects have any FHIR persistance; sufficient information to establish a common context may simply be exchanged using FHIR resources as the structure to hold the necessary information without the resources ever existing in a FHIR server (in fact it may be that there is no FHIR server in the infrastructure associated with any Subscriber synchronizing in a FHIRcast topic).  As this is an FHIR R4 implementation guide, all profiles and examples conform to FHIR R4 resource specifications. Where relevant/required, notes have been added to the description of the resource profiles indicating how to use the resources in a FHIRcast session using FHIR R5-based resources.
+
+__`*-open` Event Resource Profiles:__
+* [`Patient`](StructureDefinition-fhircast-patient-open.html)
+* [`Encounter`](StructureDefinition-fhircast-encounter-open.html)
+* [`ImagingStudy`](StructureDefinition-fhircast-imaging-study-open.html)
+* [`DiagnosticReport`](StructureDefinition-fhircast-diagnostic-report-open.html)
+
+__`*-close` Event Resource Profiles:__
+* [`Patient`](StructureDefinition-fhircast-patient-close.html)
+* [`Encounter`](StructureDefinition-fhircast-encounter-close.html)
+* [`ImagingStudy`](StructureDefinition-fhircast-imaging-study-close.html)
+* [`DiagnosticReport`](StructureDefinition-fhircast-diagnostic-report-close.html)
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).
 

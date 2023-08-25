@@ -17,10 +17,9 @@ In radiology reports or other image related uses of FHIRcast, at least one imagi
 **FHIR R4 versus FHIR R5**
 In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
 
-Since this version of FHIRcast promotes the use of FHIR R4 resources, the attribute `imagingStudy` SHALL be used when the report references one or more image studies and all examples in the FHIRcast specification use the `imageStudy` attribute.  However, if Subscribers agree to use FHIR R5 resources, the the attribute `study` SHALL be used rather than the `imagingStudy` attribute.  As this is a breaking change, all Subscribers subscribed to a given topic must be aligned on the FHIR version being used.
+In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
 
-Additionally FHIR R5 includes a `supportingInfo` attribute.  While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report.
-
+Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field is considered labeled as must support.
 """
 * id 1..1 
 * id ^short = "A logical id of the resource must be provided."
@@ -28,7 +27,7 @@ Additionally FHIR R5 includes a `supportingInfo` attribute.  While not yet forma
 """
 A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this report is requested, the Subscriber requesting the context be closed SHALL use the same DiagnosticReport `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)).
 """
-* identifier 0..*
+* identifier 0..* MS
 * identifier ^short = "A business identifier of the DiagnosticReport may be provided as part of the [FHIR resource]-open request (see detailed description)."
 * identifier ^definition = 
 """
@@ -48,17 +47,25 @@ event prior to the DiagnosticReport context being closed by a DiagnosticReport-c
 """
 A reference to the FHIR Patient resource describing the patient whose report is currently in context SHALL be present.
 """
-* basedOn 0..*
+* basedOn 0..* MS
 * basedOn ^short = "At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request (see detailed description)."
 * basedOn ^definition =
 """
 The accession number of the order which directly or in directly triggered the report to be created SHALL be included as a business identifier if it is known.  The accession number is stored as Reference.identifier using the ServiceRequest Reference type and the “ACSN” identifier type.
 """
+* imagingStudy only Reference(FHIRcastImagingStudyOpen)
 * imagingStudy ^short = "Imaging study (or studies) which are the subject of this report"
 * imagingStudy ^definition =
 """
 If the report is created as part of an imaging scenario, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case a reference to the ImagingStudy (or references to the ImagingStudy's) in the event's context SHALL be present in the `imagingStudy` array if known.
 """
+* obeys business-identifier
+
+Invariant:   business-identifier
+Description: "identifier array or basedOn array must contain at least one element"
+Expression:  "identifier.exists() or basedOn.exists()"
+Severity:    #error
+XPath:       "f:identifier or f:basedOn"
 
 Instance: FHIRcastDiagnosticReportOpen-Example
 InstanceOf: FHIRcastDiagnosticReportOpen
