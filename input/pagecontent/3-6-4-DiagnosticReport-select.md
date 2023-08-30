@@ -3,7 +3,7 @@
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
-A `DiagnosticReport-select` request will be made to the Hub when a Subscriber desires to indicate that one or more FHIR resources contained in the DiagnosticReport context's content are to be made visible, in focus, or otherwise "selected". It is assumed that a FHIR resource (e.g., observation) with the specified `id` is contained in the current anchor context's content, the Hub MAY or MAY NOT provide validation of its presence.
+A `DiagnosticReport-select` request will be made to the Hub when a Subscriber desires to indicate that one or more FHIR resources contained in the DiagnosticReport context's content are to be made visible, in focus, or otherwise "selected". It is assumed that a FHIR resource (e.g., Observation) with the specified `id` is contained in the specified [`anchor context's`](5_glossary.html) content, the Hub MAY or MAY NOT provide validation of its presence.
 
 This event allows other Subscribers to adjust their UIs as appropriate.  For example, a reporting system may indicate that the user has selected a particular observation associated with a measurement value. After receiving this event an image reading application which created the measurement may wish to change its user display such that the image from which the measurement was acquired is visible.
 
@@ -12,10 +12,10 @@ If one or more resources are noted as selected, any other resource which had bee
 ### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
----- | ---- | ---- | ----
-`report` | REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
-`select` | REQUIRED | not applicable | Contains zero or more references to selected resources. If a reference to a resource is present in the `select` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `select` array, this is an indication that any previously selected resource is now unselected.
+Key | Cardinality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.
+`select` | 1..1 | not applicable | Contains zero or more references to selected resources in a `resources` array. If a reference to a resource is present in the `resources` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `resources` array, this is an indication that any previously selected resource is now unselected.
 
 ### Examples
 
@@ -26,24 +26,24 @@ The following example shows the selection of a single Observation resource in an
 ```json
 {
   "timestamp": "2019-09-10T14:58:45.988Z",
-  "id": "0e7ac18",
+  "id": "78ef1125-7f8b-4cbc-bc59-a2a02f7e04",
   "event": {
-    "hub.topic": "DrXRay",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-select",
     "context": [
       {
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "40012366"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "select",
-        "resource": [
+        "resources": [
           {
             "resourceType": "Observation",
-            "id": "a67tbi5891trw123u6f9134"
+            "id": "40afe766-3628-4ded-b5bd-925727c013b3"
           }
         ]
       }
@@ -56,5 +56,6 @@ The following example shows the selection of a single Observation resource in an
 
 {:.grid}
 | Version | Description
-| ------- | -------------
-| 0.1     | Initial draft
+| ------- | ----
+| 0.1 | Initial draft
+| 1.0 | Updated for STU3
