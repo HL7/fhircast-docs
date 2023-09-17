@@ -30,7 +30,7 @@ Support of content sharing by a Hub is optional.  If supporting content sharing,
 5. When a `[FHIR resource]-close` request is received, the Hub should dispose of the content for the current anchor context (i.e., the context being closed by this request) since the Hub has no responsibility to persist the content
 6. Forward a `[FHIR resource]-select` event to all Subscribers 
 
-A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.  If the Hub does not rejects an update request, for any reason, it SHALL reject the entire request - it SHALL NOT accept some changes specified in the bundle and reject others.
+A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.  If the Hub does reject an update request, for any reason, it SHALL reject the entire request - it SHALL NOT accept some changes specified in the bundle and reject others.
 
 A Hub is not responsible for any long-term persistence of shared information and should purge the content when a `[FHIR resource]-close` request is received.
 
@@ -60,3 +60,14 @@ When a `[FHIR resource]-update` event is received by a Subscriber, the applicati
 #### Processing Update Events and Current Context
 
 A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor context referenced differs from the current context (the anchor context is present in the `context` attribute in `[FHIR resource]-update` events).  The proposed `[FHIR resource]-update` event SHALL be processed in scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context.  The current context is not changed by a `[FHIR resource]-update` event that references an anchor context that is not the current context.
+
+### Content Creation and Reopen Scenario
+
+When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it must create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
+
+1. The Subscriber persists the resource in a FHIR server prior to adding the resource to the anchor context's content.  Since the FHIR server provides an `id` for the resource this `id` SHOULD be used for the resource's `id` when adding the resource to the anchor context's content.
+2. The resource has not yet been persisted in a FHIR server or will never be persisted in a FHIR server by the Subscriber adding the resource to the anchor context's content.  In this case, the Subscriber SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+
+If the same anchor context is reopened and used for a content sharing session, the same [Resource.id](http://hl7.org/fhir/resource.html) used during the initial content sharing session should be used by any Subscriber adding the same resource to this reopened content sharing session.  Hence, should any Subscriber participating in a content sharing session decide to persist a resource after the content sharing session is closed, it SHOULD ensure that the original [Resource.id](http://hl7.org/fhir/resource.html) is part of the persisted resource.  This enables a Subscriber to add the resource to a reopened content sharing session with the original [Resource.id](http://hl7.org/fhir/resource.html) or to identify (match) resources added to a reopened content sharing session with the resource in the original content sharing session.
+
+For further discussion on the reopening of content sharing sessions see Section [4.6 FHIRcast event-based content sharing for Radiology](4-6-fhircast-event-content-sharing.html).
