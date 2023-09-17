@@ -7,7 +7,7 @@ Description: """
     communicated in FHIRcast `-update` messages. The bundle can only contain
     requests of type PUT and DELETE.  
     POST is not allowed as the content sharing mechanism cannot indicate the 
-    id of the created resource.
+    id of the created resource using the POST operation.
 """
 * type MS
 * type = #transaction
