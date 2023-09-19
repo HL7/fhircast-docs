@@ -212,7 +212,7 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
 }
 ```
 
-##### DiagnosticReport-update Event with DELETE Example
+##### DiagnosticReport-update Request with DELETE Example
 
 The following example shows a request to delete an observation from a content sharing session.
 
