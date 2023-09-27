@@ -15,6 +15,7 @@ Field              | Optionality | Type  | Description
 `eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true`, indicating support for websockets.
 `fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
+`fhirVersion` | Required | string | The FHIR version the Hub supports, the value SHALL be a code (not display) from [FHIR versions](http://hl7.org/fhir/ValueSet/FHIR-version).
 `getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 
 A field of `webhookSupport` SHALL be ignored.
