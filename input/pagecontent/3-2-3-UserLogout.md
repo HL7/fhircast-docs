@@ -4,9 +4,9 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. 
+A Subscriber indicates that the User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. 
 
-Unlike most of FHIRcast events, `UserLogout.html` is a statically named event and therefore does not follow the `FHIR-resource`-`[open|close]` syntax.
+Unlike most of FHIRcast events, `UserLogout.html` is a statically named event and therefore does not follow the regular FHIRcast syntax.
 
 Implementers are encouraged to consider if and when their application should logout the user upon receiving an userLogout event, and if so, how to preserve application state.
 
@@ -14,7 +14,7 @@ If a Subscriber decides that it will not logout the current user it SHOULD send 
 
 ### Context
 
-The context is empty.
+The context SHOULD contain a Parameters resource according to the following profile [Logout Context](StructureDefinition-fhircast-logout.html).
 
 ### Examples
 
@@ -25,7 +25,24 @@ The context is empty.
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065", 
     "hub.event": "userLogout", 
-    "context": [] 
+    "context": [{
+      "key": "parameters",
+      "resource" : {
+        "resourceType": "parameters",
+        "parameter":[{
+          "name": "code",
+          "valueCoding": {
+            "system": "http://hl7.org/fhir/uv/fhircast/CodeSystem/fhircast-codesystem",
+            "code" : "user-requested"
+          }, {
+          "name": "reason",
+          "valueString": "Please logout from all applications."
+          }
+        }]
+      }
+    }
+      
+    ] 
   }
 }
 ```
