@@ -1,6 +1,7 @@
 ### Event-name: DiagnosticReport-select
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+| eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
+| Version | [1.0](3-2-3-DiagnosticReport-select.html) |
 
 ### Workflow
 A `DiagnosticReport-select` request will be made to the Hub when a Subscriber desires to indicate that one or more FHIR resources contained in the DiagnosticReport context's content are to be made visible, in focus, or otherwise "selected". It is assumed that a FHIR resource (e.g., Observation) with the specified `id` is contained in the specified [`anchor context's`](5_glossary.html) content, the Hub MAY or MAY NOT provide validation of its presence.

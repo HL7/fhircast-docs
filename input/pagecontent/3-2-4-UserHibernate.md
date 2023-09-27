@@ -1,6 +1,7 @@
-### Event-name: UserHibernate.html
+### Event-name: UserHibernate
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+| eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
+| Version | [1.0](3-2-3-UserHibernate.html) |
 
 ### Workflow
 

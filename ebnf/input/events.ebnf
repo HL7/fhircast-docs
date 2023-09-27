@@ -1,1 +1,1 @@
-EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )
+EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' ) (('-') ( Version | * ))?

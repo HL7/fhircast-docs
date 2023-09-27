@@ -1,6 +1,8 @@
-### Event-name: UserLogout.html
+### Event-name: UserLogout
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+| eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
+| Version | [1.0](3-2-3-UserLogout.html)  |
+
 
 ### Workflow
 

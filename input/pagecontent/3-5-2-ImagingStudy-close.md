@@ -1,6 +1,7 @@
-### Event-name: ImagingStudy-close
+### Event-name: `ImagingStudy-close`
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+| eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
+| Version | [1.0](3-2-3-ImagingStudy-close.html) |
 
 ### Workflow
 

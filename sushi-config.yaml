@@ -140,7 +140,6 @@ menu:
     Content Sharing: 2-10-ContentSharing.html
   Events: 
     Introduction: 3_Events.html
-    FHIRcast Event Definitions: 3-1-0-eventstructures.html
     Event Template: 3-1-1-template.html
     Event Maturity Model: 3-1-2-eventmaturitymodel.html
     Infrastructure Events: 3-2-0-infrastructureevents.html
