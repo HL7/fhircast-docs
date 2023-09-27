@@ -6,7 +6,7 @@ Description: "Defines the minimum set of attributes which an application wanting
 * obeys userlogout-1
 * parameter 1..* MS
 * parameter ^slicing.discriminator.type = #value
-* parameter ^slicing.discriminator.path = "valueCoding"
+* parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.ordered = false   // can be omitted, since false is the default
 * parameter ^slicing.description = "Reason for logout."
@@ -44,7 +44,7 @@ InstanceOf: FHIRcastLogoutContext
 Usage: #example
 * parameter[code]
   * name = "code"
-  * valueCoding = FHIRcastCodeSystem#user-requested
+  * valueCoding = FHIRcastCodeSystem#unspecified
 * parameter[reason]
   * name = "reason"
   * valueString = "Please logout from all applications."

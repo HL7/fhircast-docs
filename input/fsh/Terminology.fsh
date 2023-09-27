@@ -4,6 +4,8 @@ Title: "FHIRcast related Terminology."
 Description: """
     This codesystem defines terminology that is used within the FHIRcast specification.
 """
+* ^experimental = false
+* ^caseSensitive = true
 * #logout-reason "Codes related to why a logout event is send" 
     "Defines the reason a Subscriber sends a logout event."
   * #user-requested "User requests logout"
