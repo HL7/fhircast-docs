@@ -7,27 +7,26 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 The updates include:
 
 * adding, updating, or removing FHIR resources contained in the DiagnosticReport
-* updating attributes of the DiagnosticReport or associated context resources (Patient and/or ImagingStudy resources)
+* updating attribute values of the DiagnosticReport or associated context resources (Patient and/or ImagingStudy resources)
 
 #### Context
 
 {:.grid}
-Key | Optionality | FHIR operation to generate context | Description
---- | --- | --- | ---
-`report`| REQUIRED | `DiagnosticReport/{id}?_elements=identifier` | Anchor context
-`patient` | OPTIONAL | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed
-`study` | OPTIONAL | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
-`updates` | REQUIRED | not applicable | Changes to be made to the current content of the anchor context
+Key | Cardinality | FHIR operation to generate context | Description
+----- | -------- | ---- | ---- 
+`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
+`patient` | 0..1 | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed.
+`study` | 0..1 | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
+`updates` | 1..1 | not applicable | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 #### Supported Update Request Methods
 
-Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.
+Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one `Bundle` SHALL be present in a `DiagnosticReport-update` request.
 
 {:.grid}
 Request Method | Operation
 --- | ---
-`POST` | Add a new resource
-`PUT` | Replace/update an existing resource
+`PUT` | Add a new resource or update a resource already existing in the content
 `DELETE` | Remove an existing resource
 
 #### Examples
@@ -41,7 +40,7 @@ The following example shows adding an imaging study to the existing diagnostic r
   "timestamp": "2019-09-10T14:58:45.988Z",
   "id": "0d4c7776",
   "event": {
-    "hub.topic": "DrXRay",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-update",
     "context.versionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
@@ -49,14 +48,13 @@ The following example shows adding an imaging study to the existing diagnostic r
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "40012366"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "updates",
         "resource": {
           "resourceType": "Bundle",
-          "id": "8i7tbu6fby5fuuey7133eh",
           "type": "transaction",
           "entry": [
             {
@@ -67,7 +65,7 @@ The following example shows adding an imaging study to the existing diagnostic r
                 "resourceType": "ImagingStudy",
                 "description": "CHEST XRAY",
                 "started": "2010-02-14T01:10:00.000Z",
-                "id": "3478116342",
+                "id": "7e9deb91-0017-4690-aebd-951cef34aba4",
                 "identifier": [
                   {
                     "type": {
@@ -89,13 +87,13 @@ The following example shows adding an imaging study to the existing diagnostic r
             },
             {
               "request": {
-                "method": "POST"
+                "method": "PUT"
               },
               "resource": {
                 "resourceType": "Observation",
-                "id": "435098234",
+                "id": "40afe766-3628-4ded-b5bd-925727c013b3",
                 "partOf": {
-                  "reference": "ImagingStudy/3478116342"
+                  "reference": "ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"
                 },
                 "status": "preliminary",
                 "category": {
@@ -130,9 +128,8 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
 ```json
 {
   "timestamp": "2019-09-10T14:58:45.988Z",
-  "id": "0d4c7776",
   "event": {
-    "hub.topic": "DrXRay",
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-update",
     "context.versionId": "efcac43a-ed38-49e4-8d79-73f78290292a",
     "context.priorVersionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
@@ -141,14 +138,13 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "40012366"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "updates",
         "resource": {
           "resourceType": "Bundle",
-          "id": "8i7tbu6fby5fuuey7133eh",
           "type": "transaction",
           "entry": [
             {
@@ -159,7 +155,7 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
                 "resourceType": "ImagingStudy",
                 "description": "CHEST XRAY",
                 "started": "2010-02-14T01:10:00.000Z",
-                "id": "3478116342",
+                "id": "7e9deb91-0017-4690-aebd-951cef34aba4",
                 "identifier": [
                   {
                     "type": {
@@ -181,13 +177,13 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
             },
             {
               "request": {
-                "method": "POST"
+                "method": "PUT"
               },
               "resource": {
                 "resourceType": "Observation",
-                "id": "435098234",
+                "id": "40afe766-3628-4ded-b5bd-925727c013b3",
                 "partOf": {
-                  "reference": "ImagingStudy/3478116342"
+                  "reference": "ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"
                 },
                 "status": "preliminary",
                 "category": {
@@ -221,3 +217,4 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
 | Version | Description
 | ------- | ----
 | 0.1 | Initial draft
+| 1.0 | Updated for STU3

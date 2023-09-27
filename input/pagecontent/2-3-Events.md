@@ -59,15 +59,14 @@ The Subscriber requesting a context change SHALL ensure consistency of the FHIR 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
 - **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field. The key name SHALL be lower case and implementations SHALL treat them as case-sensitive.
-- **Optionality**: A string value of either `Required`, `Optional` or `Conditional`
+- **Cardinality**: Indicates the optionality and maximum resources instances allowed in an event's context
 - **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
 A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-Hubs SHOULD use the [_elements](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
-Many events refer to a resource the event relates to. Common FHIR resources are: Patient, Encounter, ImagingStudy, and DiagnosticReport.
+The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
@@ -101,6 +100,22 @@ The keys to refer to these anchor FHIR resources SHALL be named as they are name
 
 An context-change event SHOULD NOT refer to non-anchor resources (resource that are not to be included in the context). In the case this is absolutely required, the key of these resources SHALL be named any arbitrary string which is not a value from the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html).
 
+FHIRcast defines profiles for FHIR resources used in `*-open` and `*-close` events documented in the [`event catalog`](3_Events.html).  Each resource used to establish context has a profile for when that resource is used in an `*-open` event and a different profile for when that resource is used in a `*-close` event.  The profiles for *-`open` events mandate more attributes than those for `*-close` events since all Subscribers need enough information to identify the appropriate information associated with the context resource(s) in their application enabling them to participate in a common context.
+
+FHIRcast does not mandate that contextual subjects have any FHIR persistance; sufficient information to establish a common context may simply be exchanged using FHIR resources as the structure to hold the necessary information without the resources ever existing in a FHIR server (in fact it may be that there is no FHIR server in the infrastructure associated with any Subscriber synchronizing in a FHIRcast topic).  As this is an FHIR R4 implementation guide, all profiles and examples conform to FHIR R4 resource specifications. Where relevant/required, notes have been added to the description of the resource profiles indicating how to use the resources in a FHIRcast session using FHIR R5-based resources.
+
+__`*-open` Event Resource Profiles:__
+* [`Patient`](StructureDefinition-fhircast-patient-open.html)
+* [`Encounter`](StructureDefinition-fhircast-encounter-open.html)
+* [`ImagingStudy`](StructureDefinition-fhircast-imaging-study-open.html)
+* [`DiagnosticReport`](StructureDefinition-fhircast-diagnostic-report-open.html)
+
+__`*-close` Event Resource Profiles:__
+* [`Patient`](StructureDefinition-fhircast-patient-close.html)
+* [`Encounter`](StructureDefinition-fhircast-encounter-close.html)
+* [`ImagingStudy`](StructureDefinition-fhircast-imaging-study-close.html)
+* [`DiagnosticReport`](StructureDefinition-fhircast-diagnostic-report-close.html)
+
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html).
 
 #### Infrastructure events
@@ -124,7 +139,7 @@ The `FHIRresource` indicates the context of the selection. The `context` element
 
 This allows communication of different select sets for the different anchor-types.
 
-For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
 
 #### Content sharing events
 
@@ -136,16 +151,9 @@ ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 
 {% include img.html img="ContentSharingEventName.png" caption="Figure: Content sharing event-name specification" %}
 
+An `update` event provides a mechanism to share content in the context of the current anchor context (see [`anchor context`](5_glossary.html)).  A Subscriber shares content related to the anchor context by providing FHIR resources in a Bundle contained in the `updates` key of an `update` event.  See [`Content Sharing`](2-10-ContentSharing.html) for a comprehensive description of `update` events.
 The `FHIRresource` indicates the anchor context in which content is being shared. 
 
-The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.
-
-The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
-
-FHIR resources are used to carry the information being shared. These resources are entries in the Bundle resource inside the updates key. Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an Observation resource usually contains all information regarding that observation.
-
-However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute must be appropriately populated.
-
-If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
+The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.  The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html).
