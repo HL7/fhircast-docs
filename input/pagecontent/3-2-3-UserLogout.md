@@ -1,7 +1,9 @@
 ### Event-name: UserLogout
 
-| eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
-| Version | [1.0](3-2-3-UserLogout.html)  |
+| Event Maturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
+| Version | 2.0 |
+| All Versions | [1.0](https://fhircast.hl7.org/events/userlogout/), [2.0](3-2-3-UserLogout.html)  |
+
 
 
 ### Workflow

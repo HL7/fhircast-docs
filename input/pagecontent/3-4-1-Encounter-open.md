@@ -1,7 +1,7 @@
 ### Event-name: Encounter-open
 
 | eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
-| Version | [1.0](3-2-3-Encounter-open.html) |
+| Version | [1.0](3-4-1-Encounter-open.html) |
 
 ### Workflow
 

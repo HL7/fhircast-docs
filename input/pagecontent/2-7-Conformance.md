@@ -38,7 +38,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "eventsSupported": ["Patient-open", "Patient-open-1", "Patient-close", "Patient-close-1", "SyncError", "SyncError-1", "com.example.researchstudy-transmogrify"],
+  "eventsSupported": ["Patient-open", "Patient-open.v1.0", "Patient-close", "Patient-close.v1.0", "SyncError", "SyncError.v1.0", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
   "fhircastVersion": "STU3",
   "fhirVersion": "4.0.1"

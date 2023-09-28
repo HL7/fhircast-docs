@@ -2,7 +2,7 @@
 
 ### Event-name: Heartbeat event
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+eventMaturity | [1 - Submitted](3-2-2-eventmaturitymodel.html)
 
 ### Workflow
 
