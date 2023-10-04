@@ -23,24 +23,12 @@ Description: "Contains the rationale behind the userLogout event"
 ValueSet: FHIRcastLogoutReason
 Title: "Reasons for sending a logout event."
 Description: "This valueset lists possible reasons a user logs out and send a logout event to other Subscribers."
-* include codes from system FHIRcastLogoutCodeSystem
+* FHIRcastCodeSystem#user-initiated "User initiated logout."
+* FHIRcastCodeSystem#system-initiated "System initiated logout."
 
 Instance: LogoutExample
 InstanceOf: FHIRcastLogoutContext
 Usage: #example
 * parameter[code]
   * name = "code"
-  * valueCoding = FHIRcastLogoutCodeSystem#user-initiated
-
-CodeSystem: FHIRcastLogoutCodeSystem
-Id: fhircast-logout-codesystem
-Title: "FHIRcast logout related Terminology."
-Description: """
-    This codesystem defines logout related terminology that is used within the FHIRcast specification.
-"""
-* ^experimental = false
-* ^caseSensitive = true
-* #user-initiated "User initiated logout"
-      "The user initiated the logour and suggests all Subscribers should logout."
-* #system-initiated "System initiated logout"
-      "The system of the Subscriber is shutting down and the Subscriber requests all Subscribers to log-out."
+  * valueCoding = FHIRcastCodeSystem#user-initiated

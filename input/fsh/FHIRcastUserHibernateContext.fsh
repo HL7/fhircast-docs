@@ -23,25 +23,12 @@ Description: "Contains the rationale behind the userHibernate event"
 ValueSet: FHIRcastHibernateReason
 Title: "Reasons for sending a userHibernate event."
 Description: "This valueset lists possible reasons a hybernate event is send to other Subscribers."
-* include codes from system FHIRcastHibernateCodeSystem
+* FHIRcastCodeSystem#user-initiated "User initiated hibernate."
+* FHIRcastCodeSystem#system-initiated "System initiated hibernation."
 
 Instance: HibernateExample
 InstanceOf: FHIRcastHibernateContext
 Usage: #example
 * parameter[code]
   * name = "code"
-  * valueCoding = FHIRcastHibernateCodeSystem#user-initiated
-
-CodeSystem: FHIRcastHibernateCodeSystem
-Id: fhircast-hibernate-codesystem
-Title: "FHIRcast hibernate related Terminology."
-Description: """
-    This codesystem defines hibernate related terminology that is used within the FHIRcast specification.
-"""
-* ^experimental = false
-* ^caseSensitive = true
-* #user-initiated "User initiated hibernate."
-      "The user initiated the hibernation."
-* #system-initiated "System initiated hibernation"
-      "The system of the Subscriber is hibernating, e.g. do an inactivity timeout."
-  
+  * valueCoding = FHIRcastCodeSystem#user-initiated
