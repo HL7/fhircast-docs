@@ -20,8 +20,10 @@
 <artifact id="StructureDefinition/fhircast-patient-close" key="StructureDefinition-fhircast-patient-close" name="FHIRcast Patient for Close Events"/>
 <artifact id="StructureDefinition/fhircast-patient-open" key="StructureDefinition-fhircast-patient-open" name="FHIRcast Patient for Open Events"/>
 <artifact id="StructureDefinition/fhircast-logout" key="StructureDefinition-fhircast-logout" name="FHIRcast context for logout events."/>
+<artifact id="StructureDefinition/fhircast-hibernate" key="StructureDefinition-fhircast-hibernate" name="FHIRcast context for userHibernate events."/>
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
-<artifact id="CodeSystem/fhircast-codesystem" key="CodeSystem-fhircast-codesystem" name="FHIRcast related Terminology."/>
+<artifact id="CodeSystem/fhircast-hibernate-codesystem" key="CodeSystem-fhircast-hibernate-codesystem" name="FHIRcast hibernate related Terminology."/>
+<artifact id="CodeSystem/fhircast-logout-codesystem" key="CodeSystem-fhircast-logout-codesystem" name="FHIRcast logout related Terminology."/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
@@ -32,11 +34,13 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
+<artifact id="Parameters/HibernateExample" key="Parameters-HibernateExample" name="HibernateExample"/>
 <artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
+<artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
 <artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
 <artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
 <page key="NA" name="(NA)"/>
