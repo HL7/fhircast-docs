@@ -133,13 +133,6 @@ Field        | Optionality | Type     | Description
 `hub.events` | Required    | *string* | A comma-separated list of events from the Event Catalog corresponding to the events string given in the corresponding subscription request, which are being denied.
 `hub.reason` | Optional    | *string* | The Hub may include a reason. A subscription MAY be denied by the Hub at any point (even if it was previously accepted). The Subscriber SHOULD then consider that the subscription is not possible anymore.
 
-#### Subscription Denial Sequence
-
-<figure>
-  {% include DeniedSubscriptionSequence.svg %}
-  <figcaption><b>Figure: Denied Subscription Sequence</b></figcaption>
-</figure>
-
 #### `WebSocket` Subscription Denial Example
 
 ```json
@@ -187,13 +180,7 @@ Field                  | Optionality | Type     | Description
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from.
 `hub.channel.endpoint` | Required    | *string* | The WSS URL identifying an existing WebSocket subscription.
 
-#### Unsubscribe Response
-
-Upon receiving an unsubscribe request, if a Hub encounters any errors or refuses the request, it SHALL return an appropriate HTTP error response code (4xx or 5xx) along with a description of the error in the response body as plain text. This information is intended to be used by the client developer for troubleshooting and is not meant to be shown to the end user. Hubs may choose to reject unsubscribe requests based on their own policies.
-
-When an unsubscribe request is accepted, the Hub SHALL respond with an HTTP 202 "Accepted" response. This indicates that the request has been received and will be processed by the Hub. The response SHALL include a JSON object in the body, containing the key hub.channel.endpoint with the WSS URL value of the WebSocket subscription. Additionally, the Hub SHALL send a Subscription Denial over the WebSocket.
-
-#### Unsubscribe Request Example
+##### Unsubscribe Request Example
 
 ```text
 POST https://hub.example.com HTTP/1.1
@@ -203,7 +190,14 @@ Content-Type: application/x-www-form-urlencoded
 
 hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065
 ```
-#### Unsubscribe Response Example
+
+#### Unsubscribe Response
+
+Upon receiving an unsubscribe request, if a Hub encounters any errors or refuses the request, it SHALL return an appropriate HTTP error response code (4xx or 5xx) along with a description of the error in the response body as plain text. This information is intended to be used by the client developer for troubleshooting and is not meant to be shown to the end user. Hubs may choose to reject unsubscribe requests based on their own policies.
+
+When an unsubscribe request is accepted, the Hub SHALL respond with an HTTP 202 "Accepted" response. This indicates that the request has been received and will be processed by the Hub. The response SHALL include a JSON object in the body, containing the key hub.channel.endpoint with the WSS URL value of the WebSocket subscription. Additionally, the Hub SHALL send a Subscription Denial over the WebSocket.
+
+##### Unsubscribe Response Example
 
 
 ```json
