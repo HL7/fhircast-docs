@@ -10,7 +10,9 @@ Subscribing consists of different exchanges:
 
 Any content returned from subscription requests SHALL be returned as `application/json`.
 
-### Subscription Request
+### Subscription
+
+#### Subscription Request
 
 To create a subscription, the subscribing application SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
@@ -36,7 +38,7 @@ The application that creates the subscription MAY NOT be the same system as the 
 {% include infonote.html text='The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and delivering the content. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.' %}
 
 
-#### Initial Subscription Request Example
+##### Initial Subscription Request Example
 
 In this example, the subscribing application creates an initial subscription and asks to be notified of the `Patient-open` and `Patient-close` events.
 
@@ -49,15 +51,17 @@ Content-Type: application/x-www-form-urlencoded
 hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065&hub.events=Patient-open,Patient-close
 ```
 
-### Subscription Response
+#### Subscription Response
 
-Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an HTTP 202 "Accepted" response. This indicates that the request was received and will now be verified by the Hub.
-
-The HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable. 
+Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an appropriate HTTP response.
 
 If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies, for example, a Hub may require that all applications subscribe to the same set of events.
 
-#### Subscription Response Example
+In the case of an acceptable subscription request, an HTTP 202 "Accepted" response is returned. This indicates that the request was received and will now be verified by the Hub. The HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable.
+
+
+
+##### Subscription Response Example
 
 ```json
 HTTP/1.1 202 Accepted
@@ -67,7 +71,7 @@ HTTP/1.1 202 Accepted
 }
 ```
 
-### Subscription Confirmation
+#### Subscription Confirmation
 
 To confirm a subscription request, upon the Subscriber establishing a WebSocket connection to the `hub.channel.endpoint` WSS URL, the Hub SHALL send a confirmation over the WebSocketchannel. This confirmation includes the following elements:
 
@@ -81,7 +85,7 @@ Field               | Optionality | Type | Description
 
 Once the subscription is confirmed, the application is subscribed. 
 
-#### Subscription Confirmation Example
+##### Subscription Confirmation Example
 
 ```json
 {
@@ -164,6 +168,8 @@ Field        | Optionality | Type     | Description
 
 Once a Subscriber no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even while subscriptions notifications use WebSockets. Unsubscribes will destroy the WebSocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.
 
+#### Unsubscribe Request
+
 To unsubscribe, the Subscriber SHALL perform an HTTP POST to the Hub's base URL (as specified in `hub.url`) with the parameters in the table below. Each parameter SHALL appear at most one time; parameters that accept multiple values use a comma-delimited syntax and explicitly state support in their description. This request SHALL have a `Content-Type` header of `application/x-www-form-urlencoded` and SHALL use the following parameters in its body, formatted accordingly:
 
 {:.grid}
@@ -174,7 +180,7 @@ Field                  | Optionality | Type     | Description
 `hub.topic`            | Required    | *string* | The identifier of the session that the Subscriber wishes to subscribe to or unsubscribe from.
 `hub.channel.endpoint` | Required    | *string* | The WSS URL identifying an existing WebSocket subscription.
 
-#### Unsubscribe Request Example
+##### Unsubscribe Request Example
 
 ```text
 POST https://hub.example.com HTTP/1.1
@@ -183,6 +189,21 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 Content-Type: application/x-www-form-urlencoded
 
 hub.channel.type=websocket&hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%2Fee30d3b9-1558-464f-a299-cbad6f8135de%0A&hub.mode=unsubscribe&hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065
+```
+
+#### Unsubscribe Response
+
+Upon receiving an unsubscribe request, if a Hub encounters any errors or refuses the request, it SHALL return an appropriate HTTP error response code (4xx or 5xx) along with a description of the error in the response body as plain text. This information is intended to be used by the client developer for troubleshooting and is not meant to be shown to the end user. Hubs may choose to reject unsubscribe requests based on their own policies.
+
+When an unsubscribe request is accepted, the Hub SHALL respond with an HTTP 202 "Accepted" response. This indicates that the request has been received and will be processed by the Hub. The response SHALL include a JSON object in the body, containing the key hub.channel.endpoint with the WSS URL value of the WebSocket subscription. Additionally, the Hub SHALL send a Subscription Denial over the WebSocket.
+
+##### Unsubscribe Response Example
+
+
+```json
+{   
+ "hub.channel.endpoint": "wss://hub.example.com/ee30d3b9-1558-464f-a299-cbad6f8135de"
+}
 ```
 
 #### Unsubscription Sequence
