@@ -32,11 +32,6 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
-<artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
-<artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
-<artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
-<artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
-<artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
 <artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
 <artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
 <page key="NA" name="(NA)"/>
