@@ -1,8 +1,7 @@
 Supporting events used in basic FHIRcast interactions.
 
 | **Infrastructure Events** |
-| [SyncError event](3-2-1-SyncError.html) |
-| [Heartbeat event](3-2-2-Heartbeat.html) |
-| [UserLogout event](3-2-3-UserLogout.html) |
-| [UserHibernate event](3-2-4-UserHibernate.html) |
+| [Sync error event](3-2-1-syncerror.html) |
+| [User logout event](3-2-2-userlogout.html) |
+| [User hibernate event](3-2-3-userhibernate.html) |
 
