@@ -92,11 +92,11 @@ An `<FHIRresource>-open` event signals that the resource in the event now is the
 
 An `<FHIRresource>-close` event signals that the resource in the event should be removed from the current context. 
 
-The key used for indicating a context change event's anchor FHIR resource SHALL be the lower-case resourceType of the resource as defined in the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html) of the resource. The [patient-open](3-3-1-patient-open.html) event uses the `patient` key to signal the new Patient in context, the [encounter-open](3-3-1-patient-open.html) event uses the `encounter` key to indicate the new Encounter in anchor resource. Note that due to legacy reasons, some events in the [event catalog](3_Events.html) deviate from this pattern, `study` is used instead of `imagingstudy` for [imagingstudy events](3-5-0-imagingstudyevents.html) and `report` is used instead of `diagnosticreport` for [diagnosticreport events](3-6-0-diagnosticreportevents.html)).
+The key used for indicating a context change event's anchor FHIR resource SHALL be the lower-case resourceType of the resource as defined in the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html) of the resource. The [patient-open](3-3-1-Patient-open.html) event uses the `patient` key to signal the new Patient in context, the [encounter-open](3-4-1-Encounter-open.html) event uses the `encounter` key to indicate the new Encounter in anchor resource. Note that due to legacy reasons, some events in the [event catalog](3_Events.html) deviate from this pattern, `study` is used instead of `imagingstudy` for [imagingstudy events](3-5-0-imagingstudyevents.html) and `report` is used instead of `diagnosticreport` for [diagnosticreport events](3-6-0-diagnosticreportevents.html)).
 
 In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. For example, an [`Encounter-open`](3-4-1-Encounter-open.html) also refers to the patient that is the subject of the Encounter. What resources to include is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
-The keys to refer to these anchor FHIR resources SHALL be named as they are named in the deriveable event. E.g. the [`Encounter-open`](3-4-1-encounter-open.html) event also signals to the patient that is the subject of the Encounter using the `patient` key. What additional anchor-resources to include in an context-change event is defined in the corresponding event definition in the [event catalog](3_Events.html).
+The keys to refer to these anchor FHIR resources SHALL be named as they are named in the deriveable event. E.g. the [`Encounter-open`](3-4-1-Encounter-open.html) event also signals to the patient that is the subject of the Encounter using the `patient` key. What additional anchor-resources to include in an context-change event is defined in the corresponding event definition in the [event catalog](3_Events.html).
 
 An context-change event SHOULD NOT refer to non-anchor resources (resource that are not to be included in the context). In the case this is absolutely required, the key of these resources SHALL be named any arbitrary string which is not a value from the [resource type valueset]( http://build.fhir.org/valueset-version-independent-resource-types.html).
 
@@ -122,7 +122,7 @@ FHIRcast supports all events that follow this format. The most common events def
 
 This event category contains events required to maintain a FHIRcast session. The main event in this category is:
 
-| [`syncerror`](3-2-1-syncerror.html) | indicates refusal to follow context or inability to deliver an event
+| [`syncerror`](3-2-1-SyncError.html) | indicates refusal to follow context or inability to deliver an event
 
 #### Selection events
 

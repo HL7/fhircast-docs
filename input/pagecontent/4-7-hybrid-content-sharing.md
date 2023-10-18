@@ -23,5 +23,5 @@ The FHIR server SHALL be updated based on the transaction information in a `-upd
 
 A FHIR server MAY support one of the following FHIRcast specific `SubscriptionTopics`:
 
-* *[topic-based](SubscriptionTopic-FhirCastContainerTopicTopic.html)*, subscribes to content changes in the container for an anchor in the indicated topic.
-* *[resource-based](SubscriptionTopic-FhirCastContainerResourceTopic.html)*, subscribes to content changes in the container for an anchor with a specific id.
+* *[topic-based](SubscriptionTopic-container-update-topic.html)*, subscribes to content changes in the container for an anchor in the indicated topic.
+* *[resource-based](SubscriptionTopic-container-update-resource.html)*, subscribes to content changes in the container for an anchor with a specific id.

@@ -7,9 +7,9 @@ The sections in this chapter are:
 | [3.1.2 Event maturity model](3-1-2-eventmaturitymodel.html) |
 
 | **3.2 Infrastructure Events** |
-| [3.2.1 Sync error event](3-2-1-syncerror.html) |
-| [3.2.2 User logout event](3-2-3-userlogout.html) |
-| [3.2.3 User hibernate event](3-2-4-userhibernate.html) |
+| [3.2.1 Sync error event](3-2-1-SyncError.html) |
+| [3.2.2 User logout event](3-2-3-UserLogout.html) |
+| [3.2.3 User hibernate event](3-2-4-UserHibernate.html) |
 
 | **3.3 Patient Events** |
 | [3.3.1 Patient-open event](3-3-1-Patient-open.html) |

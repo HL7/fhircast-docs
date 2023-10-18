@@ -30,8 +30,8 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
-<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="FhirCastContainerResourceTopic"/>
-<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="FhirCastContainerTopicTopic"/>
+<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
+<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
@@ -75,7 +75,6 @@
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
-<page key="3-2-2-Heartbeat" name="HeartBeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
 <page key="4-7-hybrid-content-sharing" name="Hybrid Content Sharing"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
@@ -105,13 +104,13 @@
 <page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
+<page key="3-2-1-SyncError" name="Sync error Event"/>
 <page deprecated="true" key="syncerror" name="Sync error event"/>
-<page key="3-2-1-SyncError" name="SyncError Event"/>
 <page key="4-2-syncconsiderations" name="Synchronization Considerations"/>
 <page deprecated="true" key="synchronization-considerations" name="Synchronization considerations"/>
 <page key="table-of-contents" name="Table of Contents"/>
+<page key="3-2-4-UserHibernate" name="User hibernate Event"/>
 <page deprecated="true" key="userhibernate" name="User hibernate event"/>
+<page key="3-2-3-UserLogout" name="User logout Event"/>
 <page deprecated="true" key="userlogout" name="User logout event"/>
-<page key="3-2-3-UserLogout" name="UserLogout Event"/>
-<page key="3-2-4-UserHibernate" name="userhibernate Event"/>
 </specification>

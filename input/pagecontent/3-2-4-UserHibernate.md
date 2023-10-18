@@ -1,4 +1,4 @@
-### Event-name: UserHibernate.html
+### Event-name: UserHibernate
 
 eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 

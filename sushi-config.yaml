@@ -57,11 +57,11 @@ pages:
         title: Event Maturity Model
     3-2-0-infrastructureevents.md:
       title: Infrastructure Events
-      3-2-1-syncerror.md:
+      3-2-1-SyncError.md:
         title: Sync error Event
-      3-2-2-userlogout.md:
+      3-2-3-UserLogout.md:
         title: User logout Event
-      3-2-3-userhibernate.md:
+      3-2-4-UserHibernate.md:
         title: User hibernate Event
     3-3-0-patientevents.md:
       title: Patient Events
