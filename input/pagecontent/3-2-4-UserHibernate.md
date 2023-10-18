@@ -1,7 +1,9 @@
 ### Event-name: UserHibernate
 
-| eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
+{:.grid}
+| Event-maturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) | 
 | Version | [1.0](3-2-4-UserHibernate.html) |
+| All versions | [1.0](3-2-4-UserHibernate.html) |
 
 ### Workflow
 

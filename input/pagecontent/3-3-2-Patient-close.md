@@ -1,6 +1,7 @@
 ### Event-name: Patient-close
 
-| eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)| 
+{:.grid}
+| Event-maturity | [3 - Considered](3-1-2-eventmaturitymodel.html)| 
 | Version | 2.0 |
 | All versions | [1.0](https://fhircast.hl7.org/events/patient-close/), [2.0](3-3-2-Patient-close.html) |
 

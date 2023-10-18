@@ -1,7 +1,9 @@
 ### Event-name: DiagnosticReport-update
 
-| eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
 | Version | [1.0](3-6-3-DiagnosticReport-update.html) |
+| All versions | [1.0](3-6-3-DiagnosticReport-update.html) |
 
  The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires a to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
 

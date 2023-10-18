@@ -1,8 +1,9 @@
 ### Event-name: ImagingStudy-open
 
-| eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
 | Version | 2.0 |
-| All Versions | [1.0](https://fhircast.hl7.org/events/imagingstudy-open/), [2.0](3-5-1-ImagingStudy-open.html) |
+| All versions | [1.0](https://fhircast.hl7.org/events/imagingstudy-open/), [2.0](3-5-1-ImagingStudy-open.html) |
 
 ### Workflow
 

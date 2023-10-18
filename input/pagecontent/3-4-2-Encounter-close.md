@@ -1,7 +1,9 @@
 ### Event-name: Encounter-close
 
-| eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html)| 
 | Version | [1.0](3-4-2-Encounter-close.html) |
+| All versions | [1.0](3-4-2-Encounter-close.html) |
 
 ### Workflow
 
