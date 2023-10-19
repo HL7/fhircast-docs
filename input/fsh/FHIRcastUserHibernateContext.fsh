@@ -8,11 +8,11 @@ Description: "Contains the rationale behind the userHibernate event"
 * parameter ^slicing.discriminator.path = "name"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.ordered = false   // can be omitted, since false is the default
-* parameter ^slicing.description = "Reason for logout."
+* parameter ^slicing.description = "Reason for hibernation."
 * parameter contains code 1..1 
 * parameter[code].name = "code"
 * parameter[code] ^short = "Coded reason."
-* parameter[code] ^definition = "The reason the Subscriber sends a userHybernate event."
+* parameter[code] ^definition = "The reason the Subscriber sends a userHibernate event."
 * parameter[code].value[x] 1..1
 * parameter[code].value[x] only Coding
 * parameter[code].valueCoding from FHIRcastHibernateReason (extensible)
