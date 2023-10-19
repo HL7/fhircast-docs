@@ -22,7 +22,7 @@ Description: "Contains the rationale behind the userHibernate event"
 
 ValueSet: FHIRcastHibernateReason
 Title: "Reasons for sending a userHibernate event."
-Description: "This valueset lists possible reasons a hybernate event is send to other Subscribers."
+Description: "This valueset lists possible reasons a hibernate event is send to other Subscribers."
 * FHIRcastCodeSystem#user-initiated "User initiated hibernate."
 * FHIRcastCodeSystem#system-initiated "System initiated hibernation."
 
