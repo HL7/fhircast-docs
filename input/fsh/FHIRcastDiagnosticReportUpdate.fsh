@@ -28,6 +28,7 @@ event prior to the DiagnosticReport context being closed by a DiagnosticReport-c
 Instance: FHIRcastDiagnosticReportUpdate-Example
 InstanceOf: FHIRcastDiagnosticReportUpdate
 Usage: #example
-Description: "Example of a `DiagnosticReport` which could be used in a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event"
-* id = "2402d3bd-e988-414b-b7f2-4322e86c9327"
+Description: "Example of a `DiagnosticReport` which could be used in a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event.  Note that due to limitation of tools used to publishing the specification the below resource `id` is appended with '-update'.  The specification requires that the resource `id` in the [FHIR resource]-update be identical to the resource `id` provided in the corresponding [FHIR resource]-open; hence in the real world the '-update' suffix would not be present."
+* id = "2402d3bd-e988-414b-b7f2-4322e86c9327-update"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
+* code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"
