@@ -37,7 +37,7 @@ The Study Instance UID SHALL be included as a business identifier if it is known
 * status ^short = "Status of the DiagnosticReport, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
 * status ^definition = 
 """
-While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-diagnosticreport-update.html)
+While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html)
 event prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  
 """
 * subject 1..1
@@ -70,7 +70,7 @@ XPath:       "f:identifier or f:basedOn"
 Instance: FHIRcastDiagnosticReportOpen-Example
 InstanceOf: FHIRcastDiagnosticReportOpen
 Usage: #example
-Description: "Example of an imaging study which could be used in a [FHIR resource]-open event"
+Description: "Example of a DiagnosticReport which could be used in a [FHIR resource]-open event"
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
 * subject = Reference(FHIRcastPatientOpen-Example)

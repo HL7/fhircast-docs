@@ -23,7 +23,7 @@ A logical id of the resource must be provided. The provided `id` SHALL be the sa
 * identifier ^short = "At least one identifier of the DiagnosticReport SHOULD be provided in an [FHIR resource]-close request."
 * identifier ^definition = 
 """
-At least one `identifier` of the DiagnosticReport SHOULD be provided in a [FHIR resource]-close request. This could be a business identifier provided in the DiagnosticReport-open event or a business identifier provided subsequently in a [DiagnosticReport-update](3-6-3-diagnosticreport-update.html) event.
+At least one `identifier` of the DiagnosticReport SHOULD be provided in a [FHIR resource]-close request. This could be a business identifier provided in the [DiagnosticReport-open](3-6-1-DiagnosticReport-open.html) event or a business identifier provided subsequently in a [DiagnosticReport-update](3-6-3-DiagnosticReport-update.html) event.
 """
 * basedOn 0..* MS
 * basedOn ^short = "At least one business identifier of the DiagnosticReport SHOULD be provided in a [FHIR resource]-open request (see detailed description)."
