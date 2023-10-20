@@ -33,12 +33,12 @@ Request Method | Operation
 
 ##### DiagnosticReport-update Request Example
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (POST) of an imaging study and adds (POST) an observation derived from this study.
+The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (PUT) of an imaging study and adds (PUT) an observation derived from this study.
 
 ```json
 {
   "timestamp": "2019-09-10T14:58:45.988Z",
-  "id": "0d4c7776",
+  "id": "cc4d016a-f516-4ce7-8f1a-e0baf0beb94d",
   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-update",
@@ -59,7 +59,7 @@ The following example shows adding an imaging study to the existing diagnostic r
           "entry": [
             {
               "request": {
-                "method": "POST"
+                "method": "PUT"
               },
               "resource": {
                 "resourceType": "ImagingStudy",
@@ -93,7 +93,7 @@ The following example shows adding an imaging study to the existing diagnostic r
                 "resourceType": "Observation",
                 "id": "40afe766-3628-4ded-b5bd-925727c013b3",
                 "partOf": {
-                  "reference": "ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"
+                  "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
                 },
                 "status": "preliminary",
                 "category": {
@@ -123,12 +123,13 @@ The following example shows adding an imaging study to the existing diagnostic r
 
 ##### DiagnosticReport-update Event Example
 
-The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that a Subscriber is currently in sync with the latest context prior to applying the new updates.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, it is recommended that the Subscriber issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and the current `context.versionId`).
+The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that a Subscriber is currently in sync with the latest context prior to applying the new updates.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, it is recommended that the Subscriber issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and the current `context.versionId`).
 
 ```json
 {
   "timestamp": "2019-09-10T14:58:45.988Z",
-  "event": {
+  "id": "cc4d016a-f516-4ce7-8f1a-e0baf0beb94d",
+   "event": {
     "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
     "hub.event": "DiagnosticReport-update",
     "context.versionId": "efcac43a-ed38-49e4-8d79-73f78290292a",
@@ -149,7 +150,7 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
           "entry": [
             {
               "request": {
-                "method": "POST"
+                "method": "PUT"
               },
               "resource": {
                 "resourceType": "ImagingStudy",
@@ -183,7 +184,7 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
                 "resourceType": "Observation",
                 "id": "40afe766-3628-4ded-b5bd-925727c013b3",
                 "partOf": {
-                  "reference": "ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd"
+                  "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
                 },
                 "status": "preliminary",
                 "category": {
@@ -201,6 +202,46 @@ The HUB SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
                   ] 
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+##### DiagnosticReport-update Request with DELETE Example
+
+The following example shows a request to delete an observation from a content sharing session.
+
+```json
+{
+  "timestamp": "2019-09-10T15:02:33.343Z",
+  "id": "d30734f1-3c7d-4fe4-a343-fbf4d80faddb",
+  "event": {
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
+    "hub.event": "DiagnosticReport-update",
+    "context.versionId": "efcac43a-ed38-49e4-8d79-73f78290292a",
+    "context": [
+      {
+        "key": "report",
+        "resource": {
+          "resourceType": "DiagnosticReport",
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "updates",
+        "resource": {
+          "resourceType": "Bundle",
+          "type": "transaction",
+          "entry": [
+            {
+              "fullUrl": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
+              "request": {
+                "method": "DELETE"
               }
             }
           ]

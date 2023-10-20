@@ -77,11 +77,11 @@
 <page deprecated="true" key="eventnotification" name="Event notification"/>
 <page deprecated="true" key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
-<page key="2-10-2-ContentSharingFHIR" name="FHIR based Content Sharing"/>
+<page key="2-10-2-ContentSharingFHIR" name="FHIR-based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast Event-based Content Sharing"/>
+<page key="4-6-fhircast-event-content-sharing" name="FHIRcast Event-based Content Sharing"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
-<page key="4-6-fhircast-event-content-sharing" name="FHIRcast event based content sharing example"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast event-based content sharing"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>
