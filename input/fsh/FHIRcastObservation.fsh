@@ -5,7 +5,7 @@ Parent: Observation
 Id: fhircast-observation
 Title: "FHIRcast Observation"
 Description: "Defines the minimum set of attributes which an application wanting to share observation content must support"
-* subject 0..0
+* subject 1..1
 * hasMember MS
 * derivedFrom MS
 
@@ -20,3 +20,4 @@ Description: "Example of a simple observation which could be exchanged using FHI
 * code = Loinc#45651-7 "Pathological bone fracture [Minimum Data Set]"
 * issued = "2020-09-07T15:02:03.651Z"
 * valueCodeableConcept.coding = Loinc#LA33-6 "Yes"
+* subject = Reference( FHIRcastPatientOpen-Example )
