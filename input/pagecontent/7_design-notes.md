@@ -11,3 +11,7 @@ Similarly, the conformance statement related to WebSocketsupport was retained.
 ### Content sharing approach
 
 Two base use cases for content-exchange were identified during use case analysis. One employs a transactional, event-based exchange mechanism while the second uses content sharing content persisted in a FHIR server. It is also possible to use both methods concurrently. A detailed description of these approaches is found in the content sharing section of the specification.
+
+### FHIRcast event versioning
+
+The event definitions can evolve independently of the specification. In some deployments, there might be a need to retain support of older event versions, especially in the case where there are breaking changes. In order to support deployments where older versions of events are used, a versioning scheme has been added to events.

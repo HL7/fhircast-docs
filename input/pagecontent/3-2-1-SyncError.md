@@ -1,6 +1,9 @@
 ### Event-name: SyncError
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html) |
+| Version | 1.1
+| All versions | [1.0](https://fhircast.hl7.org/events/syncerror/), [1.1](3-2-1-SyncError.html) |
 
 ### Workflow
 

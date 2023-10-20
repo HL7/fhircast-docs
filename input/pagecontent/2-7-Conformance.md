@@ -12,9 +12,10 @@ A simple JSON document is returned using the `application/json` mime type, with 
 {:.grid}
 Field              | Optionality | Type  | Description
 ------------------ | ----------- | ----- | ---
-`eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
+`eventsSupported`  | Required    | array | Array of event names of the FHIRcast event supported by the Hub. This array SHALL include both the versioned as well as the unversioned version of the events.
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true`, indicating support for websockets.
 `fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
+`fhirVersion` | Required | string | The FHIR version the Hub supports, the value SHALL be a code (not display) from [FHIR versions](http://hl7.org/fhir/ValueSet/FHIR-version).
 `getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 
 A field of `webhookSupport` SHALL be ignored.
@@ -37,9 +38,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "eventsSupported": ["Patient-open", "Patient-close", "SyncError", "com.example.researchstudy-transmogrify"],
+  "eventsSupported": ["Patient-open", "Patient-open.v1.0", "Patient-close", "Patient-close.v1.0", "SyncError", "SyncError.v1.0", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
-  "fhircastVersion": "STU3"
+  "fhircastVersion": "STU3",
+  "fhirVersion": "4.0.1"
 }
 ```
 

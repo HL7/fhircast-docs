@@ -1,8 +1,12 @@
 This section presents the template to use for defining new events. 
 
-### Event-name: [FHIR resource]-[suffix]
 
-eventMaturity | [0 - Draft](3-1-2-eventmaturitymodel.html)
+### Event-name: [FHIR resource]-[suffix]-[version]
+
+{:.grid}
+| Event-maturity | [0 - Draft](3-1-2-eventmaturitymodel.html) |
+| Version | <current version> |
+| All Versions | <list of all versions of this event> |
 
 ### Workflow
 
