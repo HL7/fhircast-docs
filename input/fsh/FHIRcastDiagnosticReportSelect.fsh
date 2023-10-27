@@ -8,7 +8,7 @@ Provides guidance as to which `DiagnosticReport` attributes should be present an
 
 The `DiagnosticReport` in [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) events enables verification that the selected content in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event belongs to the DiagnosticReport which is the current anchor context.
 
-Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event is the resources' `id`, as well as its `status` and `code` since these attributes are required by FHIR.  Other attributes of the `DiagnosticReport` MAY be valued but would serve no purpose in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event.
+Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event is the resources' `id`, as well as its `status` and `code` since these attributes are required by FHIR.  Other attributes of the `DiagnosticReport` MAY be valued but would serve no purpose in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event.
 
 """
 * id 1..1 
@@ -21,7 +21,7 @@ A logical id of the resource SHALL be provided.
 * status ^short = "Status of the DiagnosticReport, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
 * status ^definition = 
 """
-While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  
+While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  
 """
 
 Instance: FHIRcastDiagnosticReportSelect-Example
