@@ -26,23 +26,7 @@ Other attributes of the ImagingStudy, Encounter, and Patient resources (or resou
 ### Examples
   
 ```json
-{
-  "timestamp": "2023-04-01T011:03:04.08",
-  "id": "bfbe806f-7f94-47bc-b6b8-4c0cf4d4ef7d",
-  "event": {
-    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "ImagingStudy-open",
-    "context": [
-      {
-        "key": "study",
-        "resource": {% include ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd.json %},
-      {
-        "key": "patient",
-        "resource": {% include Patient-503824b8-fe8c-4227-b061-7181ba6c3926.json %}
-      }
-    ]
-  }
-}
+{% include ImagingStudy-open-example.liquid.json %}
 ```
 
 <!---

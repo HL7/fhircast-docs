@@ -1,6 +1,9 @@
 #!/bin/sh
 
+docker build -t dbuild docker-builder/
+
 docker run \
     --rm -it \
     -v $(pwd):/home/publisher/ig \
-    hl7fhir/ig-publisher-base
+    dbuild
+    # hl7fhir/ig-publisher-base

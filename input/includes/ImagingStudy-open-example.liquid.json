@@ -1,0 +1,97 @@
+{
+  "timestamp": "2023-04-01T011:03:04.08",
+  "id": "bfbe806f-7f94-47bc-b6b8-4c0cf4d4ef7d",
+  "event": {
+    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
+    "hub.event": "ImagingStudy-open",
+    "context": [
+      {
+        "key": "study",
+        "resource": {
+          "resourceType": "ImagingStudy",
+          "id": "e25c1d31-20a2-41f8-8d85-fe2fdeac74fd",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-imaging-study-open"
+            ]
+          },
+          "status": "unknown",
+          "identifier": [
+            {
+              "system": "urn:dicom:uid",
+              "value": "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
+            },
+            {
+              "type": {
+                "coding": [
+                  {
+                    "code": "ACSN",
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                  }
+                ]
+              },
+              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "value": "GH339884",
+              "assigner": {
+                "reference": "Organization/FHIRcastSampleHealthcareProvider",
+                "display": "My Healthcare Provider"
+              }
+            }
+          ],
+          "subject": {
+            "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
+          }
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926",
+          "meta": {
+            "profile": [
+              "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-patient-open"
+            ]
+          },
+          "identifier": [
+            {
+              "use": "official",
+              "type": {
+                "coding": [
+                  {
+                    "code": "MR",
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+                  }
+                ]
+              },
+              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "value": "4438001",
+              "assigner": {
+                "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
+                "display": "My Healthcare Provider"
+              }
+            }
+          ],
+          "name": [
+            {
+              "use": "official",
+              "given": [
+                "John"
+              ],
+              "family": "Smith",
+              "prefix": [
+                "Dr."
+              ],
+              "suffix": [
+                "Jr.",
+                "M.D."
+              ]
+            }
+          ],
+          "gender": "male",
+          "birthDate": "1978-11-03"
+        }
+      }
+    ]
+  }
+}
