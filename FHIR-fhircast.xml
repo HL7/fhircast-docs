@@ -8,8 +8,10 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
+<artifact id="Organization/FHIRcastSampleHealthcareProvider" key="Organization-FHIRcastSampleHealthcareProvider" name="Example Healthcare Provider Organization"/>
 <artifact id="StructureDefinition/fhircast-content-update-bundle" key="StructureDefinition-fhircast-content-update-bundle" name="FHIRcast Content Update Bundle"/>
 <artifact id="StructureDefinition/fhircast-diagnostic-report-open" key="StructureDefinition-fhircast-diagnostic-report-open" name="FHIRcast Diagnostic Report for Open Events"/>
+<artifact id="StructureDefinition/fhircast-diagnostic-report-update" key="StructureDefinition-fhircast-diagnostic-report-update" name="FHIRcast Diagnostic Report for Update Events"/>
 <artifact id="StructureDefinition/fhircast-diagnostic-report-close" key="StructureDefinition-fhircast-diagnostic-report-close" name="FHIRcast DiagnosticReport for Close Events"/>
 <artifact id="StructureDefinition/fhircast-encounter-close" key="StructureDefinition-fhircast-encounter-close" name="FHIRcast Encounter for Close Events"/>
 <artifact id="StructureDefinition/fhircast-encounter-open" key="StructureDefinition-fhircast-encounter-open" name="FHIRcast Encounter for Open Events"/>
@@ -26,6 +28,7 @@
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
+<artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-update" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-update" name="FHIRcastDiagnosticReportUpdate-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="FHIRcastEncounterClose-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="FHIRcastImagingStudyClose-Example"/>
@@ -33,8 +36,6 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
-<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="FhirCastContainerResourceTopic"/>
-<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="FhirCastContainerTopicTopic"/>
 <artifact id="Parameters/HibernateExample" key="Parameters-HibernateExample" name="HibernateExample"/>
 <artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
@@ -42,6 +43,8 @@
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
 <artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
+<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
+<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>

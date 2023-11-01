@@ -35,80 +35,10 @@ Other attributes of the ImagingStudy, Encounter, and Patient resources (or resou
     "context": [
       {
         "key": "study",
-        "resource": {
-          "resourceType": "ImagingStudy",
-          "id": "e25c1d31-20a2-41f8-8d85-fe2fdeac74fd",
-          "identifier": [
-            {
-              "system" : "urn:dicom:uid",
-              "value" : "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
-            },
-            {
-              "type" : {
-                "coding" : [
-                  {
-                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code" : "ACSN"
-                  }
-                ]
-              },
-              "system" : "urn:oid:2.16.840.1.113883.19.5",
-              "value" : "GH339884",
-              "assigner" : {
-                "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
-                  "display" : "My Healthcare Provider"
-              }
-            }
-          ],
-          "status": "unknown",
-          "subject": {
-            "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
-          }
-        }
-      },
+        "resource": {% include ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd.json %},
       {
         "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926",
-          "identifier" : [
-            {
-              "use" : "official",
-              "type" : {
-                "coding" : [
-                  {
-                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code" : "MR"
-                  }
-                ]
-              },
-              "system": "urn:oid:2.16.840.1.113883.19.5",
-              "value": "4438001",
-              "assigner": {
-                "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
-                "display": "My Healthcare Provider"
-              }
-            }
-          ],
-          "name" : [
-            {
-              "use" : "official",
-              "family" : "Smith",
-              "given" : [
-                "John"
-              ],
-              "prefix" : [
-                "Dr."
-              ],
-              "suffix" : [
-                "Jr.",
-                "M.D."
-              ]
-            }
-          ],
-          "gender" : "male",
-          "birthDate" : "1978-11-03"
-        }
+        "resource": {% include Patient-503824b8-fe8c-4227-b061-7181ba6c3926.json %}
       }
     ]
   }

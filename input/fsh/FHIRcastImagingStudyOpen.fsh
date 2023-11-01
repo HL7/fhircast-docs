@@ -75,7 +75,7 @@ Description: "Example of an imaging study which could be used in a [FHIR resourc
 * identifier[+].type.coding = http://terminology.hl7.org/CodeSystem/v2-0203#ACSN
 * identifier[=].system = "urn:oid:2.16.840.1.113883.19.5"
 * identifier[=].value = "GH339884"
-* identifier[=].assigner.reference = "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc"
+* identifier[=].assigner = Reference(FHIRcastSampleHealthcareProvider)
 * identifier[=].assigner.display = "My Healthcare Provider"
 
 * subject = Reference(FHIRcastPatientOpen-Example)
