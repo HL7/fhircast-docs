@@ -23,8 +23,8 @@ Description: "Contains the rationale behind the userLogout event"
 ValueSet: FHIRcastLogoutReason
 Title: "Reasons for sending a logout event."
 Description: "This valueset lists possible reasons a user logs out and send a logout event to other Subscribers."
-* FHIRcastCodeSystem#user-initiated "User initiated logout."
-* FHIRcastCodeSystem#system-initiated "System initiated logout."
+* include codes from system FHIRcastCodeSystem where concept is-a #user-initiated
+* include codes from system FHIRcastCodeSystem where concept is-a #system-initiated
 
 Instance: LogoutExample
 InstanceOf: FHIRcastLogoutContext

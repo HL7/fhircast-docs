@@ -17,8 +17,3 @@ template/
 output/
 updateWebsite.sh
 nginx.conf
-fhircast-template/content/.index.json
-fhircast-template/content/assets/.index.json
-fhircast-template/content/assets/ico/.index.json
-fhircast-template/content/assets/images/.index.json
-fhircast-template/includes/.index.json
