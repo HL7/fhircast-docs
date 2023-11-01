@@ -20,6 +20,7 @@
 <artifact id="StructureDefinition/fhircast-patient-close" key="StructureDefinition-fhircast-patient-close" name="FHIRcast Patient for Close Events"/>
 <artifact id="StructureDefinition/fhircast-patient-open" key="StructureDefinition-fhircast-patient-open" name="FHIRcast Patient for Open Events"/>
 <artifact id="StructureDefinition/fhircast-logout" key="StructureDefinition-fhircast-logout" name="FHIRcast context for logout events."/>
+<artifact id="StructureDefinition/fhircast-hibernate" key="StructureDefinition-fhircast-hibernate" name="FHIRcast context for userHibernate events."/>
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="CodeSystem/fhircast-codesystem" key="CodeSystem-fhircast-codesystem" name="FHIRcast related Terminology."/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
@@ -32,13 +33,15 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
+<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="FhirCastContainerResourceTopic"/>
+<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="FhirCastContainerTopicTopic"/>
+<artifact id="Parameters/HibernateExample" key="Parameters-HibernateExample" name="HibernateExample"/>
 <artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
-<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
-<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
+<artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
@@ -74,11 +77,11 @@
 <page deprecated="true" key="eventnotification" name="Event notification"/>
 <page deprecated="true" key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
-<page key="2-10-2-ContentSharingFHIR" name="FHIR based Content Sharing"/>
+<page key="2-10-2-ContentSharingFHIR" name="FHIR-based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
+<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast Event-based Content Sharing"/>
+<page key="4-6-fhircast-event-content-sharing" name="FHIRcast Event-based Content Sharing"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
-<page key="4-6-fhircast-event-content-sharing" name="FHIRcast event based content sharing example"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast event-based content sharing"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
 <page key="glossary" name="Glossary"/>

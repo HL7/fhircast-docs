@@ -17,6 +17,8 @@ publisher:
   name: HL7 International - Infrastructure and Messaging
   url: http://hl7.org/Special/committees/inm
   email: inm@lists.HL7.org 
+dependencies:
+  hl7.fhir.uv.ipa: 1.0.0
 pages:
   index.md: 
     title: Introduction
@@ -43,9 +45,9 @@ pages:
     2-10-ContentSharing.md:
       title: Content Sharing
       2-10-1-ContentSharingFHIRcastMessaging.md:
-        title: FHIRcast event-based content sharing
+        title: FHIRcast Event-based Content Sharing
       2-10-2-ContentSharingFHIR.md:
-        title: FHIR based Content Sharing
+        title: FHIR-based Content Sharing
        
   3_Events.md:
     title: Event Library
@@ -107,7 +109,7 @@ pages:
     4-5-multi-anchor-considerations.md:
       title: Multi-anchor Considerations
     4-6-fhircast-event-content-sharing.md:
-      title: FHIRcast event based content sharing example
+      title: FHIRcast Event-based Content Sharing
     4-7-hybrid-content-sharing.md:
       title: Hybrid Content Sharing
 
@@ -155,7 +157,7 @@ menu:
     Security Considerations: 4-3-security-considerations.html
     Multi-tab Considerations: 4-4-multitab-considerations.html
     Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
-    FHIRcast event based content sharing example: 4-6-fhircast-event-content-sharing.html
+    FHIRcast Event-based Content Sharing: 4-6-fhircast-event-content-sharing.html
     Hybrid Content Sharing: 4-7-hybrid-content-sharing.html
 
   Glossary: 5_glossary.html

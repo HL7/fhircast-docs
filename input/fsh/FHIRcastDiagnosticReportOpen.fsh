@@ -70,7 +70,7 @@ XPath:       "f:identifier or f:basedOn"
 Instance: FHIRcastDiagnosticReportOpen-Example
 InstanceOf: FHIRcastDiagnosticReportOpen
 Usage: #example
-Description: "Example of an imaging study which could be used in a [FHIR resource]-open event"
+Description: "Example of a DiagnosticReport which could be used in a [FHIR resource]-open event"
 * id = "2402d3bd-e988-414b-b7f2-4322e86c9327"
 * status = http://terminology.hl7.org/fhir/ValueSet/diagnostic-report-status#unknown
 * subject = Reference(FHIRcastPatientOpen-Example)

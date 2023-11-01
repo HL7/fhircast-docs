@@ -42,4 +42,3 @@ FHIRcast is focused on providing notifications when key elements in the context 
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
 * [Log issues](https://jira.hl7.org/secure/CreateIssue.jspa), [submit a PR!](https://github.com/fhircast/docs)
 * [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)
-
