@@ -23,6 +23,7 @@
 <artifact id="StructureDefinition/fhircast-patient-open" key="StructureDefinition-fhircast-patient-open" name="FHIRcast Patient for Open Events"/>
 <artifact id="StructureDefinition/fhircast-logout" key="StructureDefinition-fhircast-logout" name="FHIRcast context for logout events."/>
 <artifact id="StructureDefinition/fhircast-hibernate" key="StructureDefinition-fhircast-hibernate" name="FHIRcast context for userHibernate events."/>
+<artifact id="StructureDefinition/fhircast-eventdefinition" key="StructureDefinition-fhircast-eventdefinition" name="FHIRcast event definition"/>
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="CodeSystem/fhircast-codesystem" key="CodeSystem-fhircast-codesystem" name="FHIRcast related Terminology."/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
@@ -37,6 +38,8 @@
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
 <artifact id="Parameters/HibernateExample" key="Parameters-HibernateExample" name="HibernateExample"/>
+<artifact id="StructureDefinition/imagingstudy-open-event" key="StructureDefinition-imagingstudy-open-event" name="ImagingStudyOpenEvent"/>
+<artifact id="Binary/ImagingStudyOpenEventEventExample" key="Binary-ImagingStudyOpenEventEventExample" name="ImagingStudyOpenEventEventExample"/>
 <artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>

@@ -23,14 +23,22 @@ The following profiles provide guidance as to which resource attributes should b
 
 Other attributes of the ImagingStudy, Encounter, and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
-### Examples
-  
+### Example
+
+This is an example for FHIR R5 using the basedOn array for the accession
+
+#### Liquid
+
 ```json
 {% include ImagingStudy-open-example.liquid.json %}
 ```
 
-<!---
-This is an example for FHIR R5 using the basedOn array for the accession
+#### Logical model instance
+{% include Binary-ImagingStudyOpenEventEventExample-html.xhtml %}
+
+
+#### Original
+
 ```json
 {
   "timestamp": "2023-04-01T011:03:04.08",
@@ -124,7 +132,7 @@ This is an example for FHIR R5 using the basedOn array for the accession
     ]
   }
 }
---->
+```
 
 ### Change Log
 
