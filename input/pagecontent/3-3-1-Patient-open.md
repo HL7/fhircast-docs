@@ -9,9 +9,9 @@ User opened a patient's medical record. The indicated patient is now the current
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient now in context.
+Key | Cardinality | Description
+----- | -------- | ---- 
+`patient` | 1..1 | FHIR Patient resource describing the patient now in context.
 
 The following profile provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a Patient open request:
 
