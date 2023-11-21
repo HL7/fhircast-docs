@@ -9,11 +9,11 @@ User closed an imaging study. A previously open and in context image study is no
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`study` | 1..1 | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource describing the image study previously in context that is being closed.
-`encounter` | 0..1 | `Encounter/{id}?_elements=identifier,subject` | A FHIR Encounter resource may be associated with the image study.
-`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the image study being closed.  A Patient SHALL be present if there is a patient associated with the image study.
+Key | Cardinality | Description
+----- | -------- |  ---- 
+`study` | 1..1 | FHIR ImagingStudy resource describing the image study previously in context that is being closed.
+`encounter` | 0..1 | A FHIR Encounter resource may be associated with the image study.
+`patient` | 0..1 | FHIR Patient resource describing the patient associated with the image study being closed.  A Patient SHALL be present if there is a patient associated with the image study.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy close request:
 
