@@ -9,11 +9,11 @@ User opened an imaging study. The newly opened image study is now the current im
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`study` | 1..1 | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource describing the image study now in context.
-`encounter` | 0..1 | `Encounter/{id}?_elements=identifier,subject` | A FHIR Encounter resource may be associated with the image study.
-`patient` | 0..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose image study is currently in context.  A Patient SHALL be present if there is a patient associated with the image study.  Note there are rare cases in which the ImagingStudy.subject references a resource which is not a patient; for example a calibration study would reference the device being calibrated.
+Key | Cardinality | Description
+----- | -------- | ---- 
+`study` | 1..1 | FHIR ImagingStudy resource describing the image study now in context.
+`encounter` | 0..1 | A FHIR Encounter resource may be associated with the image study.
+`patient` | 0..1 | FHIR Patient resource describing the patient whose image study is currently in context.  A Patient SHALL be present if there is a patient associated with the image study.  Note there are rare cases in which the ImagingStudy.subject references a resource which is not a patient; for example a calibration study would reference the device being calibrated.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an ImagingStudy open request:
 
