@@ -110,20 +110,6 @@ This event category contains events required to maintain a FHIRcast session. The
 | [`SyncError`](3-2-1-SyncError.html) | indicates refusal to follow context or inability to deliver an event
 | [`Heartbeat.html`](3-2-2-Heartbeat.html) | for monitoring the connection to the hub
 
-#### Selection events
-
-Selection events use the suffix `select`. The format of selection event names is:
-
-```ebnf
-SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
-```
-
-{% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
-
-`*-select` events allow a Subscriber to indicate that it has selected one or more content items in the anchor context of the specified FHIRresource.  `*-select events` could be considered *-selectContent; however, the `*-select` event name pattern was chosen for conciseness.  The `context` array in a select event contains two attributes.  The FHIR resource which is the anchor context, and a select array indicating the content resource(s) that are selected.  If the Subscriber wants to indicate that no resource is selected, the select attribute is an empty array.
-
-FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
-
 #### Content sharing events
 
 Content sharing events use the suffix `update`. The format of selection event names is:
@@ -134,8 +120,22 @@ ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
 
 {% include img.html img="ContentSharingEventName.png" caption="Figure: Content sharing event-name specification" %}
 
-`*-update` events provide a mechanism to share content in the context of the current anchor context (see [`anchor context`](5_glossary.html)). `*-update` events could be considered *-updateContent; however, the `*-update` event name pattern was chosen for conciseness.  A Subscriber shares content related to the anchor context by providing FHIR resource(s) in a `Bundle` contained in the `updates` key of a `*-update` event. See [`Content Sharing`](2-10-ContentSharing.html) for a comprehensive description of `*-update` events. The FHIRresource indicates the anchor context in which content is being shared.
+`*-update` events provide a mechanism to share content in the context of an `anchor context` (see [`anchor context`](5_glossary.html)). `*-update` events update the content within the specified anchor context; said another way, most `*-update` events are not changing the `anchor context` resource rather creating, modifying, or removing the content within the `anchor context`.  A Subscriber shares content related to the anchor context by providing FHIR resource(s) in a `Bundle` contained in the `updates` key of a `*-update` event. See [`Content Sharing`](2-10-ContentSharing.html) for a comprehensive description of `*-update` events. The FHIRresource indicates the anchor context in which content is being shared.
 
 The `context` element in an update event SHALL contain at least two fields. One with the name of the `FHIRresource` which holds the anchor context and one named `updates` holding a single `Bundle` resource with entries holding the content being shared.  The `Bundle` resource SHALL conform to the [FHIRcast content update Bundle](StructureDefinition-fhircast-content-update-bundle.html) profile. 
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html).
+
+#### Selection events
+
+Selection events use the suffix `select`. The format of selection event names is:
+
+```ebnf
+SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
+```
+
+{% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
+
+`*-select` events provide a mechanism to select content in the context an `anchor context` (see [`anchor context`](5_glossary.html)).  `*-select` events select content resources within the `anchor context`, not the `anchor context` itself (making the `anchor context` the current context is performed by the corresponding `*-open` event).  The `context` array in a select event contains two attributes.  The FHIR resource which is the `anchor context`, and a select array indicating the content resource(s) that are selected.  If the Subscriber wants to indicate that no resource is selected, the select attribute is an empty array.
+
+FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
