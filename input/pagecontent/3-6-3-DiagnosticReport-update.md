@@ -12,12 +12,12 @@ The updates include:
 #### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-`patient` | 0..1 | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed.
-`study` | 0..1 | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
-`updates` | 1..1 | not applicable | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
+Key | Cardinality | Description
+----- | -------- | ---- 
+`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
+`patient` | 0..1 | Present if one or more attributes in the Patient resource associated with the report have changed.
+`study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
+`updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 #### Supported Update Request Methods
 
