@@ -7,15 +7,18 @@ To support various architectures, including multiple decentralized FHIRcast hubs
 
 Hubs SHOULD serve a JSON document at the location formed by appending `/.well-known/fhircast-configuration` to their `hub.url`. Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the `hub.url` endpoint already contains a path component.
 
+Hubs SHOULD also include the supported FHIR version in the hub URL by appending `/R4` or other another version of FHIR to their `hub.url`.  
+
 A simple JSON document is returned using the `application/json` mime type, with the following key/value pairs:
 
 {:.grid}
 Field              | Optionality | Type  | Description
 ------------------ | ----------- | ----- | ---
 `eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
-`websocketSupport` | Required    | boolean | SHALL have the static value: `true`, indicating support for websockets.
+`websocketSupport` | Required    | boolean | SHALL have the static value: `true` - indicating support for websockets.
 `fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
-`getCurrentSupport` | Optional | boolean | `true` or `false` indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
+`getCurrentSupport` | Optional | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
+`fhirVersion`  | Optional | string | `DSTU1`, `DSTU2`, `STU3`, `R4`, `R4B`, or `R5` - indicating the specific version of FHIR for this event.
 
 A field of `webhookSupport` SHALL be ignored.
 
