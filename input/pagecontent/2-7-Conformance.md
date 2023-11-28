@@ -7,8 +7,6 @@ To support various architectures, including multiple decentralized FHIRcast hubs
 
 Hubs SHOULD serve a JSON document at the location formed by appending `/.well-known/fhircast-configuration` to their `hub.url`. Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the `hub.url` endpoint already contains a path component.
 
-Hubs SHOULD include the supported FHIR version in the `hub.url` by appending `/R4` or other corresponding FHIR version.   
-
 A simple JSON document is returned using the `application/json` mime type, with the following key/value pairs:
 
 {:.grid}
@@ -65,11 +63,11 @@ Extension | Cardinality | Type | Description
    ...
         "extension": [
           {
-            "url": "http://fhircast.hl7.org/StructureDefinition/fhircast-configuration",
+            "url": "http://fhircast.hl7.org/StructureDefinition/fhircast-configuration/fhir-configuration",
             "extension": [
               {
                 "url": "hub.url",
-                "valueUri": "https://hub.example.com/fhircast/hub"
+                "valueUri": "https://hub.example.com/fhircast/hub/R4"
               }
             ]
           }
