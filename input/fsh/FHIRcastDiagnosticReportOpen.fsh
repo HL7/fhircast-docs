@@ -22,7 +22,7 @@ In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used ra
 Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field is considered labeled as must support.
 """
 * id 1..1 
-* id ^short = "A logical id of the resource must be provided."
+* id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
 A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this report is requested, the Subscriber requesting the context be closed SHALL use the same DiagnosticReport `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast DiagnosticReport for Close Events](StructureDefinition-fhircast-diagnostic-report-close.html)).
@@ -62,7 +62,7 @@ If the report is created as part of an imaging scenario, at least one imaging st
 * obeys business-identifier
 
 Invariant:   business-identifier
-Description: "identifier array or basedOn array must contain at least one element"
+Description: "identifier array or basedOn array SHALL contain at least one element"
 Expression:  "identifier.exists() or basedOn.exists()"
 Severity:    #error
 XPath:       "f:identifier or f:basedOn"

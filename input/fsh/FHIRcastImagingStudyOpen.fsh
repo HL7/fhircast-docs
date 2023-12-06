@@ -21,7 +21,7 @@ Since this version of FHIRcast promotes the use of FHIR R4 resources, the guidan
 For a more detailed explanation of these business identifiers, see the [FHIR R4 implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/R4B/imagingstudy.html) (and the [FHIR R5 implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/R5/imagingstudy.html)). Ideally both the accession number and Study Instance UID are available and present in an ImagingStudy resource used in FHIRcast.  The presence of both business identifiers ensures that all Subscribers will be able to be able to identify the appropriate imaging study.
 """
 * id 1..1 
-* id ^short = "A logical id of the resource must be provided."
+* id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
 A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).  When a [FHIR resource]-close event including this image study is requested, the Subscriber requesting the context be closed SHALL use the same ImagingStudy resource `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast ImagingStudy for Close Events](StructureDefinition-fhircast-imaging-study-close.html)).

@@ -9,10 +9,10 @@ Provides guidance as to which ImagingStudy attributes should be present and cons
 It is recommended that the image study business identifiers provided in the corresponding [FHIR resource]-open event are provided in the [FHIR resource]-close event.  Providing these business identifiers enables Subscribers to perform identity verification according to their requirements.  See [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html) for details on the business identifiers of an ImagingStudy.
 """
 * id 1..1 
-* id ^short = "A logical id of the resource must be provided."
+* id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)).
+A logical id of the resource SHALL be provided. The provided `id` SHALL be the same ImagingStudy resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast ImagingStudy for Open Events](StructureDefinition-fhircast-imaging-study-open.html)).
 """
 
 * identifier 0..* MS

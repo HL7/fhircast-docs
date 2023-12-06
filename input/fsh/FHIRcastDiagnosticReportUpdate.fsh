@@ -12,7 +12,7 @@ Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticRep
 
 """
 * id 1..1 
-* id ^short = "A logical id of the resource must be provided."
+* id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
 A logical id of the resource SHALL be provided.

@@ -5,7 +5,7 @@ FHIR resources are used to carry the information being shared. These resources a
 
 Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all information regarding that observation.
 
-However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute must be appropriately populated.
+However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute SHALL be appropriately populated.
 
 If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
 
@@ -21,9 +21,9 @@ FHIR resources are used to convey the structured information being exchanged in 
 
 ### Responsibilities of a FHIRcast Hub and a Subscribed Client
 
-Support of content sharing by a Hub is optional.  If supporting content sharing, a FHIRcast Hub MUST fulfill additional responsibilities:
+Support of content sharing by a Hub is optional.  If supporting content sharing, a FHIRcast Hub SHALL fulfill additional responsibilities:
 
-1. Assign and maintain an anchor context's `context.versionId` when processing a `[FHIR resource]-open` request - the `context.versionId` does not need to follow any convention but must unique in the scope of a topic  
+1. Assign and maintain an anchor context's `context.versionId` when processing a `[FHIR resource]-open` request - the `context.versionId` does not need to follow any convention but SHALL unique in the scope of a topic  
 2. Reject `[FHIR resource]-update` request if the version does not match the current `context.versionId` by returning a 4xx/5xx HTTP Status Code rather than updating the content or indication of selection
 3. Assign and maintain a new `context.versionId` for the anchor context's content and provide the new `context.versionId` along with the `context.priorVersionId` in the event corresponding to the validated update request
 4. Process each `[FHIR resource]-update` request in an atomic fashion and maintain a list of current FHIR resource content in the anchor context so that it may provide the anchor context's content in response to a [`GET Current Context`](2-9-GetCurrentContext.html) request
@@ -36,7 +36,7 @@ A Hub is not responsible for any long-term persistence of shared information and
 
 Additionally, a Hub is not responsible to prevent applications participating in exchanging structured information from causing inconsistencies in the information exchanged.  For example, an inconsistency could arise if an application removes from the anchor context's content a resource which is referenced by another resource.  The Hub may check `[FHIR resource]-update` requests for such inconsistencies and MAY reject the request with an appropriate error message; however, it is not required to do so.  Additionally, a Hub MAY check for inconsistencies which it deems to be critical but not perform exhaustive validation. For example, a Hub could validate that the content in a `DiagnosticReport` anchor context always includes at least one primary imaging study.
 
-Clients wishing to exchange structured information MUST:
+Clients wishing to exchange structured information SHALL:
 
 1. Handle FHIRcast events for anchor context types it supports: [FHIR resource]-[open\|update\|close\|select]
 2. Use a `[FHIR resource]-open` request to open a new resource which becomes the anchor context
@@ -63,7 +63,7 @@ A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor
 
 ### Content Creation and Reopen Scenario
 
-When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it must create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
+When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it SHALL create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
 
 1. The Subscriber persists the resource in a FHIR server prior to adding the resource to the anchor context's content.  Since the FHIR server provides an `id` for the resource this `id` SHOULD be used for the resource's `id` in addition to the resource's entry in the update bundle's `fullUrl` attribute when adding the resource to the anchor context's content.
 2. The resource has not yet been persisted in a FHIR server or will never be persisted in a FHIR server by the Subscriber adding the resource to the anchor context's content.  In this case, the Subscriber SHOULD use a mechanism to generate the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
