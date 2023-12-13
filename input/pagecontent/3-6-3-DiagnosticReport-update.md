@@ -14,7 +14,8 @@ The updates include:
 {:.grid}
 Key | Cardinality | FHIR operation to generate context | Description
 ----- | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changedsh  or were newly populated.
+`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
+
 `updates` | 1..1 | Not Applicable | FHIR Bundle resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changedsh  or were newly populated.
 
 
