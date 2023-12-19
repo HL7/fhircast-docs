@@ -4,10 +4,10 @@ Id: fhircast-encounter-open
 Title: "FHIRcast Encounter for Open Events"
 Description: "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events."
 * id 1..1 
-* id ^short = "A logical id of the resource must be provided."
+* id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate  the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)). When a [FHIR resource]-close event including this encounter is requested, the Subscriber requesting the context be closed SHALL use the same Encounter `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)).
+A logical id of the resource SHALL be provided. It may be the `id` associated with the resource as persisted in a FHIR server.  If the resource is not stored in a FHIR server, the Subscriber requesting the context change SHOULD use a mechanism to generate  the `id` such that it will be globally unique (e.g., a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)). When a [FHIR resource]-close event including this encounter is requested, the Subscriber requesting the context be closed SHALL use the same Encounter `id` which was provided in the [FHIR resource]-open event (see also [FHIRcast Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)).
 """
 * identifier 1..*
 * identifier ^short = "At least one identifier of the Encounter SHALL be provided in a [FHIR resource]-open request."

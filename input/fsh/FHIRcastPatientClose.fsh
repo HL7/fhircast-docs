@@ -7,7 +7,7 @@ Description: "Provides guidance as to which Patient attributes should be present
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
+A logical id of the resource SHALL be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
 """
 * identifier 0..* MS
 * identifier ^short = "At least one identifier of the Patient SHOULD be provided in a [FHIR resource]-close request."
