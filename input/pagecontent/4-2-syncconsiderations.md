@@ -88,7 +88,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscriber | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
-| Subscriber | Unable to change context | Responds with a 202 Accepted and sends a syncerror when the context change is refused, stating the source and reason for change. |
+| Subscriber | Unable to change context | Client responds with a http status code of 409 conflict. If client is unable to determine inability to follow context, it responds with a 202 Accepted and sends a syncerror when the context change is refused, stating the source and reason for change. |
 | Subscriber | Ask user whether context can be changed, user refuses. | The Subscriber responds to the initial event with a 202 Accepted and sends a `SyncError` when the context change is refused, stating the source and reason for change. |
 | Subscriber | Ask user whether context can be changed, user does not react in time. | The Subscriber responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `SyncError`. Context change is refused, stating the source and reason for change. |
 | Hub | One of the Subscribers cannot follow context | Update all Subscribers with a SyncError event |
