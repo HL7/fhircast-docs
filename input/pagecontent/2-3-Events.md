@@ -16,6 +16,8 @@ Field | Optionality | Type | Description
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
+`versionId`   | Conditional| string | A string displaying the context's version ID. `versionId` SHALL be present for *-update events.
+`priorVersionId`   | Optional | string | A string displaying the context's previous version ID.
 
 The notification's `hub.event` and `context` fields inform the Subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
