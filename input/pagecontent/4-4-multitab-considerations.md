@@ -23,9 +23,11 @@ As illustrated below, context synchronization is maintained between multiple and
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
-### Considerations with the [Get Current Context](2-9-GetCurrentContext.html) Operation
+##### [Get Current Context](2-9-GetCurrentContext.html) Returns Current Context, including "No Current Context"
 
-Multiple contexts may be present in the Hub; however, only one of these contexts is the current context.  Specifically, the context for which the last `-open` event has occurred is the current context.  This is the context returned by the Hub when a Subscriber calls the [Get Current Context](2-9-GetCurrentContext.html) operation. In the above example, Patient 1 and Patient 2 contexts exist simultaneously; however, Patient 2 was last opened therefore is the current context.  If, as in the above example, the Patient 2 context is closed there exists no current context (see the specification in [Get Current Context](2-9-GetCurrentContext.html)).  It is the responsibility of some Subscriber to make an `-open` request for Patient 1 in order for Patient 1 to become the current context.  The FHIRcast specification indicates that there is no current context without an `-open` event; hence, in the absence of an `-open` event after a `-close` occurs, the behavior expected of applications is not defined.
+As indicated above, there is only a single current context -- the context for which the most recent `-open` event occurred.  The current context is returned from the [Get Current Context](2-9-GetCurrentContext.html) operation. When the current context is closed, there is no current context, in which case the [Get Current Context](2-9-GetCurrentContext.html#get-current-context-response) returns an empty context. FHIRcast does not prescribe application behavior, including for this scenario.
+
+To continue the above, Patient 2 was last opened, and therefore is the current context.  Since Patient 2 is closed there exists no current context (see [Get Current Context](2-9-GetCurrentContext.html)).  The current context will change back to Patient 1 if and only if a `Patient-open` event is initiated by a subscriber.  
 
 ### Considerations on Maintaining Multiple Contexts
 
