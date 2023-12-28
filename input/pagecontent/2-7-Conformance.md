@@ -51,7 +51,7 @@ To supplement or optionally identify the location of a FHIRcast hub, a FHIR serv
 {:.grid}
 Extension | Cardinality | Type | Description
 --- | --- | --- | ---
-`hub.url`| 0..1 | url | The url at which an application can subscribe. May not be supported by client-side Hubs.
+`hub.url`| 0..1 | url | The url at which an application can subscribe. This might not be supported by client-side Hubs.
 
 #### CapabilityStatement Extension Example 
 
