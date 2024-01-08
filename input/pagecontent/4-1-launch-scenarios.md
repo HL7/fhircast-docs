@@ -14,9 +14,7 @@ Use of the SMART on FHIR OAuth 2.0 profile simplifies, secures, and standardizes
 FHIRcast extends SMART on FHIR to support clinical context synchronization between disparate, full featured healthcare applications which cannot be embedded within one another.
 This section defines the extensions on SMART On FHIR that allow for integration of FHIRcast with applications launched using SMART on FHIR.
 
-The application is authorized to synchronize to a user's session using the OAuth2.0 [FHIRcast scopes](2-2-FhircastScopes.html).
-
-During the OAuth2.0 handshake, the application [requests and is granted](http://www.hl7.org/fhir/smart-app-launch/#2-ehr-evaluates-authorization-request-asking-for-end-user-input) one or more FHIRcast scopes. The EHR's authorization server returns the Hub URL and any relevant session topics as SMART launch parameters.
+The application can request the authorization to send and/or receive FHIRcast events using the OAuth2.0 FHIRcast scopes. During the OAuth2.0 handshake, the application is granted one or more FHIRcast scopes. The EHR’s authorization server returns the Hub URL and any relevant session topics as SMART launch parameters.
 
 {:.grid}
 | SMART launch parameter | Optionality | Type | Description |
