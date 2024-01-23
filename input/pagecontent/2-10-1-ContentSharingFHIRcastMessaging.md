@@ -19,7 +19,7 @@ In order to avoid lost updates and other out of sync conditions, the Hub serves 
 
 FHIR resources are used to convey the structured information being exchanged in `[FHIR resource]-update` operations.  However, it is possible that these resources are never persisted in a FHIR server.  During the exchange of information, the content (FHIR resource instances) is often very dynamic in nature with a user creating, modifying, and even removing information which is being exchanged.  For example, a measurement made in an imaging application could be altered many times before it is finalized and it could be removed.
 
-### Responsibilities of a FHIRcast Hub and a Subscribed Client
+### Responsibilities of a FHIRcast Hub and a Subscriber
 
 Support of content sharing by a Hub is optional.  If supporting content sharing, a FHIRcast Hub SHALL fulfill additional responsibilities:
 
