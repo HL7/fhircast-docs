@@ -122,12 +122,13 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 
 {% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
 
-The `FHIRresource` indicates the context of the selection. The `context` element in a select event contains two fields. One field with the name of the FHIR resource which is the anchor context, and one field named `select` which is an array indicating the resources that are selected. If no resource is selected, `select` is an empty array.
-
+The `FHIRresource` indicates the context of the selection. The `context` element in a select event contains two fields. One field with the name of the FHIR resource which is the anchor context, and one field named `select` which is an array indicating the resources that are selected. If no resource is selected, `select` is an empty array. Only previously communicated resources for the current anchor context SHOULD be selected.
 
 This allows communication of different select sets for the different anchor-types.
 
-FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
+Note that any syncerrors resulting from select events pose significantly less risk than syncerrors resulting from other event types. 
+
+The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).
 
 #### Content sharing events
 
