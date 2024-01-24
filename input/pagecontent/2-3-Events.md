@@ -54,7 +54,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 
 ### Context
 
-Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields.
+Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. However, a custom event's context has no requirements on the internal strucuture but SHALL be a valid JSON.
 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
