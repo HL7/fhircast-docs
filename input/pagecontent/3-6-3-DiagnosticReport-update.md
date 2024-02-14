@@ -26,6 +26,7 @@ Each `entry` in the `updates` Bundle resource SHALL contain one of the below `me
 {:.grid}
 Request Method | Operation
 --- | ---
+`POST` | Add a new resource
 `PUT` | Add a new resource or update a resource already existing in the content
 `DELETE` | Remove an existing resource
 
