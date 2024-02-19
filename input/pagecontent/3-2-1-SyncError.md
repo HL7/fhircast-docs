@@ -82,4 +82,4 @@ The `context` array SHALL contain a single FHIR OperationOutcome based on the pr
 | ------- | ------------- |
 | 1.0     | Initial Release |
 | 2.0     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
-| 3.0     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |
+| 2.1     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |
