@@ -218,4 +218,4 @@ This is an example for FHIR R5 using the basedOn array for the accession
 | Version | Description
 | ------- | ----
 | 1.0 | Initial Release
-| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
+| 1.1 | Reference context resource profiles and update example to be compliant with the profiles

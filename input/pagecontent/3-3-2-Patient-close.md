@@ -67,4 +67,4 @@ Other attributes of the Patient resource (or resource extensions) may be present
 | ---- | ----
 | 1.0 | Initial Release
 | 1.1 | Deprecate encounter element in favor of dedicated `encounter-close` event
-| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
+| 1.2 | Reference context resource profiles and update example to be compliant with the profiles
