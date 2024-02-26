@@ -63,6 +63,8 @@ A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor
 
 ### Content Creation and Reopen Scenario
 
+{% include infonote.html text='Implementer feedback on the generation and general handling of a resource's `id` is appreciated. Particularly, the ability of Subscribers who participated in a content sharing session to join a restart of a content sharing session including the state of content at the time of the prior close of the session' %}
+
 When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it SHALL create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
 
 1. The Subscriber persists the resource in a FHIR server prior to adding the resource to the anchor context's content.  Since the FHIR server provides an `id` for the resource this `id` SHOULD be used for the resource's `id` in addition to the resource's entry in the update bundle's `fullUrl` attribute when adding the resource to the anchor context's content.
