@@ -6,6 +6,8 @@ Description: """
 Defines the structure of OperationOutcomes to be used in sync-error events. The content of the 
 OperationOutcomes contains information that is used to determine the cause of the sync-error. 
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * issue MS
 * issue 1..*
 * issue ^slicing.rules = #open
@@ -37,6 +39,8 @@ Title: "OperationOutcome for Hub generated sync-error events"
 Description: """
 Defines the structure of an OperationOutcome to be used in sync-error events created by the Hub.
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * issue[fhircast].severity = #information
 
 Profile: FhircastSubscriberSyncErrorOperationOutcome
@@ -47,5 +51,7 @@ Description: """
 Defines the structure of an OperationOutcome to be used in sync-error events send by a Suscriber indicting refusal 
 to follow context.
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * issue[fhircast].severity = #warning
 

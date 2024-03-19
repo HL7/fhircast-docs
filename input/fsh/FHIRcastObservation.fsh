@@ -5,6 +5,8 @@ Parent: Observation
 Id: fhircast-observation
 Title: "FHIRcast Observation"
 Description: "Defines the minimum set of attributes which an application wanting to share observation content must support"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * subject 1..1
 * hasMember MS
 * derivedFrom MS
@@ -21,3 +23,5 @@ Description: "Example of a simple observation which could be exchanged using FHI
 * issued = "2020-09-07T15:02:03.651Z"
 * valueCodeableConcept.coding = Loinc#LA33-6 "Yes"
 * subject = Reference( FHIRcastPatientOpen-Example )
+* performer = Reference( PractitionerExample )
+* effectiveDateTime = "2024-03-19"

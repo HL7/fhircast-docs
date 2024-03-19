@@ -6,6 +6,10 @@ Description: """
 """
 * ^experimental = false
 * ^caseSensitive = true
+* ^version = "0.1.0"
+* ^status = #active
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * #user-initiated "User initiated action."
       "The user initiated the action."
 * #system-initiated "System initiated action"

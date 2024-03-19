@@ -21,6 +21,8 @@ In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used ra
 
 Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5, it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field is considered labeled as must support.
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
