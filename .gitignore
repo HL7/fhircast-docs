@@ -30,3 +30,6 @@ fhircast-template/content/assets/.index.json
 fhircast-template/content/assets/.index.db
 fhircast-template/content/.index.json
 fhircast-template/content/.index.db
+fhircast-template/includes/.index.db
+fhircast-template/package/.index.db
+fhircast-template/package/.index.json
