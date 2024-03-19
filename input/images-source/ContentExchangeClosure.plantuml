@@ -1,0 +1,43 @@
+@startuml
+skinparam shadowing false
+skinparam lifelineStrategy nosolid
+hide footbox
+autonumber
+
+actor Clinician
+participant "EHR App\n(Subscriber)" as EHR
+participant "Reporting\nApplication\n(Subscriber)" as RepApp
+participant Hub
+participant "Image Reading\nApplication\n(Subscriber)" as App1
+participant "Advanced\nQuantification\nApplication\n(Subscriber)" as App2
+
+group Close report
+  Clinician -> RepApp: Close report 
+  RepApp -> Hub: DiagnosticReport-close  
+  activate Hub
+  Hub -\ RepApp: DiagnosticReport-close
+  activate RepApp
+  Hub -\ App1: DiagnosticReport-close
+  activate App1
+  App1 -> App1: close imaging study 
+  activate App1
+  deactivate App1
+  deactivate App1
+  Hub -\ App2: DiagnosticReport-close
+  activate App2
+  App2 -> App2: close imaging study 
+  activate App2
+  deactivate App2
+  deactivate App2
+  
+  RepApp -> RepApp: persist content
+  activate RepApp
+  deactivate RepApp
+  deactivate RepApp
+  Hub -> Hub: Purge Context including content
+  activate Hub
+  deactivate Hub
+  deactivate Hub
+end
+
+@enduml
