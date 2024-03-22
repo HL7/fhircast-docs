@@ -51,6 +51,7 @@ deactivate App2
 |||
 Hub -\ App1: DiagnosticReport-close
 Hub -\ App2: DiagnosticReport-close
+App2 -> App2: Persist content
 Hub -> Hub++--: Purge Context including Content
 end
 deactivate Hub
