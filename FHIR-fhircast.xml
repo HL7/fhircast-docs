@@ -40,6 +40,8 @@
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
+<artifact id="Organization/a92ac1be-fb34-49c1-be58-10928bd271cc" key="Organization-a92ac1be-fb34-49c1-be58-10928bd271cc" name="OrganizationExample"/>
+<artifact id="Practitioner/d2bb499c-3021-4c20-a97b-e62469e9e5f5" key="Practitioner-d2bb499c-3021-4c20-a97b-e62469e9e5f5" name="PractitionerExample"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
 <artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
 <artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>

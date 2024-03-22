@@ -11,6 +11,8 @@ The `DiagnosticReport` in [`DiagnosticReport-update`](3-6-3-DiagnosticReport-upd
 Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event is the resources' `id`, as well as its `status` since this attribute is required by FHIR.  Other attributes of the `DiagnosticReport` MAY be valued if they have changed from their original values or no value had been provided in the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event.
 
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
