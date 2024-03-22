@@ -9,7 +9,7 @@ An example of content sharing is provided for a use case where a `DiagnosticRepo
 When reporting applications integrate with PACS and/or RIS applications, a radiologist's (or other clinician's) workflow is centered on the final deliverable, a diagnostic report. In radiology, the imaging study (exam) is an integral resource with the report referencing one or more imaging studies. Structured data, many times represented by a FHIR `Observation` resource, may also be captured as part of a report.  In addition to basic context synchronization, a diagnostic report centered workflow builds upon the basic FHIRcast operations to support near real-time exchange of structured information between applications participating in a diagnostic report context.  Also, the `DiagnosticReport` resource contains certain attributes (such as report status), that are useful to PACS/RIS applications.  Participating applications may include clients such as reporting applications, PACS, EHRs, workflow orchestrators, and interactive AI applications.
 
 Exchanged content need not have an independent existence. For the purposes of a working session in FHIRcast, they are all "contained" in one resource (the `DiagnosticReport` anchor context). For example, a radiologist may use the PACS viewer to create a measurement. The PACS application sends this measurement as an `Observation` to other Subscribers (through interactions with a FHIRcast Hub) for consideration. If the radiologist determines the measurement is useful in another application (and accurate), it may then become an `Observation` to be included in the diagnostic report. Only when that diagnostic report becomes an official signed document would that `Observation` possibly be maintained with an independent existence. Until that time, FHIR domain resources serve as a convenient means to transfer data within a FHIRcast context.
-
+ 
 Structured information may be added, changed, or removed quite frequently during the lifetime of a context. Exchanged information is transitory and it is not required that the information exchanged during the collaboration is persisted. However, as required by their use cases, each participating application may choose to persist information in their own structures which may or may not be expressed as a FHIR resource. Even if stored in the form of a FHIR resource, the resource may or may not be stored in a system which provides access to the information through a FHIR server and associated FHIR operations (i.e., it may be persisted only in storage specific to a given application).
 
 <figure>
@@ -49,6 +49,13 @@ At some point the image reading application (automatically or through user inter
 </figure>
 
 Finally, the clinical user closes the report in the reporting application. The reporting application makes a [`DiagnosticReport-close`](3-6-2-DiagnosticReport-close.html) request. Upon receipt of the [`DiagnosticReport-close`](3-6-2-DiagnosticReport-close.html) event both the imaging reading application and advanced quantification application close all relevant image studies.
+
+<figure>
+  {% include ContentExchangeClosure.svg %}
+  <figcaption><b>Figure: Report is stored and context is closed</b></figcaption><p></p>
+</figure>
+
+The Hub purges the context including content and the reporting application persists all relevant content.
 
 ### Discussion on Reopening Anchor Context Scenario
 
