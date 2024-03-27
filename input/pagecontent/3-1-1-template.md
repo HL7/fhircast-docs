@@ -16,7 +16,7 @@ Define context values that are provided when this event occurs, and indicate whe
 Key | Optionality | Description
 ----- |  ---- | ---- 
 `example` | REQUIRED | Describe the context value
-`encounter` | OPTIONAL | Describe the context value
+`FHIRresource` | OPTIONAL | Describe the context value
 
 ### Examples
 
