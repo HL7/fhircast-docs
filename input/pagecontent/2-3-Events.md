@@ -41,17 +41,6 @@ Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Cam
 
 Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
 
-When subscribing to FHIRcast events a list of events is added. These events may contain wild cards. Wild cards are expressed as a `*` replacing either the `FHIRresource` or `suffix`  with `*` indicates any events that match the resulting definition are requested. The event `*` means the Subscriber subscribes to any event. The table below shows some typical examples.
-
-{:.grid}
-| **Event** | **Description** |
-|=======|=============|
-| `*`   | All events  |
-| `*-*` | All events with a FHIRcast defined postfix |
-| `Patient-*` | All events that use the `Patient` FHIR resource |
-| `*-update` | All update events |
-| `*-select` | All select events |
-
 ### Context
 
 Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields.
