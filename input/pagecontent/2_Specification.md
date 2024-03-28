@@ -11,7 +11,7 @@ This chapter consists of the following sections:
 [2.9 Get Current Context](2-9-GetCurrentContext.html) |
 [2.10 Content Sharing](2-10-ContentSharing.html) |
 
-The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time, allowing them to show the same clinical context and content to a user (or group of users).
+The FHIRcast specification describes API used by disparate healthcare applications to synchronize user interfaces (UI) in real time; allowing them to show the same clinical context and content to a user.
 
 Once an application [knows about](2-1-SessionDiscovery.html) the session (Hub topic), the application [subscribes](2-4-Subscribing.html) to specific workflow-related [events](2-3-Events.html) for the given session. The application is then [notified](2-5-EventNotification.html) when those workflow-related events occur; for example, when the clinician opens a patient's chart in another application subscribed to the same session. A Subscriber may also [initiate context changes](2-6-RequestContextChange.html) by accessing APIs defined in this specification; for example, closing the patient's chart. A Subscriber [unsubscribes from the session](2-4-Subscribing.html#unsubscribe) to no longer receive session events. The notification events describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources.
 
