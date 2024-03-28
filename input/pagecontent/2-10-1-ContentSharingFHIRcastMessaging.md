@@ -63,7 +63,7 @@ A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor
 
 ### Content Creation and Reopen Scenario
 
-{% include infonote.html text='Implementer feedback on the generation and general handling of a resource's `id` is appreciated. Particularly, the ability of Subscribers who participated in a content sharing session to join a restart of a content sharing session including the state of content at the time of the prior close of the session' %}
+{% include infonote.html text='Implementer feedback on the generation and general handling of a resource's identifiers, including its logical `id` is requested. Should the logical id of a FHIR resource created during a content sharing session persist when the resource is persisted? How should id conflicts be resolved? Additionally, the ability of Subscribers who participated in a content sharing session to join a restart of a content sharing session including the state of content at the time of the prior close of the session' %}
 
 When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it SHALL create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
 
