@@ -65,7 +65,12 @@ All fields available within an event's context SHALL be defined in a table where
 
 A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
+The key used for indicating an event's anchor FHIR resource SHALL be the lower-case resourceType of the resource. The resources to include is defined in the corresponding event definition in the [event catalog](3-Event.html).
+
+
+References to resources other than anchor resources SHALL be named any string which is not a value from the resource type valueset.
+
+In the case in which other events are deriveable from the event in question, additional non-anchor FHIR resources included in the event SHALL be named what they are named in the deriveable event.
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 
