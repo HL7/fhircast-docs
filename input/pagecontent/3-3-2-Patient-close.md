@@ -9,9 +9,9 @@ User closed the patient's medical record. A previously opened and in context pat
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient previously in context that is being closed.
+Key | Cardinality | Description
+----- | -------- | ---- 
+`patient` | 1..1 | FHIR Patient resource describing the patient previously in context that is being closed.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a Patient close request:
 
@@ -67,4 +67,4 @@ Other attributes of the Patient resource (or resource extensions) may be present
 | ---- | ----
 | 1.0 | Initial Release
 | 1.1 | Deprecate encounter element in favor of dedicated `encounter-close` event
-| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
+| 1.2 | Reference context resource profiles and update example to be compliant with the profiles

@@ -16,6 +16,8 @@ Field | Optionality | Type | Description
 `hub.topic` | Required | string | The session topic given in the subscription request. MAY be a Universally Unique Identifier ([UUID](https://tools.ietf.org/html/rfc4122)).
 `hub.event` | Required | string | The event that triggered this notification, taken from the list of events from the subscription request.
 `context`   | Required | array | An array of named FHIR objects corresponding to the user's context after the given event has occurred.
+`versionId`   | Conditional| string | A string displaying the context's version ID. `versionId` SHALL be present for *-update events.
+`priorVersionId`   | Optional | string | A string displaying the context's previous version ID.
 
 The notification's `hub.event` and `context` fields inform the Subscriber of the current state of the user's session. The `hub.event` is a user workflow event, from the [Event Catalog](3_Events.html) (or an organization-specific event in reverse-domain name notation). The `context` is an array of named FHIR resources (similar to [CDS Hooks's context](https://cds-hooks.hl7.org/1.0/#http-request_1) field) that describe the current content of the user's session. Each event in the [Event Catalog](3_Events.html) defines what context is included in the notification. The context contains zero, one, or more FHIR resources. Hubs SHOULD use the [FHIR _elements parameter](https://www.hl7.org/fhir/search.html#elements) to limit the size of the data being passed while also including additional, local identifiers that are likely already in use in production implementations. Subscribers SHALL accept a full FHIR resource or the [_elements](https://www.hl7.org/fhir/search.html#elements)-limited resource as defined in the Event Catalog.
 
@@ -52,7 +54,7 @@ When subscribing to FHIRcast events a list of events is added. These events may 
 
 ### Context
 
-Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields.
+Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. Events defined in the standard event catalog or by implementers SHALL contain only valid JSON and MAY contain FHIR resources.
 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
@@ -63,7 +65,12 @@ All fields available within an event's context SHALL be defined in a table where
 
 A Hub SHALL at least send the elements indicated in *FHIR operation to generate context*; a Subscriber SHALL gracefully handle receiving a full FHIR resource in the context of a notification. For example, when the [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) event occurs, the notification sent to a Subscriber includes an ImagingStudy FHIR resource, which contains at least the elements defined in the *_elements* query parameter, as indicated in the event's definition. For ImagingStudy, this is defined as: `ImagingStudy/{id}?_elements=identifier`. (The *_elements* query parameter is defined in the [FHIR specification](https://www.hl7.org/fhir/search.html#elements)).
 
-The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource. In the case the resource refers to other FHIR resources that represent their own context, these can be included as well. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
+The key used for indicating an event's anchor FHIR resource SHALL be the lower-case resourceType of the resource. The resources to include is defined in the corresponding event definition in the [event catalog](3-Event.html).
+
+
+References to resources other than anchor resources SHALL be named any string which is not a value from the resource type valueset.
+
+In the case in which other events are deriveable from the event in question, additional non-anchor FHIR resources included in the event SHALL be named what they are named in the deriveable event.
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 

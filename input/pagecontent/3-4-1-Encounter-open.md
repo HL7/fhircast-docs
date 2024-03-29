@@ -1,4 +1,4 @@
-### Event-name: `Encounter-open`
+### Event-name: Encounter-open
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
@@ -9,10 +9,10 @@ User opened patient's medical record in the context of a single encounter. The i
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`encounter` | 1..1 | `Encounter/{id}?_elements=identifier,subject` | FHIR Encounter resource describing the encounter now in context.
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose encounter is now in context.
+Key | Cardinality |Description
+----- | -------- |---- 
+`encounter` | 1..1 | FHIR Encounter resource describing the encounter now in context.
+`patient` | 1..1 | FHIR Patient resource describing the patient whose encounter is now in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:
 
@@ -108,4 +108,4 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 | Version | Description
 | ---- | ----
 | 1.0 | Initial Release
-| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
+| 1.1 | Reference context resource profiles and update example to be compliant with the profiles

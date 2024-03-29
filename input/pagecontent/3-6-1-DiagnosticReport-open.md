@@ -9,12 +9,12 @@ User opened a report.  The newly opened report is now the current report in cont
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier,subject` | FHIR DiagnosticReport resource describing the report now in context.
-`encounter` | 0..1 | `Encounter/{id}?_elements=identifier,subject` | A FHIR Encounter resource may be associated with the report
-`study` | 0..* | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource(s) describing the image study (or image studies) which are the subject of the report now in context.  For non-imaging related uses of FHIRcast there may be no image study related to the report.  In radiology or other image related uses of FHIRcast, at least one imaging study would be the subject of a report and SHALL be included in the event's context.  
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient whose report is currently in context. This Patient SHALL be the subject referenced by the DiagnosticReport and any ImagingStudy resources present in the context. 
+Key | Cardinality | Description
+----- | -------- | ---- 
+`report` | 1..1 | FHIR DiagnosticReport resource describing the report now in context.
+`encounter` | 0..1 | A FHIR Encounter resource may be associated with the report
+`study` | 0..* | FHIR ImagingStudy resource(s) describing the image study (or image studies) which are the subject of the report now in context.  For non-imaging related uses of FHIRcast there may be no image study related to the report.  In radiology or other image related uses of FHIRcast, at least one imaging study would be the subject of a report and SHALL be included in the event's context.  
+`patient` | 1..1 | FHIR Patient resource describing the patient whose report is currently in context. This Patient SHALL be the subject referenced by the DiagnosticReport and any ImagingStudy resources present in the context. 
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport open request:
 
@@ -27,7 +27,7 @@ Other attributes of the DiagnosticReport, ImagingStudy, Encounter, and Patient r
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the [`anchor context`](5_glossary.html).  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber is not subscribed to the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event the `context.versionId` can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the [`anchor context`](5_glossary.html).  Subscribers SHALL submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber is not subscribed to the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event the `context.versionId` can be safely ignored.
 
 
 ### Examples

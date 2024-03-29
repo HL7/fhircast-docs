@@ -2,7 +2,7 @@
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
- The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires a to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the anchor context (see: [`anchor context`](5_glossary.html)) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
+ The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the [`anchor context`](5_glossary.html) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
 
 The updates include:
 
@@ -12,25 +12,21 @@ The updates include:
 #### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-
-`patient` | 0..1 | `Patient/{id}?_elements=identifier` | Present if one or more attributes in the Patient resource associated with the report have changed.
-`study` | 0..1 | `ImagingStudy/{id}?_elements=identifier,accession` | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
-`updates` | 1..1 | Not Applicable | FHIR Bundle resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.  Other attributes may be present in the DiagnosticReport resource if their values have changed  or were newly populated.
-
-
+Key | Cardinality | Description
+----- | -------- | ---- 
+`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note the mandatory elements defined in the [DiagnosticReport update profile](StructureDefinition-fhircast-diagnostic-report-update.html). Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
+`patient` | 0..1 | Present if one or more attributes in the Patient resource associated with the report have changed.
+`study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
+`updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
 
 * [Diagnostic Report for Update Events](StructureDefinition-fhircast-diagnostic-report-update.html)
 * [Content Update Bundle](StructureDefinition-fhircast-content-update-bundle.html)
 
-
 #### Supported Update Request Methods
 
-Each `entry` in the `updates` Bundle resource must contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one `Bundle` SHALL be present in a `DiagnosticReport-update` request.
+Each `entry` in the `updates` Bundle resource SHALL contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one `Bundle` SHALL be present in a `DiagnosticReport-update` request.
 
 {:.grid}
 Request Method | Operation

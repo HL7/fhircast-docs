@@ -9,12 +9,12 @@ User closed a report. A previously open and in context report is no longer open 
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier,subject` | FHIR DiagnosticReport resource describing the report previously in context that is being closed.
-`encounter` | 0..1 | `Encounter/{id}?_elements=identifier,subject` | A FHIR Encounter resource may be associated with the report
-`study` | 0..* | `ImagingStudy/{id}?_elements=identifier,subject` | FHIR ImagingStudy resource(s) describing any image study that was opened as part of the report context that is being closed.
-`patient` | 1..1 | `Patient/{id}?_elements=identifier` | FHIR Patient resource describing the patient associated with the report being closed.
+Key | Cardinality | Description
+----- | -------- | ---- 
+`report` | 1..1 | FHIR DiagnosticReport resource describing the report previously in context that is being closed.
+`encounter` | 0..1 | A FHIR Encounter resource may be associated with the report
+`study` | 0..* | FHIR ImagingStudy resource(s) describing any image study that was opened as part of the report context that is being closed.
+`patient` | 1..1 | FHIR Patient resource describing the patient associated with the report being closed.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in DiagnosticReport close request:
 

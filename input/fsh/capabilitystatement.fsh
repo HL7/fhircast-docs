@@ -1,8 +1,9 @@
-
 Profile: FHIRcastCapabilityStatement
 Parent: CapabilityStatement
 Id: fhircast-capabilitystatement
 Description: "CapabilityStatment stating support for FHIRcast."
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * implementationGuide 1..*
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value

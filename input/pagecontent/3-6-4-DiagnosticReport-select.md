@@ -12,10 +12,10 @@ If one or more resources are noted as selected, any other resource which had bee
 ### Context
 
 {:.grid}
-Key | Cardinality | FHIR operation to generate context | Description
------ | -------- | ---- | ---- 
-`report` | 1..1 | `DiagnosticReport/{id}?_elements=identifier` | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.
-`select` | 1..1 | not applicable | Contains zero or more references to selected resources in a `resources` array. If a reference to a resource is present in the `resources` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `resources` array, this is an indication that any previously selected resource is now unselected.
+Key | Cardinality | Description
+----- | -------- | ---- 
+`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.
+`select` | 1..1 | Contains zero or more references to selected resources in a `resources` array. If a reference to a resource is present in the `resources` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `resources` array, this is an indication that any previously selected resource is now unselected.
 
 The following profile provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-select request:
 
