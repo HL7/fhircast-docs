@@ -20,7 +20,7 @@ The application can request the authorization to send and/or receive FHIRcast ev
 | SMART launch parameter | Optionality | Type | Description |
 | --- | --- | --- | --- |
 | `hub.url` | Required | string | The base URL of the EHR's hub. |
-| `hub.topic` | Optional | string | The session topic identifiers. The `hub.topic` is a unique, opaque identifier to the a user's session, typically expressed as a hub-generated guid. |
+| `hub.topic` | Optional | string | The session topic identifiers.|
 
 The application requests one or more FHIRcast scopes, depending upon its need to learn about specific workflow events or to direct the workflow itself.
 
