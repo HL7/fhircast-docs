@@ -7,7 +7,7 @@ The [HL7 SMART on FHIR app launch specification](http://www.hl7.org/fhir/smart-a
 
 Once the `hub.topic` and URL to the Hub (`hub.url`) are known by the synchronizing application, the subscription and workflow event notification process proceeds per the FHIRcast specification, regardless of the specific application launch mechanism used.
 
-Use of the SMART on FHIR OAuth 2.0 profile simplifies, secures, and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate application launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking, and other security risks. Specifically, the `hub.topic` session identifier must be unique, unguessable, and specific to the session.
+Use of the SMART on FHIR OAuth 2.0 profile simplifies, secures, and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate application launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking, and other security risks. Specifically, the `hub.topic` session identifier must be unique and specific to the session.
 
 ### SMART on FHIR
 
@@ -115,7 +115,7 @@ Similarly, any bespoke application launch mechanism can establish a FHIRcast ses
 
 ### No application launch
 
-In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "application launch", with its corresponding ability to exchange contextual information, the unique, unguessable, and session-specific `hub.topic` must be calculated by both the driving application's Hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `hub.topic`.
+In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "application launch", with its corresponding ability to exchange contextual information, the unique and session-specific `hub.topic` must be calculated by both the driving application's Hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `hub.topic`.
 
 A bespoke session topic generation algorithm could encrypt the current user's username and a nonce with a shared secret to a pre-configured base URL. In this contrived example, a base URL and secret are securely configured on the subscribing application. The subscribing application generates and appends a nonce to the current user's Active Directory username, encrypts that string with the shared secret according to an agreed upon encryption algorithm, and finally appends that encrypted string to the base URL. The resulting URL is unique to the current user and unguessable to a middle man due to the shared secret.
 
