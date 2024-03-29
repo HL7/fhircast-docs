@@ -39,7 +39,8 @@ The `FHIRresource` indicates the focus of the event; the `suffix` defines the ty
 
 Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Camel](https://en.wikipedia.org/wiki/Camel_case) case.
 
-Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").
+Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-"). Note that this specification uses an asterisk to refer to categories of events (e.g. `*-open` for all open events), but that this syntax is not supported when interacting with a Hub.
+
 
 ### Context
 
