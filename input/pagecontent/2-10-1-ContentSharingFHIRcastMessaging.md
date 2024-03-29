@@ -5,10 +5,6 @@ FHIR resources are used to carry the information being shared. These resources a
 
 Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all information regarding that observation.
 
-However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute SHALL be appropriately populated.
-
-If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
-
 A key concept of the content sharing events is that the content is shared in a transactional manner.  The diagram below shows a series of operations beginning with a `[FHIR resource]-open` request followed by three `[FHIR resource]-update` requests.  The content in an anchor context is built up by the successive `[FHIR resource]-update` requests which contain only changes to the current state.  These changes are propagated by the Hub to all Subscribers using `[FHIR resource]-update` events containing only the changes to be made.
 
 At any time a Subscriber MAY issue a [`GET Context`](2-9-GetCurrentContext.html) request to the Hub in order to retrieve the current context along with all attributes provided in the current context's resources and any content in the anchor context.
