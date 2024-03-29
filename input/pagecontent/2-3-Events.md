@@ -30,7 +30,7 @@ The event name defines the event. Most FHIRcast events conform to an extensible 
 Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context change related events is:
 
 ```ebnf
-EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' )
+EventName ::= (FHIRresource) ('-') ( 'open' | 'close' | 'update' | 'select' )
 ```
 
 {% include img.html img="EventName.png" caption="Figure: Event-name specification" %}
