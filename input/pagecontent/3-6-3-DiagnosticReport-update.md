@@ -19,6 +19,11 @@ Key | Cardinality | Description
 `study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
 `updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
+The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
+
+* [Diagnostic Report for Update Events](StructureDefinition-fhircast-diagnostic-report-update.html)
+* [Content Update Bundle](StructureDefinition-fhircast-content-update-bundle.html)
+
 #### Supported Update Request Methods
 
 Each `entry` in the `updates` Bundle resource SHALL contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one `Bundle` SHALL be present in a `DiagnosticReport-update` request.
@@ -48,7 +53,17 @@ The following example shows adding an imaging study to the existing diagnostic r
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+          "status": "unknown",
+          "code" : {
+            "coding" : [
+              {
+                "system" : "http://loinc.org",
+                "code" : "19005-8",
+                "display": "Radiology Imaging study [Impression] (narrative)"
+              }
+            ]
+          }
         }
       },
       {
@@ -139,7 +154,17 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+          "status": "unknown",
+          "code" : {
+            "coding" : [
+              {
+                "system" : "http://loinc.org",
+                "code" : "19005-8",
+                "display": "Radiology Imaging study [Impression] (narrative)"
+              }
+            ]
+          }
         }
       },
       {
@@ -229,7 +254,17 @@ The following example shows a request to delete an observation from a content sh
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+          "status": "unknown",
+          "code" : {
+            "coding" : [
+              {
+                "system" : "http://loinc.org",
+                "code" : "19005-8",
+                "display": "Radiology Imaging study [Impression] (narrative)"
+              }
+            ]
+          }
         }
       },
       {
