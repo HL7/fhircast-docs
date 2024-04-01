@@ -81,9 +81,7 @@
 <page deprecated="true" key="eventnotification" name="Event notification"/>
 <page deprecated="true" key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
-<page key="2-10-2-ContentSharingFHIR" name="FHIR-based Content Sharing"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
-<page key="2-10-1-ContentSharingFHIRcastMessaging" name="FHIRcast Event-based Content Sharing"/>
 <page key="4-6-fhircast-event-content-sharing" name="FHIRcast Event-based Content Sharing"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
@@ -91,7 +89,6 @@
 <page key="glossary" name="Glossary"/>
 <page key="3-2-2-Heartbeat" name="HeartBeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
-<page key="4-7-hybrid-content-sharing" name="Hybrid Content Sharing"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
 <page deprecated="true" key="imagingstudy-close" name="ImagingStudy close event"/>
 <page deprecated="true" key="imagingstudy-open" name="ImagingStudy open event"/>
