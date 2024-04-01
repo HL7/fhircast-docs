@@ -1,6 +1,9 @@
 {% include infonote.html text='This page contains guidance to implementers and is not part of the <a href="2_Specification.html">normative-track.</a>' %}
 
 ### Example of Content Sharing in an Anchor Context
+The content that is interacted with during a FHIRcast content-sharing session can be considered a shared, non-persisted "cache" of FHIR data. This "cache" begins the session empty, except for the anchor context. Content is then added using FHIRcast *-update events from the session's subscribers. Upon a *-close event, FHIRcast doesn't place any requirements on persisting the content.
+
+From a workflow perspective, each subscriber is responsible for determining if FHIRcast session-created content should persist. Subscribers should provide previously existing content to a FHIRcast session anchored by a relevant context.
 
 An example of content sharing is provided for a use case where a `DiagnosticReport` is the anchor context (see [`anchor context`](5_glossary.html)).  However, the pattern of the example holds when other FHIR resource types are the anchor context.
 
