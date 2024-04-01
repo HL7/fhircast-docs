@@ -26,7 +26,7 @@ The following profiles provide guidance as to which resource attributes should b
 
 #### Supported Update Request Methods
 
-Each `entry` in the `updates` Bundle resource SHALL contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one `Bundle` SHALL be present in a `DiagnosticReport-update` request.
+Each `entry` in the `updates` Bundle resource SHALL contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one [transaction `Bundle`](https://www.hl7.org/fhir/http.html#transaction) SHALL be present in a `DiagnosticReport-update` request.
 
 {:.grid}
 Request Method | Operation
