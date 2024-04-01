@@ -107,8 +107,6 @@ pages:
       title: Multi-anchor Considerations
     4-6-fhircast-event-content-sharing.md:
       title: FHIRcast Event-based Content Sharing
-    4-7-hybrid-content-sharing.md:
-      title: Hybrid Content Sharing
 
   5_glossary.md:
     title: Glossary
@@ -155,7 +153,6 @@ menu:
     Multi-tab Considerations: 4-4-multitab-considerations.html
     Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
     FHIRcast Event-based Content Sharing: 4-6-fhircast-event-content-sharing.html
-    Hybrid Content Sharing: 4-7-hybrid-content-sharing.html
 
   Glossary: 5_glossary.html
   Artifacts: artifacts.html
