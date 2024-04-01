@@ -3,11 +3,7 @@ FHIRcast also defines content exchange between clients subscribed to the same to
 
 FHIR resources are used to carry the information being shared. These resources are entries in the `Bundle` resource inside the `updates` key. One and only one `Bundle` SHALL be present in a `[FHIR resource]-update` request (see [FHIRcast Content Update Bundle](StructureDefinition-fhircast-content-update-bundle.html)). No resource SHALL appear multiple times in the update `Bundle`.
 
-Commonly all information is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all information regarding that observation.
-
-However, in some cases the information of a resource may best be conveyed by reference rather than being self-contained. When exchanging a resource by reference, an entry’s `fullUrl` is populated with an uri from which the full content of the resource may be retrieved. Additionally, the entry’s resource attribute contains at least the `resourceType` and `id` of the resource while the method value in an entry’s request attribute SHALL be appropriately populated.
-
-If information is exchanged by reference, the `fullUrl` reference could be to a resource already persisted in a FHIR Server having a data store with long-term persistance. Alternatively, the reference could be to a temporary data store with a lifecycle of the content exchange session and managed by the Hub with a FHIR retrieve endpoint.
+The [FHIR transaction interaction](http://hl7.org/fhir/http.html#transaction) defines how multiple actions can be grouped together and performed as one, such that all information being created or updated is contained in an entry’s resource (i.e., information is passed by value). For example, an `Observation` resource usually contains all relevant information regarding that observation. While it is possible to communicate content by reference even within a transaction bundle, implementer experimentation is needed for increased use of references to resources not contained in the `Bundle`.  
 
 A key concept of the content sharing events is that the content is shared in a transactional manner.  The diagram below shows a series of operations beginning with a `[FHIR resource]-open` request followed by three `[FHIR resource]-update` requests.  The content in an anchor context is built up by the successive `[FHIR resource]-update` requests which contain only changes to the current state.  These changes are propagated by the Hub to all Subscribers using `[FHIR resource]-update` events containing only the changes to be made.
 
@@ -19,7 +15,7 @@ In order to avoid lost updates and other out of sync conditions, the Hub serves 
 
 FHIR resources are used to convey the structured information being exchanged in `[FHIR resource]-update` operations.  However, it is possible that these resources are never persisted in a FHIR server.  During the exchange of information, the content (FHIR resource instances) is often very dynamic in nature with a user creating, modifying, and even removing information which is being exchanged.  For example, a measurement made in an imaging application could be altered many times before it is finalized and it could be removed.
 
-### Responsibilities of a FHIRcast Hub and a Subscribed Client
+### Responsibilities of a FHIRcast Hub and a Subscriber
 
 Support of content sharing by a Hub is optional.  If supporting content sharing, a FHIRcast Hub SHALL fulfill additional responsibilities:
 
@@ -62,6 +58,9 @@ When a `[FHIR resource]-update` event is received by a Subscriber, the applicati
 A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor context referenced differs from the current context (the anchor context is present in the `context` attribute in `[FHIR resource]-update` events).  The proposed `[FHIR resource]-update` event SHALL be processed in scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context.  The current context is not changed by a `[FHIR resource]-update` event that references an anchor context that is not the current context.
 
 ### Content Creation and Reopen Scenario
+
+{% include infonote.html text='Implementer feedback on the generation and general handling of a resource's identifiers, including its logical `id` is requested. Should the logical id of a FHIR resource created during a content sharing session persist when the resource is persisted? How should id conflicts be resolved? Additionally, the ability of Subscribers who participated in a content sharing session to [reopen](2-10-1-ContentSharingFHIRcastMessaging.html#content-creation-and-reopen-scenario) a content sharing session including the state of content at the time of the prior close of the session' %}
+
 
 When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it SHALL create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
 

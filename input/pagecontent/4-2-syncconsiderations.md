@@ -88,7 +88,7 @@ Many applications go into edit mode or start a modal dialog that locks the syste
 |System|Failure mode|Possible actions|
 |--|--|--|
 | Subscriber | Modal dialog open in UI, unable to change case without losing end user data | Present end user with clear indication that contextual synchronization is lost. Respond with a http status code of 409 conflict. |
-| Subscriber | Unable to change context | Respond with a http status code of 409 conflict. |
+| Subscriber | Unable to change context | Client responds with a http status code of 409 conflict. If client is unable to determine inability to follow context, it responds with a 202 Accepted and sends a syncerror when the context change is refused, stating the source and reason for change. |
 | Subscriber | Ask user whether context can be changed, user refuses. | The Subscriber responds to the initial event with a 202 Accepted and sends a `SyncError` when the context change is refused, stating the source and reason for change. |
 | Subscriber | Ask user whether context can be changed, user does not react in time. | The Subscriber responds to the initial event with a 202 Accepted. When the user does not respond within 10 second,  it sends a `SyncError`. Context change is refused, stating the source and reason for change. |
 | Hub | One of the Subscribers cannot follow context | Update all Subscribers with a SyncError event |
@@ -110,8 +110,7 @@ This error scenario is the Hub losing contact with a Subscriber. This may be due
 {:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscriber | No event received from Hub within the Heartbeat.html time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually  using [Get Current Context](2-9-GetCurrentContext.html).  |
-
+| Subscriber | No event received from Hub within the Heartbeat.html time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually  using [Get Current Context](2-9-GetCurrentContext.html). |
 | Hub | Subscriber failed to respond to an event | Update all Subscribers with a SyncError event using information from the `subscriber.name` field from the original subscription of the Subscriber which failed to respond to an event |
 
 #### Race condition during launch
@@ -134,9 +133,8 @@ The Subscriber's subscription has expired causing it no longer receive event. Th
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually using [Get Current Context](2-9-GetCurrentContext.html). 
-
-| Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation.|
+| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually using [Get Current Context](2-9-GetCurrentContext.html). |
+| Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation. |
 
 #### Race condition between context changes
 

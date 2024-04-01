@@ -1,4 +1,4 @@
-### Event-name: `Encounter-open`
+### Event-name: Encounter-open
 
 eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
@@ -108,4 +108,4 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 | Version | Description
 | ---- | ----
 | 1.0 | Initial Release
-| 2.0 | Reference context resource profiles and update example to be compliant with the profiles
+| 1.1 | Reference context resource profiles and update example to be compliant with the profiles

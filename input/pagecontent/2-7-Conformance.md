@@ -16,7 +16,7 @@ Field              | Optionality | Type  | Description
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true` - indicating support for websockets.
 `fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
 `getCurrentSupport` | Optional | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
-`fhirVersion`  | Optional | string | `DSTU1`, `DSTU2`, `STU3`, `R4`, `R4B`, or `R5` - indicating the specific version of FHIR for this event.
+`fhirVersion`  | Optional | string | `DSTU1`, `DSTU2`, `STU3`, `R4`, `R4B`, or `R5` - indicating the specific version of FHIR for this Hub.
 
 A field of `webhookSupport` SHALL be ignored.
 
@@ -51,7 +51,7 @@ To supplement or optionally identify the location of a FHIRcast hub, a FHIR serv
 {:.grid}
 Extension | Cardinality | Type | Description
 --- | --- | --- | ---
-`hub.url`| 0..1 | url | The url at which an application can subscribe. May not be supported by client-side Hubs.
+`hub.url`| 0..1 | url | The url at which an application can subscribe. This might not be supported by client-side Hubs.
 
 #### CapabilityStatement Extension Example 
 

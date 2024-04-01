@@ -3,6 +3,8 @@ Parent: Encounter
 Id: fhircast-encounter-close
 Title: "FHIRcast Encounter for Close Events"
 Description: "Provides guidance as to which Encounter attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
