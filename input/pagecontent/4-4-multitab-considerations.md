@@ -47,6 +47,7 @@ Often an application knowing that it is being driven by an external actor remove
 * When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `Patient-open`) does not indicate a synchronization error.
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
 * Single-tab applications should not send a `-close` event as the result of receiving subsequent `-open` events, unless the intent is to limit all applications in the session to a single "tab"
+* Multi-tab applications should consider closing all contexts between disconnecting and re-subscribing to prevent "orphaning" a tab.
 
 ### Launching A Context-Less Tab
 
