@@ -133,7 +133,8 @@ The `context` element in an update event SHALL contain at least two fields. One 
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html).
 
-#### Selection events
+#### Selection events - Experimental
+
 
 Selection events use the suffix `select`. The format of selection event names is:
 
