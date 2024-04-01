@@ -47,3 +47,14 @@ STU3 introduces the concept of content sharing.
 ### `select` events
 
 STU3 introduces the (experimental) concept of _selection_.
+
+## Questions to implementers
+Scattered througout the FHIRcast specification are the  questions to implementers, the following hyperlink directly to them:
+* [2-4-Subscribing.html#current-context-notification-upon-successful-subscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription)
+* [2-5-EventNotification.html#hub-generated-syncerror-events](2-5-EventNotification.html#hub-generated-syncerror-events)
+* [2-9-GetCurrentContext.html#get-current-context](2-9-GetCurrentContext.html#get-current-context)
+* [3-2-2-Heartbeat.html#heartbeat-event](3-2-2-Heartbeat.html#heartbeat-event)
+* [4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session](4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session)
+* [4-5-multi-anchor-considerations.html#hub-derives-open-events](4-5-multi-anchor-considerations.html#hub-derives-open-events)
+* [4-5-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-5-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
+
