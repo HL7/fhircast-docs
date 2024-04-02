@@ -1,0 +1,37 @@
+#### home-open
+
+eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+
+##### Workflow
+
+The user has opened or switched back to the application's home page or tab which does not have any FHIR related context.
+
+Unlike most of FHIRcast events, `home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the `FHIR-resource`-`[open|close]` syntax.
+
+##### Context
+
+The context is empty.
+
+##### Example
+
+```json
+{
+  "timestamp": "2019-11-25T13:16:00.00",
+  "id": "35d0b1d4-de45-4b5b-a0e9-9c51b21ee71a",
+  "event": {
+  "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065", 
+  "hub.event": "home-open", 
+  "context": [] 
+  }
+}
+```
+
+##### notes
+
+Assumption: Open of an already open means a select.
+
+Late joining  - event stating the current selected patient.
+
+##### Risk
+
+The order of patients can be different between different applications. (late application joining, temporarily out of sync).
