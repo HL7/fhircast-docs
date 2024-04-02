@@ -44,8 +44,6 @@
 <artifact id="Practitioner/d2bb499c-3021-4c20-a97b-e62469e9e5f5" key="Practitioner-d2bb499c-3021-4c20-a97b-e62469e9e5f5" name="PractitionerExample"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
 <artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
-<artifact id="SubscriptionTopic/container-update-topic" key="SubscriptionTopic-container-update-topic" name="Subscribe to container changes in a topic"/>
-<artifact id="SubscriptionTopic/container-update-resource" key="SubscriptionTopic-container-update-resource" name="Subscribe to container changes of an resource"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>

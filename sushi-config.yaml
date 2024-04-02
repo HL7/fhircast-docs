@@ -10,7 +10,7 @@ description: "FHIRcast synchronizes healthcare applications in real time to show
 status: draft
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
-fhirVersion: 4.3.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
+fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0
 copyrightYear: 2017+
 releaseLabel: CI Build  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
