@@ -11,6 +11,8 @@ The `DiagnosticReport` in [`DiagnosticReport-select`](3-6-4-DiagnosticReport-sel
 Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event is the resources' `id`, as well as its `status` and `code` since these attributes are required by FHIR.  Other attributes of the `DiagnosticReport` MAY be valued but would serve no purpose in the [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html) event.
 
 """
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
