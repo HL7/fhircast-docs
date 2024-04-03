@@ -1,5 +1,5 @@
 {
-  "package-id" : "{pid}",
+  "package-id" : "fhircast-docs",
   "version" : "3.0.0-ballot",
   "path" : "{path}",
   "mode" : "working",
