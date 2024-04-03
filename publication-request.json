@@ -1,0 +1,11 @@
+{
+  "package-id" : "{pid}",
+  "version" : "3.0.0-ballot",
+  "path" : "{path}",
+  "mode" : "working",
+  "status" : "ballot",
+  "sequence" : "STU 3",
+  "desc" : "Reballot of FHIRcast STU3",
+  "changes" : "7_design-notes.html",
+  "first" : false,
+}
