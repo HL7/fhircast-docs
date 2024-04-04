@@ -18,7 +18,7 @@ Description: "CapabilityStatment stating support for FHIRcast."
 * rest[server].extension contains FHIRcastConfigurationExtension named fhircast 0..1 MS
 
 Extension: FHIRcastConfigurationExtension
-Id: fhircast-configuration-extensions
+Id: fhircast-configuration-extension
 Title: "FHIRcast extension"
 Context: CapabilityStatement.rest
 Description: """
@@ -29,8 +29,8 @@ Extension in CapabilityStatement stating the location of the FHIRcast hub to be 
 * value[x] 0..0
 * extension contains hubUrl 1..1 MS
 * extension[hubUrl]
-  * ^fixedUri = "hub.url"
   * url 1..1 MS
+    * ^fixedUri = "hub.url"
   * value[x] only url 
 
 
