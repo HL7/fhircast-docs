@@ -1,11 +1,11 @@
 {
-  "package-id" : "fhircast-docs",
+  "package-id" : "hl7.fhir.uv.fhircast",
   "version" : "3.0.0-ballot",
-  "path" : "{path}",
+  "path" : "2024May",
   "mode" : "working",
   "status" : "ballot",
   "sequence" : "STU 3",
   "desc" : "Reballot of FHIRcast STU3",
   "changes" : "7_design-notes.html",
-  "first" : false,
+  "first" : false
 }
