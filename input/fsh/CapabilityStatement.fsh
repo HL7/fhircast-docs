@@ -5,9 +5,12 @@ Description: "CapabilityStatment stating support for FHIRcast."
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[0].valueCode = #inm
 * implementationGuide ^slicing.rules = #open
+* implementationGuide ^slicing.description = "Requires FHIRcast IG to be listed"
+* implementationGuide ^slicing.discriminator.type = #value
+* implementationGuide ^slicing.discriminator.path = "$this"
 * implementationGuide 1..*
 * implementationGuide contains fhircast 1..1
-* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0-ballot"
+* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value
 * rest ^slicing.discriminator.path = "mode"
@@ -34,7 +37,7 @@ Extension in CapabilityStatement stating the location of the FHIRcast hub to be 
   * value[x] only url 
 
 
-Instance: FHIRcastCapabilityStatementExample
+Instance: FHIRcastCapabilityStatement-Example
 InstanceOf: FHIRcastCapabilityStatement
 Description: "Example instance of a CapabilityStatement with FHIRcast extension."
 Usage: #example
@@ -45,7 +48,11 @@ Usage: #example
 * fhirVersion = #4.0.1
 * format[+] = #json
 * format[+] = #xml
-* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0-ballot"
+* software
+  * name = "FHIR server software supporting FHIRcast"
+* implementation
+  * description = "Instance of FHIR server software supporting FHIRcast"
+* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
 * description = """
 Example instance of a CapabilityStatement with FHIRcast extension.
 """

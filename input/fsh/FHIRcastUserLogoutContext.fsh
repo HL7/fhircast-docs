@@ -32,7 +32,7 @@ Description: "This valueset lists possible reasons a user logs out and send a lo
 * FHIRcastCodeSystem#user-initiated "User initiated logout."
 * FHIRcastCodeSystem#system-initiated "System initiated logout."
 
-Instance: LogoutExample
+Instance: FHIRcastLogoutContext-Example
 InstanceOf: FHIRcastLogoutContext
 Description: "Example FHIRcast logout event context."
 Usage: #example
