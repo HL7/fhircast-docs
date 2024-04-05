@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2022May" ciUrl="http://hl7.org/fhir/uv/fhircast/build" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
-<version code="current" url="http://hl7.org/fhir/uv/fhircast/build"/>
-<version code="2.1.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="2024May" ciUrl="http://build.fhir.org/ig/HL7/fhircast-docs" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
+<version code="current" url="http://build.fhir.org/ig/HL7/fhircast-docs"/>
+<version code="3.0.0-ballot" url="2024May"/>
+<version code="2.1.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
 <version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
 <version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
 <version code="0.1" deprecated="true"/>
@@ -10,6 +11,7 @@
 <artifactPageExtension value="-mappings"/>
 <artifact id="StructureDefinition/fhircast-content-update-bundle" key="StructureDefinition-fhircast-content-update-bundle" name="FHIRcast Content Update Bundle"/>
 <artifact id="StructureDefinition/fhircast-diagnostic-report-open" key="StructureDefinition-fhircast-diagnostic-report-open" name="FHIRcast Diagnostic Report for Open Events"/>
+<artifact id="StructureDefinition/fhircast-diagnostic-report-select" key="StructureDefinition-fhircast-diagnostic-report-select" name="FHIRcast Diagnostic Report for Select Events"/>
 <artifact id="StructureDefinition/fhircast-diagnostic-report-update" key="StructureDefinition-fhircast-diagnostic-report-update" name="FHIRcast Diagnostic Report for Update Events"/>
 <artifact id="StructureDefinition/fhircast-diagnostic-report-close" key="StructureDefinition-fhircast-diagnostic-report-close" name="FHIRcast DiagnosticReport for Close Events"/>
 <artifact id="StructureDefinition/fhircast-encounter-close" key="StructureDefinition-fhircast-encounter-close" name="FHIRcast Encounter for Close Events"/>
@@ -25,8 +27,10 @@
 <artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="CodeSystem/fhircast-codesystem" key="CodeSystem-fhircast-codesystem" name="FHIRcast related Terminology."/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
+<artifact id="CapabilityStatement/fhircast-capabilitystatement-example" key="CapabilityStatement-fhircast-capabilitystatement-example" name="FHIRcastCapabilityStatementExample"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
+<artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-select" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-select" name="FHIRcastDiagnosticReportSelect-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-update" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-update" name="FHIRcastDiagnosticReportUpdate-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="FHIRcastEncounterClose-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
