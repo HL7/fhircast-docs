@@ -14,3 +14,16 @@ A definition for CodeSystem 'http://example.com/events/syncerror/your-error-code
 
 # Examples is provided by other profiles that are based on this one.
 The Implementation Guide contains no examples for this profile
+
+#this is intentional
+This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-hub-operation-outcome-syncerrror|3.0.0-ballot (this may not be a problem, but you should check that it's not intended to match a slice)
+
+# informational message is incorrect. Believe that we are using the right canonical url for radlex.  Tx.fhir.org just thinks it’s draft content
+Reference to draft CodeSystem http://radlex.org|4.1.0 (from http://tx.fhir.org/r4)
+
+# Informational severity; will investigate appropriate of assigning an OID, but not before ballot
+This resource could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
+
+#Informational severity; looking into THO processes, but not before ballot
+Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
+
