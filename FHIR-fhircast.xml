@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="2024May" ciUrl="http://build.fhir.org/ig/HL7/fhircast-docs" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2024May" ciUrl="http://build.fhir.org/ig/HL7/fhircast-docs" defaultVersion="2.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
 <version code="current" url="http://build.fhir.org/ig/HL7/fhircast-docs"/>
-<version code="3.0.0-ballot" url="2024May"/>
+<version code="3.0.0-ballot" url="http://hl7.org/fhir/uv/fhircast/2024May"/>
 <version code="2.1.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
 <version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
 <version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
@@ -24,27 +24,33 @@
 <artifact id="StructureDefinition/fhircast-patient-open" key="StructureDefinition-fhircast-patient-open" name="FHIRcast Patient for Open Events"/>
 <artifact id="StructureDefinition/fhircast-logout" key="StructureDefinition-fhircast-logout" name="FHIRcast context for logout events."/>
 <artifact id="StructureDefinition/fhircast-hibernate" key="StructureDefinition-fhircast-hibernate" name="FHIRcast context for userHibernate events."/>
-<artifact id="StructureDefinition/fhircast-configuration-extensions" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
+<artifact id="StructureDefinition/fhircast-configuration-extension" key="StructureDefinition-fhircast-configuration-extensions" name="FHIRcast extension"/>
 <artifact id="CodeSystem/fhircast-codesystem" key="CodeSystem-fhircast-codesystem" name="FHIRcast related Terminology."/>
 <artifact id="StructureDefinition/fhircast-capabilitystatement" key="StructureDefinition-fhircast-capabilitystatement" name="FHIRcastCapabilityStatement"/>
-<artifact id="CapabilityStatement/fhircast-capabilitystatement-example" key="CapabilityStatement-fhircast-capabilitystatement-example" name="FHIRcastCapabilityStatementExample"/>
+<artifact id="CapabilityStatement/fhircast-capabilitystatement-example" key="CapabilityStatement-fhircast-capabilitystatement-example" name="FHIRcastCapabilityStatement-Example"/>
+<artifact id="Bundle/FHIRcastContentUpdateBundle-Example" key="Bundle-FHIRcastContentUpdateBundle-Example" name="FHIRcastContentUpdateBundle-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-select" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-select" name="FHIRcastDiagnosticReportSelect-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-update" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-update" name="FHIRcastDiagnosticReportUpdate-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="FHIRcastEncounterClose-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
+<artifact id="Bundle/8i7tbu6fby5fuuey7133eh" key="Bundle-8i7tbu6fby5fuuey7133eh" name="FHIRcastGetCurrentContentBundle-Example"/>
+<artifact id="Parameters/FHIRcastHibernateContext-Example" key="Parameters-FHIRcastHibernateContext-Example" name="FHIRcastHibernateContext-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="FHIRcastImagingStudyClose-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="FHIRcastImagingStudyOpen-Example"/>
+<artifact id="Parameters/FHIRcastLogoutContext-Example" key="Parameters-FHIRcastLogoutContext-Example" name="FHIRcastLogoutContext-Example"/>
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
-<artifact id="Parameters/HibernateExample" key="Parameters-HibernateExample" name="HibernateExample"/>
-<artifact id="Parameters/LogoutExample" key="Parameters-LogoutExample" name="LogoutExample"/>
+<artifact id="OperationOutcome/FhircastHubSyncErrorOperationOutcome-Example" key="OperationOutcome-FhircastHubSyncErrorOperationOutcome-Example" name="FhircastHubSyncErrorOperationOutcome-Example"/>
+<artifact id="OperationOutcome/FhircastSubscriberSyncErrorOperationOutcome-Example" key="OperationOutcome-FhircastSubscriberSyncErrorOperationOutcome-Example" name="FhircastSubscriberSyncErrorOperationOutcome-Example"/>
+<artifact id="ImagingStudy/8i7tbu6fby5ftfbku6fniuf" key="ImagingStudy-8i7tbu6fby5ftfbku6fniuf" name="ImagingStudyExample"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
 <artifact id="Organization/a92ac1be-fb34-49c1-be58-10928bd271cc" key="Organization-a92ac1be-fb34-49c1-be58-10928bd271cc" name="OrganizationExample"/>
+<artifact id="Patient/19762ea6-4920-47a2-bf52-4027cb7adf92" key="Patient-19762ea6-4920-47a2-bf52-4027cb7adf92" name="PatientExample"/>
 <artifact id="Practitioner/d2bb499c-3021-4c20-a97b-e62469e9e5f5" key="Practitioner-d2bb499c-3021-4c20-a97b-e62469e9e5f5" name="PractitionerExample"/>
 <artifact id="ValueSet/FHIRcastLogoutReason" key="ValueSet-FHIRcastLogoutReason" name="Reasons for sending a logout event."/>
 <artifact id="ValueSet/FHIRcastHibernateReason" key="ValueSet-FHIRcastHibernateReason" name="Reasons for sending a userHibernate event."/>
@@ -91,6 +97,7 @@
 <page key="glossary" name="Glossary"/>
 <page key="3-2-2-Heartbeat" name="HeartBeat Event"/>
 <page deprecated="true" key="heartbeat" name="Heartbeat event"/>
+<page key="3-2-5-Home-open" name="Home-open Event"/>
 <page key="imagingstudyevents" name="ImagingStudy Events"/>
 <page deprecated="true" key="imagingstudy-close" name="ImagingStudy close event"/>
 <page deprecated="true" key="imagingstudy-open" name="ImagingStudy open event"/>
@@ -125,6 +132,6 @@
 <page key="table-of-contents" name="Table of Contents"/>
 <page deprecated="true" key="userhibernate" name="User hibernate event"/>
 <page deprecated="true" key="userlogout" name="User logout event"/>
+<page key="3-2-4-UserHibernate" name="UserHibernate Event"/>
 <page key="3-2-3-UserLogout" name="UserLogout Event"/>
-<page key="3-2-4-UserHibernate" name="userhibernate Event"/>
 </specification>

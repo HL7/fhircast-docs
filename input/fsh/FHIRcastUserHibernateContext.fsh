@@ -32,7 +32,7 @@ Description: "This valueset lists possible reasons a hibernate event is send to 
 * FHIRcastCodeSystem#user-initiated "User initiated hibernate."
 * FHIRcastCodeSystem#system-initiated "System initiated hibernation."
 
-Instance: HibernateExample
+Instance: FHIRcastHibernateContext-Example
 InstanceOf: FHIRcastHibernateContext
 Description: "Example of FHIRcast hibernate event context."
 Usage: #example

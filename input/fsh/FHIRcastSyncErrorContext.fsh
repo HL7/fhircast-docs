@@ -13,11 +13,13 @@ OperationOutcomes contains information that is used to determine the cause of th
 * issue ^slicing.rules = #open
 * issue ^slicing.ordered = false   // can be omitted, since false is the default
 * issue ^slicing.description = "FHIRcast specific information"
+* issue ^slicing.discriminator.type = #value
+* issue ^slicing.discriminator.path = "code"
 * issue contains fhircast 1..1
 * issue[fhircast].code = #processing
 * issue[fhircast].details 1..1 MS
 * issue[fhircast].details.coding ^slicing.discriminator.type = #value
-* issue[fhircast].details.coding ^slicing.discriminator.path = "coding.system"
+* issue[fhircast].details.coding ^slicing.discriminator.path = "system"
 * issue[fhircast].details.coding ^slicing.rules = #open
 * issue[fhircast].details.coding ^slicing.ordered = false   // can be omitted, since false is the default
 * issue[fhircast].details.coding ^slicing.description = "Detailed information on syncerror cause."
@@ -41,7 +43,7 @@ Defines the structure of an OperationOutcome to be used in sync-error events cre
 """
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[0].valueCode = #inm
-* issue[fhircast].severity = #information
+* issue[fhircast].severity = #warning
 
 Profile: FhircastSubscriberSyncErrorOperationOutcome
 Parent:  FhircastSyncErrorOperationOutcome
@@ -54,4 +56,45 @@ to follow context.
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[0].valueCode = #inm
 * issue[fhircast].severity = #warning
+
+Instance: FhircastHubSyncErrorOperationOutcome-Example
+InstanceOf: FhircastHubSyncErrorOperationOutcome
+Usage: #example
+Description: "Example OperationOutcome as present in sync-error events"
+* issue[fhircast]
+  * severity = #warning
+  * code = #processing
+  * diagnostics = "Subscriber Acme Product could not be reached."
+  * details
+    * coding[+]
+      * system = "https://fhircast.hl7.org/events/syncerror/eventid"
+      * code = #fdb2f928-5546-4f52-87a0-0648e9ded065
+    * coding[+] 
+      * system = "https://fhircast.hl7.org/events/syncerror/eventname"
+      * code = #Patient-open
+    * coding[+]
+      * system = "https://fhircast.hl7.org/events/syncerror/subscribername"
+      * code = #"Acme Product"
+    * coding[+] = http://example.com/events/syncerror/your-error-code-system#"FHIRcast sync error"
+
+
+Instance: FhircastSubscriberSyncErrorOperationOutcome-Example
+InstanceOf: FhircastSubscriberSyncErrorOperationOutcome
+Usage: #example
+Description: "Example OperationOutcome as present in sync-error events"
+* issue[fhircast]
+  * severity = #warning
+  * code = #processing
+  * diagnostics = "Acme Product refused to follow context"
+  * details
+    * coding[+]
+      * system = "https://fhircast.hl7.org/events/syncerror/eventid"
+      * code = #fdb2f928-5546-4f52-87a0-0648e9ded065
+    * coding[+] 
+      * system = "https://fhircast.hl7.org/events/syncerror/eventname"
+      * code = #Patient-open
+    * coding[+]
+      * system = "https://fhircast.hl7.org/events/syncerror/subscribername"
+      * code = #"Acme Product"
+    * coding[+] = http://example.com/events/syncerror/your-error-code-system#"FHIRcast sync error"
 
