@@ -66,7 +66,9 @@ pages:
       3-2-3-UserLogout.md:
         title: UserLogout Event
       3-2-4-UserHibernate.md:
-        title: userhibernate Event
+        title: UserHibernate Event
+      3-2-5-Home-open.md:
+        title: Home-open Event
     3-3-0-patientevents.md:
       title: Patient Events
       3-3-1-Patient-open.md:

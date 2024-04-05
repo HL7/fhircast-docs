@@ -4,7 +4,7 @@ eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-A Subscriber indicates that the User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. Upon receiving a userLogout event, the application SHOULD logout the user or respond with a `syncerror`.
+A Subscriber indicates that the User's session has ended, perhaps by exiting the Subscriber through a logout, session time-out or other reason. Upon receiving a `UserLogout` event, the application SHOULD logout the user or respond with a `SyncError`.
 
 Unlike most of FHIRcast events, `UserLogout` is a statically named event and therefore does not follow the regular FHIRcast syntax.
 
