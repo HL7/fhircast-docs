@@ -1,7 +1,7 @@
 {
   "package-id" : "hl7.fhir.uv.fhircast",
   "version" : "3.0.0-ballot",
-  "path" : "2024May",
+  "path" : "http://hl7.org/fhir/uv/fhircast/2024May/",
   "mode" : "working",
   "status" : "ballot",
   "sequence" : "STU3",
