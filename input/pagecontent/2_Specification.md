@@ -25,6 +25,6 @@ FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/f
 </figure>
 
 
-All data exchanged through the HTTP APIs SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures (unless otherwise specified), and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS which is defined in [RFC2818](https://tools.ietf.org/html/rfc2818).
+All data exchanged through the HTTP APIs SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures (unless otherwise specified), and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS which is defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIR resources exchanged in FHIRcast messages use FHIR-specific JSON serialization [FHIR json](https://www.hl7.org/fhir/json.html).
 
 All data exchanged through WebSockets SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over Secure Web Sockets (WSS) as defined in [RFC6455](https://tools.ietf.org/html/rfc6455).
