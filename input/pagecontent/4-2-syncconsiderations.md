@@ -188,4 +188,4 @@ A Hub that sends a `SyncError` event (e.g. after it is not able to deliver an ev
 
 * Should a Subscriber get all SyncError's or only those related to events to which it subscribed?
 * Does a Hub send an `SyncError` for each Subscriber that cannot be reached or refused, or is the Hub allowed to combine them in one.
-* When the Hub/Subscriber resends an context change event, is the `Heartbeat.html` still needed?
+* When a Subscriber resends an context change event, is the `Heartbeat.html` still needed?
