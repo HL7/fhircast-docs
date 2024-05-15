@@ -109,7 +109,7 @@ This event category contains events required to maintain a FHIRcast session. The
 
 #### Content sharing events
 
-Content sharing events use the suffix `update`. The format of selection event names is:
+Content sharing events use the suffix `update`. The format of content sharing event names is:
 
 ```ebnf
 ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
