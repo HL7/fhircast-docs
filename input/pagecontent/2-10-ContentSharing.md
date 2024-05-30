@@ -37,7 +37,7 @@ Clients wishing to exchange structured information SHALL:
 2. Use a `[FHIR resource]-open` request to open a new resource which becomes the anchor context
 3. Make a `[FHIR resource]-update` request when appropriate. The `[FHIR resource]-update` request contains a `Bundle` resource which is a collection of resources that are atomically processed by the Hub with the anchor context's content being adjusted appropriately
 4. Maintain the current `context.versionId` of the anchor context provided by the Hub so that a subsequent `[FHIR resource]-update` request may provide the current `context.versionId` which will be validated by the Hub
-5. Appropriately process [FHIR resource]-[open\|update\|close\|select] events; note that a Subscriber may choose to ignore the contents of a `[FHIR resource]-update` event but should still track the `context.versionId` for subsequent use
+5. Appropriately process [FHIR resource]-[open\|update\|close] events; note that a Subscriber may choose to ignore the contents of a `[FHIR resource]-update` event but should still track the `context.versionId` for subsequent use
 6. If a `[FHIR resource]-update` request fails with the Hub, the Subscriber may issue a [`GET Context`](2-9-GetCurrentContext.html) request to the Hub in order to retrieve the current content in the anchor context and its current `context.versionId`
 
 ### Processing Update Events
