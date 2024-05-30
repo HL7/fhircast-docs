@@ -61,7 +61,6 @@ Hub -\ RepApp: 11c: DiagnosticReport-select
 deactivate App1
 activate RepApp
 deactivate Hub
-RepApp -> RepApp++--: Store versionId
 end
 deactivate RepApp
 @enduml
