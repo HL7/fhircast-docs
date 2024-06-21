@@ -15,6 +15,7 @@ The sections in this chapter are:
 | [3.2.2 Heartbeat.html event](3-2-2-Heartbeat.html) |
 | [3.2.3 UserLogout.html event](3-2-3-UserLogout.html) |
 | [3.2.4 UserHibernate.html event](3-2-4-UserHibernate.html) |
+| [3.2.5 Home-open.html event](3-2-5-Home-open.html) |
 
 | **3.3 Patient Events** |
 | [3.3.1 Patient-open event](3-3-1-Patient-open.html) |
