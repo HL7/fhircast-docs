@@ -53,9 +53,17 @@ If the `context.versionId` values match, the Hub proceeds with processing each o
 
 When a `[FHIR resource]-update` event is received by a Subscriber, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `context.versionId` of the anchor context provided in the event for later use.
 
-#### Processing Update Events and Current Context
+#### Experimental Capability – Update events outside of current context
 
-A FHIRcast Hub SHALL process a `[FHIR resource]-update` event even if the anchor context referenced differs from the current context (the anchor context is present in the `context` attribute in `[FHIR resource]-update` events).  The proposed `[FHIR resource]-update` event SHALL be processed in scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context.  The current context is not changed by a `[FHIR resource]-update` event that references an anchor context that is not the current context.
+{% include infonote.html text='Implementer feedback on safety and complexity vs value of content updates (1) to a report other than the one being authored, and/or (2) outside of a user session entirely. Also, why shouldn't this interaction simply use standard RESTful FHIR?' %}
+
+This capability is deemed experimental due to low production adoption and evaluation of potential risk patient safety. This capability may change or be removed in future versions of this specification. 
+
+Towards enabling greater workflow flexibility and greater convenience of subscribers, Subscribers MAY send a [FHIR resource]-update event, that is unrelated to the current context (e.g. an update event in which the anchor context referenced differs from the current context). Subscribers SHALL NOT send select events unrelated to the current context.
+
+If the event recipient supports receiving and processing update events outside of the current context, the event SHALL be processed in scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context.
+
+If the event recipient does not support update events outside of the current context, the recipient SHALL respond with an appropriate [event notification](2-5-EventNotification.html#event-notification-response).
 
 ### Content Creation and Reopen Scenario
 
