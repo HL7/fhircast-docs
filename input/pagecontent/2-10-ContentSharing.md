@@ -55,7 +55,7 @@ When a `[FHIR resource]-update` event is received by a Subscriber, the applicati
 
 #### Experimental Capability – Update events outside of current context
 
-{% include infonote.html text='Implementer feedback on safety and complexity vs value of content updates (1) to a report other than the one being authored, and/or (2) outside of a user session entirely. Also, why shouldn't this interaction simply use standard RESTful FHIR?' %}
+{% include infonote.html text='Implementer feedback on safety and complexity vs value of content updates (1) to a report other than the one being authored, and/or (2) outside of a user session entirely. Also, why shouldn\'t this interaction simply use standard RESTful FHIR?' %}
 
 This capability is deemed experimental due to low production adoption and evaluation of potential risk patient safety. This capability may change or be removed in future versions of this specification. 
 
