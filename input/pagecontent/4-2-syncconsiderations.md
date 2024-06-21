@@ -105,12 +105,12 @@ Although not intended, applications do fail. In this case the event is received 
 
 #### Connection is lost
 
-This error scenario is the Hub losing contact with a Subscriber. This may be due to a Subscriber crash or a network failure. In these cases, the Subscriber would not be aware of the fact that the context has changed or that the context change events are not received.  To mitigate this situation, Subscribers are recommended to register for `Heartbeat.html` events.
+This error scenario is the Hub losing contact with a Subscriber. This may be due to a Subscriber crash or a network failure. In these cases, the Subscriber would not be aware of the fact that the context has changed or that the context change events are not received.
 
 {:.grid}
 |System|Failure mode|Possible actions|
 |--|--|--|
-| Subscriber | No event received from Hub within the Heartbeat.html time-out. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context using [Get Current Context](2-9-GetCurrentContext.html). |
+| Subscriber | Websocket connection is closed and cannot be reopened. | Present a clear indication to the end-user that the connection has been lost. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context using [Get Current Context](2-9-GetCurrentContext.html). |
 | Hub | Subscriber failed to respond to an event | Update all Subscribers with a SyncError event using information from the `subscriber.name` field from the original subscription of the Subscriber which failed to respond to an event |
 
 #### Race condition during launch
@@ -133,7 +133,7 @@ The Subscriber's subscription has expired causing it no longer receive event. Th
 {:.grid}
 | System | Failure mode | Possible actions |
 |--|--|--|
-| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context manually using [Get Current Context](2-9-GetCurrentContext.html). |
+| Subscriber | Subscription has expired | Present a clear indication to the end-user that the subscription has expired. Resubscribe to the topic. If supported by the Hub, receive [current context upon resubscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription) or retrieve the context using [Get Current Context](2-9-GetCurrentContext.html). |
 | Hub | None | The hub cannot distinguish between an intentional and unintentional subscription expiration. So the Hub cannot mitigate this situation. |
 
 #### Race condition between context changes
@@ -188,4 +188,4 @@ A Hub that sends a `SyncError` event (e.g. after it is not able to deliver an ev
 
 * Should a Subscriber get all SyncError's or only those related to events to which it subscribed?
 * Does a Hub send an `SyncError` for each Subscriber that cannot be reached or refused, or is the Hub allowed to combine them in one.
-* When a Subscriber resends an context change event, is the `Heartbeat.html` still needed?
+
