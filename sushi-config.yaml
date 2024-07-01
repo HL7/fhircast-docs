@@ -16,11 +16,18 @@ jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0-ballot
 copyrightYear: 2017+
-releaseLabel: STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 publisher:
   name: HL7 International / Infrastructure And Messaging
   url: http://www.hl7.org/Special/committees/inm
   email: inm@lists.HL7.org 
+contact:
+  - name: HL7 International / Infrastructure And Messaging
+    telecom:
+      - system: url
+        value: http://www.hl7.org/Special/committees/inm
+      - system: email
+        value: inm@lists.HL7.org 
 dependencies:
   hl7.fhir.uv.ipa: 1.0.0
 pages:
@@ -100,7 +107,7 @@ pages:
     title: Scenarios
     4-1-launch-scenarios.md:
       title: Application Launch Scenarios and Session Discovery
-    4-2-syncconsiderations.md:
+    4-2-sync-considerations.md:
       title: Synchronization Considerations
     4-3-security-considerations.md:
       title: Security Considerations
@@ -151,11 +158,10 @@ menu:
   Scenarios: 
     Introduction: 4_Scenarios.html
     Application Launch Scenarios and Session Discovery: 4-1-launch-scenarios.html
-    Synchronization Considerations: 4-2-syncconsiderations.html 
+    Synchronization Considerations: 4-2-sync-considerations.html 
     Security Considerations: 4-3-security-considerations.html
     Multi-tab Considerations: 4-4-multitab-considerations.html
     Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
     FHIRcast Event-based Content Sharing: 4-6-fhircast-event-content-sharing.html
-
   Glossary: 5_glossary.html
   Artifacts: artifacts.html
