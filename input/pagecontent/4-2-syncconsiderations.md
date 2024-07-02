@@ -170,7 +170,8 @@ The situations in which a sync error can occur are indicated in the previous sec
 
 #### Subscribers that initiate a context change
 
-A Subscriber that initiates a context change and receives a `SyncError` related to a context change event it sent should resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
+A Subscriber that initiates a context change and receives a `SyncError` related to a context change event it sent, ought to resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
+
 
 #### Subscriber that follow context change
 
