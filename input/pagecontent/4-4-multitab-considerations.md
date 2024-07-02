@@ -53,4 +53,4 @@ Often an application knowing that it is being driven by an external actor remove
 
 Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab.
 
-Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `UserLogout.html`).
+The [Home-open event](3-2-5-Home-open.html) represents a lack of context.
