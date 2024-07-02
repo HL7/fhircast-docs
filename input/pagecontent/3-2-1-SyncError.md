@@ -11,7 +11,7 @@ Unlike most of FHIRcast events, `SyncError` is an infrastructural event and does
 A `SyncError` is sent by a Subscriber when:
 1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, and later the Subscriber decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)). 
 
-In these events the field `issue.severity` is SHALL be set to `warning` as is specified in [Operation outcome for Subscriber generated sync-errors](StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror.html).
+In these events the field `issue.severity` is SHALL be set to `warning` as is specified in [Operation outcome for Subscriber generated sync-errors](StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror.html). `SyncError` is not used when a Subscriber responds to an `*-update` or `*-select` event.
 
 
 A `SyncError` is broadcast by the Hub when one of the following conditions occur:
