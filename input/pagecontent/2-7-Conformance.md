@@ -46,37 +46,8 @@ Content-Type: application/json
 
 ### FHIR Capability Statement
 
-To supplement or optionally identify the location of a FHIRcast hub, a FHIR server MAY declare support for FHIRcast using the FHIRcast extension on its FHIR CapabilityStatement's `rest` element. The FHIRcast extension has the following internal extensions:
+To supplement or optionally identify the location of a FHIRcast hub, a FHIR server MAY declare support for FHIRcast using the FHIRcast extension on its FHIR CapabilityStatement's `rest` element. Note that client-side Hubs without a client-side FHIR server likely will not support communicating the url of a hub in this extension. See [the FHIRcast CapabilityStatement profile](StructureDefinition-fhircast-capabilitystatement.html).
 
-{:.grid}
-Extension | Cardinality | Type | Description
---- | --- | --- | ---
-`hub.url`| 0..1 | url | The url at which an application can subscribe. This might not be supported by client-side Hubs.
-
-#### CapabilityStatement Extension Example 
-
-```text
-{
-  "resourceType": "CapabilityStatement",
-  ....
-  "rest": [{
-   ...
-        "extension": [
-          {
-            "url": "http://fhircast.hl7.org/StructureDefinition/fhircast-configuration/fhir-configuration",
-            "extension": [
-              {
-                "url": "hub.url",
-                "valueUri": "https://hub.example.com/fhircast/hub/R4"
-              }
-            ]
-          }
-        ]      
-    ...
-    }]
-    ...
-}
-```
 ### FHIR Resource Structures
 
 FHIRcast defines profiles for various FHIR resource structures used in the specification, see [`summary of artifacts`](artifacts.html).
