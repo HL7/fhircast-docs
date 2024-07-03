@@ -19,7 +19,7 @@ The diagrams below show two applications without any context, followed by a `Pat
 
 #### Opening Multiple Patients
 
-As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `Patient-open` works as expected by synchronizing the two applicationss for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
+As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial `Patient-open` works as expected by synchronizing the two applications for Patient 1. When the multi-tab application opens a second patient (without closing the first) the single-tab application follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab application, the single-tab application can still stay in sync with the current context.
 
 {% include img.html img="MultiplePatientOpens.png" caption="Figure: Multiple patient open example" %}
 
@@ -36,6 +36,8 @@ The specification deliberatively prescribes maintaining contexts for which an `-
 
 Recall that the multi-tab example is only one scenario in which the multiple contexts approach is valid.  Another scenario would be if a user has opened multiple imaging studies and is frequently changing between the studies which were opened.  The network and compute resource consumption for opening and reopening imaging studies is significant and may be avoided with the multiple context approach.  Applications may decide to support only a single context, in which case they would imply a close __in their application__ upon receiving an `-open` event.  A subsequent `-open` event for the context which they implicitly closed would require that application to retrieve the necessary resources related to this context.
 
+Note that the mechanism discussed on this page does not guarantee that order of tabs is the same between different applications. Applications that join late or have been temporarily out of sync might receive the `-open` events in a different order.
+
 ### Considerations on Applications Issuing `-close` Events
 
 Upon closing of an application or the user choosing to close a subject, the application with which the user is interacting has the choice to send or not send a `-close` event for the current context.  Typically making this decision is appropriate when an application knows it is being driven by another application; for example, when another application is providing some type of worklist functionality.
@@ -51,6 +53,6 @@ Often an application knowing that it is being driven by an external actor remove
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab.
+Many applications feature a "home" or "default" tab that contains no clinical context but may offer useful application features. Sometimes, other applications may want to subscribe to and be notified when an application switches to this no-context tab. This is indicated by the [Home-open event](3-2-5-Home-open.html).
 
-The [Home-open event](3-2-5-Home-open.html) represents a lack of context.
+Note that sending a [Home-open event](3-2-5-Home-open.html) merely signals that an application has switched to the no-context tab. It does not change the current context. For instance, if a specific patient is currently in context, sending a Home-open event does not imply that this patient is no longer in context.
