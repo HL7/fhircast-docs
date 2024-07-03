@@ -1,6 +1,6 @@
 Section [2.3 Events](2-3-Events.html) defines the events and event types supported by FHIRcast. The events that are supported by a Hub are communicated using the conformance endpoint (see [Conformance](2-7-Conformance.html)).
 
-Although [2.3 Events](2-3-Events.html) provides the base definition of the events, many commonly used events extend on this base definition. Such extension include the definition of profiles on the resourcese used in context elements and the definition of additional context elements. 
+Although [2.3 Events](2-3-Events.html) provides the base definition of the events, many commonly used events extend on this base definition. Such extension include the definition of profiles on the resources used in context elements and the definition of additional context elements. 
 
 This chapter contains the definition of these events and their event maturity level.  
 
