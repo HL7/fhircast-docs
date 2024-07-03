@@ -108,7 +108,7 @@ In addition to distributing [`SyncError`](3-2-1-SyncError.html) events sent by o
 
 1. A Subscriber's WebSocket connection is closed with any Connection Close Reason other than 1000 (normal closure) or 1001 (going away) (see [WebSocket RFC](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6) and [WebSocket Status Codes](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4))
 
-2. A Subscriber does not respond to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
+2. A Subscriber does not [respond](https://build.fhir.org/ig/HL7/fhircast-docs/2-5-EventNotification.html#event-notification-response) to a FHIRcast event within 10 seconds or an order of magnitude lower than the subscription time-out.
 
 {% include questionnote.html text='Implementer input is solicited on the amount and specificity of time, in the above.' %}
 
