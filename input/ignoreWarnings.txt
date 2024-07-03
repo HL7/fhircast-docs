@@ -24,5 +24,5 @@ Reference to draft CodeSystem http://radlex.org%
 # Informational severity; will investigate appropriate of assigning an OID, but not before ballot
 This resource could usefully have an OID assigned%
 
-#Informational severity; looking into THO processes, but not before ballot
+# TSMG has voted for this Codesystem to remain in this IG, see minutes: https://confluence.hl7.org/display/TSMG/2024-04-11+TSMG+Agenda+and+Minutes
 Most code systems defined in HL7 IGs will need to move to THO later during the process.%
