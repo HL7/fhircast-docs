@@ -41,6 +41,7 @@ Recall that the multi-tab example is only one scenario in which the multiple con
 Upon closing of an application or the user choosing to close a subject, the application with which the user is interacting has the choice to send or not send a `-close` event for the current context.  Typically making this decision is appropriate when an application knows it is being driven by another application; for example, when another application is providing some type of worklist functionality.
 
 Often an application knowing that it is being driven by an external actor removes the ability for users to close a subject; for example, an imaging application could assume that an external actor is responsible for the closing of subjects and remove the UI element(s) enabling a user to close the current image study.  However, an application may choose to retain this capability.  When the capability to close subjects is retained, the application could decide to not send a `-close` event if it considers this close to be local to itself.  If an application decides not to send a `-close` event, to ensure a consistent context for the user, the application should not establish a new local context without receiving or sending an `-open` event.
+Note that the mechanism discussed on this page does not guarantee that order of tabs is the same between different applications. Applications that join late or have been temporarily out of sync might receive the `-open` events in a different order.
 
 ### Recommendations
 
@@ -51,6 +52,6 @@ Often an application knowing that it is being driven by an external actor remove
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab.
+Many applications feature a "home" or "default" tab that contains no clinical context but may offer useful application features. Sometimes, other applications may want to subscribe to and be notified when an application switches to this no-context tab. This is indicated by the [Home-open event](3-2-5-Home-open.html).
 
-The [Home-open event](3-2-5-Home-open.html) represents a lack of context.
+Note that sending a [Home-open event](3-2-5-Home-open.html) merely signals that an application has switched to the no-context tab. It does not change the current context. For instance, if a specific patient is currently in context, sending a Home-open event does not imply that this patient is no longer in context.
