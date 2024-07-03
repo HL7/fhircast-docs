@@ -32,7 +32,7 @@ Note that:
 Much of this implementation guide is descriptive in how Subscribers and the FHIRcast Hub interact in various scenarios.  The normative portion of this implementation guide is contained in Sections [2: Specification](2_Specification.html), [3: Event Library](3_Events.html), and [8: Artifacts](artifacts.html).  Other portions of the specification are informative and are labeled as such.
 
 ### Relation to FHIR Subscriptions
-FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed).  Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
+FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed). Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
 
 * FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow
 * FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios
