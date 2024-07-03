@@ -27,7 +27,7 @@ Other attributes of the DiagnosticReport, ImagingStudy, Encounter, and Patient r
 
 #### Content Sharing Support
 
-If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the [`anchor context`](5_glossary.html).  Subscribers MUST submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber is not subscribed to the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event the `context.versionId` can be safely ignored.
+If a Hub supports content sharing, when it distributes a `DiagnosticReport-open` event the Hub associates a `context.versionId` with the [`anchor context`](5_glossary.html).  Subscribers SHALL submit this `context.versionId` in subsequent [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) requests.  If a Subscriber is not subscribed to the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event the `context.versionId` can be safely ignored.
 
 
 ### Examples

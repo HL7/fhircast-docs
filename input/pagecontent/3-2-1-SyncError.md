@@ -8,16 +8,16 @@ A synchronization error has been detected and this is indicated to Subscribers.
 
 Unlike most of FHIRcast events, `SyncError` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
 
-A `syncerror` is sent by a Subscriber when:
+A `SyncError` is sent by a Subscriber when:
 1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, and later the Subscriber decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)). 
 
-In these events the field `issue.severity` is SHALL be set to `warning` as is specified in [Operation outcome for Subscriber generated sync-errors](StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror.html).
+In these events the field `issue.severity` is SHALL be set to `warning` as is specified in [Operation outcome for Subscriber generated sync-errors](StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror.html). `SyncError` is not used when a Subscriber responds to an `*-update` or `*-select` event.
 
 
-A `syncerror` is broadcast by the Hub when one of the following conditions occur:
+A `SyncError` is broadcast by the Hub when one of the following conditions occur:
 1. A Subscriber encounters an error when following a context, returning a server error (50X) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)).
 2. A Subscriber decides not to follow a context, returning a server conflict (409) to the Hub (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)).
-3. The Hub detects a connection issue with a Subscriber (see: [`Hub Generated syncerror Events`](2-5-EventNotification.html#hub-generated-syncerror-events)).
+3. The Hub detects a connection issue with a Subscriber (see: [`Hub Generated SyncError Events`](2-5-EventNotification.html#hub-generated-syncerror-events)).
 
 In these events the field `issue.severity` SHALL beset to `warning` as is specified in [Operation outcome for Hub generated sync-errors](StructureDefinition-fhircast-hub-operation-outcome-syncerrror.html).
 
@@ -82,4 +82,4 @@ The `context` array SHALL contain a single FHIR OperationOutcome based on the pr
 | ------- | ------------- |
 | 1.0     | Initial Release |
 | 2.0     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
-| 3.0     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |
+| 2.1     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |

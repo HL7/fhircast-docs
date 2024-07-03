@@ -3,6 +3,9 @@ Parent: Parameters
 Id: fhircast-logout
 Title: "FHIRcast context for logout events."
 Description: "Contains the rationale behind the userLogout event"
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
+* ^experimental = false
 * parameter 1..* MS
 * parameter ^slicing.discriminator.type = #value
 * parameter ^slicing.discriminator.path = "name"
@@ -23,11 +26,15 @@ Description: "Contains the rationale behind the userLogout event"
 ValueSet: FHIRcastLogoutReason
 Title: "Reasons for sending a logout event."
 Description: "This valueset lists possible reasons a user logs out and send a logout event to other Subscribers."
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
+* ^experimental = false
 * FHIRcastCodeSystem#user-initiated "User initiated logout."
 * FHIRcastCodeSystem#system-initiated "System initiated logout."
 
-Instance: LogoutExample
+Instance: FHIRcastLogoutContext-Example
 InstanceOf: FHIRcastLogoutContext
+Description: "Example FHIRcast logout event context."
 Usage: #example
 * parameter[code]
   * name = "code"

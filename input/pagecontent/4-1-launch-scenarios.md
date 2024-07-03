@@ -7,22 +7,20 @@ The [HL7 SMART on FHIR app launch specification](http://www.hl7.org/fhir/smart-a
 
 Once the `hub.topic` and URL to the Hub (`hub.url`) are known by the synchronizing application, the subscription and workflow event notification process proceeds per the FHIRcast specification, regardless of the specific application launch mechanism used.
 
-Use of the SMART on FHIR OAuth 2.0 profile simplifies, secures, and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate application launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking, and other security risks. Specifically, the `hub.topic` session identifier must be unique, unguessable, and specific to the session.
+Use of the SMART on FHIR OAuth 2.0 profile simplifies, secures, and standardizes FHIRcast context synchronization. While more creative approaches, such as the alternate application launch and shared session identifier generation algorithm are possible to use with FHIRcast, care must be taken by the implementer to ensure synchronization and to protect against PHI loss, session hijacking, and other security risks. Specifically, the `hub.topic` session identifier must be unique and specific to the session.
 
 ### SMART on FHIR
 
 FHIRcast extends SMART on FHIR to support clinical context synchronization between disparate, full featured healthcare applications which cannot be embedded within one another.
 This section defines the extensions on SMART On FHIR that allow for integration of FHIRcast with applications launched using SMART on FHIR.
 
-The application is authorized to synchronize to a user's session using the OAuth2.0 [FHIRcast scopes](2-2-FhircastScopes.html).
-
-During the OAuth2.0 handshake, the application [requests and is granted](http://www.hl7.org/fhir/smart-app-launch/#2-ehr-evaluates-authorization-request-asking-for-end-user-input) one or more FHIRcast scopes. The EHR's authorization server returns the Hub URL and any relevant session topics as SMART launch parameters.
+The application can request the authorization to send and/or receive FHIRcast events using the OAuth2.0 [FHIRcast scopes](2-2-FhircastScopes.html). During the OAuth2.0 handshake, the application is granted one or more FHIRcast scopes. The EHR’s authorization server returns the Hub URL and any relevant session topics as SMART launch parameters.
 
 {:.grid}
 | SMART launch parameter | Optionality | Type | Description |
 | --- | --- | --- | --- |
 | `hub.url` | Required | string | The base URL of the EHR's hub. |
-| `hub.topic` | Optional | string | The session topic identifiers. The `hub.topic` is a unique, opaque identifier to the a user's session, typically expressed as a hub-generated guid. |
+| `hub.topic` | Optional | string | The session topic identifier.|
 
 The application requests one or more FHIRcast scopes, depending upon its need to learn about specific workflow events or to direct the workflow itself.
 
@@ -117,7 +115,7 @@ Similarly, any bespoke application launch mechanism can establish a FHIRcast ses
 
 ### No application launch
 
-In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "application launch", with its corresponding ability to exchange contextual information, the unique, unguessable, and session-specific `hub.topic` must be calculated by both the driving application's Hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `hub.topic`.
+In a scenario in which the user manually starts two or more applications, the applications do not have the capability to establish a shared session topic. Since there's no "application launch", with its corresponding ability to exchange contextual information, the unique and session-specific `hub.topic` must be calculated by both the driving application's Hub and the subscribing application. The synchronizing application could use a shared algorithm and secret to generate the `hub.topic`.
 
 A bespoke session topic generation algorithm could encrypt the current user's username and a nonce with a shared secret to a pre-configured base URL. In this contrived example, a base URL and secret are securely configured on the subscribing application. The subscribing application generates and appends a nonce to the current user's Active Directory username, encrypts that string with the shared secret according to an agreed upon encryption algorithm, and finally appends that encrypted string to the base URL. The resulting URL is unique to the current user and unguessable to a middle man due to the shared secret.
 

@@ -8,14 +8,18 @@ name: FHIRcast
 title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: draft
+extension:
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg  #<<< must include a http://hl7.org/fhir/StructureDefinition/structuredefinition-wg extension that identifies the workgroup responsible for the IG. This is the authoritative element.
+    valueCode: inm  # <<< The value must be the code for the workgroup
+license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
-fhirVersion: 4.3.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
-version: 3.0.0
+fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
+version: 3.0.0-ballot
 copyrightYear: 2017+
-releaseLabel: CI Build  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 publisher:
-  name: HL7 International - Infrastructure and Messaging
-  url: http://hl7.org/Special/committees/inm
+  name: HL7 International / Infrastructure And Messaging
+  url: http://www.hl7.org/Special/committees/inm
   email: inm@lists.HL7.org 
 dependencies:
   hl7.fhir.uv.ipa: 1.0.0
@@ -44,10 +48,6 @@ pages:
       title: Get Current Context
     2-10-ContentSharing.md:
       title: Content Sharing
-      2-10-1-ContentSharingFHIRcastMessaging.md:
-        title: FHIRcast Event-based Content Sharing
-      2-10-2-ContentSharingFHIR.md:
-        title: FHIR-based Content Sharing
        
   3_Events.md:
     title: Event Library
@@ -61,12 +61,12 @@ pages:
       title: Infrastructure Events
       3-2-1-SyncError.md:
         title: SyncError Event
-      3-2-2-Heartbeat.md:
-        title: HeartBeat Event
-      3-2-3-UserLogout.md:
+      3-2-2-UserLogout.md:
         title: UserLogout Event
-      3-2-4-UserHibernate.md:
-        title: userhibernate Event
+      3-2-3-UserHibernate.md:
+        title: UserHibernate Event
+      3-2-5-Home-open.md:
+        title: Home-open Event
     3-3-0-patientevents.md:
       title: Patient Events
       3-3-1-Patient-open.md:
@@ -110,8 +110,6 @@ pages:
       title: Multi-anchor Considerations
     4-6-fhircast-event-content-sharing.md:
       title: FHIRcast Event-based Content Sharing
-    4-7-hybrid-content-sharing.md:
-      title: Hybrid Content Sharing
 
   5_glossary.md:
     title: Glossary
@@ -158,7 +156,6 @@ menu:
     Multi-tab Considerations: 4-4-multitab-considerations.html
     Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
     FHIRcast Event-based Content Sharing: 4-6-fhircast-event-content-sharing.html
-    Hybrid Content Sharing: 4-7-hybrid-content-sharing.html
 
   Glossary: 5_glossary.html
   Artifacts: artifacts.html

@@ -11,7 +11,8 @@ This chapter consists of the following sections:
 [2.9 Get Current Context](2-9-GetCurrentContext.html) |
 [2.10 Content Sharing](2-10-ContentSharing.html) |
 
-The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time, allowing them to show the same clinical context and content to a user (or group of users).
+The FHIRcast specification describes the APIs used by disparate healthcare applications to synchronize user interfaces (UI) in real time; allowing them to show the same clinical context and content to a user.
+
 
 Once an application [knows about](2-1-SessionDiscovery.html) the session (Hub topic), the application [subscribes](2-4-Subscribing.html) to specific workflow-related [events](2-3-Events.html) for the given session. The application is then [notified](2-5-EventNotification.html) when those workflow-related events occur; for example, when the clinician opens a patient's chart in another application subscribed to the same session. A Subscriber may also [initiate context changes](2-6-RequestContextChange.html) by accessing APIs defined in this specification; for example, closing the patient's chart. A Subscriber [unsubscribes from the session](2-4-Subscribing.html#unsubscribe) to no longer receive session events. The notification events describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources.
 
@@ -24,6 +25,6 @@ FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/f
 </figure>
 
 
-All data exchanged through the HTTP APIs SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures (unless otherwise specified), and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS which is defined in [RFC2818](https://tools.ietf.org/html/rfc2818).
+All data exchanged through the HTTP APIs SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures (unless otherwise specified), and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS which is defined in [RFC2818](https://tools.ietf.org/html/rfc2818). FHIR resources exchanged in FHIRcast messages use FHIR-specific JSON serialization [FHIR json](https://www.hl7.org/fhir/json.html).
 
 All data exchanged through WebSockets SHALL be formatted, sent, and received as [JSON](https://tools.ietf.org/html/rfc8259) structures, and SHALL be transmitted over Secure Web Sockets (WSS) as defined in [RFC6455](https://tools.ietf.org/html/rfc6455).

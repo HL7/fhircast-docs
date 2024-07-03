@@ -1,8 +1,28 @@
 == Suppressed Messages ==
-# No examples are derivable at this time
-The Implementation Guide contains no examples for this extension
-The Implementation Guide contains no examples for this profile
 
 # We believe that this error is caused by infrastructure: https://jira.hl7.org/browse/FHIR-36685.
-value should not start or finish with whitespace ' not(f:kind/@value='instance')...exists(f:software))'
+value should not start or finish with whitespace ' not(f:kind/@value='instance') or (not(exists(f:implementation)) and exists(f:software))'
 
+# CodeSystem used as an example so need not to be valid
+A definition for CodeSystem 'http://example.com/events/syncerror/your-error-code-system' could not be found, so the code cannot be validated
+
+# FHIRcast has chosen to use the system to indicate the event name - no CodeSystem is defined or required.
+%https://fhircast.hl7.org/events/syncerror/%
+
+# As the specification has not been published yet, so the url does not exists
+%ImplementationGuide-hl7.fhir.uv.fhircast.html%
+
+# Examples ares provided by other profiles that are based on this one.
+The Implementation Guide contains no examples for this profile
+
+# this is intentional
+%This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-hub-operation-outcome-syncerrror%
+
+# informational message is incorrect. Believe that we are using the right canonical url for radlex.  Tx.fhir.org just thinks it’s draft content
+Reference to draft CodeSystem http://radlex.org%
+
+# Informational severity; will investigate appropriate of assigning an OID, but not before ballot
+This resource could usefully have an OID assigned%
+
+#Informational severity; looking into THO processes, but not before ballot
+Most code systems defined in HL7 IGs will need to move to THO later during the process.%

@@ -3,11 +3,13 @@ Parent: Patient
 Id: fhircast-patient-close
 Title: "FHIRcast Patient for Close Events"
 Description: "Provides guidance as to which Patient attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events."
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
 """
-A logical id of the resource must be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
+A logical id of the resource SHALL be provided. The provided `id` SHALL be the same Patient resource id which was provided in the corresponding [FHIR resource]-open event (see also [FHIRcast Patient for Open Events](StructureDefinition-fhircast-patient-open.html)).
 """
 * identifier 0..* MS
 * identifier ^short = "At least one identifier of the Patient SHOULD be provided in a [FHIR resource]-close request."

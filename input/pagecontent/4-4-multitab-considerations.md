@@ -46,50 +46,13 @@ Often an application knowing that it is being driven by an external actor remove
 
 * When synchronizing with a multi-tab application, receiving multiple, sequential `-open` events (for example, `Patient-open`) does not indicate a synchronization error.
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
+* Single-tab applications should not send a `-close` event as the result of receiving subsequent `-open` events, unless the intent is to limit all applications in the session to a single "tab"
+* Multi-tab applications should consider closing all contexts between disconnecting and re-subscribing to prevent "orphaning" a tab.
 
 ### Launching A Context-Less Tab
 
 Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
 
-> note
-> Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a `Patient-open` (or `ImagingStudy-open` or ...) with a patient (or study or ...).
+{% include infonote.html text='Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a Patient-open (or ImagingStudy-open or ...) with a patient (or study or ...).' %}
 
 Since we are inherently representing the lack of context, the event will not fully conform to the defined event naming syntax and will instead use a static name (similar to `UserLogout.html`).
-
-#### home-open
-
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
-
-##### Workflow
-
-The user has opened or switched back to the application's home page or tab which does not have any FHIR related context.
-
-Unlike most of FHIRcast events, `home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the `FHIR-resource`-`[open|close]` syntax.
-
-##### Context
-
-The context is empty.
-
-##### Example
-
-```json
-{
-  "timestamp": "2019-11-25T13:16:00.00",
-  "id": "35d0b1d4-de45-4b5b-a0e9-9c51b21ee71a",
-  "event": {
-  "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065", 
-  "hub.event": "home-open", 
-  "context": [] 
-  }
-}
-```
-
-##### notes
-
-Assumption: Open of an already open means a select.
-
-Late joining  - event stating the current selected patient.
-
-##### Risk
-
-Order of patients can be different between different applications. (late application joining, temporarily out of sync).

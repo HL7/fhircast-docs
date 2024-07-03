@@ -1,0 +1,11 @@
+{
+  "package-id" : "hl7.fhir.uv.fhircast",
+  "version" : "3.0.0-ballot",
+  "path" : "http://hl7.org/fhir/uv/fhircast/2024May",
+  "mode" : "working",
+  "status" : "ballot",
+  "sequence" : "STU3 (v3.0.0)",
+  "desc" : "Reballot of FHIRcast STU3",
+  "changes" : "7_design-notes.html",
+  "first" : false
+}
