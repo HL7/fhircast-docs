@@ -1,6 +1,8 @@
 ### Event-name: DiagnosticReport-open
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.0
 
 ### Workflow
 
@@ -201,6 +203,6 @@ The event distributed by the Hub includes a context version in the `context.vers
 {:.grid}
 | Version | Description
 | ------- | ----
-| 0.1 | Initial draft
+| [0.1](https://hl7.org/fhir/uv/fhircast/2022May/3-6-1-diagnosticreport-open.html) | Initial draft
 | 0.5 | Connectathon trials and initial fielded solutions based on draft STU3
 | 1.0 | Reference context resource profiles and update example to be compliant with the profiles

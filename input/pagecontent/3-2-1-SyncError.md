@@ -1,6 +1,8 @@
 ### Event-name: SyncError
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html) |
+| Version        | 2.1
 
 ### Workflow
 
@@ -80,6 +82,6 @@ The `context` array SHALL contain a single FHIR OperationOutcome based on the pr
 {:.grid}
 | Version | Description |
 | ------- | ------------- |
-| 1.0     | Initial Release |
-| 2.0     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
+| [1.0](https://fhircast.hl7.org/events/syncerror/)  | Initial Release |
+| [2.0](https://hl7.org/fhir/uv/fhircast/2022May/3-2-1-syncerror.html)     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
 | 2.1     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |
