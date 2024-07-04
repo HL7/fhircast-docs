@@ -12,7 +12,7 @@ A simple JSON document is returned using the `application/json` mime type, with 
 {:.grid}
 Field              | Optionality | Type  | Description
 ------------------ | ----------- | ----- | ---
-`eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
+`eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub. This array SHALL include both the versioned as well as the unversioned version of the events.
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true` - indicating support for websockets.
 `fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
 `getCurrentSupport` | Optional | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.

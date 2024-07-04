@@ -1,6 +1,8 @@
 ### Home-open
 
-eventMaturity | [1 - Submitted](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [1 - Submitted](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.0
 
 ### Workflow
 

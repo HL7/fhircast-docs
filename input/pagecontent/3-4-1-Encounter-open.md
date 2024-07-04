@@ -1,6 +1,8 @@
 ### Event-name: Encounter-open
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.1
 
 ### Workflow
 
@@ -107,5 +109,5 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 {:.grid}
 | Version | Description
 | ---- | ----
-| 1.0 | Initial Release
+| [1.0](https://hl7.org/fhir/uv/fhircast/2022May/3-4-1-encounter-open.html) | Initial Release
 | 1.1 | Reference context resource profiles and update example to be compliant with the profiles

@@ -1,6 +1,8 @@
 ### Event name: Patient-open
 
-eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [3 - Considered](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.2
 
 ### Workflow
 
@@ -83,6 +85,6 @@ Other attributes of the Patient resource (or resource extensions) may be present
 {:.grid}
 | Version | Description
 | ---- | ----
-| 1.0 | Initial Release
-| 1.1 | Deprecate encounter element in favor of dedicated `encounter-open` event
-| 1.2 | Reference context resource profiles and update example to be compliant with the profiles
+| [1.0](https://fhircast.hl7.org/events/patient-open/) | Initial Release
+| [1.1](https://hl7.org/fhir/uv/fhircast/2022May/3-3-1-patient-open.html) | Deprecate encounter element in favor of dedicated `encounter-open` event
+| [1.2](https://hl7.org/fhir/uv/fhircast/2024May/3-3-1-Patient-open.html) | Reference context resource profiles and update example to be compliant with the profiles

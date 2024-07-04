@@ -1,1 +1,1 @@
-SelectionEventName ::= ( FHIRresource ) '-' ( select )
+SelectionEventName ::= ( FHIRresource ) '-' ( select ) ( '.v' Version | '*')?

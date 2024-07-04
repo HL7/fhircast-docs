@@ -1,6 +1,8 @@
 ### Event-name: ImagingStudy-open
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2-Tested](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.1
 
 ### Workflow
 
@@ -217,5 +219,5 @@ This is an example for FHIR R5 using the basedOn array for the accession
 {:.grid}
 | Version | Description
 | ------- | ----
-| 1.0 | Initial Release
+| [1.0](https://fhircast.hl7.org/events/imagingstudy-open/) | Initial Release
 | 1.1 | Reference context resource profiles and update example to be compliant with the profiles

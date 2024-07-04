@@ -1,6 +1,10 @@
 ### Event-name: DiagnosticReport-update
 
-eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
+{:.grid}
+| Event-maturity | [2 - Tested](3-1-2-eventmaturitymodel.html) |
+| Version        | 1.0
+
+#### Workflow
 
  The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the [`anchor context`](5_glossary.html) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
 
@@ -292,5 +296,5 @@ The following example shows a request to delete an observation from a content sh
 {:.grid}
 | Version | Description
 | ------- | ----
-| 0.1 | Initial draft
+| [0.1](https://hl7.org/fhir/uv/fhircast/2022May/3-6-1-diagnosticreport-open.html) | Initial draft
 | 1.0 | Updated for STU3

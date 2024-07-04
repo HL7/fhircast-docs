@@ -1,1 +1,1 @@
-ContentSharingEventName ::= ( FHIRresource ) '-' ( update )
+ContentSharingEventName ::= ( FHIRresource ) '-' ( update ) ( '.v' Version | '*')?

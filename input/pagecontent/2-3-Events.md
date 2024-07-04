@@ -30,12 +30,12 @@ The event name defines the event. Most FHIRcast events conform to an extensible 
 Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context change related events is:
 
 ```ebnf
-EventName ::= (FHIRresource) ('-') ( 'open' | 'close' | 'update' | 'select' )
+EventName ::= (FHIRresource | '*') ('-') ( 'open' | 'close' | 'update' | 'select' | '*' ) (('.v') Version)?
 ```
 
 {% include img.html img="EventName.png" caption="Figure: Event-name specification" %}
 
-The `FHIRresource` indicates the focus of the event; the `suffix` defines the type of event.
+The `FHIRresource` indicates the focus of the event. The next part defines the type of event. The optional `Version` field allows specifying the version of the event. When this field is omitted, it refers to the most recent version of the event supported by the Hub. Hubs are RECOMMENDED to at least support the most recent version of the events defined in the [standard event catalog](3_Events.html).
 
 Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Camel](https://en.wikipedia.org/wiki/Camel_case) case.
 
@@ -71,7 +71,7 @@ The FHIRcast specification supports many different events. These events are defi
 FHIRcast context-change events that describe context changes SHALL conform to the following extensible syntax. Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for context-change related event names is:
 
 ```ebnf
-ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
+ContextChangeEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' ) (('.v') Version)?
 ```
 
 {% include img.html img="ContextEventName.png" caption="Figure: Context Event-name specification" %}
@@ -111,8 +111,7 @@ This event category contains events required to maintain a FHIRcast session. The
 Content sharing events use the suffix `update`. The format of content sharing event names is:
 
 ```ebnf
-ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' )
-```
+ContentSharingEventName ::= ( FHIRresource ) '-' ( 'update' ) (('.v') Version)?
 
 {% include img.html img="ContentSharingEventName.png" caption="Figure: Content sharing event-name specification" %}
 
@@ -128,7 +127,7 @@ FHIRcast supports all events that follow this format. The most common events def
 Selection events use the suffix `select`. The format of selection event names is:
 
 ```ebnf
-SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
+SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' ) (('.v') Version)?
 ```
 
 {% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}

@@ -1,1 +1,1 @@
-ContextEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' )
+ContextEventName ::= ( FHIRresource ) '-' ( 'open' | 'close' ) ( '.v' Version | '*')?
