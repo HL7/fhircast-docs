@@ -14,9 +14,8 @@ The updates include:
 {:.grid}
 Key | Cardinality | Description
 ----- | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note the mandatory elements defined in the [DiagnosticReport update profile](StructureDefinition-fhircast-diagnostic-report-update.html). Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-`patient` | 0..1 | Present if one or more attributes in the Patient resource associated with the report have changed.
-`study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
+`report` | 1..1 | FHIR logical ID of the Patient resource in context
+`patient` | 0..1 | FHIR logical ID of the Patient resource in context.
 `updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
