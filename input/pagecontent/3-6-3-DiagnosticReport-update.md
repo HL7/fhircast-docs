@@ -50,20 +50,11 @@ The following example shows adding an imaging study to the existing diagnostic r
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
-        }
+        "value" : "DiagnosticReport/123",
+      },
+      {
+        "key": "patient",
+        "value" : "Patient/abc",
       },
       {
         "key": "updates",
@@ -150,22 +141,13 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
     "context.priorVersionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
       {
+        "key": "patient",
+        "value": "abc"
+       },
+      {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
-        }
-      },
+        "value": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+       },
       {
         "key": "updates",
         "resource": {
