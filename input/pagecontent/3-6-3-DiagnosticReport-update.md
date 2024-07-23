@@ -14,9 +14,8 @@ The updates include:
 {:.grid}
 Key | Cardinality | Description
 ----- | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note the mandatory elements defined in the [DiagnosticReport update profile](StructureDefinition-fhircast-diagnostic-report-update.html). Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-`patient` | 0..1 | Present if one or more attributes in the Patient resource associated with the report have changed.
-`study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
+`report` | 1..1 | FHIR logical ID of the Patient resource in context
+`patient` | 0..1 | FHIR logical ID of the Patient resource in context.
 `updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
@@ -51,20 +50,11 @@ The following example shows adding an imaging study to the existing diagnostic r
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
-        }
+        "value" : "DiagnosticReport/123",
+      },
+      {
+        "key": "patient",
+        "value" : "Patient/abc",
       },
       {
         "key": "updates",
@@ -151,22 +141,13 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
     "context.priorVersionId": "b9574cb0-e9e5-4be1-8957-5fcb51ef33c1",
     "context": [
       {
+        "key": "patient",
+        "value": "abc"
+       },
+      {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
-        }
-      },
+        "value": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+       },
       {
         "key": "updates",
         "resource": {
