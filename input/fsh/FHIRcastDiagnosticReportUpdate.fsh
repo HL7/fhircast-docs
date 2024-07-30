@@ -6,10 +6,16 @@ Description:
 """
 Provides guidance as to which `DiagnosticReport` attributes should be present and considerations as to how each attribute should be valued in [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events.
 
-The `DiagnosticReport` in [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events serves two purposes.  First its presence enables verification that the content in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event's Bundle attribute belongs to the DiagnosticReport which is the current anchor context.  Additionally, attributes of the DiagnosticReport which is the current anchor context may be updated in a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event.
+The `DiagnosticReport` in [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) events enables verification that the content in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event's Bundle attribute belongs to the DiagnosticReport which is the current anchor context.
 
-Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event is the resources' `id`, as well as its `status` since this attribute is required by FHIR.  Other attributes of the `DiagnosticReport` MAY be valued if they have changed from their original values or no value had been provided in the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event.
+Hence, the only required attributes of `DiagnosticReport` in the [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html) event is the resources' `id`, as well as its `status` since this attribute is required by FHIR.
 
+**FHIR R4 versus FHIR R5**
+In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
+
+In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
+
+Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5 (R6 formalizes this support), it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field should be considered labeled as must support.
 """
 * ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
 * ^extension[0].valueCode = #inm
@@ -23,8 +29,7 @@ A logical id of the resource SHALL be provided.
 * status ^short = "Status of the DiagnosticReport, note this may not be known and hence have a value of `unknown`; however, is included since it is required by FHIR"
 * status ^definition = 
 """
-While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in status could become final and would be communicated through a [`DiagnosticReport-update`](3-6-3-DiagnosticReport-update.html)
-event prior to the DiagnosticReport context being closed by a DiagnosticReport-close event.  
+While initially the `status` of the report may begin as `unknown` or `preliminary` (or something else), throughout the lifecycle of the context the report's status may transition.  For example, a reporting application may enable a clinician to sign the report.  In such a situation this change in `status` could become final and would be communicated through the `Bundle` resource inside the `updates` key of a [`DiagnosticReport-update` (3-6-3-DiagnosticReport-update.html) event prior to the DiagnosticReport context being closed by a [`DiagnosticReport-close`](3-6-2-DiagnosticReport-close.html) event.  
 """
 
 Instance: FHIRcastDiagnosticReportUpdate-Example
