@@ -54,7 +54,7 @@ When a `[FHIR resource]-update` event is received by a Subscriber, the applicati
 
 #### Adding/Removing Context Resources
 
-{% include infonote.html text='Implementer feedback on adding and removing resources that may be considered contextual in nature during a content sharing session is solicited %}
+{% include infonote.html text='Implementer feedback on adding and removing resources that may be considered contextual in nature during a content sharing session is solicited' %}
 
 A `[FHIR resource]-update` event SHALL NOT add or remove resources from the `context` array that was provided in the `[FHIR resource]-open` event.  The specification of `[FHIR resource]-update` events restricts the resources present in the `context` array to be only the [`anchor context`](5_glossary.html) and the associated `Patient` resource.  If a resource that may be considered contextual in nature becomes relevant in an established content sharing session, it MAY be added by placing the resource in the `Bundle` resource inside the `updates` key.  Similarly, a resource that may be considered contextual in nature may be removed by indicating the removal in the `Bundle` resource inside the `updates` key.  Subscribers SHALL NOT remove any resources that were present in the `context` array that were provided in the `[FHIR resource]-open` event.
 
@@ -62,7 +62,7 @@ Using a DiagnosticReport centered content sharing session as an example, Subscri
 
 #### Updating Attributes of Context Resources and Adding/Removing Context Resources
 
-{% include infonote.html text='Implementer feedback on changing attribute values of resources present in the `context` array that was provided in the `[FHIR resource]-open` event is solicited %}
+{% include infonote.html text='Implementer feedback on changing attribute values of resources present in the `context` array that was provided in the `[FHIR resource]-open` event is solicited' %}
 
 Occasionally attributes of a resource present in the `context` array that was provided in the `[FHIR resource]-open` event may change.  In such a case the change SHALL be communicated by updating the resource using the `Bundle` resource inside the `updates` key in a `[FHIR resource]-update` event.  It is likely a very rare that such a scenario would occur in an unexpected manner; however, there are specific situations where changing the value of an attribute or adding an attribute value is quite useful.  For example, the `status` attribute of the [`anchor context`](5_glossary.html) may change soon before the content sharing session is closed - this would be communicated by providing the [`anchor context`](5_glossary.html) resource in the `Bundle` resource inside the `updates` key with the `status` attribute's new value in a `[FHIR resource]-update` event.
 
