@@ -51,7 +51,7 @@ Often an application knowing that it is being driven by an external actor remove
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab.
+Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. To avoid confusion with other events, a new event is proposed to represent a user switching to this context-less tab. The [Home-open event](3-2-5-Home-open.html) section has been moved to the [Event Library](3_Events.html).
 
 {% include infonote.html text='Implementer feedback is solicited around the semantics of communicating a context change to a "context-less tab". For example, why not a Patient-open (or ImagingStudy-open or ...) with a patient (or study or ...).' %}
 
