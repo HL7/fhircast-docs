@@ -14,6 +14,7 @@ The sections in this chapter are:
 | [3.2.1 SyncError event](3-2-1-SyncError.html) |
 | [3.2.2 UserLogout.html event](3-2-2-UserLogout.html) |
 | [3.2.3 UserHibernate.html event](3-2-3-UserHibernate.html) |
+| [3.2.4 Home-open Event](3-2-5-Home-open.html) |
 
 | **3.3 Patient Events** |
 | [3.3.1 Patient-open event](3-3-1-Patient-open.html) |
