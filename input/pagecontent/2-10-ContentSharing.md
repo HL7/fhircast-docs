@@ -66,7 +66,7 @@ If the event recipient does not support update events outside of the current con
 
 ### Content Creation and Reopen Scenario
 
-{% include infonote.html text='Implementer feedback on the generation and general handling of a resource\'s identifiers, including its logical `id` is requested. Should the logical id of a FHIR resource created during a content sharing session persist when the resource is persisted? How should id conflicts be resolved? Additionally, the ability of Subscribers who participated in a content sharing session to [reopen](2-10-1-ContentSharingFHIRcastMessaging.html#content-creation-and-reopen-scenario) a content sharing session including the state of content at the time of the prior close of the session' %}
+{% include infonote.html text='Implementer feedback on the generation and general handling of a resource\'s identifiers, including its logical `id` is requested. As the result of a content sharing session, a new FHIR resource could be persisted to a clinical database, such that it\'s available even after the session ends. Should the logical id associated with that resource during the FHIRcast session also persist? If so, how should id conflicts be resolved? Additionally, would this impact the ability of Subscribers who participated in a content sharing session to [reopen](2-10-1-ContentSharingFHIRcastMessaging.html#content-creation-and-reopen-scenario) a content sharing session including the state of content at the time of the prior close of the session?' %}
 
 When a Subscriber creates a FHIR resource which it asks be added to the anchor context's content, it SHALL create an `id` for the resource (see: [Resource.id](http://hl7.org/fhir/resource.html)).  Two approaches to populating the resource's `id` are possible:
 
