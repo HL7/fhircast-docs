@@ -12,16 +12,26 @@ Description: "Contains the rationale behind the userHibernate event"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.ordered = false   // can be omitted, since false is the default
 * parameter ^slicing.description = "Reason for hibernation."
-* parameter contains code 1..1 
-* parameter[code].name = "code"
-* parameter[code] ^short = "Coded reason."
-* parameter[code] ^definition = "The reason the Subscriber sends a userHibernate event."
-* parameter[code].value[x] 1..1
-* parameter[code].value[x] only Coding
-* parameter[code].valueCoding from FHIRcastHibernateReason (extensible)
-* parameter[code].value[x] ^short = "Coded reason."
-* parameter[code].resource 0..0
-* parameter[code].part 0..0
+* parameter contains code 1..1 and hub 0..1
+* parameter[code]
+  * name = "code"
+  * ^short = "Coded reason."
+  * ^definition = "The reason the Subscriber sends a userHibernate event."
+  * value[x] 1..1
+  * value[x] only Coding
+  * valueCoding from FHIRcastHibernateReason (extensible)
+  * value[x] ^short = "Coded reason."
+  * resource 0..0
+  * part 0..0
+* parameter[hub] 
+  * ^short = "Whether the system hosting the Hub will hibernate."
+  * ^definition = "If `true`, the hub will hibernate and FHIRcast synchronization is suspended."
+  * name = "hub"
+  * value[x] 1..1
+  * value[x] only boolean
+    * ^short = "`true` when system hosting hub will hibernate."
+  * resource 0..0
+  * part 0..0
 
 ValueSet: FHIRcastHibernateReason
 Title: "Reasons for sending a userHibernate event."

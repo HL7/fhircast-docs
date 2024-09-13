@@ -37,6 +37,7 @@
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
 <artifact id="Bundle/8i7tbu6fby5fuuey7133eh" key="Bundle-8i7tbu6fby5fuuey7133eh" name="FHIRcastGetCurrentContentBundle-Example"/>
 <artifact id="Parameters/FHIRcastHibernateContext-Example" key="Parameters-FHIRcastHibernateContext-Example" name="FHIRcastHibernateContext-Example"/>
+<artifact id="Parameters/FHIRcastHibernateContext-Hub-Hibernate-Example" key="Parameters-FHIRcastHibernateContext-Hub-Hibernate-Example" name="FHIRcastHibernateContext-Hub-Hibernate-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="FHIRcastImagingStudyClose-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="FHIRcastImagingStudyOpen-Example"/>
 <artifact id="Parameters/FHIRcastLogoutContext-Example" key="Parameters-FHIRcastLogoutContext-Example" name="FHIRcastLogoutContext-Example"/>
