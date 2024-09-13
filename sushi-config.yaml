@@ -16,11 +16,18 @@ jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0-ballot
 copyrightYear: 2017+
-releaseLabel: STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 publisher:
   name: HL7 International / Infrastructure And Messaging
   url: http://www.hl7.org/Special/committees/inm
   email: inm@lists.HL7.org 
+contact:
+  - name: HL7 International / Infrastructure And Messaging
+    telecom:
+      - system: url
+        value: http://www.hl7.org/Special/committees/inm
+      - system: email
+        value: inm@lists.HL7.org 
 dependencies:
   hl7.fhir.uv.ipa: 1.0.0
 pages:
