@@ -14,8 +14,6 @@ The context SHOULD contain a Parameters resource according to the following prof
 
 ### Examples
 
-#### User initiated hibernate event
-
 ```json
 {
   "timestamp": "2019-11-25T13:16:00.00",
@@ -35,42 +33,6 @@ The context SHOULD contain a Parameters resource according to the following prof
             "display" : "The user initiated the hibernation."
           }
         }]
-      }
-    }]
-  }
-}
-```
-#### System initiated hibernate event for the hub
-
-```json
-{ "timestamp": "2019-11-25T13:16:00.00",
-  "id": "35d0b1d4-de45-4b5b-a0e9-9c51b21ee71a",
-  "event": {
-    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "userHibernate",
-    "context": [{
-      "key": "parameters",
-      "resource" : {
-        "resourceType": "Parameters",
-        "id": "FHIRcastHibernateContext-Hub-Hibernate-Example",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-hibernate"
-          ]
-        },
-        "parameter": [
-          {
-            "name": "code",
-            "valueCoding": {
-              "code": "system-initiated",
-              "system": "http://hl7.org/fhir/uv/fhircast/CodeSystem/fhircast-codesystem"
-            }
-          },
-          {
-            "name": "hub",
-            "valueBoolean": true
-          }
-        ]
       }
     }]
   }
