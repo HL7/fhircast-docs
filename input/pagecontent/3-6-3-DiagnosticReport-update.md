@@ -52,17 +52,14 @@ The following example shows adding an imaging study to the existing diagnostic r
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -153,17 +150,14 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -253,17 +247,14 @@ The following example shows a request to delete an observation from a content sh
         "key": "report",
         "resource": {
           "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "resource": {
+          "resourceType": "Patient",
+          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
