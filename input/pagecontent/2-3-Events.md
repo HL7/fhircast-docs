@@ -41,26 +41,26 @@ Event names are unique and case-insensitive. It is RECOMMENDED to use [Upper-Cam
 
 Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. `org.example.patient_transmogrify`). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-"). Note that this specification uses an asterisk to refer to categories of events (e.g. `*-open` for all open events), but that this syntax is not supported when interacting with a Hub.
 
-
 ### Context
 
-Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. Events defined in the standard event catalog or by implementers SHALL contain only valid JSON and MAY contain FHIR resources.
+Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. Events defined in the standard event catalog or by implementers SHALL contain only valid JSON and MAY contain FHIR resources or [datatypes](https://www.hl7.org/fhir/r4/datatypes.html).
 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
 - **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field. The key name SHALL be lower case and implementations SHALL treat them as case-sensitive.
 - **Cardinality**: Indicates the optionality and maximum resources instances allowed in an event's context
-- **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
+- **FHIR type of the field**: The [FHIR DataType](https://www.hl7.org/fhir/r4/datatypes.html) of the field, "Resource" to indicate a full resource.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
 The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource as defined in the [resource type valueset](http://build.fhir.org/valueset-version-independent-resource-types.html). For example, the [patient-open](3-3-1-Patient-open.html) event uses the `patient` key to signal the new Patient in context. Note that due to legacy reasons, some events deviate from this pattern. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
-
 
 References to resources other than anchor resources SHALL be named any string which is not a value from the resource type valueset.
 
 In the case in which other events are deriveable from the event in question, additional non-anchor FHIR resources included in the event SHALL be named what they are named in the deriveable event.
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
+
+Besides a key field, each context element also holds a value element. The field of the value holds the name as its datatype in lowercase: i.e. `resource` indicates a FHIR resource, `reference` a reference, `string` a string.
 
 ### Event types
 
