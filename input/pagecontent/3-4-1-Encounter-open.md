@@ -9,10 +9,10 @@ User opened patient's medical record in the context of a single encounter. The i
 ### Context
 
 {:.grid}
-Key | Cardinality |Description
------ | -------- |---- 
-`encounter` | 1..1 | FHIR Encounter resource describing the encounter now in context.
-`patient` | 1..1 | FHIR Patient resource describing the patient whose encounter is now in context.
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`encounter` | 1..1      | resource  | FHIR Encounter resource describing the encounter now in context.
+`patient` | 1..1        | resource  | FHIR Patient resource describing the patient whose encounter is now in context.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter open request:
 

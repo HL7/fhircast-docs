@@ -124,7 +124,6 @@ FHIRcast supports all events that follow this format. The most common events def
 
 #### Selection events - Experimental
 
-
 Selection events use the suffix `select`. The format of selection event names is:
 
 ```ebnf
@@ -133,6 +132,6 @@ SelectionEventName ::= ( FHIRresource  ) '-' ( 'select' )
 
 {% include img.html img="SelectionEventName.png" caption="Figure: Selection Event-name specification" %}
 
-`*-select` events provide a mechanism to select content in the context an `anchor context` (see [`anchor context`](5_glossary.html)).  `*-select` events select content resources within the `anchor context`, not the `anchor context` itself (making the `anchor context` the current context is performed by the corresponding `*-open` event).  The `context` array in a select event contains two attributes.  The FHIR resource which is the `anchor context`, and a select array indicating the content resource(s) that are selected.  If the Subscriber wants to indicate that no resource is selected, the select attribute is an empty array.
+`*-select` events provide a mechanism to select content in the context an `anchor context` (see [`anchor context`](5_glossary.html)).  `*-select` events select content resources within the `anchor context`, not the `anchor context` itself (making the `anchor context` the current context is performed by the corresponding `*-open` event).  The `context` array in a select event contains two attributes.  A reference to the FHIR resource which is the `anchor context`, and a select array indicating the content resource(s) that are selected.  If the Subscriber wants to indicate that no resource is selected, the select attribute is an empty array.
 
 FHIRcast supports all events that follow this format. The most common events definitions have been provided in the [event catalog](3_Events.html). For an example see [`DiagnosticReport-select`](3-6-4-DiagnosticReport-select.html).

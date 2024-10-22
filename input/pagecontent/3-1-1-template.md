@@ -13,10 +13,11 @@ Describe when this event occurs in a workflow. Describe how the context fields r
 Define context values that are provided when this event occurs, and indicate whether they must be provided, and the FHIR query used to generate the resource.
 
 {:.grid}
-Key | Optionality | Description
------ |  ---- | ---- 
-`example` | REQUIRED | Describe the context value
-`FHIRresource` | OPTIONAL | Describe the context value
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`patient` | 1..1        | resource  | Describe the context value
+`FHIRresource` | 0..1   | resource  | Describe the context value
+`subject` | 0..1        | reference | A reference to an important subject.
 
 ### Examples
 
