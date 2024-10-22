@@ -15,7 +15,7 @@ If one or more resources are noted as selected, any other resource which had bee
 Key       | Cardinality | Type      | Description
 --------- | ----------- | --------- | --------------
 `report`  | 1..1        | reference | Reference to the FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.
-`select`  | 1..*        | reference | Contains zero or more references to selected resources. If a reference to a resource is present , there is an implicit unselect of any previously selected resource. If no resource references are present , this is an indication that any previously selected resource is now unselected.
+`select`  | 1..*        | resource  | Contains zero or more references to selected resources, the resources are stored in a [List for Select Events](SStructureDefinition-fhircast-select-list.html). If a reference to a resource is present , there is an implicit unselect of any previously selected resource. If no resource references are present , this is an indication that any previously selected resource is now unselected.
 
 
 ### Examples

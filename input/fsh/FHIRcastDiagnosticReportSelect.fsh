@@ -1,3 +1,40 @@
+Profile: FHIRcastSelectList
+Parent: List
+Id: fhircast-select-list
+Title: "List of selected resources"
+Description:
+"""
+Lists the currently selected resources
+"""
+* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
+* ^extension[0].valueCode = #inm
+* status = #current
+* mode = #working
+* title 0..0
+* code 0..0
+* subject 0..0
+* encounter 0..0
+* date 0..0
+* source 0..0
+* orderedBy 0..0
+* entry
+  * flag 0..0
+
+Instance: FHIRcastSelectList-Example
+InstanceOf: FHIRcastSelectList
+Usage: #example
+Description: "Example of a `DiagnosticReport` select list."
+* status = #current
+* mode = #working
+* entry[+]
+  * item
+    * reference = "Observation/905843290589032"
+* entry[+]
+  * deleted = true
+  * item
+    * reference = "Observation/905843290589asdas2"
+
+
 // Profile: FHIRcastDiagnosticReportSelect
 // Parent: DiagnosticReport
 // Id: fhircast-diagnostic-report-select
