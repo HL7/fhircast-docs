@@ -32,7 +32,6 @@
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-close" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-close" name="FHIRcastDiagnosticReportClose-Example"/>
 <artifact id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327" name="FHIRcastDiagnosticReportOpen-Example"/>
 <artifact deprecated="true" id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-select" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-select" name="FHIRcastDiagnosticReportSelect-Example"/>
-<artifact id="List/FHIRcastDiagnosticReportSelectList-Example" key="List-FHIRcastDiagnosticReportSelectList-Example" name="FHIRcastDiagnosticReportSelectList-Example"/>
 <artifact deprecated="true" id="DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327-update" key="DiagnosticReport-2402d3bd-e988-414b-b7f2-4322e86c9327-update" name="FHIRcastDiagnosticReportUpdate-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438-close" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438-close" name="FHIRcastEncounterClose-Example"/>
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
@@ -44,10 +43,11 @@
 <artifact id="Observation/435098234" key="Observation-435098234" name="FHIRcastObservation-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926-close" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926-close" name="FHIRcastPatientClose-Example"/>
 <artifact id="Patient/503824b8-fe8c-4227-b061-7181ba6c3926" key="Patient-503824b8-fe8c-4227-b061-7181ba6c3926" name="FHIRcastPatientOpen-Example"/>
+<artifact id="List/FHIRcastSelectList-Example" key="List-FHIRcastSelectList-Example" name="FHIRcastSelectList-Example"/>
 <artifact id="OperationOutcome/FhircastHubSyncErrorOperationOutcome-Example" key="OperationOutcome-FhircastHubSyncErrorOperationOutcome-Example" name="FhircastHubSyncErrorOperationOutcome-Example"/>
 <artifact id="OperationOutcome/FhircastSubscriberSyncErrorOperationOutcome-Example" key="OperationOutcome-FhircastSubscriberSyncErrorOperationOutcome-Example" name="FhircastSubscriberSyncErrorOperationOutcome-Example"/>
 <artifact id="ImagingStudy/8i7tbu6fby5ftfbku6fniuf" key="ImagingStudy-8i7tbu6fby5ftfbku6fniuf" name="ImagingStudyExample"/>
-<artifact id="StructureDefinition/fhircast-diagnostic-report-select-list" key="StructureDefinition-fhircast-diagnostic-report-select-list" name="List of selected resources"/>
+<artifact id="StructureDefinition/fhircast-select-list" key="StructureDefinition-fhircast-select-list" name="List of selected resources"/>
 <artifact id="StructureDefinition/fhircast-hub-operation-outcome-syncerrror" key="StructureDefinition-fhircast-hub-operation-outcome-syncerrror" name="OperationOutcome for Hub generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror" key="StructureDefinition-fhircast-subscriber-operation-outcome-syncerrror" name="OperationOutcome for Subscriber generated sync-error events"/>
 <artifact id="StructureDefinition/fhircast-operation-outcome-syncerror" key="StructureDefinition-fhircast-operation-outcome-syncerror" name="OperationOutcome for sync-error events"/>
