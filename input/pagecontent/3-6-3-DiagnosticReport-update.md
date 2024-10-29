@@ -12,15 +12,14 @@ The updates that may be included in the `updates` bundle include:
 #### Context
 
 {:.grid}
-Key | Cardinality | Description
------ | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note the mandatory elements defined in the [DiagnosticReport update profile](StructureDefinition-fhircast-diagnostic-report-update.html). Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-`patient` | 0..1 | May be provided so that Subscribers may perform identity verification according to their requirements.
-`updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`report`  | 1..1        | reference | Reference to the FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.
+`patient` | 0..1        | reference | May be provided so that Subscribers may perform identity verification according to their requirements.
+`updates` | 1..1        | resource  | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
 
-* [Diagnostic Report for Update Events](StructureDefinition-fhircast-diagnostic-report-update.html)
 * [Content Update Bundle](StructureDefinition-fhircast-content-update-bundle.html)
 
 #### Supported Update Request Methods
@@ -50,16 +49,13 @@ The following example shows adding an imaging study to the existing diagnostic r
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        "reference": { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
+        "reference": { 
+          "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -148,16 +144,12 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        "reference": { "reference" : "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
+        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -245,16 +237,12 @@ The following example shows a request to delete an observation from a content sh
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
+        "reference": { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
+        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
