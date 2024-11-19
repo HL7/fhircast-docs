@@ -49,7 +49,8 @@ Often an application knowing that it is being driven by an external actor remove
 * Single-tab applications should not send a `-close` event as the result of receiving subsequent `-open` events, unless the intent is to limit all applications in the session to a single "tab"
 * Multi-tab applications should consider closing all contexts between disconnecting and re-subscribing to prevent "orphaning" a tab.
 * Multi-tab applications should send an -open event every time a user switches between tabs.
-* Multi-tab applications should differentiate between closing and inactivating of contexts. the inactivation of a context means that a different tab is chosen and closing of a context means the tab is removed. A close is communicated by a close event but an inactivation is not.
+* Multi-tab applications should differentiate between closing and inactivating of contexts. The inactivation of a context means that a different tab is chosen and closing of a context means the tab is removed. A close is communicated by a close event but an inactivation is not.
+
 
 ### Launching A Context-Less Tab
 
