@@ -28,6 +28,7 @@ The timestamp SHOULD be used by subscribers to establish message affinity (messa
 				"resourceType": "Patient",
 				"id": "ewUbXT9RWEbSj5wPEdgRaBw3",
 				"identifier": [{
+					"value" : "21262427"
 					"type": {
 						"coding": [{
 							"system": "http://terminology.hl7.org/CodeSystem/v2-0203",
