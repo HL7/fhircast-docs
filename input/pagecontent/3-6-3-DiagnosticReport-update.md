@@ -127,6 +127,30 @@ The following example shows adding an imaging study to the existing diagnostic r
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }
+            },
+            {
+              "request": {
+                "method": "PUT"
+              },
+              "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+                "imagingStudy": [
+                  {
+                    "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
+                  }
+                ],
+                "result": [
+                  {
+                    "reference": "Observation/1e057514-e069-4eb1-aed9-5e70c693fe28",
+                    "display": "No significant lymphadenopathy"
+                  },
+                  {
+                    "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
+                    "display": "Microcalcifications in left breast"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -228,6 +252,30 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }
+            },
+            {
+              "request": {
+                "method": "PUT"
+              },
+              "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+                "imagingStudy": [
+                  {
+                    "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
+                  }
+                ],
+                "result": [
+                  {
+                    "reference": "Observation/1e057514-e069-4eb1-aed9-5e70c693fe28",
+                    "display": "No significant lymphadenopathy"
+                  },
+                  {
+                    "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
+                    "display": "Microcalcifications in left breast"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -274,7 +322,7 @@ The following example shows a request to delete an observation from a content sh
           "type": "transaction",
           "entry": [
             {
-              "fullUrl": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
+              "fullUrl": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
               "request": {
                 "method": "DELETE"
               }
