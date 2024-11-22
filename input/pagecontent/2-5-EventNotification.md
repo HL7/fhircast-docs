@@ -114,7 +114,7 @@ In addition to distributing [`SyncError`](3-2-1-SyncError.html) events sent by o
 
  As with all FHIRcast events, [`SyncError`](3-2-1-SyncError.html) events are distributed only to Subscribers which have subscribed to them.
 
-Upon communicating a `SyncError` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber.
+Upon communicating a `SyncError` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber. A subscriber should be considered unresponsive following a non-zero number of consective Hub-generated syncerrors. 
 
 The Hub SHALL NOT generate [`SyncError`](3-2-1-SyncError.html) events in the following situations:
 
