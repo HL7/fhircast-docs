@@ -36,9 +36,9 @@ Request Method | Operation
 
 #### Examples
 
-##### DiagnosticReport-update Request Example
+##### DiagnosticReport-update Request Example #1
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (PUT) of an imaging study and adds (PUT) an observation derived from this study.
+The following example shows adding an imaging study and a new observation to the existing diagnostic report context.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (PUT) of an imaging study, adds (PUT) an observation derived from this study, and updates the DiagnosticReport to reference these new resources, in addition to the pre-existing result ("No significant lymphadenopathy").
 
 ```json
 {
