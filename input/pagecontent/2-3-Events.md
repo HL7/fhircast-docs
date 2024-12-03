@@ -55,10 +55,9 @@ All fields available within an event's context SHALL be defined in a table where
 
 The key used for indicating a context change event's FHIR resource SHALL be the lower-case resourceType of the resource as defined in the [resource type valueset](http://build.fhir.org/valueset-version-independent-resource-types.html). For example, the [patient-open](3-3-1-Patient-open.html) event uses the `patient` key to signal the new Patient in context. Note that due to legacy reasons, some events deviate from this pattern. The resources to include are defined in the corresponding event definition in the [event catalog](3_Events.html).
 
-
 References to resources other than anchor resources SHALL be named any string which is not a value from the resource type valueset.
 
-In the case in which other events are deriveable from the event in question, additional non-anchor FHIR resources included in the event SHALL be named what they are named in the deriveable event.
+In the case in which other events are derivable from the event in question, additional non-anchor FHIR resources included in the event SHALL be named what they are named in the derivable event.
 
 The Hub SHALL only return FHIR resources that the Subscriber is authorized to receive with the existing OAuth 2.0 access_token's granted `fhircast/` scopes.
 

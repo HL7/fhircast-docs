@@ -12,12 +12,10 @@ User closed a patient's medical record encounter context. A previously open and 
 Key | Cardinality | Description
 ----- | -------- | ---- 
 `encounter` | 1..1 | FHIR Encounter resource describing the encounter previously in context that is being closed.
-`patient` | 1..1 | FHIR Patient resource describing the patient associated with the encounter being closed.
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in an Encounter close request:
 
 * [Encounter for Close Events](StructureDefinition-fhircast-encounter-close.html)
-* [Patient for Close Events](StructureDefinition-fhircast-patient-close.html)
 
 Other attributes of the Encounter and Patient resources (or resource extensions) may be present in the provided resources; however, attributes not called out in the profiles are not required by the FHIRcast standard.
 
@@ -52,32 +50,6 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
             "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
           }
         }
-      },
-      {
-        "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926",
-          "identifier" : [
-            {
-              "use" : "official",
-              "type" : {
-                "coding" : [
-                  {
-                    "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
-                    "code" : "MR"
-                  }
-                ]
-              },
-              "system": "urn:oid:2.16.840.1.113883.19.5",
-              "value": "4438001",
-              "assigner": {
-                "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
-                "display": "My Healthcare Provider"
-              }
-            }
-          ]
-        }
       }
     ]
   }
@@ -88,6 +60,7 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
 
 {:.grid}
 | Version | Description
-| ---- | ----
-| 1.0 | Initial Release
-| 1.1 | Reference context resource profiles and update example to be compliant with the profiles
+| ------- | ----
+|    1.0  | Initial Release
+|    1.1  | Reference context resource profiles and update example to be compliant with the profiles
+|    2.0  | Removed references to other resources.
