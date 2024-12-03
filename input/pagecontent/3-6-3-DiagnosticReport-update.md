@@ -32,6 +32,11 @@ Request Method | Operation
 `PUT` | Add a new resource or update a resource already existing in the content
 `DELETE` | Remove an existing resource
 
+#### Number of Entries in Transaction Bundle
+
+FHIRcast doesn't prescribe a limit on the number of entries in the transaction Bundle; however, implementers should expect a limit for production-grade software. Generally, the upper range of entries in a FHIRcast transaction bundle is in the *dozens*. Recipients SHOULD return an error when they receive a FHIRcast event notification that is too large to support. Specifically, recipients SHALL either synchronously return an HTTP error status of [HTTP 413 - Content Too Large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/413), or asynchronously a `syncerror` with an `OperationOutcome.issue.code` = "[too-long](https://hl7.org/fhir/R4/valueset-issue-type.html)".
+
+
 #### Examples
 
 ##### DiagnosticReport-update Request Example
