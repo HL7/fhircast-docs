@@ -21,10 +21,12 @@ A `SyncError` is broadcast by the Hub when one of the following conditions occur
 
 In these events the field `issue.severity` SHALL beset to `warning` as is specified in [Operation outcome for Hub generated sync-errors](StructureDefinition-fhircast-hub-operation-outcome-syncerrror.html).
 
-
 ### Context
- 
-The `context` array SHALL contain a single FHIR OperationOutcome based on the profile [Operation outcome for sync-errors](StructureDefinition-fhircast-operation-outcome-syncerror.html).
+
+{:.grid}
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`operationoutcome` | 1..1 | resource  | A FHIR OperationOutcome based on the profile [Operation outcome for sync-errors](StructureDefinition-fhircast-operation-outcome-syncerror.html).
 
 
 ### Example

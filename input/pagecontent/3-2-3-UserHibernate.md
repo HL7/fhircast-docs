@@ -10,7 +10,10 @@ Unlike most of FHIRcast events, `UserHibernate` is a statically named event and 
 
 ### Context
 
-The context SHOULD contain a Parameters resource according to the following profile [Hibernate Context](StructureDefinition-fhircast-hibernate.html).
+{:.grid}
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`parameters` | 1..1     | resource  | A Parameters resource according to the following profile [Hibernate Context](StructureDefinition-fhircast-hibernate.html).
 
 ### Examples
 
