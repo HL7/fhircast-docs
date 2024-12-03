@@ -58,8 +58,6 @@ Resources referenced in a content sharing session SHOULD be accessible.  For exa
 
 In addition to the `Bundle` resource in the `updates` key, the context array of `[FHIR resource]-update` and `[FHIR resource]-select` events SHALL include the only the anchor context resource which was present in the context array of the corresponding `[FHIR resource]-open` event.  The `Patient` resource which was present in the context array of the corresponding `[FHIR resource]-open` event MAY be present in `[FHIR resource]-update` events to enable Subscribers to mitigate patient safety concerns.
 
-Resources in the context array of `[FHIR resource]-update` and `[FHIR resource]-select` events SHOULD include only the`resourceType` and `id` of the resource.  Note this constraint usually results in the FHIR resource in `[FHIR resource]-update` and `[FHIR resource]-select` events being an invalid FHIR resource since FHIR resources generally require an attribute in addition to `id` such as a `status` attribute.  However, this constraint ensures that no changes to attributes of the anchor context resource are made through changes to that resource in the context array in `[FHIR resource]-update` and `[FHIR resource]-update` events.
-
 #### Adding/Removing Context Resources
 
 {% include infonote.html text='Implementer feedback on adding and removing resources that may be considered contextual in nature during a content sharing session is solicited' %}
