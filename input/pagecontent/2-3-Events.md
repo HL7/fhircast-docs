@@ -44,7 +44,7 @@ Implementers may define their own events. Such proprietary events SHALL be named
 
 ### Context
 
-Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. Events defined in the standard event catalog or by implementers SHALL contain only valid JSON and MAY contain FHIR resources.
+Describes the set of contextual data associated with this event. Only data logically and necessarily associated with the purpose of this workflow related event should be represented in context. An event SHALL contain all required data fields, MAY contain optional data fields and SHALL NOT contain any additional fields. Events defined in the standard event catalog or by implementers SHALL contain only valid FHIR+JSON and MAY contain FHIR resources.
 
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
