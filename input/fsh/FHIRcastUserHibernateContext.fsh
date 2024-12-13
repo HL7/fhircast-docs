@@ -40,7 +40,8 @@ Description: "This valueset lists possible reasons a hibernate event is send to 
 * ^extension[0].valueCode = #inm
 * ^experimental = false
 * FHIRcastCodeSystem#user-initiated "User initiated hibernate."
-* FHIRcastCodeSystem#system-initiated "System initiated hibernation."
+* FHIRcastCodeSystem#system-timeout "System initiated logout due to a timeout."
+* FHIRcastCodeSystem#system-initiated "System initiated logout for reason other than timeout."
 
 Instance: FHIRcastHibernateContext-Example
 InstanceOf: FHIRcastHibernateContext
