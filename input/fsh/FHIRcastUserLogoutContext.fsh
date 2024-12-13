@@ -30,7 +30,8 @@ Description: "This valueset lists possible reasons a user logs out and send a lo
 * ^extension[0].valueCode = #inm
 * ^experimental = false
 * FHIRcastCodeSystem#user-initiated "User initiated logout."
-* FHIRcastCodeSystem#system-initiated "System initiated logout."
+* FHIRcastCodeSystem#system-timeout "System initiated logout due to a timeout."
+* FHIRcastCodeSystem#system-initiated "System initiated logout for reason other than timeout."
 
 Instance: FHIRcastLogoutContext-Example
 InstanceOf: FHIRcastLogoutContext
