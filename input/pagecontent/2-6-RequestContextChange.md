@@ -31,7 +31,7 @@ A Subscriber that initiates a context change and receives a `SyncError` related 
 POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
-Content-Type: application/json
+Content-Type: application/fhir+json
 
 {
   "timestamp": "2018-01-08T01:40:05.14",
