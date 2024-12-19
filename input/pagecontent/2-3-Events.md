@@ -49,7 +49,7 @@ Describes the set of contextual data associated with this event. Only data logic
 All fields available within an event's context SHALL be defined in a table where each field is described by the following attributes:
 
 - **Key**: The name of the field in the context JSON object. Event authors SHOULD name their context fields to be consistent with other existing events when referring to the same context field. The key name SHALL be lower case and implementations SHALL treat them as case-sensitive.
-- **Cardinality**: Indicates the optionality and maximum resources instances allowed in an event's context
+- **Cardinality**: Indicates the optionality and maximum resources instances allowed in an event's context.
 - **FHIR operation to generate context**: A FHIR read or search string illustrating the intended content of the event.
 - **Description**: A functional description of the context value. If this value can change according to the FHIR version in use, the description SHOULD describe the value for each supported FHIR version.
 
@@ -102,7 +102,7 @@ FHIRcast supports all events that follow this format. The most common events def
 
 This event category contains events required to maintain a FHIRcast session. The main events in this category are:
 
-| [`SyncError`](3-2-1-SyncError.html) | indicates refusal to follow context or inability to deliver an event
+| [`SyncError`](3-2-1-SyncError.html) | indicates refusal to follow context or inability to deliver an event.
 | [`UserLogout`](3-2-2-UserLogout.html) | signals that the users session has ended.
 | [`UserHibernate`](3-2-2-UserHibernate.html) | signals that the user temporarily suspended their session due to a session time-out or other reason.
 
