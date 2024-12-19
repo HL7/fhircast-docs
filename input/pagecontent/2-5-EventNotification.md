@@ -2,16 +2,16 @@ The Hub SHALL notify Subscribers of workflow-related events to which the Subscri
 
 ### Event Notification
 
-The event notification interaction include the following fields:
+The event notification message includes the following fields:
 
 {:.grid}
 Field       | Optionality | Type | Description
 ----------- | ----------- | ---- | ------------
-`timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred.
+`timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time from the Request Event Notification.
 `id`        | Required    | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event`     | Required    | *object* | A JSON object describing the event see [Event Definition](2-3-Events.html).
 
-The timestamp SHOULD be used by subscribers to establish message affinity (message ordering) through the use of a message queue. Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
+The timestamp SHOULD be used by subscribers to establish message affinity (message ordering). Subscribers SHALL ignore messages with older timestamps than the message that established the current context. The event identifier MAY be used to differentiate retried messages from user actions.
 
 #### Event Notification Request Example
 
@@ -51,7 +51,7 @@ The Subscriber SHALL respond to the event notification with an appropriate HTTP 
 Code  |          | Description
 ----- | -------- | ---
 200   | OK       | The Subscriber is able to implement the context change.
-202   | Accepted | The Subscriber has successfully received the event notification, but has not yet taken action. If the Subscriber decides to refuse the event, it will send a [`SyncError`](3-2-1-SyncError.html) event. Subscribers are RECOMMENDED to do so within 10 seconds after receiving the context event.
+202   | Accepted | The Subscriber has successfully received the event notification but has not yet taken action. If the Subscriber decides to refuse the event, it will send a [`SyncError`](3-2-1-SyncError.html) event. Subscribers are RECOMMENDED to do so within 10 seconds after receiving the context event.
 409   | Conflict | The Subscriber refuses to follow the context change. The Hub SHALL send a [`SyncError`](3-2-1-SyncError.html) indicating the event was refused.
 4xx   | Other Client Error | For Subscriber errors other than a 409; Subscribers can return other appropriate 4xx HTTP statuses. The Hub SHALL send a [`SyncError`](3-2-1-SyncError.html) indicating the event was refused.
 500   | Server Error | There is an issue in the Subscriber preventing it from processing the event. The Hub SHALL send a [`SyncError`](3-2-1-SyncError.html) indicating the event was not delivered.
@@ -117,9 +117,7 @@ In addition to distributing [`SyncError`](3-2-1-SyncError.html) events sent by o
 
 Upon communicating a `SyncError` resulting from an unresponsive Subscriber, the Hub SHALL unsubscribe the Subscriber. A subscriber should be considered unresponsive following a non-zero number of consective Hub-generated syncerrors. 
 
-The Hub SHALL NOT generate [`SyncError`](3-2-1-SyncError.html) events in the following situations:
-
-1. A Subscriber closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
+The Hub SHALL NOT generate [`SyncError`](3-2-1-SyncError.html) events when a Subscriber closes its WebSocket connection to the Hub with a [Connection Close Reason](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1) of 1000 (normal closure) or 1001 (going away).  
 
 During a normal shutdown of a Subscriber, it SHALL unsubscribe, and provide a WebSocket Connection Close Reason of 1000 and not rely upon the Hub recognizing and unsubscribing it as an unresponsive Subscriber.
 
