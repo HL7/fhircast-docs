@@ -75,4 +75,6 @@ When a Subscriber creates a FHIR resource which it asks be added to the anchor c
 
 If the same anchor context is reopened and used for a content sharing session, the same [Resource.id](http://hl7.org/fhir/resource.html) used during the initial content sharing session should be used by any Subscriber adding the same resource to this reopened content sharing session.  Hence, should any Subscriber participating in a content sharing session decide to persist a resource after the content sharing session is closed, it SHOULD ensure that the original [Resource.id](http://hl7.org/fhir/resource.html) and the `fullUrl` attribute of the resource's entry in the update bundle (if populated) is part of the persisted resource.  This enables a Subscriber to add the resource to a reopened content sharing session with the original [Resource.id](http://hl7.org/fhir/resource.html) or to identify (match) resources added to a reopened content sharing session with the resource in the original content sharing session.
 
+The Subscriber SHOULD also use a mechanism to generate a business identifier for the resource created for content sharing. This ensures identifier persistence.  
+
 For further discussion on the reopening of content sharing sessions see Section [4.6 FHIRcast Event-based Content Sharing](4-6-fhircast-event-content-sharing.html).

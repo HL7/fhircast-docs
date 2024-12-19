@@ -40,6 +40,13 @@ The following example shows the selection of a single Observation resource in an
         "resource": {
           "resourceType": "DiagnosticReport",
           "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+          "identifier" : [
+            {
+              "use" : "official",
+              "system" : "http://myhealthcare.example.org/reporting-system",
+              "value" : "GH339884.RPT.0001"
+            }
+          ],
           "status": "unknown",
           "code" : {
             "coding" : [
@@ -57,7 +64,13 @@ The following example shows the selection of a single Observation resource in an
         "resources": [
           {
             "resourceType": "Observation",
-            "id": "40afe766-3628-4ded-b5bd-925727c013b3"
+            "id": "40afe766-3628-4ded-b5bd-925727c013b3",
+            "identifier": [
+              {
+                "system":"http://hospital.example.org",
+                "value":"7611ffcd-f242-4738-b451-31995b660b90"
+              }
+            ]
           }
         ]
       }
