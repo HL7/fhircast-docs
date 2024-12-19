@@ -36,7 +36,7 @@ Request Method | Operation
 
 #### Number of Entries in Transaction Bundle
 
-Refer to Content Sharing for more information.
+Refer to Number of Entries in Transaction Bundle in [Content Sharing](https://hl7.org/fhir/uv/fhircast/2024May/2-10-ContentSharing.html) for more information.
 
 
 #### Examples
