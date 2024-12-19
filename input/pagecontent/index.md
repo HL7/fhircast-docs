@@ -34,9 +34,9 @@ Much of this implementation guide is descriptive in how Subscribers and the FHIR
 ### Relation to FHIR Subscriptions
 FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed). Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
 
-* FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow
-* FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios
-* FHIRcast is designed around short-lived sessions - Subscriptions are intended to be long-lived resources
+* FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow.
+* FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios.
+* FHIRcast is designed around short-lived sessions - Subscriptions are intended to be long-lived resources.
 
 ### Get involved
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
