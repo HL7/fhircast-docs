@@ -7,7 +7,8 @@ The event notification message includes the following fields:
 {:.grid}
 Field       | Optionality | Type | Description
 ----------- | ----------- | ---- | ------------
-`timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time from the Request Event Notification.
+`timestamp` | Required    | *string* | ISO 8601-2 timestamp in UTC describing the time at which the event occurred.
+
 `id`        | Required    | *string* | Event identifier used to recognize retried notifications. This id SHALL be unique for the Hub, for example a UUID.
 `event`     | Required    | *object* | A JSON object describing the event see [Event Definition](2-3-Events.html).
 
