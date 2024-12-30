@@ -35,7 +35,6 @@ Hubs and Subscribers SHALL be case insensitive for event-names.
 
 The application that creates the subscription might not be the same system as the system connecting to the WSS URL (e.g., a federated authorization model could exist between these two systems). However, in FHIRcast, the Hub assumes that the same authorization and access rights apply to both the Subscriber and the system receiving notifications.
 
-{% include infonote.html text='The spec uses GET vs POST to differentiate between the confirmation/denial of the subscription request and retrieve the current context. While this is not considered "best practice" from a web architecture perspective, it does make implementation of the callback URL simpler. Since the POST body of the content distribution request may be any arbitrary content type and only includes the actual content of the document, using the GET vs POST distinction to switch between handling these two modes makes implementations simpler.' %}
 
 
 ##### Initial Subscription Request Example
