@@ -115,7 +115,7 @@ This error scenario is the Hub losing contact with a Subscriber. This may be due
 
 #### Race condition during launch
 
-Once an application is launched with initial context, for example, the currently in context patient, the application must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it is technically possible for context to change, such that the newly launched application joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. This error situation is mitigated by the Hub sending the last relevant event(s) when a Subscriber (re)subscribes.
+Once an application is launched with initial context, for example, the currently in context patient, the application must subscribe before it receives notifications of updated context. Between the instant of launch and the instant of a confirmed subscription, it is technically possible for context to change, such that the newly launched application joins a session with stale contextual information. In most scenarios, this problem is likely noticeable by the end user. This error situation is mitigated by the Hub sending the last relevant event(s) when a Subscriber (re)subscribes. Thus, an application could use [Get Current Context](2-9-GetCurrentContext.html) when the Hub does not support sending the last relevant event(s).
 
 #### `SyncError` event received from Hub
 

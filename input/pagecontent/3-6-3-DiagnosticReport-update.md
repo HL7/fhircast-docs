@@ -4,7 +4,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
  The `DiagnosticReport-update` event is used by Subscribers to support content sharing in communication with a Hub which also supports content sharing.  A `DiagnosticReport-update` request will be posted to the Hub when a Subscriber desires to add, change, or remove exchanged information in the anchor context.  For a `DiagnosticReport-update`, the [`anchor context`](5_glossary.html) is the `DiagnosticReport` context established by the corresponding `DiagnosticReport-open`.  One or more update requests MAY occur while the anchor context is open.
 
-The updates include:
+The updates that may be included in the `updates` bundle include:
 
 * adding, updating, or removing FHIR resources contained in the DiagnosticReport
 * updating attribute values of the DiagnosticReport or associated context resources (Patient and/or ImagingStudy resources)
@@ -12,16 +12,14 @@ The updates include:
 #### Context
 
 {:.grid}
-Key | Cardinality | Description
------ | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.  Note the mandatory elements defined in the [DiagnosticReport update profile](StructureDefinition-fhircast-diagnostic-report-update.html). Other attributes may be present in the DiagnosticReport resource if their values have changed or were newly populated.
-`patient` | 0..1 | Present if one or more attributes in the Patient resource associated with the report have changed.
-`study` | 0..1 | Present if one or more attributes in the ImagingStudy resource associated with the report have changed
-`updates` | 1..1 | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`report`  | 1..1        | reference | Reference to the FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the update is being made.
+`patient` | 0..1        | reference | May be provided so that Subscribers may perform identity verification according to their requirements.
+`updates` | 1..1        | resource  | Contains a single `Bundle` resource holding changes to be made to the current content of the [`anchor context`](5_glossary.html)
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-update request:
 
-* [Diagnostic Report for Update Events](StructureDefinition-fhircast-diagnostic-report-update.html)
 * [Content Update Bundle](StructureDefinition-fhircast-content-update-bundle.html)
 
 #### Supported Update Request Methods
@@ -42,9 +40,9 @@ Refer to Number of Entries in Transaction Bundle in [Content Sharing](2-10-Conte
 
 #### Examples
 
-##### DiagnosticReport-update Request Example
+##### App adds ImagingStudy and Observation to DiagnosticReport
 
-The following example shows adding an imaging study to the existing diagnostic report context and a new observation.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle`in the `updates` key holds the addition (PUT) of an imaging study and adds (PUT) an observation derived from this study.
+The following example shows adding an imaging study and a new observation to the existing diagnostic report context.  The `context.versionId` matches the `context.versionId` provided by the Hub in the most recent `DiagnosticReport-open` or `DiagnosticReport-update` event. The `report` key in the `context` array holds the `id` of the diagnostic report and is required in all `DiagnosticReport-update` events.  The `Bundle` in the `updates` key holds the addition (PUT) of an imaging study, adds (PUT) an observation derived from this study, and updates the DiagnosticReport to reference these new resources, in addition to the pre-existing result ("No significant lymphadenopathy").
 
 ```json
 {
@@ -57,19 +55,13 @@ The following example shows adding an imaging study to the existing diagnostic r
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+        "reference": { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "reference": { 
+          "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -133,6 +125,30 @@ The following example shows adding an imaging study to the existing diagnostic r
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }
+            },
+            {
+              "request": {
+                "method": "PUT"
+              },
+              "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+                "imagingStudy": [
+                  {
+                    "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
+                  }
+                ],
+                "result": [
+                  {
+                    "reference": "Observation/1e057514-e069-4eb1-aed9-5e70c693fe28",
+                    "display": "No significant lymphadenopathy"
+                  },
+                  {
+                    "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
+                    "display": "Microcalcifications in left breast"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -142,9 +158,9 @@ The following example shows adding an imaging study to the existing diagnostic r
 }
 ```
 
-##### DiagnosticReport-update Event Example
+##### Hub broadcasts with new `versionid`
 
-The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL replace the `context.versionId` in the request with a new `context.versionId` generated and retained by the Hub.  The prior version, `context.priorVersionId` of the context is also provided to ensure that a Subscriber is currently in sync with the latest context prior to applying the new updates.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, it is recommended that the Subscriber issue a GET request to the Hub in order to retrieve the latest version of the context (note that the GET request returns the context, all existing content, and the current `context.versionId`).
+The Hub distributes the corresponding event to all Subscribers. The Hub replaces the `context.versionId` in the request with a new `context.versionId` generated by the Hub.  The prior version, `context.priorVersionId` of the context enables continuity.  If the value of `context.priorVersionId` is not in agreement with the `context.versionId` last received by a Subscriber, the Subscriber can [retrieve the current context](2-9-GetCurrentContext.html). 
 
 ```json
 {
@@ -158,19 +174,12 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+        "reference": { "reference" : "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -234,6 +243,30 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
                 },
                 "issued": "2020-09-07T15:02:03.651Z"
               }
+            },
+            {
+              "request": {
+                "method": "PUT"
+              },
+              "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+                "imagingStudy": [
+                  {
+                    "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
+                  }
+                ],
+                "result": [
+                  {
+                    "reference": "Observation/1e057514-e069-4eb1-aed9-5e70c693fe28",
+                    "display": "No significant lymphadenopathy"
+                  },
+                  {
+                    "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
+                    "display": "Microcalcifications in left breast"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -243,7 +276,7 @@ The Hub SHALL distribute a corresponding event to all Subscribers. The Hub SHALL
 }
 ```
 
-##### DiagnosticReport-update Request with DELETE Example
+##### App later deletes Observation from DiagnosticReport
 
 The following example shows a request to delete an observation from a content sharing session.
 
@@ -258,19 +291,12 @@ The following example shows a request to delete an observation from a content sh
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
-          }
+        "reference": { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
+        }
+      },
+      {
+        "key": "patient",
+        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -280,11 +306,30 @@ The following example shows a request to delete an observation from a content sh
           "type": "transaction",
           "entry": [
             {
-              "fullUrl": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
+              "fullUrl": "Observation/40afe766-3628-4ded-b5bd-925727c013b3",
               "request": {
                 "method": "DELETE"
               }
-            }
+            },
+            {
+              "request": {
+                "method": "PUT"
+              },
+              "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+                "imagingStudy": [
+                  {
+                    "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
+                  }
+                ],
+                "result": [
+                  {
+                    "reference": "Observation/1e057514-e069-4eb1-aed9-5e70c693fe28",
+                    "display": "No significant lymphadenopathy"
+                  }
+                ]
+              }
           ]
         }
       }
