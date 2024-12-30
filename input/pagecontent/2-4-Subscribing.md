@@ -119,7 +119,8 @@ Although these event notifications are triggered by a successful subscription, t
   
 ### Subscription Denial
 
-If (and when) a subscription is denied, the Hub SHALL inform the Subscriber. This can occur for a variety of reasons. Both when a subscription is requested, or after a subscription has already been accepted because the Hub no longer supports that subscription (e.g. it has expired).
+If (and when) a subscription is denied, the Hub SHALL inform the Subscriber. A subscription can be denied when it is  requested or even after having been accepted (e.g. the subscription has expired).
+
 
 To deny a `WebSocket` subscription, the Hub sends a JSON object to the Subscriber through the established WebSocket connection holding the fields indicated below.
 
