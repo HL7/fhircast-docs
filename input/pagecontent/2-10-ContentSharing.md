@@ -52,7 +52,9 @@ If the `context.versionId` values match, the Hub proceeds with processing each o
 
 When a `[FHIR resource]-update` event is received by a Subscriber, the application should respond as is appropriate for its clinical use.  For example, an image reading application may choose to ignore an observation describing a patient's blood pressure.  Since transactional change sets are used during information exchange, no problems are caused by applications deciding to ignore exchanged information not relevant to their function.  However, they should read and retain the `context.versionId` of the anchor context provided in the event for later use.
 
-Resources referenced in a content sharing session SHOULD be accessible.  For example, a `ServiceRequest` referenced in an `ImagingStudy` should either be present in the content or a fullUrl SHOULD be provided.
+#### Number of Entries in Transaction Bundle
+
+FHIRcast doesn't prescribe a limit on the number of entries in the transaction Bundle; however, implementers should expect a limit for production-grade software. Generally, the upper range of entries in a FHIRcast transaction bundle is in the *dozens*. Recipients SHOULD return an error when they receive a FHIRcast event notification that is too large to support. Specifically, recipients SHALL either synchronously return an HTTP error status of [HTTP 413 - Content Too Large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/413), or asynchronously a `syncerror` with an `OperationOutcome.issue.code` = "[too-long](https://hl7.org/fhir/R4/valueset-issue-type.html)".
 
 #### Context Array in Update and Select Events
 
