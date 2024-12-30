@@ -9,12 +9,12 @@ User opened a report.  The newly opened report is now the current report in cont
 ### Context
 
 {:.grid}
-Key | Cardinality | Description
------ | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource describing the report now in context.
-`encounter` | 0..1 | A FHIR Encounter resource may be associated with the report
-`study` | 0..* | FHIR ImagingStudy resource(s) describing the image study (or image studies) which are the subject of the report now in context.  For non-imaging related uses of FHIRcast there may be no image study related to the report.  In radiology or other image related uses of FHIRcast, at least one imaging study would be the subject of a report and SHALL be included in the event's context.  
-`patient` | 1..1 | FHIR Patient resource describing the patient whose report is currently in context. This Patient SHALL be the subject referenced by the DiagnosticReport and any ImagingStudy resources present in the context. 
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`report`  | 1..1        | resource  | FHIR DiagnosticReport resource describing the report now in context.
+`encounter` | 0..1      | resource  |  A FHIR Encounter resource may be associated with the report
+`study`   | 0..*        | resource  |  FHIR ImagingStudy resource(s) describing the image study (or image studies) which are the subject of the report now in context.  For non-imaging related uses of FHIRcast there may be no image study related to the report.  In radiology or other image related uses of FHIRcast, at least one imaging study would be the subject of a report and SHALL be included in the event's context.  
+`patient` | 1..1        | resource  |  FHIR Patient resource describing the patient whose report is currently in context. This Patient SHALL be the subject referenced by the DiagnosticReport and any ImagingStudy resources present in the context. 
 
 The following profiles provide guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport open request:
 

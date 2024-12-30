@@ -14,7 +14,10 @@ If a Subscriber decides that it will not logout the current user it SHOULD send 
 
 ### Context
 
-The context SHOULD contain a Parameters resource according to the following profile [Logout Context](StructureDefinition-fhircast-logout.html).
+{:.grid}
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`parameters` | 1..1       | resource  | A Parameters resource according to the following profile [Logout Context](StructureDefinition-fhircast-logout.html).
 
 ### Examples
 

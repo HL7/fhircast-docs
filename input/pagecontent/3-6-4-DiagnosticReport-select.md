@@ -12,14 +12,11 @@ If one or more resources are noted as selected, any other resource which had bee
 ### Context
 
 {:.grid}
-Key | Cardinality | Description
------ | -------- | ---- 
-`report` | 1..1 | FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.  Note that only the resource.resourceType and resource.id of the [`anchor context`](5_glossary.html) are required to be present.
-`select` | 1..1 | Contains zero or more references to selected resources in a `resources` array. If a reference to a resource is present in the `resources` array, there is an implicit unselect of any previously selected resource. If no resource references are present in the `resources` array, this is an indication that any previously selected resource is now unselected.
+Key       | Cardinality | Type      | Description
+--------- | ----------- | --------- | --------------
+`report`  | 1..1        | reference | Reference to the FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.
+`select`  | 1..*        | reference | Contains zero or more references to selected resources. If a reference to a resource is present , there is an implicit unselect of any previously selected resource. If no resource references are present , this is an indication that any previously selected resource is now unselected.
 
-The following profile provides guidance as to which resource attributes should be present and considerations as to how each attribute should be valued in a DiagnosticReport-select request:
-
-* [Diagnostic Report for Select Events](StructureDefinition-fhircast-diagnostic-report-select.html)
 
 ### Examples
 
@@ -37,40 +34,16 @@ The following example shows the selection of a single Observation resource in an
     "context": [
       {
         "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-          "identifier" : [
-            {
-              "use" : "official",
-              "system" : "http://myhealthcare.example.org/reporting-system",
-              "value" : "GH339884.RPT.0001"
-            }
-          ],
-          "status": "unknown",
-          "code" : {
-            "coding" : [
-              {
-                "system" : "http://loinc.org",
-                "code" : "19005-8",
-                "display": "Radiology Imaging study [Impression] (narrative)"
-              }
-            ]
+        "reference": [
+          {
+            "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
           }
-        }
       },
       {
         "key": "select",
-        "resources": [
+        "reference": [
           {
-            "resourceType": "Observation",
-            "id": "40afe766-3628-4ded-b5bd-925727c013b3",
-            "identifier": [
-              {
-                "system":"http://hospital.example.org",
-                "value":"7611ffcd-f242-4738-b451-31995b660b90"
-              }
-            ]
+            "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
           }
         ]
       }
