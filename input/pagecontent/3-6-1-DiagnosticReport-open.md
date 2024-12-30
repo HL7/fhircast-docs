@@ -49,6 +49,13 @@ The following example shows a report being opened that contains a single primary
         "resource": {
           "resourceType": "DiagnosticReport",
           "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
+          "identifier" : [
+            {
+              "use" : "official",
+              "system" : "http://myhealthcare.example.org/reporting-system",
+              "value" : "GH339884.RPT.0001"
+            }
+          ],
           "status": "unknown",
           "basedOn" : [
             {

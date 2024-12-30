@@ -50,6 +50,13 @@ The following example shows a response to the get context request when the curre
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "40012366",
+        "identifier" : [
+          {
+            "use" : "official",
+            "system" : "http://myhealthcare.example.org/reporting-system",
+            "value" : "GH339884.RPT.0001"
+          }
+        ],
         "status": "unknown",
         "subject": {
           "reference": "Patient/ewUbXT9RWEbSj5wPEdgRaBw3"
@@ -115,6 +122,12 @@ The following example shows a response to the get context request when the curre
             "resource": {
               "resourceType": "Observation",
               "id": "435098234",
+              "identifier": [
+                {
+                  "system":"http://hospital.example.org",
+                  "value":"7611ffcd-f242-4738-b451-31995b660b90"
+                }
+              ]
               "partOf": {
                 "reference": "ImagingStudy/8i7tbu6fby5ftfbku6fniuf"
               },

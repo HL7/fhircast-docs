@@ -50,7 +50,7 @@ If a Hub supports content sharing, after it distributes the `DiagnosticReport-cl
           "identifier" : [
             {
               "use" : "official",
-              "system" : "http://myhealthcare.com/reporting-system",
+              "system" : "http://myhealthcare.example.org/reporting-system",
               "value" : "GH339884.RPT.0001"
             }
           ],

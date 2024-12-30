@@ -26,36 +26,30 @@ The following example shows the selection of a single Observation resource in an
 
 ```json
 {
-  "timestamp": "2019-09-10T14:58:45.988Z",
-  "id": "78ef1125-7f8b-4cbc-bc59-a2a02f7e04",
-  "event": {
-    "hub.topic": "fdb2f928-5546-4f52-87a0-0648e9ded065",
-    "hub.event": "DiagnosticReport-select",
-    "context": [
-      {
-        "key": "report",
-        "resource": {
-          "resourceType": "DiagnosticReport",
-          "id": "2402d3bd-e988-414b-b7f2-4322e86c9327"
-        }
-      },
-      {
-        "key": "patient",
-        "resource": {
-          "resourceType": "Patient",
-          "id": "503824b8-fe8c-4227-b061-7181ba6c3926"
-        }
-      },
-      {
-        "key": "select",
-        "reference": [
-          {
-            "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
-          }
-        ]
-      }
-    ]
-  }
+   "timestamp":"2019-09-10T14:58:45.988Z",
+   "id":"78ef1125-7f8b-4cbc-bc59-a2a02f7e04",
+   "event":{
+      "hub.topic":"fdb2f928-5546-4f52-87a0-0648e9ded065",
+      "hub.event":"DiagnosticReport-select",
+      "context":[
+         {
+            "key":"report",
+            "reference":[
+               {
+                  "reference":"DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
+               }
+            ]
+         },
+         {
+            "key":"select",
+            "reference":[
+               {
+                  "reference":"Observation/40afe766-3628-4ded-b5bd-925727c013b3"
+               }
+            ]
+         }
+      ]
+   }
 }
 ```
 
