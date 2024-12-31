@@ -53,5 +53,3 @@ Note that the mechanism discussed on this page does not guarantee that order of 
 ### Launching A Context-Less Tab
 
 Many applications feature a "home" or "default" tab that contains no clinical context but may offer useful application features. Sometimes, other applications may want to subscribe to and be notified when an application switches to this no-context tab. This is indicated by the [Home-open event](3-2-5-Home-open.html).
-
-Note that sending a [Home-open event](3-2-5-Home-open.html) merely signals that an application has switched to the no-context tab. It does not change the current context. For instance, if a specific patient is currently in context, sending a Home-open event does not imply that this patient is no longer in context.
