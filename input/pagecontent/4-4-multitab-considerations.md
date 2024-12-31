@@ -49,7 +49,9 @@ Note that the mechanism discussed on this page does not guarantee that order of 
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
 * Single-tab applications should not send a `-close` event as the result of receiving subsequent `-open` events, unless the intent is to limit all applications in the session to a single "tab"
 * Multi-tab applications should consider closing all contexts between disconnecting and re-subscribing to prevent "orphaning" a tab.
+* Multi-tab applications should send an -open event every time a user switches between tabs.
+* Multi-tab applications should differentiate between closing and inactivating of contexts. The inactivation of a context means that a different tab is chosen and closing of a context means the tab is removed. A close is communicated by a close event but an inactivation is not.
 
 ### Launching A Context-Less Tab
 
-Many applications feature a "home" or "default" tab that contains no clinical context but may offer useful application features. Sometimes, other applications may want to subscribe to and be notified when an application switches to this no-context tab. This is indicated by the [Home-open event](3-2-5-Home-open.html).
+Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. The [Event Library](3_Events.html)'s [Home-open event](3-2-5-Home-open.html) represents a user switching to this context-less tab.

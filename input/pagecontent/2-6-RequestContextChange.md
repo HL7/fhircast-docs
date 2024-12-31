@@ -1,4 +1,4 @@
-Similar to the Hub's notifications to the Subscriber, the Subscriber MAY request context changes with an HTTP POST to the `hub.url`. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. Similar to event notifications, described above, the Hub MAY also respond with a 202 (Accepted) status, process the request, and then later, instead of broadcasting the context change, responds with a `SyncError` event in order to reject the request. In this specific case in which the context change is rejected by the Hub and not broadcasted, the `SyncError` would only be sent to the requesting Subscriber. The Subscriber SHALL be capable of gracefully handling a rejected context request. 
+The Subscriber MAY request context changes with an HTTP POST to the `hub.url`. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. Similar to event notifications, described above, the Hub MAY also respond with a 202 (Accepted) status, process the request, and then later, instead of broadcasting the context change, responds with a `SyncError` event in order to reject the request. In this specific case in which the context change is rejected by the Hub and not broadcasted, the `SyncError` would only be sent to the requesting Subscriber. The Subscriber SHALL be capable of gracefully handling a rejected context request. 
 
 Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all Subscribers, including the original requesting Subscriber. The requesting Subscriber can use the broadcasted notification as confirmation of their request. The Hub reusing the request's `id` is further confirmation to the requesting Subscriber that the event is a result of their request.
 
@@ -31,7 +31,7 @@ A Subscriber that initiates a context change and receives a `SyncError` related 
 POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
-Content-Type: application/json
+Content-Type: application/fhir+json
 
 {
   "timestamp": "2018-01-08T01:40:05.14",
