@@ -4,7 +4,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 ### Workflow
 
-User opened a report.  The newly opened report is now the current report in context.  If a Hub supports content sharing, the report is also in the role of an [`anchor context`](5_glossary.html)
+User opened a diagnostic report.  The newly opened diagnostic report is now the current report in context.
 
 ### Context
 
