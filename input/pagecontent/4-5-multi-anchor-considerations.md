@@ -13,13 +13,11 @@ However, it may make sense to synchronize applications that don't subscribe to a
 
 ### Implied events
 
-FHIRcast event definitions specify the related FHIR resources that are contextully relevent to the event. An *-open event implies additional open events, one for each of the resource types referenced in the context. 
+FHIRcast event definitions specify the related FHIR resources that are contextually relevant to the event. An *-open event implies additional open events, one for each of the resource types referenced in the context. 
 
 For example, an [`Encounter-open`](3-4-1-Encounter-open.html) implies a [`Patient-open`](3-3-1-Patient-open.html), because the `Encounter-open`'s context includes not just an encounter resource, but also a patient resource. Similarly, [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) implies [`Patient-open`](3-3-1-Patient-open.html) and possibly an [`ImagingStudy-open`](3-5-1-ImagingStudy-open.html) (if an ImagingStudy is supplied in the [`DiagnosticReport-open`](3-6-1-DiagnosticReport-open.html) event).
 
 ### Hub derives open events
-
-{% include questionnote.html text='Implementer input is solicited. Is the absence of guidance from the specification problematic? If so, why? and how would you recommend we solve this?' %}
 
 The Hub is responsible for identifying and sending these implied *-open events. When distributing a received event, the Hub is responsible for generating and communicating open events for the resource types referenced by the received event. It is important that Hubs do not generate and send duplicative events. 
 

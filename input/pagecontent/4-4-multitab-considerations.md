@@ -54,4 +54,4 @@ Note that the mechanism discussed on this page does not guarantee that order of 
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. The [Event Library](3_Events.html)'s [Home-open event](3-2-5-Home-open.html) represents a user switching to this context-less tab.
+Many applications can have a "home" or "default" tab that contains no clinical context but may hold useful application features. In some cases, other applications may want to subscribe to and be notified when another application has switched to the no context tab. The [Event Library](3_Events.html)'s [Home-open event](3-2-5-Home-open.html) represents a user switching to this context-less tab.
