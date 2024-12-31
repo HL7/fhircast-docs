@@ -104,7 +104,7 @@ This event category contains events required to maintain a FHIRcast session. The
 
 | [`SyncError`](3-2-1-SyncError.html) | indicates refusal to follow context or inability to deliver an event.
 | [`UserLogout`](3-2-2-UserLogout.html) | signals that the users session has ended.
-| [`UserHibernate`](3-2-2-UserHibernate.html) | signals that the user temporarily suspended their session due to a session time-out or other reason.
+| [`UserHibernate`](3-2-3-UserHibernate.html) | signals that the user temporarily suspended their session due to a session time-out or other reason.
 
 #### Content sharing events
 
