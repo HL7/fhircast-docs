@@ -12,7 +12,7 @@ The sections in this chapter are:
 
 | **3.2 Infrastructure Events** |
 | [3.2.1 SyncError event](3-2-1-SyncError.html) |
-| [3.2.3 UserLogout.html event](3-2-3-UserLogout.html) |
+| [3.2.3 UserLogout.html event](3-2-2-UserLogout.html) |
 | [3.2.4 UserHibernate.html event](3-2-4-UserHibernate.html) |
 | [3.2.5 Home-open.html event](3-2-5-Home-open.html) |
 
