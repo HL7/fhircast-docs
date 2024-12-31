@@ -24,13 +24,7 @@ The following profiles provide guidance as to which resource attributes should b
 
 #### Supported Update Request Methods
 
-Each `entry` in the `updates` Bundle resource SHALL contain one of the below `method` values in an entry's `request` attribute.  No resource SHALL appear multiple times in the `updates` Bundle.  One and only one [transaction `Bundle`](https://www.hl7.org/fhir/http.html#transaction) SHALL be present in a `DiagnosticReport-update` request.
-
-{:.grid}
-Request Method | Operation
---- | ---
-`PUT` | Add a new resource or update a resource already existing in the content
-`DELETE` | Remove an existing resource
+Each `entry` in the `updates` Bundle resource contains one of the below `method` values in an entry's `request` attribute. The [Bundle profile](StructureDefinition-fhircast-content-update-bundle.html) specifies the allowed methods: PUT can be used to add a new resource or update an existing resource, DELETE removes an existing resource. 
 
 #### Number of Entries in Transaction Bundle
 
