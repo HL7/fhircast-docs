@@ -24,7 +24,8 @@ The following profiles provide guidance as to which resource attributes should b
 
 #### Supported Update Request Methods
 
-Each `entry` in the `updates` Bundle resource contains one of the below `method` values in an entry's `request` attribute. The [Bundle profile](StructureDefinition-fhircast-content-update-bundle.html) specifies the allowed methods: PUT can be used to add a new resource or update an existing resource, DELETE removes an existing resource. 
+Each `entry` in the `updates` Bundle resource contains a `method` in that entry's `request` attribute. The [Bundle profile](StructureDefinition-fhircast-content-update-bundle.html) specifies the allowed methods: PUT can be used to add a new resource or update an existing resource, DELETE removes an existing resource. 
+
 
 #### Number of Entries in Transaction Bundle
 
