@@ -107,16 +107,18 @@ pages:
     title: Scenarios
     4-1-launch-scenarios.md:
       title: Application Launch Scenarios and Session Discovery
-    4-2-syncconsiderations.md:
-      title: Synchronization Considerations
+    4-2-0-contextsynchronizationscenarios.md:
+      title: Context Synchronization Scenarios
+    4-2-1-syncconsiderations.md:
+      title: Synchronization Recovery Considerations
+    4-2-2-multitab-considerations.md:
+      title: Multi-tab Considerations
+    4-2-3-multi-anchor-considerations.md:
+      title: Multi-anchor Considerations
     4-3-security-considerations.md:
       title: Security Considerations
-    4-4-multitab-considerations.md:
-      title: Multi-tab Considerations
-    4-5-multi-anchor-considerations.md:
-      title: Multi-anchor Considerations
-    4-6-fhircast-event-content-sharing.md:
-      title: FHIRcast Event-based Content Sharing
+    4-4-fhircast-event-content-sharing.md:
+      title: Content Sharing Considerations
 
   5_glossary.md:
     title: Glossary
@@ -158,11 +160,12 @@ menu:
   Scenarios: 
     Introduction: 4_Scenarios.html
     Application Launch Scenarios and Session Discovery: 4-1-launch-scenarios.html
-    Synchronization Considerations: 4-2-syncconsiderations.html 
+    Context Synchronization Scenarios: 4-2-0-contextsynchronizationscenarios.md
+    Synchronization Recovery Considerations: 4-2-1-syncconsiderations.html 
+    Multi-tab Considerations: 4-2-2-multitab-considerations.html
+    Multi-anchor Considerations: 4-2-3-multi-anchor-considerations.html
     Security Considerations: 4-3-security-considerations.html
-    Multi-tab Considerations: 4-4-multitab-considerations.html
-    Multi-anchor Considerations: 4-5-multi-anchor-considerations.html
-    FHIRcast Event-based Content Sharing: 4-6-fhircast-event-content-sharing.html
+    Content Sharing Considerations: 4-4-fhircast-event-content-sharing.html
 
   Glossary: 5_glossary.html
   Artifacts: artifacts.html
