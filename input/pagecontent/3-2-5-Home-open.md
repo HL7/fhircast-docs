@@ -8,11 +8,10 @@ The user has opened or switched back to the application's home page or tab which
 
 Unlike most of FHIRcast events, `Home-open` is representing the lack of a FHIR resource context and therefore does not fully follow the `FHIR-resource`-`[open|close]` syntax.
 
-The order of patients can be different between different applications (like a late application joining being temporarily out of sync).
 
 ### Context
 
-The context is empty.
+The context field is empty.
 
 ### Example
 

@@ -41,6 +41,7 @@ Recall that the multi-tab example is only one scenario in which the multiple con
 Upon closing of an application or the user choosing to close a subject, the application with which the user is interacting has the choice to send or not send a `-close` event for the current context.  Typically making this decision is appropriate when an application knows it is being driven by another application; for example, when another application is providing some type of worklist functionality.
 
 Often an application knowing that it is being driven by an external actor removes the ability for users to close a subject; for example, an imaging application could assume that an external actor is responsible for the closing of subjects and remove the UI element(s) enabling a user to close the current image study.  However, an application may choose to retain this capability.  When the capability to close subjects is retained, the application could decide to not send a `-close` event if it considers this close to be local to itself.  If an application decides not to send a `-close` event, to ensure a consistent context for the user, the application should not establish a new local context without receiving or sending an `-open` event.
+Note that the mechanism discussed on this page does not guarantee that order of tabs is the same between different applications. Applications that join late or have been temporarily out of sync might receive the `-open` events in a different order.
 
 ### Recommendations
 
@@ -48,7 +49,9 @@ Often an application knowing that it is being driven by an external actor remove
 * Multi-tab applications should differentiate between the closing versus inactivating of contexts, by not communicating the inactivation of a context through a `-close` event.
 * Single-tab applications should not send a `-close` event as the result of receiving subsequent `-open` events, unless the intent is to limit all applications in the session to a single "tab"
 * Multi-tab applications should consider closing all contexts between disconnecting and re-subscribing to prevent "orphaning" a tab.
+* Multi-tab applications should send an -open event every time a user switches between tabs.
+* Multi-tab applications should differentiate between closing and inactivating of contexts. The inactivation of a context means that a different tab is chosen and closing of a context means the tab is removed. A close is communicated by a close event but an inactivation is not.
 
 ### Launching A Context-Less Tab
 
-Many applications can have a "home" or "default" tab that contains no clinical context, but may hold useful application features. In some cases other applications may want to subscribe to and be notified when another application has switched to the no context tab. The [Event Library](3_Events.html)'s [Home-open event](3-2-5-Home-open.html) represents a user switching to this context-less tab.
+Many applications can have a "home" or "default" tab that contains no clinical context but may hold useful application features. In some cases, other applications may want to subscribe to and be notified when another application has switched to the no context tab. The [Event Library](3_Events.html)'s [Home-open event](3-2-5-Home-open.html) represents a user switching to this context-less tab.

@@ -147,11 +147,11 @@ Two or more Subscribers are sending context change events shortly after each oth
 | Subscriber | Conflicting events | When a Subscriber detects an event with a suggested context change that is sent shortly after its own event, it should compare the timestamp of these events and treat the most recent event as current. It should also not respond with a resend of its context change without querying the user to prevent triggering an endless context switch waterfall. |
 | Hub | None | The Hub cannot and should not be involved in distinguishing between an intentional and unintentional event expiration. So the Hub cannot mitigate this situation. |
 
-#### Synchronization considerations for userLogout, userHibernate
+#### Synchronization considerations for UserLogout, UserHibernate
 
-Most synchronization failure considerations revolve around the possibility of introducing incorrect information into the clinical decision making process. In addition to these considerations, failures to synchronize userLogout and userHibernate events must also take into consideration the risk of unsecured, unattended health applications, risking data breach and user impersonation.
+Most synchronization failure considerations revolve around the possibility of introducing incorrect information into the clinical decision making process. In addition to these considerations, failures to synchronize UserLogout and UserHibernate events must also take into consideration the risk of unsecured, unattended health applications, risking data breach and user impersonation.
 
-Distinct scenarios, related to userLogout and userHibernate:
+Distinct scenarios, related to UserLogout and UserHibernate:
 
 1. User logs out of application A, then takes action in application B.
 Negligible risk. User does not expect synchronization.
@@ -173,13 +173,13 @@ The situations in which a sync error can occur are indicated in the previous sec
 A Subscriber that initiates a context change and receives a `SyncError` related to a context change event it sent, ought to resend this event at regular intervals until sync is reestablished or another, newer, event has been received. It is recommended to wait at least 10 seconds before resending the event. Note that such resend will use the timestamp of the original event to prevent race conditions.
 
 
-#### Subscriber that follow context change
+#### Subscriber that follows context change
 
 A Subscriber that follows context change should monitor new events or re-sends of the old event. When an event is received with a timestamp equal or newer than the event that caused the `SyncError`, it assumes sync is restored unless a new `SyncError` is received.
 
-#### Subscriber that lose the connection to the Hub
+#### Subscriber that loses the connection to the Hub
 
-Subscriber that lose the connection to the Hub should resubscribe to the topic. Once resubscribed and the most recent relevant event has been received, the Subscriber can assume that sync is restored.
+Subscriber that loses the connection to the Hub should resubscribe to the topic. Once resubscribed and the most recent relevant event has been received, the Subscriber can assume that sync is restored.
 
 #### Hubs
 

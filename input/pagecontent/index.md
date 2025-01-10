@@ -18,9 +18,9 @@ A radiologist working in the reporting system clicks a button to open the dictat
 
 {% include img.html img="colorful overview diagram.png" caption="Figure: FHIRcast Overview" %}
 
-By convention a driving application is the application which opens a context.  The driving application could be an EHR, a PACS, a worklist, or any other clinical workflow system.  A driving application may or may not launch other applications; to launch other applications the driving application may use the [SMART App Launch](https://hl7.org/fhir/smart-app-launch) mechanism.  As part of a [SMART App Launch](https://hl7.org/fhir/smart-app-launch), an application requests appropriate [FHIRcast OAuth 2.0 scopes](2-2-FhircastScopes.html) and receives the location of the Hub and a unique `hub.topic` session identifier.
+By convention a driving application is the application which directs the context (for example, by opening and closing context).  The driving application could be an EHR, a PACS, a worklist, or any other clinical workflow system.  A driving application may or may not launch other applications; to launch other applications the driving application may use the [SMART App Launch](https://hl7.org/fhir/smart-app-launch) mechanism.  As part of a [SMART App Launch](https://hl7.org/fhir/smart-app-launch), an application requests appropriate [FHIRcast OAuth 2.0 scopes](2-2-FhircastScopes.html) and receives the location of the Hub and a unique `hub.topic` session identifier.
 
- An application subscribes to specific workflow events for the topic during its subscription request.  The Hub verifies the subscription then notifies the subscribed application when the requested workflow events occur; for example, by the clinician opening a patient’s chart a `Patient-open` event would be sent. An application unsubscribes from a topic when it no longer wants to receive notifications.  Note that subscribed applications other than the driving application could send a close event for an open context; however, such a scenario may not desirable in many workflows.
+ An application subscribes to specific workflow events for the topic during its subscription request.  The Hub verifies the subscription then notifies the subscribed application when the requested workflow events occur; for example, by the clinician opening a patient’s chart a `Patient-open` event would be sent. An application unsubscribes from a topic when it no longer wants to receive notifications.  Note that subscribed applications other than the driving application could send a close event for an open context; however, such a scenario may not be desirable in many workflows.
 
 Note that:
 
@@ -34,9 +34,9 @@ Much of this implementation guide is descriptive in how Subscribers and the FHIR
 ### Relation to FHIR Subscriptions
 FHIRcast is focused on providing notifications when key elements in the context change (i.e., when the current Patient, Encounter, ImagingStudy, etc. is changed). Notable differences in the scenarios addressed by FHIRcast and FHIR Subscriptions:
 
-* FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow
-* FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios
-* FHIRcast is designed around short-lived sessions - Subscriptions are intended to be long-lived resources
+* FHIRcast is designed to be used by multiple applications perhaps with the same user and typically on the same device - Subscriptions are designed to be used by multiple distinct systems, often outside of a user workflow.
+* FHIRcast sends only single-event notifications - Subscriptions allow servers to batch multiple notifications in high-frequency scenarios.
+* FHIRcast is designed around short-lived sessions - Subscriptions are intended to be long-lived resources.
 
 ### Get involved
 * Check out our [awesome community contributions on github](https://github.com/fhircast)

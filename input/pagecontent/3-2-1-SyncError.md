@@ -6,7 +6,7 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 A synchronization error has been detected and this is indicated to Subscribers. 
 
-Unlike most of FHIRcast events, `SyncError` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
+Unlike most of FHIRcast events, `SyncError` is an infrastructural event and does not follow the `FHIR-resource`-`[open|close|update|select]` syntax and is directly referenced in the [underlying specification](2_Specification.html).
 
 A `SyncError` is sent by a Subscriber when:
 1. It responds to a context change event with a 202 indicating the context change is accepted but has not yet occurred, and later the Subscriber decides to refuse the context (see: [`Event Notification Response`](2-5-EventNotification.html#event-notification-response)). 

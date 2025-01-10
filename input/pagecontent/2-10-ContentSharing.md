@@ -56,10 +56,6 @@ When a `[FHIR resource]-update` event is received by a Subscriber, the applicati
 
 FHIRcast doesn't prescribe a limit on the number of entries in the transaction Bundle; however, implementers should expect a limit for production-grade software. Generally, the upper range of entries in a FHIRcast transaction bundle is in the *dozens*. Recipients SHOULD return an error when they receive a FHIRcast event notification that is too large to support. Specifically, recipients SHALL either synchronously return an HTTP error status of [HTTP 413 - Content Too Large](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/413), or asynchronously a `syncerror` with an `OperationOutcome.issue.code` = "[too-long](https://hl7.org/fhir/R4/valueset-issue-type.html)".
 
-#### Context Array in Update and Select Events
-
-In addition to the `Bundle` resource in the `updates` key, the context array of `[FHIR resource]-update` and `[FHIR resource]-select` events SHALL include the only the anchor context resource which was present in the context array of the corresponding `[FHIR resource]-open` event.  The `Patient` resource which was present in the context array of the corresponding `[FHIR resource]-open` event MAY be present in `[FHIR resource]-update` events to enable Subscribers to mitigate patient safety concerns.
-
 #### Adding/Removing Context Resources
 
 {% include infonote.html text='Implementer feedback on adding and removing resources that may be considered contextual in nature during a content sharing session is solicited' %}
