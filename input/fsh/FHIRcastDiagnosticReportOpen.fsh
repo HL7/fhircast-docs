@@ -6,7 +6,7 @@ Description:
 """
 Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.
 
-At least one business identifier of the DiagnosticReport SHALL be provided in a [FHIR resource]-open request.
+At least one business identifier of the DiagnosticReport SHOULD be provided in a [FHIR resource]-open request.
 
 Typically the report is associated with an order from an information system.  In this case the accession number of the order is provided in the DiagnosticReport's `basedOn` array attribute as a reference using a ServiceRequest reference type and the “ACSN” identifier type.  The accession number SHALL be included as a business identifier if it is known.
 
