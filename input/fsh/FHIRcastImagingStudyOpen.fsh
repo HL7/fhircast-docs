@@ -6,7 +6,7 @@ Description:
 """
 Provides guidance as to which ImagingStudy attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-open events.
 
-At least one business identifier of the ImagingStudy SHALL be provided in a [FHIR resource]-open request.  Two business identifiers are typically associated with an image study.  Imaging systems such as a PACS viewer, advanced visualization workstation, etc. typically identify an image study by its DICOM Study Instance UID (which in DICOM is identified with a (0020,000D) tag).  Likewise, information systems often identify an image study through the accession number of the order which triggered the image procedure to be performed.
+At least one business identifier of the ImagingStudy SHOULD be provided in a [FHIR resource]-open request.  Two business identifiers are typically associated with an image study.  Imaging systems such as a PACS viewer, advanced visualization workstation, etc. typically identify an image study by its DICOM Study Instance UID (which in DICOM is identified with a (0020,000D) tag).  Likewise, information systems often identify an image study through the accession number of the order which triggered the image procedure to be performed.
 
 The Study Instance UID SHALL be included as a business identifier if it is known.  In FHIR, the Study Instance UID of an ImagingStudy is provided in the `identifier` array using the identifier system of `urn:dicom:uid` and prefixing the UID value with `urn:oid:`.
 
