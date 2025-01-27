@@ -42,3 +42,16 @@ FHIRcast is focused on providing notifications when key elements in the context 
 * Check out our [awesome community contributions on github](https://github.com/fhircast)
 * [Log issues](https://jira.hl7.org/secure/CreateIssue.jspa), [submit a PR!](https://github.com/fhircast/docs)
 * [Converse at chat.fhir.org](https://chat.fhir.org/#narrow/stream/179271-FHIRcast)
+
+### Credits
+This Implementation Guide was made possible by the [contributions](https://github.com/HL7/fhircast-docs/graphs/contributors) of the [HL7 Infrastructure & Messaging Workgroup](https://www.hl7.org/Special/committees/inm/) and those identified below.
+
+Authors:
+* Bas van der Heuval, Philips
+* Eric Martin, Proscia
+* Isaac Vetter, Epic
+
+Contributors:
+* Gergely Heja, Evosoft
+* Paulius Galinauskas, Canon
+* Timothy Kopec, Epic
