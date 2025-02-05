@@ -40,7 +40,28 @@ Content-Type: application/json
 {
   "eventsSupported": ["Patient-open", "Patient-close", "SyncError", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
-  "fhircastVersion": "STU3"
+  "fhircastVersion": {
+    "resourceType": "ValueSet",
+    "id": "fhircast-version",
+    "url": "http://hl7.org/fhir/ValueSet/fhircast-version",
+    "version": "3.0.0",
+    "name": "FHIRcastVersion",
+    "title": "FHIRcast Version",
+    "status": "active",
+    "compose": {
+      "include": [
+        {
+          "system": "http://hl7.org/fhir/fhircast-version",
+          "concept": [
+            {
+              "code": "STU3",
+              "display": "STU3"
+            }
+          ]
+        }
+      ]
+    }
+  }
 }
 ```
 
