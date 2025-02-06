@@ -15,6 +15,7 @@ If one or more resources are noted as selected, any other resource which had bee
 Key       | Cardinality | Type      | Description
 --------- | ----------- | --------- | --------------
 `report`  | 1..1        | reference | Reference to the FHIR DiagnosticReport resource specifying the [`anchor context`](5_glossary.html) in which the selection is being made.
+`patient`	| 0..1	      | reference	| May be provided so that Subscribers may perform identity verification according to their requirements.
 `select`  | 1..*        | reference | Contains zero or more references to selected resources. If a reference to a resource is present , there is an implicit unselect of any previously selected resource. If no resource references are present , this is an indication that any previously selected resource is now unselected.
 
 
@@ -38,6 +39,12 @@ The following example shows the selection of a single Observation resource in an
           {
             "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
           }
+      },
+      {
+        "key": "patient",
+        "reference": { 
+          "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
+        }
       },
       {
         "key": "select",
