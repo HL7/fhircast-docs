@@ -49,7 +49,7 @@ In STU1 and STU2, FHIRcast supported a `webhook` channel (URL callbacks). As par
 
 #### Hub Generated `open` events
 
-Significant complexity is created if/when subscribers support subsets of the FHIRcast context synchronization events used during a context synchronization session. If a hub permits subscribers to subscribe to subsets of one another's events, the hub is required to "generate" or "derive open events. This is required in the specification of [Event Notifications](2-5-EventNotification.html#hub-generated-open-events) and discussed in [Multi-anchor considerations](4-5-multi-anchor-considerations.html)
+Significant complexity is created if/when subscribers support subsets of the FHIRcast context synchronization events used during a context synchronization session. If a hub permits subscribers to subscribe to subsets of one another's events, the hub is required to "generate" or "derive open events. This is required in the specification of [Event Notifications](2-5-EventNotification.html#hub-generated-open-events) and discussed in [Multi-anchor considerations](4-2-3-multi-anchor-considerations.html)
 
 ### `update` events (aka Content Sharing)
 
@@ -64,8 +64,8 @@ Scattered throughout the FHIRcast specification are the  questions to implemente
 * [2-5-EventNotification.html#hub-generated-syncerror-events](2-5-EventNotification.html#hub-generated-syncerror-events)
 * [2-9-GetCurrentContext.html#get-current-context](2-9-GetCurrentContext.html#get-current-context)
 * [4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session](4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session)
-* [4-5-multi-anchor-considerations.html#hub-derives-open-events](4-5-multi-anchor-considerations.html#hub-derives-open-events)
-* [4-5-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-5-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
+* [4-2-3-multi-anchor-considerations.html#hub-derives-open-events](4-2-3-multi-anchor-considerations.html#hub-derives-open-events)
+* [4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
 
 
 # FHIR Publication Details
