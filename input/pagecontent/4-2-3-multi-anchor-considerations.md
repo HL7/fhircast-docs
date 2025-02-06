@@ -30,5 +30,5 @@ See details in the specification about:
 
 {% include questionnote.html text='Implementer input is solicited. Is the absence of guidance from the specification problematic? If so, why? and how would you recommend we solve this?' %}
 
-A close event may or may not imply the closure of referenced resource types (see [multi-tab considerations](4-4-multitab-considerations.html)). FHIRcast does not currently prescribe this behavior. 
+A close event may or may not imply the closure of referenced resource types (see [multi-tab considerations](4-2-2-multitab-considerations.html)). FHIRcast does not currently prescribe this behavior. 
 
