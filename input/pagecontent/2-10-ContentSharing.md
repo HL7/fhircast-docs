@@ -88,5 +88,5 @@ If the event recipient does not support update events outside of the current con
 
 In order to enable use-cases requiring persistence of content created during a FHIRcast session, including "re-opened" FHIRcast sessions, persistent identifiers are needed. FHIR logical IDs specified during a FHIRcast session are typically not persisted. Subscribers that create new FHIR resources SHOULD specify a business `identifier` for the resource (see: [FHIR's identifier].
 
-For further discussion on the reopening of content sharing sessions see Section [4.6 FHIRcast Event-based Content Sharing](4-6-fhircast-event-content-sharing.html).
+For further discussion on the reopening of content sharing sessions see Section [4.4 Content Sharing Considerations](4-4-fhircast-event-content-sharing.html).
 
