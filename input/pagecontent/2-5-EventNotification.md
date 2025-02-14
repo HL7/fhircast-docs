@@ -101,7 +101,7 @@ The figure below illustrates the Event Notification Error Sequence.
   <p></p>
 </figure>
 
-More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-syncconsiderations.html).
+More information on the source of notification errors and how to resolve them can be found in [Synchronization Considerations](4-2-1-syncconsiderations.html).
 
 ### Hub Generated `SyncError` Events
 

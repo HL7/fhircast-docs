@@ -27,7 +27,7 @@ Support of content sharing by a Hub is optional.  If supporting content sharing,
 
 A Hub is not responsible for structurally validating FHIR resources.  While a Hub must be able to successfully parse FHIR resources sufficiently to perform its required capabilities (e.g., find the `id` of a resource), a Hub is not responsible for additional structural checking.  If the Hub does reject an update request, for any reason, it SHALL reject the entire request - it SHALL NOT accept some changes specified in the bundle and reject others.
 
-A Hub is not responsible for any long-term persistence of shared information and should purge the content when a `[FHIR resource]-close` request is received. The Hub MAY forward a `[FHIR resource]-select` event to all Subscribers in support of content sharing.
+A Hub is not responsible for any long-term persistence of shared information and can periodically purge content, for example, when a `[FHIR resource]-close` request is received. The Hub MAY forward a `[FHIR resource]-select` event to all Subscribers in support of content sharing.
 
 Additionally, a Hub is not responsible to prevent applications participating in exchanging structured information from causing inconsistencies in the information exchanged.  For example, an inconsistency could arise if an application removes from the anchor context's content a resource which is referenced by another resource.  The Hub may check `[FHIR resource]-update` requests for such inconsistencies and MAY reject the request with an appropriate error message; however, it is not required to do so.  Additionally, a Hub MAY check for inconsistencies which it deems to be critical but not perform exhaustive validation. For example, a Hub could validate that the content in a `DiagnosticReport` anchor context always includes at least one primary imaging study.
 
@@ -88,5 +88,5 @@ If the event recipient does not support update events outside of the current con
 
 In order to enable use-cases requiring persistence of content created during a FHIRcast session, including "re-opened" FHIRcast sessions, persistent identifiers are needed. FHIR logical IDs specified during a FHIRcast session are typically not persisted. Subscribers that create new FHIR resources SHOULD specify a business `identifier` for the resource (see: [FHIR's identifier].
 
-For further discussion on the reopening of content sharing sessions see Section [4.6 FHIRcast Event-based Content Sharing](4-6-fhircast-event-content-sharing.html).
+For further discussion on the reopening of content sharing sessions see Section [4.4 Content Sharing Considerations](4-4-fhircast-event-content-sharing.html).
 

@@ -14,7 +14,7 @@ Field              | Optionality | Type  | Description
 ------------------ | ----------- | ----- | ---
 `eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
 `websocketSupport` | Required    | boolean | SHALL have the static value: `true` - indicating support for websockets. FYI to Implementers: Given that websocket support is the only defined communication method in FHIRcast versions STU3 and was required in STU2, it's likely that this element will become Optional and then Deprecated in the future.
-`fhircastVersion`  | Optional | string | `STU1`, `STU2`, or `STU3` - indicating support for a specific version of FHIRcast. Hubs SHOULD indicate the version of FHIRcast supported.
+`fhircastVersion`  | Optional | string | Specific FHIRcast IG Version supported by Hub (for example: `2.0.0` or `3.0.0`). Hubs SHOULD indicate the version of FHIRcast supported. See [history page](https://hl7.org/fhir/uv/fhircast/history.html) for versions.
 `getCurrentSupport (Deprecated)` | Optional | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API. 
 `capabilities` | Optional | array | Array of key-value pairs representing supported topics. See Capabilities table below for list of defined keys and their meanings. 
 `fhirVersion`  | Optional | string | `DSTU1`, `DSTU2`, `STU3`, `R4`, `R4B`, or `R5` - indicating the specific version of FHIR for this Hub.
@@ -48,7 +48,7 @@ Content-Type: application/json
 {
   "eventsSupported": ["Patient-open", "Patient-close", "SyncError", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
-  "fhircastVersion": "STU3",
+  "fhircastVersion": "3.0.0"
   "capabilities": [
     "supportsGetCurrentContext": false,
     "supportsNonCurrentContextUpdates": false

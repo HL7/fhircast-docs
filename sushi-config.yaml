@@ -160,7 +160,7 @@ menu:
   Scenarios: 
     Introduction: 4_Scenarios.html
     Application Launch Scenarios and Session Discovery: 4-1-launch-scenarios.html
-    Context Synchronization Scenarios: 4-2-0-contextsynchronizationscenarios.md
+    Context Synchronization Scenarios: 4-2-0-contextsynchronizationscenarios.html
     Synchronization Recovery Considerations: 4-2-1-syncconsiderations.html 
     Multi-tab Considerations: 4-2-2-multitab-considerations.html
     Multi-anchor Considerations: 4-2-3-multi-anchor-considerations.html
