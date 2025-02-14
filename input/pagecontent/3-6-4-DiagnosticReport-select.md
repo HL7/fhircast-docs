@@ -50,6 +50,11 @@ The following example shows the selection of a single Observation resource in an
         "key": "select",
         "reference": {
           "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
+        },
+      {
+        "key": "select",
+        "reference": {
+          "reference": "Observation/e25ce4c2-95c1-4078-8ef5-84aab1a69036"
         }
       }
     ]
