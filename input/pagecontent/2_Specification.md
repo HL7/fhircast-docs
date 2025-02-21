@@ -4,8 +4,8 @@ This chapter consists of the following sections:
 [2.2 FHIRcast Scopes](2-2-FhircastScopes.html) |
 [2.3 Event Format](2-3-Events.html) |
 [2.4 Subscribing to Events](2-4-Subscribing.html) |
-[2.5 Event Notification](2-5-EventNotification.html) |
-[2.6 Request Context Change](2-6-RequestContextChange.html) |
+[2.5 Receive Event Notification](2-5-ReceiveEventNotification.html) |
+[2.6 Send Event Notification](2-6-SendEventNotification.html) |
 [2.7 Conformance](2-7-Conformance.html) |
 [2.8 Extensions](2-8-Extensions.html) |
 [2.9 Get Current Context](2-9-GetCurrentContext.html) |
@@ -14,7 +14,7 @@ This chapter consists of the following sections:
 The FHIRcast specification describes the APIs used by disparate healthcare applications to synchronize user interfaces (UI) in real time; allowing them to show the same clinical context and content to a user.
 
 
-Once an application [knows about](2-1-SessionDiscovery.html) the session (Hub topic), the application [subscribes](2-4-Subscribing.html) to specific workflow-related [events](2-3-Events.html) for the given session. The application is then [notified](2-5-EventNotification.html) when those workflow-related events occur; for example, when the clinician opens a patient's chart in another application subscribed to the same session. A Subscriber may also [initiate context changes](2-6-RequestContextChange.html) by accessing APIs defined in this specification; for example, closing the patient's chart. A Subscriber [unsubscribes from the session](2-4-Subscribing.html#unsubscribe) to no longer receive session events. The notification events describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources.
+Once an application [knows about](2-1-SessionDiscovery.html) the session (Hub topic), the application [subscribes](2-4-Subscribing.html) to specific workflow-related [events](2-3-Events.html) for the given session. The application is then [notified](2-5-ReceiveEventNotification.html) when those workflow-related events occur; for example, when the clinician opens a patient's chart in another application subscribed to the same session. A Subscriber may also [initiate context changes](2-6-SendEventNotification.html) by accessing APIs defined in this specification; for example, closing the patient's chart. A Subscriber [unsubscribes from the session](2-4-Subscribing.html#unsubscribe) to no longer receive session events. The notification events describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources.
 
 FHIRcast recommends the [HL7 SMART on FHIR launch protocol](http://www.hl7.org/fhir/smart-app-launch) for both session discovery and API authentication. FHIRcast enables a Subscriber to receive notifications over a WebSocket connection. This protocol is modeled on the [W3C WebSub RFC](https://www.w3.org/TR/websub/), such as its use of GET vs POST interactions and a Hub for managing subscriptions. The Hub exposes APIs for subscribing and unsubscribing, requesting context changes, sharing content, and distributing event notifications. The flow diagram presented below illustrates the series of interactions specified by FHIRcast, their origination, and their outcome.
 
