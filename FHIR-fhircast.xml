@@ -82,7 +82,7 @@
 <page key="2-3-Events" name="Event Format"/>
 <page key="3_Events" name="Event Library"/>
 <page key="3-1-2-eventmaturitymodel" name="Event Maturity Model"/>
-<page key="2-5-EventNotification" name="Event Notification"/>
+<page key="2-5-ReceiveEventNotification" name="Receive Event Notification"/>
 <page key="3-1-1-template" name="Event Template"/>
 <page deprecated="true" key="event-format" name="Event format"/>
 <page deprecated="true" key="event-library" name="Event library"/>
@@ -118,7 +118,7 @@
 <page deprecated="true" key="patient-open" name="Patient open event"/>
 <page key="3-3-2-Patient-close" name="Patient-close Event"/>
 <page key="3-3-1-Patient-open" name="Patient-open Event"/>
-<page key="RequestContextChange" name="Request Context Change"/>
+<page key="SendEventNotification" name="Send Event Notification"/>
 <page key="Scenarios" name="Scenarios"/>
 <page key="4-3-security-considerations" name="Security Considerations"/>
 <page deprecated="true" key="security-considerations" name="Security considerations"/>

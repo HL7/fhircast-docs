@@ -54,7 +54,7 @@ hub.channel.type=websocket&hub.mode=subscribe&hub.topic=fdb2f928-5546-4f52-87a0-
 
 Upon receiving subscription or unsubscription requests, the Hub SHALL respond to a subscription request with an appropriate HTTP response.
 
-If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies. For example, a Hub may require that all applications subscribe to the same set of events in lieu of [deriving open events](2-5-EventNotification.html#hub-generated-open-events).
+If a Hub refuses the request or finds any errors in the subscription request, an appropriate HTTP error response code (4xx or 5xx) SHALL be returned. In the event of an error, the Hub SHOULD return a description of the error in the response body as plain text, to be used by the client developer to understand the error. This is not meant to be shown to the end user. Hubs MAY decide to reject some subscription requests based on their own policies. For example, a Hub may require that all applications subscribe to the same set of events in lieu of [deriving open events](2-5-ReceiveEventNotification.html#hub-generated-open-events).
 
 
 In the case of an acceptable subscription request, an HTTP 202 "Accepted" response is returned. This indicates that the request was received and will now be verified by the Hub. The HTTP body of the response SHALL consist of a JSON object containing an element name of `hub.channel.endpoint` and a value for the WSS URL. The WebSocket WSS URL SHALL be cryptographically random, unique, and unguessable ([see Security Considerations](4-3-security-considerations.html)).
@@ -115,7 +115,7 @@ Once the subscription is confirmed, the application is subscribed.
 
 Upon the successful creation of a new subscription, the Subscriber will receive notifications for subsequent workflow steps, according to the `hub.events` specified in the subscription. Any previously established context is unknown to the newly subscribed application. To improve user experience, Hubs SHALL follow a successful subscription with an event notification informing the new Subscriber of the most recent \*-open event per anchor type for which no \*-close event has occurred, according to the Subscriber's subscription.  Hubs SHALL NOT send a Subscriber events to which it is not subscribed.
 
-Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event triggered notification, as specified in [Event Notification](2-5-EventNotification.html). Note that the `timestamp` in the event notification is the time at which the event occurred and not the time at which the notification is generated.
+Although these event notifications are triggered by a successful subscription, they are indistinguishable from a normal, just-occurred workflow event triggered notification, as specified in [Event Notification](2-5-ReceiveEventNotification.html). Note that the `timestamp` in the event notification is the time at which the event occurred and not the time at which the notification is generated.
   
 ### Subscription Denial
 

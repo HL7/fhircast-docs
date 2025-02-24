@@ -24,7 +24,7 @@ The Hub is responsible for identifying and sending these implied *-open events. 
 
 See details in the specification about:
 * Hubs can [reject subscriptions](2-4-Subscribing.html#subscription-response) according to their own internal business logic.
-* Hubs are [required](2-5-EventNotification.html#hub-generated-open-events) to derive and send open events. 
+* Hubs are [required](2-5-ReceiveEventNotification.html#hub-generated-open-events) to derive and send open events. 
 
 ### Hub may or may not derive close events
 

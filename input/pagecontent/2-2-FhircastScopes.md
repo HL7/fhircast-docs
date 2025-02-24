@@ -8,4 +8,5 @@ FhircastScopes ::= fhircast  '/' ( FHIRcast-event-name | '*' ) '.' ( 'read' | 'w
 
 {% include img.html img="FhircastScopes.png" caption="Figure: Syntax for FHIRcast scopes" %}
 
-Note the [FHIRcast event format](2-3-Events.html#event-name) contains a noun-verb, for example: `Patient-open`. So, a requested scope of `fhircast/Patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/Patient-open.write` authorizes the subscribing application to [request a context change](2-5-EventNotification.html).
+Note the [FHIRcast event format](2-3-Events.html#event-name) contains a noun-verb, for example: `Patient-open`. So, a requested scope of `fhircast/Patient-open.read` would authorize the subscribing application to receive a notification when the patient in context changed. Similarly, a scope of  `fhircast/Patient-open.write` authorizes the subscribing application to [request a notification](2-5-ReceiveEventNotification.html).
+
