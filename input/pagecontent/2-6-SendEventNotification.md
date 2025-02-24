@@ -1,4 +1,4 @@
-The Subscriber MAY notify the Hub of FHIRcast events. These event notifications include context change, content change, and `select` requests. 
+The Subscriber MAY request a context change, content change, or `select` event by sending the Hub a FHIRcast event notification.
 
 ### Request Context Change
 
