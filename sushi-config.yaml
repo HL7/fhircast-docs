@@ -11,6 +11,10 @@ status: draft
 extension:
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg  #<<< must include a http://hl7.org/fhir/StructureDefinition/structuredefinition-wg extension that identifies the workgroup responsible for the IG. This is the authoritative element.
     valueCode: inm  # <<< The value must be the code for the workgroup
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+    valueCode: trial-use
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueCode: 5    
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
@@ -28,14 +32,6 @@ contact:
         value: http://www.hl7.org/Special/committees/inm
       - system: email
         value: inm@lists.HL7.org 
-
-extension:
-  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-wg  #<<< must include a http://hl7.org/fhir/StructureDefinition/structuredefinition-wg extension that identifies the workgroup responsible for the IG. This is the authoritative element.
-    valueCode: inm  # <<< The value must be the code for the workgroup
-  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-    valueCode: trial-use
-  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
-    valueCode: 5
 
 dependencies:
   hl7.fhir.uv.ipa: 1.0.0
