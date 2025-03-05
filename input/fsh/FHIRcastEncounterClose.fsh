@@ -14,11 +14,11 @@ A logical id of the resource SHALL be provided. The provided `id` SHALL be the s
 * identifier 0..* MS
 * identifier ^short = "At least one identifier of the Encounter SHOULD be provided in a [FHIR resource]-close request."
 * identifier ^definition = 
-"At least one `identifier` of the Encounter SHOULD be provided in a [FHIR resource]-close request. Providing one or more of the `indentifier` values for the Encounter which was provided in the corresponding [FHIR resource]-open event enables Subscribers to perform identity verification according to their requirements."
+"At least one `identifier` of the Encounter SHOULD be provided in a [FHIR resource]-close request. Providing one or more of the `identifier` values for the Encounter which was provided in the corresponding [FHIR resource]-open event enables Subscribers to perform identity verification according to their requirements."
 * status ^short = "Status of the encounter.  Note that the `status` attribute is required by the FHIR specification but may not be of significant interest when used in FHIRcast"
 * status ^definition = 
 """
-Status of the encounter.  Note that the `status` attribute is required by the FHIR specification; however, the actual status of an encounter may not be known nor of signficant interest when closing an encounter context.  Hence, the `status` attribute may frequently have a value of `unknown`.
+Status of the encounter.  Note that the `status` attribute is required by the FHIR specification; however, the actual status of an encounter may not be known nor of significant interest when closing an encounter context.  Hence, the `status` attribute may frequently have a value of `unknown`.
 """
 * class ^short = "Classification of the encounter.  Note that the `class` attribute is required by the FHIR specification but may not be of significant interest when used in FHIRcast"
 * class ^definition = 
