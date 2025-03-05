@@ -82,7 +82,7 @@ Towards enabling greater workflow flexibility and greater convenience of subscri
 
 If a Hub supports receiving and processing update events outside of the current context, it SHOULD indicate support through the well-known endpoint (see [2.7 Conformance](2-7-Conformance.html#capabilities)).
 
-If the event recipient does not support update events outside of the current context, the recipient SHALL respond with an appropriate [event notification](2-5-EventNotification.html#event-notification-response).
+If the Subscriber does not support update events outside of the current context, the Subscriber SHALL respond with an appropriate [event notification](2-5-EventNotification.html#event-notification-response).
 
 ### Content Creation and Reopen Scenario
 
