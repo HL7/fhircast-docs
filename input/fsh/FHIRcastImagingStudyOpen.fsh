@@ -20,8 +20,7 @@ Since this version of FHIRcast promotes the use of FHIR R4 resources, the guidan
 
 For a more detailed explanation of these business identifiers, see the [FHIR R4 implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/R4B/imagingstudy.html) (and the [FHIR R5 implementation notes of the FHIR ImagingStudy resource](https://hl7.org/fhir/R5/imagingstudy.html)). Ideally both the accession number and Study Instance UID are available and present in an ImagingStudy resource used in FHIRcast.  The presence of both business identifiers ensures that all Subscribers will be able to be able to identify the appropriate imaging study.
 """
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * id 1..1 
 * id ^short = "A logical id of the resource SHALL be provided."
 * id ^definition =
