@@ -9,8 +9,7 @@ Description: """
     POST is not allowed as the content sharing mechanism cannot indicate the 
     id of the created resource using a POST operation.
 """
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * type MS
 * type = #transaction
 * link 0..0

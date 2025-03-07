@@ -4,12 +4,10 @@ Title: "FHIRcast related Terminology."
 Description: """
     This codesystem defines terminology that is used within the FHIRcast specification.
 """
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * ^experimental = false
 * ^caseSensitive = true
 * ^version = "0.1.0"
-* ^status = #active
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
 * #user-initiated "User initiated action."
       "The user initiated the action."
 * #system-timeout "System initiated action due to timeout"

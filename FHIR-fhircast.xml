@@ -37,7 +37,6 @@
 <artifact id="Encounter/8cc652ba-770e-4ae1-b688-6e8e7c737438" key="Encounter-8cc652ba-770e-4ae1-b688-6e8e7c737438" name="FHIRcastEncounterOpen-Example"/>
 <artifact id="Bundle/8i7tbu6fby5fuuey7133eh" key="Bundle-8i7tbu6fby5fuuey7133eh" name="FHIRcastGetCurrentContentBundle-Example"/>
 <artifact id="Parameters/FHIRcastHibernateContext-Example" key="Parameters-FHIRcastHibernateContext-Example" name="FHIRcastHibernateContext-Example"/>
-<artifact id="Parameters/FHIRcastHibernateContext-Hub-Hibernate-Example" key="Parameters-FHIRcastHibernateContext-Hub-Hibernate-Example" name="FHIRcastHibernateContext-Hub-Hibernate-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd-close" name="FHIRcastImagingStudyClose-Example"/>
 <artifact id="ImagingStudy/e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" key="ImagingStudy-e25c1d31-20a2-41f8-8d85-fe2fdeac74fd" name="FHIRcastImagingStudyOpen-Example"/>
 <artifact id="Parameters/FHIRcastLogoutContext-Example" key="Parameters-FHIRcastLogoutContext-Example" name="FHIRcastLogoutContext-Example"/>
@@ -64,6 +63,8 @@
 <page deprecated="true" key="change-log" name="Change log"/>
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
+<page key="4-4-fhircast-event-content-sharing" name="Content Sharing Considerations"/>
+<page key="4-2-0-contextsynchronizationscenarios" name="Context Synchronization Scenarios"/>
 <page key="7_design-notes" name="Design Notes"/>
 <page key="diagnosticreportevents" name="DiagnosticReport Events"/>
 <page deprecated="true" key="diagnosticreport-close" name="DiagnosticReport close event"/>
@@ -82,7 +83,7 @@
 <page key="2-3-Events" name="Event Format"/>
 <page key="3_Events" name="Event Library"/>
 <page key="3-1-2-eventmaturitymodel" name="Event Maturity Model"/>
-<page key="2-5-ReceiveEventNotification" name="Receive Event Notification"/>
+<page deprecated="true" key="2-5-EventNotification" name="Event Notification"/>
 <page key="3-1-1-template" name="Event Template"/>
 <page deprecated="true" key="event-format" name="Event format"/>
 <page deprecated="true" key="event-library" name="Event library"/>
@@ -91,7 +92,7 @@
 <page deprecated="true" key="event-template" name="Event template"/>
 <page key="extensions" name="Extensions"/>
 <page key="event-definitions" name="FHIRcast Event Definitions"/>
-<page key="4-6-fhircast-event-content-sharing" name="FHIRcast Event-based Content Sharing"/>
+<page deprecated="true" key="4-6-fhircast-event-content-sharing" name="FHIRcast Event-based Content Sharing"/>
 <page key="2_Specification" name="FHIRcast Specification"/>
 <page deprecated="true" key="specification" name="FHIRcast specification"/>
 <page key="GetCurrentContext" name="Get Current Context"/>
@@ -118,17 +119,20 @@
 <page deprecated="true" key="patient-open" name="Patient open event"/>
 <page key="3-3-2-Patient-close" name="Patient-close Event"/>
 <page key="3-3-1-Patient-open" name="Patient-open Event"/>
-<page key="SendEventNotification" name="Send Event Notification"/>
+<page key="2-5-ReceiveEventNotification" name="Receive Event Notification"/>
+<page deprecated="true" key="RequestContextChange" name="Request Context Change"/>
 <page key="Scenarios" name="Scenarios"/>
 <page key="4-3-security-considerations" name="Security Considerations"/>
 <page deprecated="true" key="security-considerations" name="Security considerations"/>
+<page key="2-6-SendEventNotification" name="Send Event Notification"/>
 <page key="session-discovery" name="Session Discovery"/>
 <page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
 <page deprecated="true" key="syncerror" name="Sync error event"/>
 <page key="3-2-1-SyncError" name="SyncError Event"/>
-<page key="4-2-syncconsiderations" name="Synchronization Considerations"/>
+<page deprecated="true" key="4-2-syncconsiderations" name="Synchronization Considerations"/>
+<page key="4-2-1-syncconsiderations" name="Synchronization Recovery Considerations"/>
 <page deprecated="true" key="synchronization-considerations" name="Synchronization considerations"/>
 <page key="table-of-contents" name="Table of Contents"/>
 <page deprecated="true" key="userhibernate" name="User hibernate event"/>

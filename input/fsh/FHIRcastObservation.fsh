@@ -5,8 +5,7 @@ Parent: Observation
 Id: fhircast-observation
 Title: "FHIRcast Observation"
 Description: "Defines the minimum set of attributes which an application wanting to share observation content must support"
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * subject 1..1
 * hasMember MS
 * derivedFrom MS

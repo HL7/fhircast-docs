@@ -3,8 +3,7 @@ Parent: Parameters
 Id: fhircast-hibernate
 Title: "FHIRcast context for userHibernate events."
 Description: "Contains the rationale behind the userHibernate event"
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * ^experimental = false
 * parameter 1..* MS
 * parameter ^slicing.discriminator.type = #value
@@ -35,9 +34,8 @@ Description: "Contains the rationale behind the userHibernate event"
 
 ValueSet: FHIRcastHibernateReason
 Title: "Reasons for sending a userHibernate event."
-Description: "This valueset lists possible reasons a hibernate event is send to other Subscribers."
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+Description: "This ValueSet lists possible reasons a hibernate event is send to other Subscribers."
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * ^experimental = false
 * FHIRcastCodeSystem#user-initiated "User initiated hibernate."
 * FHIRcastCodeSystem#system-timeout "System initiated logout due to a timeout."

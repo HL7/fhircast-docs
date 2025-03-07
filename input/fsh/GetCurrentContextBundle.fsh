@@ -6,8 +6,7 @@ Description: """
     Defines the structure of a Bundle that carries current content state
     resulting from various FHIRcast `-update` messages. 
 """
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * type MS
 * type = #collection
 * link 0..0
