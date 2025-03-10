@@ -1,4 +1,4 @@
-The specification is not prescriptive about support for extensions. However, to support extensions, the specification reserves the name `extension` and will never define an element with that name, allowing implementations to use it to provide custom behavior and information. The value of an extension element SHALL be a pre-coordinated JSON object. For example, an extension on a notification could look like this:
+The specification is not prescriptive about support for extensions. However, to support extensions, the specification reserves the name `extension` and will never define an element with that name, allowing implementations to use it to provide custom behavior and information. The value of an extension element SHALL be a valid JSON object and is typically pre-coordinated. For example, an extension on a notification could look like this:
 
 ```json
 {
