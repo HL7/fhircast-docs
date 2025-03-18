@@ -78,11 +78,11 @@ When responding to a [`GET Context`](2-9-GetCurrentContext.html) request, the Hu
 
 This capability is deemed experimental due to low production adoption and evaluation of potential risk patient safety. This capability may change or be removed in future versions of this specification. 
 
-Towards enabling greater workflow flexibility and greater convenience of subscribers, Subscribers MAY send a [FHIR resource]-update event, that is unrelated to the current context (e.g. an update event in which the anchor context referenced differs from the current context). Subscribers SHALL NOT send select events unrelated to the current context.
+Towards enabling greater workflow flexibility and greater convenience of Subscribers, Subscribers MAY send a [FHIR resource]-update event that is unrelated to the current context (e.g. an update event in which the anchor context referenced differs from the current context). If supported by a Subscriber, the event is processed in the scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context. Subscribers SHALL NOT send [FHIR resource]-select events unrelated to the current context.
 
-If the event recipient supports receiving and processing update events outside of the current context, the event SHALL be processed in scope of the referenced context (not the current context) following the same rules as if the referenced context were the current context.
+If a Hub supports receiving and processing update events outside of the current context, it SHOULD indicate support through the well-known endpoint (see [2.7 Conformance](2-7-Conformance.html#capabilities)).
 
-If the event recipient does not support update events outside of the current context, the recipient SHALL respond with an appropriate [event notification](2-5-ReceiveEventNotification.html#event-notification-response).
+If the Subscriber does not support update events outside of the current context, the Subscriber SHALL respond with an appropriate [event notification](2-5-ReceiveEventNotification.html#event-notification-response).
 
 ### Content Creation and Reopen Scenario
 
