@@ -7,7 +7,7 @@ canonical: http://hl7.org/fhir/uv/fhircast
 name: FHIRcast
 title: FHIRcast
 description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
-status: draft
+status: active
 extension:
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
     valueCode: "trial-use"
@@ -20,7 +20,8 @@ jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0-ballot
 copyrightYear: 2017+
-releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+# releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: trial-use
 publisher:
   name: HL7 International / Infrastructure And Messaging
   url: http://www.hl7.org/Special/committees/inm
