@@ -1,18 +1,16 @@
 # Revision History
 All changes to the FHIRcast specification are tracked in the [specification's HL7 github repository](https://github.com/HL7/fhircast-docs/commits/master). Further, issues may be submitted and are tracked in [jira](https://jira.hl7.org/browse/FHIR-25651?filter=12642) or (historically as) [github issues](https://github.com/HL7/fhircast-docs/issues).   For the reader's convenience, the below table additionally lists significant changes to the specification.
 
-## xxxx Significant changes as part of the STU2 publication included: 
-* removal of the Heartbeat event
-
-## 20200715 Significant changes as part of the STU2 publication included: 
+##  Significant changes as part of the STU2 publication include: 
 
 * Introduction of WebSockets as the preferred communication mechanism over webhooks.
 * Creation of a FHIR CapabilityStatement extension to support Hub capability discovery. 
 * Additional, required information on `SyncError` OperationOutcome (namely communication of the error'd event's id and event name). 
 * Websocket WSS URL communicated in HTTP body, instead of `Content-Location` HTTP header.
 * Subscribers should differentiate between immediately applied context changes and mere successfully received notifications with HTTP code responses of 200 and 202, respectively.
+* removal of the Heartbeat event
 
-## 20240401 Change Log STU2 to STU3
+## Significant changes as part of the STU3 publication include:
 
 ### Spec format moved to FHIR Implementation Guide
 [FHIRcast STU2](https://fhircast.hl7.org/specification/STU2/) was the last version of FHIRcast published with our bespoke mkdocs publication pipeline. STU3 and beyond will be published as proper FHIR IGs, including the use of FHIR profiles.
