@@ -52,7 +52,7 @@ Authors:
 * Isaac Vetter, Epic
 
 Contributors:
-* Gergely Heja, Evosoft
+* Gergely Heja, Siemens
 * Paulius Galinauskas, Canon
 * Timothy Kopec, Epic
 * Kamal Gnanadesikan, Nuance
