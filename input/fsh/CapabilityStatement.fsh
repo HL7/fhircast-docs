@@ -2,8 +2,7 @@ Profile: FHIRcastCapabilityStatement
 Parent: CapabilityStatement
 Id: fhircast-capabilitystatement
 Description: "CapabilityStatment stating support for FHIRcast. To supplement or optionally identify the location of a FHIRcast hub, a FHIR server MAY declare support for FHIRcast using the FHIRcast extension on its FHIR CapabilityStatement’s rest element."
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * implementationGuide ^slicing.rules = #open
 * implementationGuide ^slicing.description = "Encourage FHIRcast IG to be listed"
 * implementationGuide ^slicing.discriminator.type = #value
@@ -27,8 +26,7 @@ Context: CapabilityStatement.rest
 Description: """
 Extension in CapabilityStatement stating the location of the FHIRcast hub to be used with this FHIR server.
 """
-* ^extension[0].url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg"
-* ^extension[0].valueCode = #inm
+* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 * value[x] 0..0
 * extension contains hubUrl 1..1 MS
 * extension[hubUrl]
