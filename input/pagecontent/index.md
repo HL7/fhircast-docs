@@ -55,3 +55,4 @@ Contributors:
 * Gergely Heja, Evosoft
 * Paulius Galinauskas, Canon
 * Timothy Kopec, Epic
+* Kamal Gnanadesikan, Nuance
