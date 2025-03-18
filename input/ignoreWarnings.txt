@@ -34,3 +34,6 @@ Most code systems defined in HL7 IGs will need to move to THO later during the p
 
 # Ignore a warning that is caused by an error in the underlying FHIR specification
 %The definition for the element 'ImagingStudy.series.performer.function' binds to the value set 'http://hl7.org/fhir/ValueSet/series-performer-function' which is experimental, but this structure is not labeled as experimental%
+
+# The CapabilityStatement is an example and does not need an OID
+%The resource CapabilityStatement/fhircast-capabilitystatement-example could usefully have an OID assigned%
