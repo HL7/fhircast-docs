@@ -34,3 +34,12 @@ Most code systems defined in HL7 IGs will need to move to THO later during the p
 
 # Ignore a warning that is caused by an error in the underlying FHIR specification
 %The definition for the element 'ImagingStudy.series.performer.function' binds to the value set 'http://hl7.org/fhir/ValueSet/series-performer-function' which is experimental, but this structure is not labeled as experimental%
+
+# The CapabilityStatement is an example and does not need an OID
+%The resource CapabilityStatement/fhircast-capabilitystatement-example could usefully have an OID assigned%
+
+# Not relevant as the non-matching slice has been put there on purpose in order to illustrate including additional information.
+This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror|3.0.0-ballot (this may not be a problem, but you should check that it's not intended to match a slice)
+
+# The extension appears on the resource definition of CapabilityStatement in the R4 distribution and cannot be changed or effects this implementation guide.
+The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
