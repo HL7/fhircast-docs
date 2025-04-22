@@ -38,101 +38,238 @@ dependencies:
 pages:
   index.md: 
     title: Introduction
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
   2_Specification.md:
     title: FHIRcast Specification
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-1-SessionDiscovery.md:
       title: Session Discovery
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-2-FhircastScopes.md:
       title: OAuth 2.0 Authorization Scopes
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-3-Events.md:
       title: Event Format
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-4-Subscribing.md:
       title: Subscribing to Events
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-5-ReceiveEventNotification.md:
       title: Receive Event Notification
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-6-SendEventNotification.md:
       title: Send Event Notification
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-7-Conformance.md:
       title: Conformance
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-8-Extensions.md:
       title: Extensions
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-9-GetCurrentContext.md:
       title: Get Current Context
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
     2-10-ContentSharing.md:
       title: Content Sharing
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
        
   3_Events.md:
     title: Event Library
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
     3-1-0-eventstructures.md:
       title: FHIRcast Event Definitions
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
       3-1-1-template.md:
         title: Event Template
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-1-2-eventmaturitymodel.md:
         title: Event Maturity Model
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
     3-2-0-infrastructureevents.md:
       title: Infrastructure Events
+      extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-2-1-SyncError.md:
         title: SyncError Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-2-2-UserLogout.md:
         title: UserLogout Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-2-3-UserHibernate.md:
         title: UserHibernate Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-2-5-Home-open.md:
         title: Home-open Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
     3-3-0-patientevents.md:
       title: Patient Events
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
       3-3-1-Patient-open.md:
         title: Patient-open Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-3-2-Patient-close.md:
         title: Patient-close Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
     3-4-0-encounterevents.md:
       title: Encounter Events
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
       3-4-1-Encounter-open.md:
         title: Encounter-open Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-4-2-Encounter-close.md:
         title: Encounter-close Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
     3-5-0-imagingstudyevents.md:
       title: ImagingStudy Events
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
       3-5-1-ImagingStudy-open.md:
         title: ImagingStudy-open Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-5-2-ImagingStudy-close.md:
         title: ImagingStudy-close Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
     3-6-0-diagnosticreportevents.md:
       title: DiagnosticReport Events
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: trial-use
       3-6-1-DiagnosticReport-open.md:
         title: DiagnosticReport-open Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-6-2-DiagnosticReport-close.md:
         title: DiagnosticReport-close Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-6-3-DiagnosticReport-update.md:
         title: DiagnosticReport-update Event
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
       3-6-4-DiagnosticReport-select.md:
         title: DiagnosticReport-select Event
-
+        extension:
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+          valueCode: trial-use
   4_Scenarios.md:
     title: Scenarios
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
     4-1-launch-scenarios.md:
       title: Application Launch Scenarios and Session Discovery
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-2-0-contextsynchronizationscenarios.md:
       title: Context Synchronization Scenarios
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-2-1-syncconsiderations.md:
       title: Synchronization Recovery Considerations
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-2-2-multitab-considerations.md:
       title: Multi-tab Considerations
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-2-3-multi-anchor-considerations.md:
       title: Multi-anchor Considerations
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-3-security-considerations.md:
       title: Security Considerations
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
     4-4-fhircast-event-content-sharing.md:
       title: Content Sharing Considerations
+      extension:
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
 
   5_glossary.md:
     title: Glossary
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
 
   6_change-log.md:
     title: Specification Information
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
 
   7_design-notes.md:
     title: Design Notes
+    extension:
+    - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+      valueCode: informative
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
