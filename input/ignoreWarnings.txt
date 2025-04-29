@@ -1,6 +1,6 @@
 == Suppressed Messages ==
 
-# We believe that this error is caused by infrastructure: https://jira.hl7.org/browse/FHIR-36685.
+# We believe that this error is caused by infrastructure: https://jira.hl7.org/browse/FHIR-36685
 value should not start or finish with whitespace ' not(f:kind/@value='instance') or (not(exists(f:implementation)) and exists(f:software))'
 
 # CodeSystem used as an example so need not to be valid
