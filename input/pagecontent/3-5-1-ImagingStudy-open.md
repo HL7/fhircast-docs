@@ -41,7 +41,7 @@ Other attributes of the ImagingStudy, Encounter, and Patient resources (or resou
           "identifier": [
             {
               "system" : "urn:dicom:uid",
-              "value" : "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
+              "value" : "urn:oid:1.2.999.840.83474.8.231.875.3.15.661594731"
             },
             {
               "type" : {
@@ -52,7 +52,7 @@ Other attributes of the ImagingStudy, Encounter, and Patient resources (or resou
                   }
                 ]
               },
-              "system" : "urn:oid:2.16.840.1.113883.19.5",
+              "system" : "urn:oid:2.999.16.840.1.113883.19.5",
               "value" : "GH339884",
               "assigner" : {
                 "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
@@ -82,7 +82,7 @@ Other attributes of the ImagingStudy, Encounter, and Patient resources (or resou
                   }
                 ]
               },
-              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "system": "urn:oid:2.999.16.840.1.113883.19.5",
               "value": "4438001",
               "assigner": {
                 "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
@@ -133,7 +133,7 @@ This is an example for FHIR R5 using the basedOn array for the accession
           "identifier": [
             {
               "system" : "urn:dicom:uid",
-              "value" : "urn:oid:1.2.840.83474.8.231.875.3.15.661594731"
+              "value" : "urn:oid:1.2.999.840.83474.8.231.875.3.15.661594731"
             }
           ],
           "status": "unknown",
@@ -152,7 +152,7 @@ This is an example for FHIR R5 using the basedOn array for the accession
                     }
                   ]
                 },
-                "system" : "urn:oid:2.16.840.1.113883.19.5",
+                "system" : "urn:oid:2.999.16.840.1.113883.19.5",
                 "value" : "GH339884",
                 "assigner" : {
                   "reference" : "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
@@ -179,7 +179,7 @@ This is an example for FHIR R5 using the basedOn array for the accession
                   }
                 ]
               },
-              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "system": "urn:oid:2.999.16.840.1.113883.19.5",
               "value": "4438001",
               "assigner": {
                 "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",
