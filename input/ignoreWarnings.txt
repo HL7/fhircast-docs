@@ -34,3 +34,6 @@ This element does not match any known slice defined in the profile http://hl7.or
 
 # The extension appears on the resource definition of CapabilityStatement in the R4 distribution and cannot be changed or effects this implementation guide.
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
+
+# Intentionally not specifying version to reflect base spec. Base FHIRcast shouldn't specify this level of clinical granularity. Probably national cores should be specifying this.
+%There are multiple different potential matches for the url 'http://terminology.hl7.org/ValueSet/v3-ActEncounterCode'.%
