@@ -39,7 +39,7 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
           "identifier": [
             {
               "use" : "official",
-              "system" : "http://myhealthcare.com/visits",
+              "system" : "http://myhealthcare.example.com/visits",
               "value" : "r2r22345"
             }
           ],

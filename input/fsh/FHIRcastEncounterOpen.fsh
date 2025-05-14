@@ -43,5 +43,5 @@ Description: "Example of an encounter which could be used in a [FHIR resource]-o
 * class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "r2r22345"
-* identifier.system = "http://myhealthcare.com/visits"
+* identifier.system = "http://myhealthcare.example.com/visits"
 * subject = Reference(FHIRcastPatientOpen-Example)
