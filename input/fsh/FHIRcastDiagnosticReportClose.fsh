@@ -53,6 +53,6 @@ Description: "Example of a DiagnosticReport which could be used in a [FHIR resou
 * code = http://loinc.org#19005-8 "Radiology Imaging study [Impression] (narrative)"
 * identifier.use = http://terminology.hl7.org/fhir/ValueSet/identifier-use#official
 * identifier.value = "GH339884.RPT.0001"
-* identifier.system = "http://myhealthcare.com/reporting-system"
+* identifier.system = "http://myhealthcare.example.com/reporting-system"
 * subject = Reference(FHIRcastPatientClose-Example)
 * conclusionCode = http://snomed.info/sct#368009 "Heart valve disorder"

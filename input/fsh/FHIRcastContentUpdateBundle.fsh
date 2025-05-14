@@ -78,11 +78,11 @@ Description: "Example of a content update bundle"
 * entry[put][+]
   * fullUrl = "urn:7e9deb91-0017-4690-aebd-951cef34aba4"
   * request.method = #PUT
-  * request.url = "http://huburl/topic/fhir"
+  * request.url = "http://example.com/huburl/topic/fhir"
   * resource = ImaginStudyUpdateExample
 * entry[put][+]
   * fullUrl = "urn:40afe766-3628-4ded-b5bd-925727c013b3"
-  * request.url = "http://huburl/topic/fhir"
+  * request.url = "http://example.com/huburl/topic/fhir"
   * request.method = #PUT
   * resource = ObservationUpdateExample
   
