@@ -77,7 +77,7 @@ The following example shows a response to the get context request when the curre
         "id": "ewUbXT9RWEbSj5wPEdgRaBw3",
         "identifier": [
           {
-            "system": "urn:oid:1.2.840.114350",
+            "system": "urn:oid:1.2.999.840.114350",
             "value": "185444"
           }
         ]
@@ -105,7 +105,7 @@ The following example shows a response to the get context request when the curre
           },
           {
             "system": "urn:dicom:uid",
-            "value": "urn:oid:2.16.124.113543.6003.1154777499.38476.11982.4847614254"
+            "value": "urn:oid:2.999.16.124.113543.6003.1154777499.38476.11982.4847614254"
           }
         ],
         "subject": {

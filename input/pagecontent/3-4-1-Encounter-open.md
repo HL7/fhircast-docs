@@ -69,7 +69,7 @@ Other attributes of the Encounter and Patient resources (or resource extensions)
                   }
                 ]
               },
-              "system": "urn:oid:2.16.840.1.113883.19.5",
+              "system": "urn:oid:2.999.16.840.1.113883.19.5",
               "value": "4438001",
               "assigner": {
                 "reference": "Organization/a92ac1be-fb34-49c1-be58-10928bd271cc",

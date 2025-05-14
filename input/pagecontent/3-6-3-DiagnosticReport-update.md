@@ -88,7 +88,7 @@ The following example shows adding an imaging study and a new observation to the
                   },
                   {
                     "system": "urn:dicom:uid",
-                    "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
+                    "value": "urn:oid:2.999.16.124.113543.6003.1154777499.30276.83661.3632298176"
                   }
                 ]
               }
@@ -219,7 +219,7 @@ The Hub distributes the corresponding event to all Subscribers. The Hub replaces
                   },
                   {
                     "system": "urn:dicom:uid",
-                    "value": "urn:oid:2.16.124.113543.6003.1154777499.30276.83661.3632298176"
+                    "value": "urn:oid:2.999.16.124.113543.6003.1154777499.30276.83661.3632298176"
                   }
                 ]
               }
