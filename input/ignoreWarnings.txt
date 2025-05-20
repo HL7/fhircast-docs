@@ -44,8 +44,9 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 %Canonical URL 'http://www.rsna.org/RadLex_Playbook.aspx' does not resolve%
 %Canonical URL 'http://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_B.5.html#table_B.5-1' does not resolve%
 
-# Not an error -- invariants on the multiple slices are equivalent to MS at the element level.
+# Not an error, this is intentional. (invariants on the multiple slices are equivalent to MS at the element level, other slice is MS).
 %The slice 'code' on path 'Parameters.parameter' is not marked as 'must-support' which is not consistent with the element that defines the slicing, where 'must-support' is true%
+%The slice 'hub' on path 'Parameters.parameter' is not marked as 'must-support' which is not consistent with the element that defines the slicing, where 'must-support' is true%
 
 
 
