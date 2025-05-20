@@ -6,7 +6,7 @@ Description: """
     Defines the structure of a Bundle that carries current content state
     resulting from various FHIRcast `-update` messages. 
 """
-* insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
+* insert SetWorkgroupFmmAndStatusRule( #inm, 3, #active)
 * type MS
 * type = #collection
 * link 0..0
