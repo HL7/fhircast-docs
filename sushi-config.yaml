@@ -173,7 +173,7 @@ pages:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
-          valueInteger: ?
+          valueInteger: 3
     3-3-0-patientevents.md:
       title: Patient Events
       extension:
