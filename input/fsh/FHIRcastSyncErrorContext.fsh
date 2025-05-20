@@ -14,7 +14,7 @@ OperationOutcomes contains information that is used to determine the cause of th
 * issue ^slicing.description = "FHIRcast specific information"
 * issue ^slicing.discriminator.type = #value
 * issue ^slicing.discriminator.path = "code"
-* issue contains fhircast 1..1
+* issue contains fhircast 1..1 MS
 * issue[fhircast].code = #processing
 * issue[fhircast].details 1..1 MS
 * issue[fhircast].details.coding ^slicing.discriminator.type = #value
