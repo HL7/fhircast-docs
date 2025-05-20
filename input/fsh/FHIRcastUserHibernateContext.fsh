@@ -11,7 +11,7 @@ Description: "Contains the rationale behind the userHibernate event"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.ordered = false   // can be omitted, since false is the default
 * parameter ^slicing.description = "Reason for hibernation."
-* parameter contains code 1..1 and hub 0..1
+* parameter contains code 1..1 MS and hub 0..1
 * parameter[code]
   * name = "code"
   * ^short = "Coded reason."
