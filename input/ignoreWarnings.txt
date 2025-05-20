@@ -37,8 +37,14 @@ This element does not match any known slice defined in the profile http://hl7.or
 # The extension appears on the resource definition of CapabilityStatement in the R4 distribution and cannot be changed or effects this implementation guide.
 The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
 
-# urn:oid:2.16.840.1.113883.19.5 ought nto resolve. This HL7 OID was specifically created for examples -- https://www.hl7.org/Oid/index.cfm?Comp_OID=2.16.840.1.113883.2.20.5.3
-URL value 'urn:oid:2.16.840.1.113883.19.5' does not resolve
+# urn:oid:2.16.840.1.113883.19.5 ought not resolve. This HL7 OID was specifically created for examples -- https://www.hl7.org/Oid/index.cfm?Comp_OID=2.16.840.1.113883.2.20.5.3
+%URL value 'urn:oid:2.16.840.1.113883.19.5' does not resolve%
+
+# IG Publisher bug. Not an error. The following urls actually do resolve.
+%Canonical URL 'http://www.rsna.org/RadLex_Playbook.aspx' does not resolve%
+%Canonical URL 'http://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_B.5.html#table_B.5-1' does not resolve%
+
+
 
 
 
