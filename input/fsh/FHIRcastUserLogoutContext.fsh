@@ -11,7 +11,7 @@ Description: "Contains the rationale behind the userLogout event"
 * parameter ^slicing.rules = #open
 * parameter ^slicing.ordered = false   // can be omitted, since false is the default
 * parameter ^slicing.description = "Reason for logout."
-* parameter contains code 1..1
+* parameter contains code 1..1 MS
 * parameter[code].name = "code"
 * parameter[code] ^short = "Coded reason."
 * parameter[code] ^definition = "The reason the Subscriber logout as code."
