@@ -48,5 +48,6 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 %The slice 'code' on path 'Parameters.parameter' is not marked as 'must-support' which is not consistent with the element that defines the slicing, where 'must-support' is true%
 %The slice 'hub' on path 'Parameters.parameter' is not marked as 'must-support' which is not consistent with the element that defines the slicing, where 'must-support' is true%
 
-
+# This is a problem in the extension definition, see: https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/How.20to.20give.20IG.20pages.20an.20FMM.3F/with/519648126
+%The extension http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm is not allowed to be used at this point (allowed = e:DomainResource, e:Resource; this element is [ImplementationGuide.definition.page, ImplementationGuide.definition.page.page, ImplementationGuide.definition.page.page.page])%
 
