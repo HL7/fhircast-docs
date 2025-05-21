@@ -3,7 +3,7 @@
   "version" : "3.0.0",
   "path" : "http://hl7.org/fhir/uv/fhircast/STU3/",
   "mode" : "milestone",
-  "status" : "release",
+  "status" : "trial-use",
   "sequence" : "STU3 (v3.0.0)",
   "desc" : "FHIRcast STU3 publication release",
   "changes" : "7_design-notes.html",
