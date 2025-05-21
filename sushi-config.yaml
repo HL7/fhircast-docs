@@ -6,7 +6,7 @@ id: hl7.fhir.uv.fhircast
 canonical: http://hl7.org/fhir/uv/fhircast
 name: FHIRcast
 title: FHIRcast
-description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user." 
+description: "FHIRcast synchronizes healthcare applications in real time to show the same clinical content to a common user."
 status: active
 extension:
   - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
