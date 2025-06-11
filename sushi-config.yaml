@@ -18,7 +18,7 @@ extension:
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
-version: 3.0.0-ballot
+version: 3.0.0
 copyrightYear: 2017+
 # releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 releaseLabel: trial-use
