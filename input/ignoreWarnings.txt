@@ -31,7 +31,7 @@ Most code systems defined in HL7 IGs will need to move to THO later during the p
 %The resource CapabilityStatement/fhircast-capabilitystatement-example could usefully have an OID assigned%
 
 # Not relevant as the non-matching slice has been put there on purpose in order to illustrate including additional information.
-This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror|3.0.0-ballot (this may not be a problem, but you should check that it's not intended to match a slice)
+%This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-subscriber-operation-outcome-syncerrror%
 %This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/fhircast/StructureDefinition/fhircast-hub-operation-outcome-syncerrror%
 
 # The extension appears on the resource definition of CapabilityStatement in the R4 distribution and cannot be changed or effects this implementation guide.
@@ -39,10 +39,11 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 
 # urn:oid:2.16.840.1.113883.19.5 ought not resolve. This HL7 OID was specifically created for examples -- https://www.hl7.org/Oid/index.cfm?Comp_OID=2.16.840.1.113883.2.20.5.3
 %URL value 'urn:oid:2.16.840.1.113883.19.5' does not resolve%
+%No definition could be found for URL value 'urn:oid:2.16.840.1.113883.19.5'%
 
 # IG Publisher bug. Not an error. The following urls actually do resolve.
-%Canonical URL 'http://www.rsna.org/RadLex_Playbook.aspx' does not resolve%
-%Canonical URL 'http://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_B.5.html#table_B.5-1' does not resolve%
+%Canonical URL 'http://www.rsna.org/RadLex_Playbook.aspx'%
+%Canonical URL 'http://dicom.nema.org/medical/dicom/current/output/chtml/part04/sect_B.5.html#table_B.5-1'%
 
 # Not an error, this is intentional. (invariants on the multiple slices are equivalent to MS at the element level, other slice is MS).
 %The slice 'code' on path 'Parameters.parameter' is not marked as 'must-support' which is not consistent with the element that defines the slicing, where 'must-support' is true%
