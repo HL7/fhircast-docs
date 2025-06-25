@@ -1,5 +1,5 @@
 {
-  "package-id" : "hl7.fhir.uv.fhircast", 
+  "package-id" : "hl7.fhir.uv.fhircast",
   "version" : "3.0.0",
   "path" : "http://hl7.org/fhir/uv/fhircast/STU3",
   "mode" : "milestone",
