@@ -61,6 +61,7 @@
 <page deprecated="true" key="launch-scenarios" name="App launch scenarios and session discovery"/>
 <page key="4-1-launch-scenarios" name="Application Launch Scenarios and Session Discovery"/>
 <page key="artifacts" name="Artifacts Summary"/>
+<page key="6_change-log" name="Change Log"/>
 <page deprecated="true" key="change-log" name="Change log"/>
 <page key="conformance" name="Conformance"/>
 <page key="content-sharing" name="Content Sharing"/>
@@ -127,7 +128,6 @@
 <page deprecated="true" key="security-considerations" name="Security considerations"/>
 <page key="2-6-SendEventNotification" name="Send Event Notification"/>
 <page key="session-discovery" name="Session Discovery"/>
-<page key="6_change-log" name="Specification Information"/>
 <page deprecated="true" key="subscribing-and-unsubscribing" name="Subscribing and unsubscribing"/>
 <page key="2-4-Subscribing" name="Subscribing to Events"/>
 <page deprecated="true" key="syncerror" name="Sync error event"/>
