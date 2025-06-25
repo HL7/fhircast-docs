@@ -21,7 +21,7 @@ fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 version: 3.0.0
 copyrightYear: 2017+
 # releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
-releaseLabel: trial-use
+releaseLabel: STU 3
 publisher:
   name: HL7 International / Infrastructure And Messaging
   url: http://www.hl7.org/Special/committees/inm
@@ -312,7 +312,7 @@ pages:
       valueCode: informative
 
   6_change-log.md:
-    title: Specification Information
+    title: Change Log
     extension:
     - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
       valueCode: informative
