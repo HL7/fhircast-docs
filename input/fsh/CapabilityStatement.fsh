@@ -57,7 +57,7 @@ Example instance of a CapabilityStatement with FHIRcast extension.
 * rest[server]
   * extension[fhircast]
     * extension[hubUrl]
-      * valueUrl = "http://my-fhircast-hub-url"
+      * valueUrl = "http://my-fhircast-hub-url.example.org"
   * resource[+]
     * type = #Patient
     * interaction[+]

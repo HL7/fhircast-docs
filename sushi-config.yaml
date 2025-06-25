@@ -18,7 +18,7 @@ extension:
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
-version: 3.0.0-ballot
+version: 3.0.0
 copyrightYear: 2017+
 # releaseLabel: ci-build #STU 3 Ballot  # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 releaseLabel: trial-use
@@ -34,7 +34,7 @@ contact:
       - system: email
         value: inm@lists.HL7.org 
 dependencies:
-  hl7.fhir.uv.ipa: 1.0.0
+  hl7.fhir.uv.ipa: 1.1.0
 pages:
   index.md: 
     title: Introduction
@@ -46,57 +46,79 @@ pages:
     extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-1-SessionDiscovery.md:
       title: Session Discovery
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-2-FhircastScopes.md:
       title: OAuth 2.0 Authorization Scopes
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-3-Events.md:
       title: Event Format
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-4-Subscribing.md:
       title: Subscribing to Events
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-5-ReceiveEventNotification.md:
       title: Receive Event Notification
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-6-SendEventNotification.md:
       title: Send Event Notification
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-7-Conformance.md:
       title: Conformance
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-8-Extensions.md:
       title: Extensions
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 4
     2-9-GetCurrentContext.md:
       title: Get Current Context
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 3
     2-10-ContentSharing.md:
       title: Content Sharing
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
         valueCode: trial-use
-       
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+        valueInteger: 3
+
   3_Events.md:
     title: Event Library
     extension:
@@ -106,112 +128,142 @@ pages:
       title: FHIRcast Event Definitions
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: trial-use
+        valueCode: informative
       3-1-1-template.md:
         title: Event Template
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-          valueCode: trial-use
+          valueCode: informative
       3-1-2-eventmaturitymodel.md:
         title: Event Maturity Model
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
     3-2-0-infrastructureevents.md:
       title: Infrastructure Events
       extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-          valueCode: trial-use
+          valueCode: informative
       3-2-1-SyncError.md:
         title: SyncError Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-2-2-UserLogout.md:
         title: UserLogout Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-2-3-UserHibernate.md:
         title: UserHibernate Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-2-5-Home-open.md:
         title: Home-open Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 3
     3-3-0-patientevents.md:
       title: Patient Events
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: trial-use
+        valueCode: informative
       3-3-1-Patient-open.md:
         title: Patient-open Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-3-2-Patient-close.md:
         title: Patient-close Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
     3-4-0-encounterevents.md:
       title: Encounter Events
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: trial-use
+        valueCode: informative
       3-4-1-Encounter-open.md:
         title: Encounter-open Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-4-2-Encounter-close.md:
         title: Encounter-close Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
     3-5-0-imagingstudyevents.md:
       title: ImagingStudy Events
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: trial-use
+        valueCode: informative
       3-5-1-ImagingStudy-open.md:
         title: ImagingStudy-open Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-5-2-ImagingStudy-close.md:
         title: ImagingStudy-close Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
     3-6-0-diagnosticreportevents.md:
       title: DiagnosticReport Events
       extension:
       - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-        valueCode: trial-use
+        valueCode: informative
       3-6-1-DiagnosticReport-open.md:
         title: DiagnosticReport-open Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-6-2-DiagnosticReport-close.md:
         title: DiagnosticReport-close Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 4
       3-6-3-DiagnosticReport-update.md:
         title: DiagnosticReport-update Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 3
       3-6-4-DiagnosticReport-select.md:
         title: DiagnosticReport-select Event
         extension:
         - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
           valueCode: trial-use
+        - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+          valueInteger: 3
   4_Scenarios.md:
     title: Scenarios
     extension:
