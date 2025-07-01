@@ -17,7 +17,6 @@ All changes to the FHIRcast specification are tracked in the [specification's HL
 
 #### New events added to event library
 * home-open
-* heartbeat
 * encounter-open
 * encounter-close
 * imagingstudy-open
@@ -37,13 +36,12 @@ With the addition of update and select events, the scope of the FHIRcast specifi
 
 ### Changes to Context Synchronization
 #### Remove `webhook` channel
-In STU1 and STU2, FHIRcast supported a `webhook` channel (URL callbacks). As part of FHIRcast STU3, support for `webhooks` was removed in favor of `websockets` as the single communication method. The field `hub.channel.type` was used to indicate the channel type to use for event notification. This field has been retained in order to support backward compatibility as well as facilitate potentially adding new channels in the future. Similarly, the conformance statement related to WebSocketsupport was retained.
+In STU1 and STU2, FHIRcast supported a `webhook` channel (URL callbacks). As part of FHIRcast STU3, support for `webhooks` was removed in favor of `websockets` as the single communication method. The field [`hub.channel.type`](2-4-Subscribing.html#subscription-request) was used to indicate the channel type to use for event notification. This field has been retained in order to support backward compatibility as well as facilitate potentially adding new channels in the future. Similarly, the conformance statement [related to WebSocketsupport](2-7-Conformance.html#wellknown-endpoint) was retained.
 
 #### New context synchronization events
 * home-open
 * encounter-open
 * encounter-close
-* heartbeat
 
 #### Hub Generated `open` events
 
