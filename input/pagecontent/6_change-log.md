@@ -56,10 +56,17 @@ STU3 introduces the (experimental) concept of _selection_.
 
 ## Questions to implementers
 Scattered throughout the FHIRcast specification are the  questions to implementers, the following hyperlink directly to them:
+* [JSON HTTP content type](2_Specification.html#fhircast-specification)
 * [2-5-ReceiveEventNotification.html#hub-generated-syncerror-events](2-5-ReceiveEventNotification.html#hub-generated-syncerror-events)
 * [2-9-GetCurrentContext.html#get-current-context](2-9-GetCurrentContext.html#get-current-context)
+* [2-10-ContentSharing.html#addingremoving-context-resources](2-10-ContentSharing.html#addingremoving-context-resources)
+* [2-10-ContentSharing.html#updating-attributes-of-context-resources-and-addingremoving-context-resources](2-10-ContentSharing.html#updating-attributes-of-context-resources-and-addingremoving-context-resources)
+* [2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context](2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context)
 * [4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session](4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session)
+* [4-2-1-syncconsiderations.html#open-topics](4-2-1-syncconsiderations.html#open-topics)
 * [4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
+* [4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
+* 
 
 # FHIR Publication Details
 
