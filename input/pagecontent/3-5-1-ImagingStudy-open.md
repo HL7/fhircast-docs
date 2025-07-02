@@ -8,7 +8,6 @@ User opened an imaging study. The newly opened image study is now the current im
 
 ### Context
 
-:.grid}
 Key       | Cardinality | Type      | Description
 --------- | ----------- | --------- | --------------
 `study`   | 1..1        | resource  | FHIR ImagingStudy resource describing the image study now in context.
