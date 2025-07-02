@@ -36,26 +36,19 @@ The following example shows the selection of a single Observation resource in an
       {
         "key": "report",
         "reference": 
-          {
-            "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
-          }
+          { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327" }
       },
       {
         "key": "patient",
-        "reference": { 
-          "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
-        }
+        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926" }
       },
       {
         "key": "select",
-        "reference": {
-          "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3"
-        },
+        "reference": { "reference": "Observation/40afe766-3628-4ded-b5bd-925727c013b3" }
+      },
       {
         "key": "select",
-        "reference": {
-          "reference": "Observation/e25ce4c2-95c1-4078-8ef5-84aab1a69036"
-        }
+        "reference": { "reference": "Observation/e25ce4c2-95c1-4078-8ef5-84aab1a69036" }
       }
     ]
   }
