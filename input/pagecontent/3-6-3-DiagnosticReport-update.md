@@ -358,10 +358,11 @@ The following example shows a request to delete an observation from a content sh
                   }
                 ]
               }
+            }
           ]
         }
       }
-    ]
+    ] 
   }
 }
 ```
