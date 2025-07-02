@@ -11,3 +11,6 @@ Similarly, the conformance statement related to WebSocketsupport was retained.
 ### Content sharing approach
 
 Two base use cases for content-exchange were identified during use case analysis. One employs a transactional, event-based exchange mechanism while the second uses content sharing content persisted in a FHIR server. It is also possible to use both methods concurrently. A detailed description of these approaches is found in the content sharing section of the specification.
+
+### FHIRcast starts to become a "base specification"
+With the addition of update and select events, the scope of the FHIRcast specification significantly increases beyond context synchronization. In part this has lead to this FHIRcast publication specifying capabilities which require additional specification to be applied to specific interoperability use-cases. There is not yet a typical location for these additional specifications.

@@ -17,7 +17,6 @@ All changes to the FHIRcast specification are tracked in the [specification's HL
 
 #### New events added to event library
 * home-open
-* heartbeat
 * encounter-open
 * encounter-close
 * imagingstudy-open
@@ -37,13 +36,12 @@ With the addition of update and select events, the scope of the FHIRcast specifi
 
 ### Changes to Context Synchronization
 #### Remove `webhook` channel
-In STU1 and STU2, FHIRcast supported a `webhook` channel (URL callbacks). As part of FHIRcast STU3, support for `webhooks` was removed in favor of `websockets` as the single communication method. The field `hub.channel.type` was used to indicate the channel type to use for event notification. This field has been retained in order to support backward compatibility as well as facilitate potentially adding new channels in the future. Similarly, the conformance statement related to WebSocketsupport was retained.
+In STU1 and STU2, FHIRcast supported a `webhook` channel (URL callbacks). As part of FHIRcast STU3, support for `webhooks` was removed in favor of `websockets` as the single communication method. The field [`hub.channel.type`](2-4-Subscribing.html#subscription-request) was used to indicate the channel type to use for event notification. This field has been retained in order to support backward compatibility as well as facilitate potentially adding new channels in the future. Similarly, the conformance statement [related to WebSocketsupport](2-7-Conformance.html#wellknown-endpoint) was retained.
 
 #### New context synchronization events
 * home-open
 * encounter-open
 * encounter-close
-* heartbeat
 
 #### Hub Generated `open` events
 
@@ -58,13 +56,17 @@ STU3 introduces the (experimental) concept of _selection_.
 
 ## Questions to implementers
 Scattered throughout the FHIRcast specification are the  questions to implementers, the following hyperlink directly to them:
-* [2-4-Subscribing.html#current-context-notification-upon-successful-subscription](2-4-Subscribing.html#current-context-notification-upon-successful-subscription)
+* [JSON HTTP content type](2_Specification.html#fhircast-specification)
 * [2-5-ReceiveEventNotification.html#hub-generated-syncerror-events](2-5-ReceiveEventNotification.html#hub-generated-syncerror-events)
 * [2-9-GetCurrentContext.html#get-current-context](2-9-GetCurrentContext.html#get-current-context)
+* [2-10-ContentSharing.html#addingremoving-context-resources](2-10-ContentSharing.html#addingremoving-context-resources)
+* [2-10-ContentSharing.html#updating-attributes-of-context-resources-and-addingremoving-context-resources](2-10-ContentSharing.html#updating-attributes-of-context-resources-and-addingremoving-context-resources)
+* [2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context](2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context)
 * [4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session](4-1-launch-scenarios.html#dynamic-registration-for-native-apps-following-smart-launch-parent-application-registers-dynamic-application-which-participates-in-fhircast-session)
-* [4-2-3-multi-anchor-considerations.html#hub-derives-open-events](4-2-3-multi-anchor-considerations.html#hub-derives-open-events)
+* [4-2-1-syncconsiderations.html#open-topics](4-2-1-syncconsiderations.html#open-topics)
 * [4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
-
+* [4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events](4-2-3-multi-anchor-considerations.html#hub-may-or-may-not-derive-close-events)
+* 
 
 # FHIR Publication Details
 
