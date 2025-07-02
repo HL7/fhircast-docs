@@ -41,7 +41,7 @@ The application that creates the subscription might not be the same system as th
 
 In this example, the subscribing application creates an initial subscription and asks to be notified of the `Patient-open` and `Patient-close` events.
 
-```text
+```http
 POST https://hub.example.com HTTP/1.1
 Host: hub.example.com
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
@@ -63,7 +63,7 @@ In the case of an acceptable subscription request, an HTTP 202 "Accepted" respon
 
 ##### Subscription Response Example
 
-```json
+```http
 HTTP/1.1 202 Accepted
 
 {   
@@ -181,7 +181,7 @@ Field                  | Optionality | Type     | Description
 
 ##### Unsubscribe Request Example
 
-```text
+```http
 POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
