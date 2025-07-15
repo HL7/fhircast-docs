@@ -27,7 +27,7 @@ Field | Optionality | Type | Description
 
 ### Content Sharing Support
 
-If a Hub supports content sharing, the Hub returns the current content in a `content` key in the `context` array.  There SHALL be one and only one `Bundle` resource which SHALL have a `type` of `collection`.  No entry in the `Bundle` SHALL contain a `request` attribute.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
+If a Hub supports content sharing, the Hub returns the current content in a `content` key in the `context` array.  There SHALL be one and only one `Bundle` resource which SHALL have a `type` of `collection`. The `Bundle` resource SHALL conform to the [FHIR Bundle](https://build.fhir.org/foundation-module.html) specification.
 
 #### Context
 
