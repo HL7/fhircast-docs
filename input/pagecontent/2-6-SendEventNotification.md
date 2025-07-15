@@ -31,7 +31,7 @@ A Subscriber that initiates a context change and receives a `SyncError` related 
 
 #### Request
 
-```text
+```http
 POST https://hub.example.com HTTP/1.1
 Host: hub
 Authorization: Bearer i8hweunweunweofiwweoijewiwe

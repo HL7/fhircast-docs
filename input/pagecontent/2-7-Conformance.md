@@ -15,16 +15,17 @@ Field              | Optionality | Type  | Description
 `eventsSupported`  | Required    | array | Array of FHIRcast events supported by the Hub.
 `websocketSupport` | Required  (**deprecated**)  | boolean | SHALL have the static value: `true` - indicating support for websockets. **FYI to Implementers**: Given that websocket support is the only defined communication method in FHIRcast versions STU3 and was required in STU2, it's likely that this element will become Optional and then Deprecated in the future.
 `fhircastVersion`  | Optional | string | Specific FHIRcast IG Version supported by Hub (for example: `2.0.0` or `3.0.0`). Hubs SHOULD indicate the version of FHIRcast supported. See [history page](https://hl7.org/fhir/uv/fhircast/history.html) for versions.
-`getCurrentSupport` | Optional (**deprecated**) | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.  **FYI to Implementers**: Note that this element is being deprecated in favor of the `capabilities` array. Expect this element to be removed in the future. In the interim, capable implementers should support both this element and the `capabilities` array.
-`capabilities` | Optional | array | Array of key-value pairs representing supported topics. See Capabilities table below for list of defined keys and their meanings. 
+`getCurrentSupport` | Optional (**deprecated**) | boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.  **FYI to Implementers**: Note that this element is being deprecated in favor of the `capabilities` object. Expect this element to be removed in the future. In the interim, capable implementers should support both this element and the `capabilities` object.
+`capabilities` | Optional | object | Object containing key-value pairs representing supported topics. See Capabilities table below for list of defined keys and their meanings. 
 `fhirVersion`  | Optional | string | `DSTU1`, `DSTU2`, `STU3`, `R4`, `R4B`, or `R5` - indicating the specific version of FHIR for this Hub.
 
 A field of `webhookSupport` SHALL be ignored.
 
 #### Capabilities
+
 {:.grid}
-Field              | Optionality | Type  | Description
------------------- | ----------- | ----- | ---
+Field                       | Optionality | Type  | Description
+--------------------------- | ----------- | ----- | ---
 `supportsGetCurrentContext` | Optional | Boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 `supportsNonCurrentContextUpdates` | Optional | Boolean | `true` or `false` - indicating support for the "[Update Events Outside of Current Context](2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context)" 
 
@@ -41,18 +42,18 @@ Host: www.hub.example.com
 
 #### Wellknown endpoint discovery Response
 
-```text
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
   "eventsSupported": ["Patient-open", "Patient-close", "SyncError", "com.example.researchstudy-transmogrify"],
   "websocketSupport": true,
-  "fhircastVersion": "3.0.0"
-  "capabilities": [
+  "fhircastVersion": "3.0.0",
+  "capabilities": {
     "supportsGetCurrentContext": false,
     "supportsNonCurrentContextUpdates": false
-  ]
+  }
 }
 ```
 

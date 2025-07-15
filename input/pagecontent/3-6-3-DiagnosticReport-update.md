@@ -312,12 +312,14 @@ The following example shows a request to delete an observation from a content sh
     "context": [
       {
         "key": "report",
-        "reference": { "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
+        "reference": {
+          "reference": "DiagnosticReport/2402d3bd-e988-414b-b7f2-4322e86c9327"
         }
       },
       {
         "key": "patient",
-        "reference": { "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
+        "reference": {
+          "reference": "Patient/503824b8-fe8c-4227-b061-7181ba6c3926"
         }
       },
       {
@@ -339,11 +341,11 @@ The following example shows a request to delete an observation from a content sh
               "resource": {
                 "resourceType": "DiagnosticReport",
                 "id": "2402d3bd-e988-414b-b7f2-4322e86c9327",
-                "identifier" : [
+                "identifier": [
                   {
-                    "use" : "official",
-                    "system" : "http://myhealthcare.example.org/reporting-system",
-                    "value" : "GH339884.RPT.0001"
+                    "use": "official",
+                    "system": "http://myhealthcare.example.org/reporting-system",
+                    "value": "GH339884.RPT.0001"
                   }
                 ],
                 "imagingStudy": [
