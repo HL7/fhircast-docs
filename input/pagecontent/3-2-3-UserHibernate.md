@@ -47,4 +47,4 @@ Key       | Cardinality | Type      | Description
 {:.grid}
 | Version | Description
 | ------- | ----
-| 1.0     | Initial Release
+| 1.0     | [Initial Release](https://fhircast.hl7.org/events/userhibernate/)

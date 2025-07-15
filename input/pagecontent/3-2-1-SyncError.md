@@ -83,5 +83,5 @@ Key       | Cardinality | Type      | Description
 | Version | Description |
 | ------- | ------------- |
 | 1.0     | Initial Release |
-| 2.0     | Require id of event syncerror is about, in `OperationOutcome.details.coding.code` |
+| 2.0     | [Require id of event syncerror is about, in `OperationOutcome.details.coding.code`](https://fhircast.hl7.org/events/syncerror/) |
 | 2.1     | Clarify scenarios, make the OperationOutcome resource required, and specify explicit `severity` codes |
