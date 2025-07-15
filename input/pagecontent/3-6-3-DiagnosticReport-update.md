@@ -236,7 +236,7 @@ The Hub distributes the corresponding event to all Subscribers. The Hub replaces
                     "system":"http://hospital.example.org",
                     "value":"7611ffcd-f242-4738-b451-31995b660b90"
                   }
-                ]
+                ],
                 "partOf": {
                   "reference": "ImagingStudy/7e9deb91-0017-4690-aebd-951cef34aba4"
                 },
