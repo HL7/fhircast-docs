@@ -65,6 +65,6 @@ Other attributes of the Patient resource (or resource extensions) may be present
 {:.grid}
 | Version | Description
 | ---- | ----
-| 1.0 | Initial Release
+| 1.0 | [Initial Release](https://fhircast.hl7.org/events/patient-close/)
 | 1.1 | Deprecate encounter element in favor of dedicated `encounter-close` event
 | 1.2 | Reference context resource profiles and update example to be compliant with the profiles
