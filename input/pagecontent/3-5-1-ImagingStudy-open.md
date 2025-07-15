@@ -217,5 +217,5 @@ This is an example for FHIR R5 using the basedOn array for the accession
 {:.grid}
 | Version | Description
 | ------- | ----
-| 1.0 | Initial Release
+| 1.0 | [Initial Release](https://fhircast.hl7.org/events/imagingstudy-open/)
 | 1.1 | Reference context resource profiles and update example to be compliant with the profiles
