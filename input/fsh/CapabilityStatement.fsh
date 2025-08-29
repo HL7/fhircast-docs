@@ -9,7 +9,7 @@ Description: "CapabilityStatment stating support for FHIRcast. To supplement or 
 * implementationGuide ^slicing.discriminator.path = "$this"
 * implementationGuide 0..*
 * implementationGuide contains fhircast 0..1
-* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
+* implementationGuide[fhircast] = "http://fhircast.hl7.org/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
 * rest ^slicing.rules = #open
 * rest ^slicing.discriminator.type = #value
 * rest ^slicing.discriminator.path = "mode"
@@ -50,7 +50,7 @@ Usage: #example
   * name = "FHIR server software supporting FHIRcast"
 * implementation
   * description = "Instance of FHIR server software supporting FHIRcast"
-* implementationGuide[fhircast] = "http://hl7.org/fhir/uv/fhircast/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
+* implementationGuide[fhircast] = "http://fhircast.hl7.org/ImplementationGuide/hl7.fhir.uv.fhircast|3.0.0"
 * description = """
 Example instance of a CapabilityStatement with FHIRcast extension.
 """
