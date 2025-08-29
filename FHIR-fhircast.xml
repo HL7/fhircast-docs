@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/fhircast/2024May" ciUrl="http://build.fhir.org/ig/HL7/fhircast-docs" defaultVersion="3.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://hl7.org/fhir/uv/fhircast">
-<version code="current" url="http://build.fhir.org/ig/HL7/fhircast-docs"/>
-<version code="3.0.0" url="http://hl7.org/fhir/uv/fhircast/STU3"/>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ciUrl="" defaultVersion="3.0.0" defaultWorkgroup="inm" gitUrl="https://github.com/HL7/fhircast-docs" url="http://fhircast.hl7.org">
+<version code="current" url=""/>
+<version code="3.0.0" url="http://fhircast.hl7.org/STU3"/>
 <version code="3.0.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2024May"/>
 <version code="2.1.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
-<version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
-<version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
 <version code="0.1" deprecated="true"/>
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
