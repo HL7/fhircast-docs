@@ -4,6 +4,8 @@
 <version code="3.0.0" url="http://fhircast.hl7.org/STU3"/>
 <version code="3.0.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2024May"/>
 <version code="2.1.0-ballot" deprecated="true" url="http://hl7.org/fhir/uv/fhircast/2022May"/>
+<version code="2.0.0" url="https://fhircast.hl7.org/specification/STU2"/>
+<version code="1.0.0" url="https://fhircast.hl7.org/specification/STU1"/>
 <version code="0.1" deprecated="true"/>
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
