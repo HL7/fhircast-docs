@@ -28,6 +28,8 @@ Field                       | Optionality | Type  | Description
 --------------------------- | ----------- | ----- | ---
 `supportsGetCurrentContext` | Optional | Boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 `supportsNonCurrentContextUpdates` | Optional | Boolean | `true` or `false` - indicating support for the "[Update Events Outside of Current Context](2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context)" 
+`preservesFhirId` | Required | Boolean | `true` or `false` - indicating that the Hub preserve the FHIR resources' logical FHIR IDs while broadcasting open events. If false, the Hub assigns a different FHIR ID and populates an additional business identifier with the value of the requesting subscriber's FHIR ID. See [Hub Generated FHIR IDs]([url](2-5-ReceiveEventNotification.html#hub-generated-fhir-ids)).
+
 
 #### Wellknown endpoint discovery example
 
@@ -70,3 +72,4 @@ FHIRcast defines profiles for various FHIR resource structures used in the speci
 In the context of FHIRcast, must support (MS) on any data element SHALL be interpreted to mean [FHIR’s MustSupport](https://www.hl7.org/fhir/conformance-rules.html#mustSupport). Generally, implementations are expected to:
 * if known and possible, populate supported data elements as part of the event notifications as specified by the FHIRcast profiles.
 * interpret missing, supported data elements within resource instances as data not present in the sending systems (or for which the requestor is unauthorized).
+

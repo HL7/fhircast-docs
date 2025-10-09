@@ -6,6 +6,10 @@ eventMaturity | [3 - Considered](3-1-2-eventmaturitymodel.html)
 
 User opened a patient's medical record. The indicated patient is now the current patient in context. 
 
+During an `open` event requested by a Subscriber, the Subscriber assigns and sends a logical FHIR ID for the Patient resource. 
+
+A Hub MAY reassign the logical FHIR ID for the Patient resource supplied by the requestor (see [Receive Event Notification](2-5-ReceiveEventNotification.html)). 
+
 ### Context
 
 {:.grid}

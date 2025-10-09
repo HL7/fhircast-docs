@@ -6,6 +6,10 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 User opened an imaging study. The newly opened image study is now the current imaging study in context.  When the image study's subject is a patient, this patient SHALL be provided in the event.
 
+During an `open` event requested by a Subscriber, the Subscriber assigns and sends a logical FHIR ID for the ImagingStudy resource. 
+
+A Hub MAY reassign the logical FHIR ID for the ImagingStudy resource supplied by the requestor (see [Receive Event Notification](2-5-ReceiveEventNotification.html)). 
+
 ### Context
 
 {:.grid}
