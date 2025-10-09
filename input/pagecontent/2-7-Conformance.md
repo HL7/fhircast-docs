@@ -28,7 +28,7 @@ Field                       | Optionality | Type  | Description
 --------------------------- | ----------- | ----- | ---
 `supportsGetCurrentContext` | Optional | Boolean | `true` or `false` - indicating support for the "[Get Current Context](2-9-GetCurrentContext.html)" API.
 `supportsNonCurrentContextUpdates` | Optional | Boolean | `true` or `false` - indicating support for the "[Update Events Outside of Current Context](2-10-ContentSharing.html#experimental-capability--update-events-outside-of-current-context)" 
-`preservesFhirId` | Optional | Boolean | `true` or `false` - indicating that the Hub preserve the FHIR resources' logical FHIR IDs while broadcasting open events. If false, the Hub assigns a different FHIR ID and populates an additional business identifier with the value of the requesting subscriber's FHIR ID. See [Hub Generated FHIR IDs]([url](2-5-ReceiveEventNotification.html#hub-generated-fhir-ids)).
+`preservesFhirId` | Required | Boolean | `true` or `false` - indicating that the Hub preserve the FHIR resources' logical FHIR IDs while broadcasting open events. If false, the Hub assigns a different FHIR ID and populates an additional business identifier with the value of the requesting subscriber's FHIR ID. See [Hub Generated FHIR IDs]([url](2-5-ReceiveEventNotification.html#hub-generated-fhir-ids)).
 
 
 #### Wellknown endpoint discovery example
