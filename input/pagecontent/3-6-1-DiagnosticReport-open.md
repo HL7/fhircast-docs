@@ -6,6 +6,10 @@ eventMaturity | [2 - Tested](3-1-2-eventmaturitymodel.html)
 
 User opened a diagnostic report.  The newly opened diagnostic report is now the current report in context.
 
+During an `open` event requested by a Subscriber, the Subscriber assigns and sends a logical FHIR ID for the DiagnosticReport resource. 
+
+A Hub MAY reassign the logical FHIR ID for the DiagnosticReport resource supplied by the requestor (see [Receive Event Notification](2-5-ReceiveEventNotification.html)). 
+
 ### Context
 
 {:.grid}
