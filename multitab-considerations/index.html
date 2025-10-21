@@ -191,10 +191,10 @@
 <p>Let's start with a simple case.</p>
 <h3 id="opening-and-closing-a-patient">Opening and Closing a Patient</h3>
 <p>The diagrams below show two applications without any context, followed by a <code>patient-open</code> event communicated to the other app resulting in same patient being opened in the receiving app. When the patient is closed, a <code>patient-close</code> event is triggered leading to the patient being closed in the other app as well.</p>
-<p><img alt="Simple patient open and close example" src="/img/PatientOpenAndClose.png" /></p>
+<p><img alt="Simple patient open and close example" src="../img/PatientOpenAndClose.png" /></p>
 <h3 id="opening-multiple-patients">Opening Multiple Patients</h3>
 <p>As illustrated below, context synchronization is maintained between multiple and single-tabbed applications even across multiple contexts being opened. The initial <code>patient-open</code> works as expected by synchronizing the two apps for Patient 1. When the multi-tab app opens a second patient (without closing the first) the single-tab app follows the context change, resulting in the applications staying in sync. Even when the user is working within the multi-tab app, the single-tab app can still stay in sync with the current context.</p>
-<p><img alt="Multiple patient open example" src="/img/MultiplePatientOpens.png" /></p>
+<p><img alt="Multiple patient open example" src="../img/MultiplePatientOpens.png" /></p>
 <h2 id="recommendations">Recommendations</h2>
 <ul>
 <li>When synchronizing with a multi-tab application, receiving multiple, sequential <code>-open</code> events (for example, <code>patient-open</code>) does not indicate a synchronization error. </li>

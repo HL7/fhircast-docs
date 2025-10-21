@@ -200,13 +200,13 @@
           <div role="main">
             <div class="section">
               
-                <p><img style="float: left;padding-right: 5px;" src="/img/hl7-logo-header-good-resolution.png" width=20%" /></p>
+                <p><img style="float: left;padding-right: 5px;" src="../../img/hl7-logo-header-good-resolution.png" width=20%" /></p>
 <h1 id="fhircast">FHIRcast</h1>
 <h2 id="overview">Overview</h2>
 <p>The FHIRcast specification describes the APIs used to synchronize disparate healthcare applications' user interfaces in real time,  allowing them to show the same clinical content to a user (or group of users). </p>
 <p>Once the subscribing app <a href="#session-discovery">knows about the session</a>, the app <a href="#subscribing-and-unsubscribing">subscribes</a> to specific workflow-related events for the given session. The app is then <a href="#event-notification">notified</a> when those workflow-related events occur; for example, when the clinician opens a patient's chart. The subscribing app can also <a href="#request-context-change">initiate context changes</a> by accessing APIs defined in this specification; for example, closing the patient's chart. The app <a href="#unsubscribe">deletes its subscription</a> to no longer receive notifications. The notification messages describing the workflow event are defined as a simple JSON wrapper around one or more FHIR resources. </p>
 <p>FHIRcast recommends the <a href="http://www.hl7.org/fhir/smart-app-launch">HL7 SMART on FHIR launch protocol</a> for both session discovery and API authentication. FHIRcast enables a subscriber to receive notifications either through a webhook or over a WebSocket connection. This protocol is modeled on the <a href="https://www.w3.org/TR/websub/">W3C WebSub RFC</a>, such as its use of GET vs POST interactions and a Hub for managing subscriptions. The Hub exposes APIs for subscribing and unsubscribing, requesting context changes, and distributing event notifications. The flow diagram presented below illustrates the series of interactions specified by FHIRcast, their origination and their outcome.</p>
-<p><img alt="FHIRcast flow diagram overview" src="/img/FHIRcast%20overview%20for%20abstract.png" /></p>
+<p><img alt="FHIRcast flow diagram overview" src="../../img/FHIRcast%20overview%20for%20abstract.png" /></p>
 <p>All data exchanged through the HTTP APIs SHALL be formatted, sent and received as <a href="https://tools.ietf.org/html/rfc8259">JSON</a> structures, and SHALL be transmitted over channels secured using the Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS), also known as HTTPS which is defined in <a href="https://tools.ietf.org/html/rfc2818">RFC2818</a>.</p>
 <p>All data exchanged through WebSockets SHALL be formatted, sent and received as <a href="https://tools.ietf.org/html/rfc8259">JSON</a> structures, and SHALL be transmitted over Secure Web Sockets (WSS) as defined in <a href="https://tools.ietf.org/html/rfc6455">RFC6455</a>.</p>
 <h2 id="events">Events</h2>
@@ -222,7 +222,7 @@
 <p>Most FHIRcast events conform to an extensible syntax based upon FHIR resources. In the rare case where the FHIR data model doesn't describe content in the session, FHIRcast events MAY be named differently. For example, FHIR doesn't cleanly contain the concept of a user or user's session.  </p>
 <p>Patterned after the SMART on FHIR scope syntax and expressed in EBNF notation, the FHIRcast syntax for workflow related events is:</p>
 <p><code>hub.events ::= ( fhir-resource | '*' ) '-' ( 'open' | 'close' | '*' )</code></p>
-<p><img alt="syntax for new events" src="/img/events-railroad.png" /></p>
+<p><img alt="syntax for new events" src="../../img/events-railroad.png" /></p>
 <p>FHIRcast events SHOULD conform to this extensible syntax.</p>
 <p>Event names are unique and case-insensitive. Implementers may define their own events. Such proprietary events SHALL be named with reverse domain notation (e.g. <code>org.example.patient_transmogrify</code>). Reverse domain notation SHALL NOT be used by a standard event catalog. Proprietary events SHALL NOT contain a dash ("-").</p>
 <h4 id="event-definition-format-workflow">Event Definition Format: Workflow</h4>
@@ -429,7 +429,7 @@ hub.channel.type=websocket&amp;hub.mode=subscribe&amp;hub.topic=fdb2f928-5546-4f
 <h4 id="webhook-subscription-denial"><code>webhook</code> Subscription Denial</h4>
 <p>To deny a <code>webhook</code> subscription, the Hub sends an HTTP GET request to the subscriber's callback URL as given in the subscription request.  This request appends the fields as query string arguments. The subscriber SHALL respond with an HTTP success (2xx) code.</p>
 <h6 id="webhook-subscription-denial-sequence"><code>webhook</code> Subscription Denial Sequence</h6>
-<p><img alt="Subscription denial flow diagram" src="/img/Denied%20Webhook%20Subscription%20Sequence.png" /></p>
+<p><img alt="Subscription denial flow diagram" src="../../img/Denied%20Webhook%20Subscription%20Sequence.png" /></p>
 <h6 id="webhook-subscription-denial-example"><code>webhook</code> Subscription Denial Example</h6>
 <pre><code>GET https://app.example.com/session/callback/v7tfwuk17a?hub.mode=denied&amp;hub.topic=fdb2f928-5546-4f52-87a0-0648e9ded065hub.events=patient-open,patient-close&amp;hub.reason=session+unexpectedly+stopped HTTP 1.1
 Host: subscriber
@@ -438,7 +438,7 @@ Host: subscriber
 <h4 id="websocket-subscription-denial"><code>websocket</code> Subscription Denial</h4>
 <p>To deny a <code>websocket</code> subscription, the Hub sends a JSON object to the subscriber through the established WebSocket connection. </p>
 <h6 id="websocketsubscription-denial-sequence"><code>websocket</code>Subscription Denial Sequence</h6>
-<p><img alt="Subscription denial flow diagram" src="/img/Denied%20Websocket%20Subscription%20Sequence.png" /></p>
+<p><img alt="Subscription denial flow diagram" src="../../img/Denied%20Websocket%20Subscription%20Sequence.png" /></p>
 <h6 id="websocket-subscription-denial-example"><code>websocket</code> Subscription Denial Example</h6>
 <pre><code>{
    &quot;hub.mode&quot;: &quot;denied&quot;,
@@ -504,7 +504,7 @@ Host: subscriber
 <p>The Hub SHALL consider other server response codes (3xx, 4xx, 5xx) to mean that the verification request has failed. If the subscriber returns an HTTP success (2xx) but the content body does not match the <code>hub.challenge</code> parameter, the Hub SHALL consider verification to have failed.</p>
 <p>The below flow diagram and example illustrate the successful subscription sequence and message details.</p>
 <h6 id="webhook-successful-subscription-sequence"><code>webhook</code> Successful Subscription Sequence</h6>
-<p><img alt="Successful subscription flow diagram" src="/img/Successful%20Subscription%20Sequence.png" /></p>
+<p><img alt="Successful subscription flow diagram" src="../../img/Successful%20Subscription%20Sequence.png" /></p>
 <h6 id="webhook-intent-verification-response-example"><code>webhook</code> Intent Verification Response Example</h6>
 <pre><code>HTTP/1.1 200 OK
 Content-Type: text/html
@@ -564,7 +564,7 @@ The spec uses GET vs POST to differentiate between the confirmation/denial of th
 </code></pre>
 
 <h6 id="websocket-successful-subscription-sequence"><code>websocket</code> Successful Subscription Sequence</h6>
-<p><img alt="Successful web socket subscription flow diagram" src="/img/Successful%20WebSocket%20Subscription%20Sequence.png" /></p>
+<p><img alt="Successful web socket subscription flow diagram" src="../../img/Successful%20WebSocket%20Subscription%20Sequence.png" /></p>
 <h3 id="unsubscribe">Unsubscribe</h3>
 <p>Once a subscribing app no longer wants to receive event notifications, it SHALL unsubscribe from the session. An unsubscribe cannot alter an existing subscription, only cancel it. Note that the unsubscribe request is performed over HTTP(s), even for subscriptions using WebSockets. <code>websocket</code> unsubscribes will destroy the websocket which cannot be reused. A subsequent subscription SHALL be done over a newly created and communicated WebSocket endpoint.</p>
 <table>
@@ -650,7 +650,7 @@ hub.channel.type=websocket&amp;hub.channel.endpoint=wss%3A%2F%2Fhub.example.com%
 </code></pre>
 
 <h6 id="webhook-and-websocket-unsubscription-sequence"><code>webhook</code> and <code>websocket</code> Unsubscription Sequence</h6>
-<p><img alt="Unsubscription flow diagram" src="/img/UnsubscriptionSequence.png" /></p>
+<p><img alt="Unsubscription flow diagram" src="../../img/UnsubscriptionSequence.png" /></p>
 <h2 id="event-notification">Event Notification</h2>
 <p>The Hub SHALL notify subscribed apps of workflow-related events to which the app is subscribed. The notification is a JSON object communicated over the <code>webhook</code> or <code>websocket</code> channel.</p>
 <h3 id="event-notification-request">Event Notification Request</h3>
@@ -822,7 +822,7 @@ X-Hub-Signature: sha256=dce85dc8dfde2426079063ad413268ac72dcf845f9f923193285e693
 </code></pre>
 
 <h6 id="webhook-and-websocket-event-notification-sequence"><code>webhook</code> and <code>websocket</code> Event Notification Sequence</h6>
-<p><img alt="Event Notification flow diagram" src="/img/EventNotificationSequence.png" /></p>
+<p><img alt="Event Notification flow diagram" src="../../img/EventNotificationSequence.png" /></p>
 <h2 id="event-notification-errors">Event Notification Errors</h2>
 <p>All standard events are defined outside of the base FHIRcast specification in the Event Catalog with the single exception of the infrastructural <code>syncerror</code> event. </p>
 <p>If the subscriber cannot follow the context of the event, for instance due to an error or a deliberate choice to not follow a context, the subscriber SHOULD communicate the error to the Hub in one of two ways.</p>
@@ -938,11 +938,11 @@ Content-Type: application/json
 </code></pre>
 
 <h6 id="webhook-and-websocket-event-notification-error-sequence"><code>webhook</code> and <code>websocket</code> Event Notification Error Sequence</h6>
-<p><img alt="Event Notification Error flow diagram" src="/img/ErrorSequence.png" /></p>
+<p><img alt="Event Notification Error flow diagram" src="../../img/ErrorSequence.png" /></p>
 <h2 id="request-context-change">Request Context Change</h2>
 <p>Similar to the Hub's notifications to the subscriber, the subscriber MAY request context changes with an HTTP POST to the <code>hub.url</code>. The Hub SHALL either accept this context change by responding with any successful HTTP status or reject it by responding with any 4xx or 5xx HTTP status. Similar to event notifications, described above, the Hub MAY also respond with a 202 (Accepted) status, process the request, and then later respond with a <code>syncerror</code> event in order to reject the request. In this case the <code>syncerror</code> would only be sent to the requestor. The subscriber SHALL be capable of gracefully handling a rejected context request. </p>
 <p>Once a requested context change is accepted, the Hub SHALL broadcast the context notification to all subscribers, including the original requestor. The requestor can use the broadcasted notification as confirmation of their request. The Hub reusing the request's <code>id</code> is further confirmation that the event is a result of their request. </p>
-<p><img alt="Request context change flow diagram" src="/img/Request%20Context%20Change%20Flow.png" /></p>
+<p><img alt="Request context change flow diagram" src="../../img/Request%20Context%20Change%20Flow.png" /></p>
 <h3 id="request-context-change-request">Request Context Change Request</h3>
 <h6 id="request-context-change-parameters_1">Request Context Change Parameters</h6>
 <table>

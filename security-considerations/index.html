@@ -216,7 +216,7 @@
 <p><a href="https://www.w3.org/TR/websub/">WebSub</a> is a W3C RFC designed for the distribution of web content through a standardized web hooks architecture. FHIRcast uses WebSub to allow clients to subscribe and unsubscribe to the Hub and, for the Hub to notify subscribers of events. </p>
 <p>Unlike WebSub, FHIRcast requires that both the Hub and the subscribing apps endpoints are exposed over https.</p>
 <p>The below <a href="https://drive.google.com/file/d/16pdG6Kw4pAG53J9d7_rK98DSvm_GMiCC/view?usp=sharing">flow diagram</a> illustrates each of the interactions. </p>
-<p><img alt="FHIRcast flow diagram" src="/img/FHIRcast%20WebSub%20security%20sequence.png" /></p>
+<p><img alt="FHIRcast flow diagram" src="../img/FHIRcast%20WebSub%20security%20sequence.png" /></p>
 <h3 id="how-does-the-subscriber-authenticate-to-the-hub">How does the subscriber authenticate to the Hub?</h3>
 <p>The subscribing app can make three distinct API calls to the Hub. For each of these calls, the subscribing app authenticates to the Hub with the Hub's authorization server issued SMART <code>access_token</code>. Per SMART on FHIR, this <code>access_token</code> is presented to the Hub in the HTTP Authorization header.</p>
 <ol>
@@ -237,7 +237,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 <li>Hub denies subscription</li>
 </ol>
 <p>This <a href="https://drive.google.com/file/d/1sqh3Jghd2QGzq_EhRR-uv6axgIkVW1EE/view?usp=sharing">flow diagram</a> describes the actors and actions. </p>
-<p><img alt="WebSub security flow" src="/img/WebSub%20security%20sequence%20flow.png" /></p>
+<p><img alt="WebSub security flow" src="../img/WebSub%20security%20sequence%20flow.png" /></p>
 <p>The <a href="http://fhircast.org/#app-subscribes-to-session">subscribing app initiates</a> the FHIRcast subscription, authenticating to the Hub with its bearer token, and providing the <code>hub.secret</code> and <code>hub.callback</code> url. The Hub verifies intent and ownership by performing an HTTP GET to the <code>hub.callback</code> url, with a <code>hub.challenge</code>. The subscribing app must echo the <code>hub.challenge</code> in the body of an HTTP 202 response. Once a workflow event occurs, the Hub notifies the app of the event by POSTing to the subscribing app's <code>hub.callback</code> url. The Hub provides an <a href="https://www.w3.org/TR/websub/#bib-RFC6151">HMAC signature</a> of the previously provided <code>hub.secret</code> in the <code>X-Hub-Signature</code> HTTP header.</p>
 <pre><code>POST https://app.example.com/session/callback/v7tfwuk17a HTTP/1.1
 Host: subscriber
