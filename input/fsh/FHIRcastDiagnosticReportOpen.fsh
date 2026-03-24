@@ -23,11 +23,11 @@ A DiagnosticReport can relate to imaging studies in a few different ways:
 
 The FHIR DiagnosticReport resource has modeled these different relationships differently in different versions:
 
-| | FHIR R4 | FHIR R5 | FHIR R6 |
+| | [FHIR R4](https://hl7.org/fhir/R4/diagnosticreport.html#resource) | [FHIR R5](https://hl7.org/fhir/R5/diagnosticreport.html#resource) | [FHIR R6](https://hl7.org/fhir/6.0.0-ballot4/diagnosticreport.html#resource) |
 |---|---------|---------|---------|
 | subject of report | `imagingStudy` — Reference(ImagingStudy) | `study` — Reference(GenomicStudy \| ImagingStudy) | `study` — Reference(ImagingStudy) |
-| prior | No distinct element; included in `imagingStudy` without role differentiation | `supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type` |
-| supporting | No distinct element; included in `imagingStudy` without role differentiation | `supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type` |
+| prior | No distinct element; included in `imagingStudy` without role differentiation | No distinct element; `supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type`  \| .comparison.reference - Reference(List) |
+| supporting | No distinct element; included in `imagingStudy` without role differentiation | No distinct element;`supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type` |
 
 In the FHIR R4 DiagnosticReport resource image study references are placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is a breaking change.
 
