@@ -14,12 +14,25 @@ A reporting system may also include its own identifier and should use an appropr
 
 In radiology reports or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case, the reference to one or more ImagingStudy resources would be provided.
 
-**FHIR R4 versus FHIR R5**
-In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
+**FHIR R4 versus FHIR R5 versus FHIR R6**
+
+A DiagnosticReport can relate to imaging studies in a few different ways:
+1. The DiagnosticReport is primary *about* one or more studies. These studies are the *subject of the report*.
+2. The DiagnosticReport may reference *prior* studies. 
+3. The DiagnosticReport may refer to or consult other studies that are *supporting* in some other way. 
+
+The FHIR DiagnosticReport resource has modeled these different relationships differently in different versions:
+
+| | FHIR R4 | FHIR R5 | FHIR R6 |
+|---|---------|---------|---------|
+| subject of report | `imagingStudy` — Reference(ImagingStudy) | `study` — Reference(GenomicStudy \| ImagingStudy) | `study` — Reference(ImagingStudy) |
+| prior | No distinct element; included in `imagingStudy` without role differentiation | `supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type` |
+| supporting | No distinct element; included in `imagingStudy` without role differentiation | `supportingInfo` exists but does not allow ImagingStudy references | `supportingInfo.reference` — Reference(ImagingStudy) with role indicated by `supportingInfo.type` |
+
+In the FHIR R4 DiagnosticReport resource image study references are placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is a breaking change.
 
 In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
 
-Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5 (R6 formalizes this support), it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field should be considered labeled as must support.
 """
 * insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 
