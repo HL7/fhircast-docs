@@ -33,7 +33,7 @@ A `SyncComplete` MAY be sent by the Hub when all subscribers have :
 {:.grid}
 Key       | Cardinality | Type      | Description
 --------- | ----------- | --------- | --------------
-`operationoutcome` | 1..1 | resource  | A FHIR OperationOutcome based on the profile [Operation outcome for SyncComplete]().
+`parameters` | 1..1 | resource  | A FHIR OperationOutcome based on the profile ...
 
 ### Examples
 
