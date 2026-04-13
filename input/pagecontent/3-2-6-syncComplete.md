@@ -44,20 +44,23 @@ Key       | Cardinality | Type      | Description
   "event": {
     "hub.topic": "7544fe65-ea26-44b5-835d-14287e46390b",
     "hub.event": "synccomplete",
-    "context": 
-"context": [{
-  "key": "parameters",
-  "resource": {
-    "resourceType": "Parameters",
-    "parameter": [{
-      "name": "relatedEvent",
-      "valueIdentifier": {
-        "system": "http://hl7.org/fhir/uv/fhircast/eventid",
-        "value": "b9a4b2e1-3f4c-4d6a-8e7f-1a2b3c4d5e6f"
+    "context": [
+      {
+        "key": "parameters",
+        "resource": {
+          "resourceType": "Parameters",
+          "parameter": [
+            {
+              "name": "relatedEvent",
+              "valueIdentifier": {
+                "system": "http://hl7.org/fhir/uv/fhircast/eventid",
+                "value": "b9a4b2e1-3f4c-4d6a-8e7f-1a2b3c4d5e6f"
+              }
+            }
+          ]
+        }
       }
-    }]
-  }
-}]
+    ]
   }
 }
 ```
