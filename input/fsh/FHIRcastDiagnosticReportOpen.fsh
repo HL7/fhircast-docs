@@ -14,7 +14,7 @@ A reporting system may also include its own identifier and should use an appropr
 
 In radiology reports or other image related uses of FHIRcast, at least one imaging study would likely be the subject of the report and included in the event's context.  In this case, the reference to one or more ImagingStudy resources would be provided.
 
-**FHIR R4 versus FHIR R5 versus FHIR R6**
+### FHIR R4 versus FHIR R5 versus FHIR R6
 
 A DiagnosticReport can relate to imaging studies in a few different ways:
 1. The DiagnosticReport is primary *about* one or more studies. These studies are the *subject of the report*.
@@ -31,7 +31,7 @@ The FHIR DiagnosticReport resource has modeled these different relationships dif
 
 In the FHIR R4 DiagnosticReport resource image study references are placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is a breaking change.
 
-In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
+In FHIRcast deployments based on FHIR R5 and R6, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
 
 """
 * insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
