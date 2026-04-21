@@ -7,11 +7,8 @@ Description:
 Provides guidance as to which DiagnosticReport attributes should be present and considerations as to how each attribute should be valued in all [FHIR resource]-close events.
 
 **FHIR R4 versus FHIR R5**
-In the FHIR R4 DiagnosticReport resource image study references would be placed in the `imagingStudy` attribute.  In a FHIR R5 (or above) DiagnosticReport this attribute has been renamed `study` since the allowed reference types has been expanded to include references to GenomicStudy resources.  This is obviously a breaking change.
+The elements referencing ImagingStudy in the FHIR DiagnosticReport resource change between FHIR R4, R5 and R6. [See explaination](#FHIR-R4-versus-FHIR-R5-versus-FHIR-R6). Ultimately, in FHIR R5,  R6 and beyond, the attribute `study` is used rather than the `imagingStudy` attribute.
 
-In FHIRcast deployments based on FHIR R5, the attribute `study` SHALL be used rather than the `imagingStudy` attribute.
-
-Additionally FHIR R5 includes a `supportingInfo` attribute. While not yet formally provided for in FHIR R5 (R6 formalizes this support), it has been recommended that the next release of FHIR allow an ImagingStudy reference be included in this attribute so that the DiagnosticReport could indicate one or more image studies were consulted during the creation of the report. As such in FHIR R5 deployments, this field should be considered labeled as must support.
 """
 * insert SetWorkgroupFmmAndStatusRule( #inm, 4, #active)
 
