@@ -11,9 +11,9 @@ A Subscriber is affirmatively acknowledging successful synchronization to a give
 
 A `SyncSuccess` MAY be sent by the Hub when all subscribers have either:
 1. Responded to a context change event with a 200.
-2. Responded to a context change event with a 202, followed by a SyncComplete.
+2. Responded to a context change event with a 202, followed by a SyncSuccess.
 
-`SyncComplete` is not used when a Subscriber responds to an `*-update` or `*-select` event.
+`SyncSuccess` is not used when a Subscriber responds to an `*-update` or `*-select` event.
 
 ### Context
 
@@ -30,7 +30,7 @@ Key       | Cardinality | Type      | Description
   "id": "q9v3jubddqt63n1",
   "event": {
     "hub.topic": "7544fe65-ea26-44b5-835d-14287e46390b",
-    "hub.event": "synccomplete",
+    "hub.event": "syncsuccess",
     "context": [
       {
         "key": "parameters",
